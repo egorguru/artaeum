@@ -1,0 +1,21 @@
+version: '2.1'
+
+services:
+
+  config:
+    build: config
+    ports:
+    - 8888:8888
+
+  registry:
+    build: registry
+
+  gateway:
+    build: gateway
+    ports:
+    - 8080:4000
+
+  uaa:
+    build: uaa
+    ports:
+    - 5000:5000
