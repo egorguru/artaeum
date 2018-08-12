@@ -1,0 +1,17 @@
+server:
+  servlet:
+    context-path: /uaa
+  port: 5000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://uaa-postgres:5432/uaa
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false

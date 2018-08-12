@@ -4,7 +4,11 @@ zuul:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
 
-  routes: #
+  routes:
+    uaa:
+      path: /uaa/**
+      url: http://uaa:5000
+      stripPrefix: false
 
 server:
   port: 4000

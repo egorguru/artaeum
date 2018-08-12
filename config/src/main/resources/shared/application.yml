@@ -8,4 +8,4 @@ eureka:
 security:
   oauth2:
     resource:
-      user-info-uri: #
+      user-info-uri: http://uaa:5000/uaa/users/current
