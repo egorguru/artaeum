@@ -1,0 +1,10 @@
+zuul:
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes: #
+
+server:
+  port: 4000
