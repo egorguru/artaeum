@@ -1,10 +1,11 @@
 package com.artaeum.uaa.controller;
 
-import com.artaeum.uaa.domain.User;
+import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -22,8 +23,14 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    @ResponseStatus(HttpStatus.OK)
-    public void createUser(@RequestBody User user) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createUser(@RequestBody @Valid UserRegister user) throws Exception {
+        if (this.userService.getByLogin(user.getLogin()).isPresent()) {
+            throw new Exception();
+        }
+        if (this.userService.getByEmail(user.getEmail()).isPresent()) {
+            throw new Exception();
+        }
         this.userService.create(user);
     }
 }

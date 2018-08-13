@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Component("userDetailsService")
@@ -22,12 +23,13 @@ public class ArtaeumUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String loginOrEmail) throws UsernameNotFoundException {
-        return this.userRepository.findOneWithAuthoritiesByEmail(loginOrEmail)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        String lowercaseUsername = username.toLowerCase(Locale.ENGLISH);
+        return this.userRepository.findOneWithAuthoritiesByEmail(lowercaseUsername)
                 .map(this::createSpringSecurityUser)
-                .orElseGet(() -> this.userRepository.findOneWithAuthoritiesByLogin(loginOrEmail)
+                .orElseGet(() -> this.userRepository.findOneWithAuthoritiesByLogin(lowercaseUsername)
                         .map(this::createSpringSecurityUser)
-                        .orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", loginOrEmail))));
+                        .orElseThrow(() -> new UsernameNotFoundException(String.format("User '%s' not found", lowercaseUsername))));
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(User user) {
