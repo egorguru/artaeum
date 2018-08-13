@@ -50,14 +50,14 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
                 .inMemory()
-                .withClient("browser")
-                .authorizedGrantTypes("refresh_token", "password")
-                .scopes("ui")
+                    .withClient("browser")
+                    .authorizedGrantTypes("refresh_token", "password")
+                    .scopes("ui")
                 .and()
-                .withClient("base-network")
-                .secret(env.getProperty("BASE_NETWORK_SERVICE_PASSWORD"))
-                .authorizedGrantTypes("client_credentials", "refresh_token")
-                .scopes("server");
+                    .withClient("base-network")
+                    .secret(env.getProperty("BASE_NETWORK_SERVICE_PASSWORD"))
+                    .authorizedGrantTypes("client_credentials", "refresh_token")
+                    .scopes("server");
     }
 
     @Override
