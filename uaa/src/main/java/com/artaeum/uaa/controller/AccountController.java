@@ -41,6 +41,7 @@ public class AccountController {
         if (this.userService.getByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyUsedException();
         }
+        // must be validation for langKey
         User newUser = this.userService.register(user);
         this.mailService.sendActivationEmail(newUser);
     }

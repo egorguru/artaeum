@@ -19,6 +19,9 @@ public class UserRegister {
     @Size(min = Constants.PASSWORD_MIN_LENGTH, max = Constants.PASSWORD_MAX_LENGTH)
     private String password;
 
+    @Size(min = 2, max = 6)
+    private String langKey;
+
     public String getLogin() {
         return login;
     }
@@ -41,5 +44,13 @@ public class UserRegister {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getLangKey() {
+        return langKey;
+    }
+
+    public void setLangKey(String langKey) {
+        this.langKey = langKey;
     }
 }

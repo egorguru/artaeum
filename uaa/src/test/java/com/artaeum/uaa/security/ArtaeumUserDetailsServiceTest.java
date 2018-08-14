@@ -28,6 +28,7 @@ public class ArtaeumUserDetailsServiceTest {
         user.setEmail("test@email.com");
         user.setLogin("testlogin");
         user.setPassword("password");
+        user.setLangKey("en");
         this.userService.register(user);
         assertEquals(this.artaeumUserDetailsService.loadUserByUsername("testlogin").getUsername(), user.getLogin());
         assertEquals(this.artaeumUserDetailsService.loadUserByUsername("test@email.com").getUsername(), user.getLogin());

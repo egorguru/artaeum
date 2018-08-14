@@ -37,6 +37,8 @@ public class UserService {
         newUser.setLogin(user.getLogin());
         newUser.setEmail(user.getEmail());
         newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        newUser.setLangKey(user.getLangKey());
+        newUser.setRegisterDate(ZonedDateTime.now());
         this.authorityRepository.findById(Constants.USER_AUTHORITY)
                 .ifPresent(authority -> newUser.getAuthorities().add(authority));
         return this.userRepository.save(newUser);

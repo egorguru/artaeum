@@ -42,6 +42,7 @@ public class AccountControllerTest {
         user.setEmail("test@email.com");
         user.setLogin("testlogin");
         user.setPassword("password");
+        user.setLangKey("en");
         String json = mapper.writeValueAsString(user);
         mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -54,6 +55,7 @@ public class AccountControllerTest {
         user.setEmail("test@email.com");
         user.setLogin("ba");
         user.setPassword("password");
+        user.setLangKey("en");
         String json = mapper.writeValueAsString(user);
         mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -66,6 +68,7 @@ public class AccountControllerTest {
         user.setEmail("testemail");
         user.setLogin("testlogin");
         user.setPassword("password");
+        user.setLangKey("en");
         String json = mapper.writeValueAsString(user);
         mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON).content(json))
@@ -78,6 +81,7 @@ public class AccountControllerTest {
         user.setEmail("test@email.com");
         user.setLogin("testlogin");
         user.setPassword("pass1");
+        user.setLangKey("en");
         String json = mapper.writeValueAsString(user);
         mockMvc.perform(post("/register")
                 .contentType(MediaType.APPLICATION_JSON).content(json))
