@@ -37,7 +37,7 @@ public class UserServiceTest {
         user.setLogin("testlogin");
         user.setEmail("test@email.com");
         user.setPassword("password");
-        this.userService.create(user);
+        this.userService.register(user);
         User result = this.userRepository.findOneWithAuthoritiesByLogin("testlogin").get();
         Assert.assertEquals(result.getLogin(), user.getLogin());
         Assert.assertEquals(result.getLogin(), user.getLogin());

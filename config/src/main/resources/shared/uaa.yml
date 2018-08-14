@@ -15,3 +15,15 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
+  messages:
+    basename: i18n/messages
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${EMAIL_ADDRESS}
+    password: ${EMAIL_PASSWORD}
+    protocol: smtp
+
+artaeum:
+  mail:
+    url: ${MAIL_URL}

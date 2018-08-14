@@ -1,12 +1,11 @@
 package com.artaeum.uaa.controller;
 
 import com.artaeum.uaa.config.Constants;
-import com.artaeum.uaa.controller.error.EmailAlreadyUsedException;
-import com.artaeum.uaa.controller.error.InternalServerException;
-import com.artaeum.uaa.controller.error.InvalidPasswordException;
-import com.artaeum.uaa.controller.error.LoginAlreadyUsedException;
+import com.artaeum.uaa.controller.error.*;
 import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserRegister;
+import com.artaeum.uaa.dto.UserReset;
+import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,14 +13,18 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Optional;
 
 @RestController
 public class AccountController {
 
     private UserService userService;
 
-    public AccountController(UserService userService) {
+    private MailService mailService;
+
+    public AccountController(UserService userService, MailService mailService) {
         this.userService = userService;
+        this.mailService = mailService;
     }
 
     @GetMapping("/account/current")
@@ -38,7 +41,16 @@ public class AccountController {
         if (this.userService.getByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyUsedException();
         }
-        this.userService.create(user);
+        User newUser = this.userService.register(user);
+        this.mailService.sendActivationEmail(newUser);
+    }
+
+    @GetMapping("/activate")
+    public void activateAccount(@RequestParam(value = "key") String key) throws InternalServerException {
+        Optional<User> user = userService.activateRegistration(key);
+        if (!user.isPresent()) {
+            throw new InternalServerException("User not found for this reset key");
+        }
     }
 
     @GetMapping("/authenticate")
@@ -50,6 +62,24 @@ public class AccountController {
     public User getCurrentAccount() throws InternalServerException {
         return userService.getCurrentUser()
                 .orElseThrow(() -> new InternalServerException("User could not be found"));
+    }
+
+    @PostMapping(path = "/account/reset-password/init")
+    public void requestPasswordReset(@RequestBody String mail) throws EmailNotFoundException {
+        mailService.sendPasswordResetMail(
+                userService.requestPasswordReset(mail)
+                        .orElseThrow(EmailNotFoundException::new));
+    }
+
+    @PostMapping(path = "/account/reset-password/finish")
+    public void finishPasswordReset(@RequestBody UserReset user) throws InvalidPasswordException, InternalServerException {
+        if (!checkPasswordLength(user.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+        Optional<User> updatedUser = userService.completePasswordReset(user.getPassword(), user.getResetKey());
+        if (!updatedUser.isPresent()) {
+            throw new InternalServerException("User not found for this reset key");
+        }
     }
 
     @PostMapping(path = "/account/change-password")

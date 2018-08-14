@@ -24,16 +24,16 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     public void configure(HttpSecurity http) throws Exception {
         http
                 .exceptionHandling()
-                    .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
+                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
                 .and()
-                    .csrf().disable()
+                .csrf().disable()
                 .headers()
-                    .frameOptions().disable()
+                .frameOptions().disable()
                 .and()
-                    .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                    .authorizeRequests()
-                    .antMatchers("/api/register").permitAll();
+                .authorizeRequests()
+                .antMatchers("/api/register").permitAll();
     }
 
     @Override

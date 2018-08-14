@@ -8,7 +8,8 @@ import java.util.Optional;
 
 public final class SecurityUtils {
 
-    private SecurityUtils() {}
+    private SecurityUtils() {
+    }
 
     public static Optional<String> getCurrentUserLogin() {
         return Optional.ofNullable(SecurityContextHolder.getContext().getAuthentication()).map(Principal::getName);

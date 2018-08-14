@@ -12,3 +12,12 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+  mail:
+    host: localhost@localhost
+    username: localhost@localhost
+  messages:
+    basename: i18n/messages
+
+artaeum:
+  mail:
+    url: localhost

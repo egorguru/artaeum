@@ -5,6 +5,9 @@ services:
   config:
     environment:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      EMAIL_ADDRESS: $EMAIL_ADDRESS
+      EMAIL_PASSWORD: $EMAIL_PASSWORD
+      MAIL_URL: $MAIL_URL
     image: config
     restart: always
 
