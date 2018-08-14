@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -20,18 +21,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserControllerTest {
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
+public class AccountControllerTest {
 
     private ObjectMapper mapper = new ObjectMapper();
 
     @Autowired
-    private UserController userController;
+    private AccountController accountController;
 
     private MockMvc mockMvc;
 
     @Before
     public void init() {
-        this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+        this.mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
     }
 
     @Test
@@ -84,9 +86,15 @@ public class UserControllerTest {
 
     @Test
     public void whenGetPrincipal() throws Exception {
-        mockMvc.perform(get("/users/current")
+        mockMvc.perform(get("/account/current")
                 .principal(new UserPrincipal("test")))
                 .andExpect(jsonPath("$.name").value("test"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    public void whenChangePassword() throws Exception {
+        mockMvc.perform(post("/account/change-password").content("password"))
                 .andExpect(status().isOk());
     }
 }

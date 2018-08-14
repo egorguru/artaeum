@@ -5,6 +5,7 @@ import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.repository.AuthorityRepository;
 import com.artaeum.uaa.repository.UserRepository;
+import com.artaeum.uaa.security.SecurityUtils;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -35,6 +36,10 @@ public class UserService {
         this.userRepository.save(newUser);
     }
 
+    public Optional<User> getCurrentUser() {
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
+    }
+
     public Optional<User> getById(Long id) {
         return this.userRepository.findById(id);
     }
@@ -45,5 +50,11 @@ public class UserService {
 
     public Optional<User> getByEmail(String email) {
         return this.userRepository.findOneWithAuthoritiesByEmail(email);
+    }
+
+    public void changePassword(String password) {
+        SecurityUtils.getCurrentUserLogin()
+                .flatMap(userRepository::findByLogin)
+                .ifPresent(user -> user.setPassword(passwordEncoder.encode(password)));
     }
 }
