@@ -3,8 +3,10 @@ package com.artaeum.uaa.controller;
 import com.artaeum.uaa.config.Constants;
 import com.artaeum.uaa.controller.error.*;
 import com.artaeum.uaa.domain.User;
+import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.dto.UserReset;
+import com.artaeum.uaa.security.SecurityUtils;
 import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -60,9 +62,25 @@ public class AccountController {
     }
 
     @GetMapping("/account")
-    public User getCurrentAccount() throws InternalServerException {
+    public UserDTO getCurrentAccount() throws InternalServerException {
         return userService.getCurrentUser()
-                .orElseThrow(() -> new InternalServerException("User could not be found"));
+                .map(UserDTO::new)
+                .orElseThrow(() -> new InternalServerException("User not found"));
+    }
+
+    @PostMapping("/account")
+    public void saveAccount(@Valid @RequestBody UserDTO userDTO) throws InternalServerException, EmailAlreadyUsedException {
+        String userLogin = SecurityUtils.getCurrentUserLogin()
+                .orElseThrow(() -> new InternalServerException("User not found"));
+        Optional<User> existingUserByLogin = this.userService.getByLogin(userLogin);
+        if (!existingUserByLogin.isPresent()) {
+            throw new InternalServerException("User not found");
+        }
+        Optional<User> existingUserByEmail = this.userService.getByEmail(userDTO.getEmail().toLowerCase());
+        if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(userLogin))) {
+            throw new EmailAlreadyUsedException();
+        }
+        this.userService.update(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
     }
 
     @PostMapping(path = "/account/reset-password/init")

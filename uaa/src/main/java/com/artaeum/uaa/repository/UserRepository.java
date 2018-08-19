@@ -27,4 +27,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByResetKey(String key);
 
     List<User> findAllByActivatedIsFalseAndRegisterDateBefore(ZonedDateTime time);
+
+    void deleteByLogin(String login);
 }
