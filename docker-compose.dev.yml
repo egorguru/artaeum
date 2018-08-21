@@ -19,3 +19,8 @@ services:
     build: uaa
     ports:
     - 5000:5000
+
+  profile:
+    build: profile
+    ports:
+    - 6000:6000

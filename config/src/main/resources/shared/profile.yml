@@ -1,0 +1,26 @@
+server:
+  servlet:
+    context-path: /profile
+  port: 6000
+
+spring:
+  datasource:
+    url: jdbc:postgresql://uaa-postgres:5433/profile
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+security:
+  oauth2:
+    client:
+      clientId: profile
+      clientSecret: ${PROFILE_SERVICE_PASSWORD}
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
