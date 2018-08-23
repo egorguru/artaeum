@@ -52,12 +52,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                 .inMemory()
                     .withClient("browser")
                     .authorizedGrantTypes("refresh_token", "password")
-                    .scopes("ui")
-                .and()
-                    .withClient("profile")
-                    .secret(env.getProperty("PROFILE_SERVICE_PASSWORD"))
-                    .authorizedGrantTypes("client_credentials", "refresh_token")
-                    .scopes("server");
+                    .scopes("ui");
     }
 
     @Override

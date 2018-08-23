@@ -1,13 +1,13 @@
 package com.artaeum.profile.dto;
 
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import java.time.ZonedDateTime;
 
 public class PostDTO {
 
     private Long id;
 
-    @NotEmpty
+    @NotBlank
     private String text;
 
     private String userLogin;

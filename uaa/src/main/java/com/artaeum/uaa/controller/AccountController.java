@@ -35,7 +35,7 @@ public class AccountController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody @Valid UserRegister user) throws LoginAlreadyUsedException, EmailAlreadyUsedException {
+    public void createUser(@RequestBody @Valid UserRegister user) {
         if (this.userService.getByLogin(user.getLogin()).isPresent()) {
             throw new LoginAlreadyUsedException();
         }
@@ -48,10 +48,10 @@ public class AccountController {
     }
 
     @GetMapping("/activate")
-    public void activateAccount(@RequestParam(value = "key") String key) throws InternalServerException {
+    public void activateAccount(@RequestParam(value = "key") String key) {
         Optional<User> user = this.userService.activateRegistration(key);
         if (!user.isPresent()) {
-            throw new InternalServerException("User not found for this reset key");
+            throw new UserNotFoundException("User not found for this reset key");
         }
     }
 
@@ -61,17 +61,17 @@ public class AccountController {
     }
 
     @GetMapping("/account")
-    public UserDTO getCurrentAccount(Principal principal) throws InternalServerException {
+    public UserDTO getCurrentAccount(Principal principal) {
         return this.userService.getByLogin(principal.getName())
                 .map(UserDTO::new)
-                .orElseThrow(() -> new InternalServerException("User not found"));
+                .orElseThrow(UserNotFoundException::new);
     }
 
     @PostMapping("/account")
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO, Principal principal) throws InternalServerException, EmailAlreadyUsedException {
+    public void saveAccount(@Valid @RequestBody UserDTO userDTO, Principal principal) {
         Optional<User> existingUserByLogin = this.userService.getByLogin(principal.getName());
         if (!existingUserByLogin.isPresent()) {
-            throw new InternalServerException("User not found");
+            throw new UserNotFoundException("User not found");
         }
         Optional<User> existingUserByEmail = this.userService.getByEmail(userDTO.getEmail().toLowerCase());
         if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(principal.getName()))) {
@@ -81,26 +81,26 @@ public class AccountController {
     }
 
     @PostMapping(path = "/account/reset-password/init")
-    public void requestPasswordReset(@RequestBody String mail) throws EmailNotFoundException {
+    public void requestPasswordReset(@RequestBody String mail) {
         mailService.sendPasswordResetMail(
                 userService.requestPasswordReset(mail)
                         .orElseThrow(EmailNotFoundException::new));
     }
 
     @PostMapping(path = "/account/reset-password/finish")
-    public void finishPasswordReset(@RequestBody UserReset user) throws InvalidPasswordException, InternalServerException {
+    public void finishPasswordReset(@RequestBody UserReset user) {
         if (!checkPasswordLength(user.getPassword())) {
             throw new InvalidPasswordException();
         }
         Optional<User> updatedUser = userService.completePasswordReset(user.getPassword(), user.getResetKey());
         if (!updatedUser.isPresent()) {
-            throw new InternalServerException("User not found for this reset key");
+            throw new UserNotFoundException("User not found for this reset key");
         }
     }
 
     @PostMapping(path = "/account/change-password")
     @ResponseStatus(HttpStatus.OK)
-    public void changePassword(@RequestBody String password, Principal principal) throws InvalidPasswordException {
+    public void changePassword(@RequestBody String password, Principal principal) {
         if (!this.checkPasswordLength(password)) {
             throw new InvalidPasswordException();
         }

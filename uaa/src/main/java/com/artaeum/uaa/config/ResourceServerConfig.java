@@ -1,6 +1,7 @@
 package com.artaeum.uaa.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
@@ -28,6 +29,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/account/reset-password/init").permitAll()
                     .antMatchers("/account/reset-password/finish").permitAll()
+                    .antMatchers(HttpMethod.PUT, "/users").hasAuthority(Constants.ADMIN_AUTHORITY)
+                    .antMatchers(HttpMethod.DELETE, "/users/{login}").hasAuthority(Constants.ADMIN_AUTHORITY)
+                    .antMatchers(HttpMethod.GET, "/authorities}").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers("/**").authenticated();
     }
 }

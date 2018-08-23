@@ -1,7 +1,11 @@
 package com.artaeum.uaa.controller;
 
+import com.artaeum.uaa.config.Constants;
 import com.artaeum.uaa.domain.User;
+import com.artaeum.uaa.dto.UserDTO;
+import com.artaeum.uaa.repository.AuthorityRepository;
 import com.artaeum.uaa.repository.UserRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,15 +14,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.security.Principal;
 import java.time.ZonedDateTime;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.junit.Assert.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -27,8 +38,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UserControllerTest {
 
+    private ObjectMapper objectMapper = new ObjectMapper();
+
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private AuthorityRepository authorityRepository;
 
     @Autowired
     private UserController userController;
@@ -79,6 +95,52 @@ public class UserControllerTest {
                 .andExpect(status().isNotFound());
     }
 
+    @Test
+    @Transactional
+    public void whenUpdateUser() throws Exception {
+        User user = this.createUser();
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setLogin("newlogin");
+        userDTO.setEmail("newemail@test");
+        Set<String> authorities = new HashSet<>();
+        authorities.add(Constants.USER_AUTHORITY);
+        authorities.add(Constants.MODERATOR_AUTHORITY);
+        userDTO.setAuthorities(authorities);
+        userDTO.setFirstName("newfirstname");
+        userDTO.setLastName("newlastname");
+        userDTO.setLangKey("ru");
+        Principal principal = new UsernamePasswordAuthenticationToken("userlogin", "password",
+                Collections.singletonList(new SimpleGrantedAuthority(Constants.ADMIN_AUTHORITY)));
+        this.mockMvc.perform(put("/users")
+                .principal(principal)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(this.objectMapper.writeValueAsBytes(userDTO)))
+                .andExpect(status().isOk());
+        User result = this.userRepository.getOne(user.getId());
+        assertEquals(userDTO.getLogin(), result.getLogin());
+        assertEquals(userDTO.getEmail(), result.getEmail());
+        assertEquals(user.getFirstName(), result.getFirstName());
+        assertEquals(user.getLastName(), result.getLastName());
+        assertEquals(user.getLangKey(), result.getLangKey());
+        result.getAuthorities().forEach(a -> System.out.println(a.getName()));
+        System.out.println(this.authorityRepository.findById(Constants.USER_AUTHORITY).get().getName());
+        assertTrue(result.getAuthorities().contains(this.authorityRepository.findById(Constants.USER_AUTHORITY).get()));
+        assertTrue(result.getAuthorities().contains(this.authorityRepository.findById((Constants.MODERATOR_AUTHORITY)).get()));
+    }
+
+    @Test
+    @Transactional
+    public void whenDeleteUser() throws Exception {
+        User user = this.createUser();
+        Principal principal = new UsernamePasswordAuthenticationToken("userlogin", "password",
+                Collections.singletonList(new SimpleGrantedAuthority(Constants.ADMIN_AUTHORITY)));
+        assertTrue(this.userRepository.findByLogin(user.getLogin()).isPresent());
+        this.mockMvc.perform(delete("/users/{login}", user.getLogin())
+                .principal(principal));
+        assertFalse(this.userRepository.findByLogin(user.getLogin()).isPresent());
+    }
+
     private User createUser() {
         User user = new User();
         user.setLogin("testtest");
@@ -89,6 +151,7 @@ public class UserControllerTest {
         user.setRegisterDate(ZonedDateTime.now());
         user.setLangKey("en");
         user.setActivated(true);
+        user.getAuthorities().add(this.authorityRepository.findById(Constants.USER_AUTHORITY).get());
         return this.userRepository.save(user);
     }
 }
