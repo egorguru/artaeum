@@ -7,7 +7,6 @@ import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.repository.AuthorityRepository;
 import com.artaeum.uaa.repository.UserRepository;
-import com.artaeum.uaa.security.SecurityUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -66,9 +65,8 @@ public class UserService {
                 });
     }
 
-    public void update(String firstName, String lastName, String email, String langKey) {
-        SecurityUtils.getCurrentUserLogin()
-                .flatMap(this.userRepository::findByLogin)
+    public void update(String login, String firstName, String lastName, String email, String langKey) {
+        this.userRepository.findByLogin(login)
                 .ifPresent(user -> {
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
@@ -94,10 +92,6 @@ public class UserService {
         return this.userRepository.findAll(pageable).map(UserDTO::new);
     }
 
-    public Optional<User> getCurrentUser() {
-        return SecurityUtils.getCurrentUserLogin().flatMap(this.userRepository::findOneWithAuthoritiesByLogin);
-    }
-
     public Optional<User> getById(Long id) {
         return this.userRepository.findById(id);
     }
@@ -110,9 +104,8 @@ public class UserService {
         return this.userRepository.findOneWithAuthoritiesByEmail(email);
     }
 
-    public void changePassword(String password) {
-        SecurityUtils.getCurrentUserLogin()
-                .flatMap(this.userRepository::findByLogin)
+    public void changePassword(String login, String password) {
+        this.userRepository.findByLogin(login)
                 .ifPresent(user -> user.setPassword(this.passwordEncoder.encode(password)));
     }
 

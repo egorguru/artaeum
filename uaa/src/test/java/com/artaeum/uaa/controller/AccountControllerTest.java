@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -112,7 +113,9 @@ public class AccountControllerTest {
 
     @Test
     public void whenChangePassword() throws Exception {
-        this.mockMvc.perform(post("/account/change-password").content("password"))
+        this.mockMvc.perform(post("/account/change-password")
+                .principal(new UsernamePasswordAuthenticationToken("username", "password", Collections.emptyList()))
+                .content("password"))
                 .andExpect(status().isOk());
     }
 
@@ -140,6 +143,7 @@ public class AccountControllerTest {
 
         this.mockMvc.perform(post("/account")
                 .contentType(MediaType.APPLICATION_JSON)
+                .principal(new UsernamePasswordAuthenticationToken("userlogin", "password", Collections.emptyList()))
                 .content(this.mapper.writeValueAsBytes(userDTO)))
                 .andExpect(status().isOk());
 

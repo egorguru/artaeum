@@ -6,7 +6,6 @@ import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.dto.UserReset;
-import com.artaeum.uaa.security.SecurityUtils;
 import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -50,7 +49,7 @@ public class AccountController {
 
     @GetMapping("/activate")
     public void activateAccount(@RequestParam(value = "key") String key) throws InternalServerException {
-        Optional<User> user = userService.activateRegistration(key);
+        Optional<User> user = this.userService.activateRegistration(key);
         if (!user.isPresent()) {
             throw new InternalServerException("User not found for this reset key");
         }
@@ -62,25 +61,23 @@ public class AccountController {
     }
 
     @GetMapping("/account")
-    public UserDTO getCurrentAccount() throws InternalServerException {
-        return userService.getCurrentUser()
+    public UserDTO getCurrentAccount(Principal principal) throws InternalServerException {
+        return this.userService.getByLogin(principal.getName())
                 .map(UserDTO::new)
                 .orElseThrow(() -> new InternalServerException("User not found"));
     }
 
     @PostMapping("/account")
-    public void saveAccount(@Valid @RequestBody UserDTO userDTO) throws InternalServerException, EmailAlreadyUsedException {
-        String userLogin = SecurityUtils.getCurrentUserLogin()
-                .orElseThrow(() -> new InternalServerException("User not found"));
-        Optional<User> existingUserByLogin = this.userService.getByLogin(userLogin);
+    public void saveAccount(@Valid @RequestBody UserDTO userDTO, Principal principal) throws InternalServerException, EmailAlreadyUsedException {
+        Optional<User> existingUserByLogin = this.userService.getByLogin(principal.getName());
         if (!existingUserByLogin.isPresent()) {
             throw new InternalServerException("User not found");
         }
         Optional<User> existingUserByEmail = this.userService.getByEmail(userDTO.getEmail().toLowerCase());
-        if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(userLogin))) {
+        if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(principal.getName()))) {
             throw new EmailAlreadyUsedException();
         }
-        this.userService.update(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
+        this.userService.update(principal.getName(), userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
     }
 
     @PostMapping(path = "/account/reset-password/init")
@@ -103,11 +100,11 @@ public class AccountController {
 
     @PostMapping(path = "/account/change-password")
     @ResponseStatus(HttpStatus.OK)
-    public void changePassword(@RequestBody String password) throws InvalidPasswordException {
+    public void changePassword(@RequestBody String password, Principal principal) throws InvalidPasswordException {
         if (!this.checkPasswordLength(password)) {
             throw new InvalidPasswordException();
         }
-        userService.changePassword(password);
+        userService.changePassword(principal.getName(), password);
     }
 
     private boolean checkPasswordLength(String password) {

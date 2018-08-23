@@ -2,7 +2,6 @@ package com.artaeum.uaa.controller;
 
 import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.repository.UserRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -27,8 +26,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class UserControllerTest {
-
-    private ObjectMapper objectMapper = new ObjectMapper();
 
     @Autowired
     private UserRepository userRepository;

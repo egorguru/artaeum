@@ -45,6 +45,20 @@ public class UserController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
+    @GetMapping("/uaa/user/id/{login}")
+    public Long getUserIdByLogin(@PathVariable String login) throws InternalServerException {
+        return this.userService.getByLogin(login)
+                .map(User::getId)
+                .orElseThrow(() -> new InternalServerException("User not found"));
+    }
+
+    @GetMapping("/uaa/user/login/{id}")
+    public String getUserIdByLogin(@PathVariable Long id) throws InternalServerException {
+        return this.userService.getById(id)
+                .map(User::getLogin)
+                .orElseThrow(() -> new InternalServerException("User not found"));
+    }
+
     @PutMapping
     @Secured(Constants.ADMIN_AUTHORITY)
     public void updateUser(@Valid @RequestBody UserDTO userDTO) throws EmailAlreadyUsedException, LoginAlreadyUsedException {
