@@ -1,6 +1,7 @@
 package com.artaeum.profile.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,7 +26,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/profile/**").permitAll()
+                    .antMatchers(HttpMethod.GET, "/posts/**").permitAll()
+                    .antMatchers(HttpMethod.GET, "/images/**").permitAll()
+                    .antMatchers(HttpMethod.PUT).authenticated()
+                    .antMatchers(HttpMethod.POST).authenticated()
+                    .antMatchers(HttpMethod.DELETE).authenticated()
                     .antMatchers("/**").authenticated();
     }
 }
