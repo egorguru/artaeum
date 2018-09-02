@@ -29,9 +29,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .antMatchers("/authenticate").permitAll()
                     .antMatchers("/account/reset-password/init").permitAll()
                     .antMatchers("/account/reset-password/finish").permitAll()
+                    .antMatchers(HttpMethod.GET, "/users/**").permitAll()
                     .antMatchers(HttpMethod.PUT, "/users").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers(HttpMethod.DELETE, "/users/{login}").hasAuthority(Constants.ADMIN_AUTHORITY)
-                    .antMatchers(HttpMethod.GET, "/authorities}").hasAuthority(Constants.ADMIN_AUTHORITY)
+                    .antMatchers(HttpMethod.GET, "/authorities").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers("/**").authenticated();
     }
 }

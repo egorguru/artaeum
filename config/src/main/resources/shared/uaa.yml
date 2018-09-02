@@ -22,6 +22,15 @@ spring:
     password: ${EMAIL_PASSWORD}
     protocol: smtp
 
+security:
+  oauth2:
+    client:
+      clientId: uaa
+      clientSecret: ${UAA_SERVICE_PASSWORD}
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server
+
 artaeum:
   mail:
     url: ${MAIL_URL}
