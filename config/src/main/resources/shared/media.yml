@@ -1,0 +1,22 @@
+server:
+  servlet:
+    context-path: /media
+  port: 7000
+
+spring:
+  data:
+    mongodb:
+      host: media-mongo
+      port: 27017
+      database: media
+      username: ${MONGO_USER}
+      password: ${MONGO_PASSWORD}
+
+security:
+  oauth2:
+    client:
+      clientId: media
+      clientSecret: ${MEDIA_SERVICE_PASSWORD}
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: server

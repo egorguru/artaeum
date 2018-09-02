@@ -4,8 +4,6 @@ services:
 
   config:
     build: config
-    ports:
-    - 8888:8888
 
   registry:
     build: registry
@@ -17,10 +15,9 @@ services:
 
   uaa:
     build: uaa
-    ports:
-    - 5000:5000
 
   profile:
     build: profile
-    ports:
-    - 6000:6000
+
+  media:
+    build: media

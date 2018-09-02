@@ -16,8 +16,6 @@ services:
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: registry
     restart: always
-    ports:
-    - 8761:8761
 
   gateway:
     environment:
@@ -62,3 +60,23 @@ services:
       PGPORT: 5433
     ports:
     - 5433:5433
+
+  media:
+    environment:
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_USER: $MONGO_USER
+      MONGO_PASSWORD: $MONGO_PASSWORD
+    image: media
+    restart: always
+
+  media-mongo:
+    image: aashreys/mongo-auth:latest
+    environment:
+      AUTH: 'yes'
+      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
+      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
+      MONGODB_APPLICATION_USER: $MONGO_USER
+      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
+      MONGODB_APPLICATION_DATABASE: media
+    ports:
+      - 27017:27017
