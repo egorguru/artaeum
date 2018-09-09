@@ -7,9 +7,9 @@ import com.artaeum.profile.repository.PostRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,16 +31,16 @@ public class PostServiceTest {
     @Autowired
     private PostRepository postRepository;
 
-    @Mock
-    private UaaClient uaaClient;
-
+    @Autowired
     private PostService postService;
+
+    @MockBean
+    private UaaClient uaaClient;
 
     @Before
     public void init() {
         when(this.uaaClient.getUserIdByLogin(USER_LOGIN)).thenReturn(USER_ID);
         when(this.uaaClient.getUserLoginById(USER_ID)).thenReturn(USER_LOGIN);
-        this.postService = new PostService(this.postRepository, this.uaaClient);
     }
 
     @Test

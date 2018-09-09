@@ -6,10 +6,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
+import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+
+import javax.servlet.http.HttpServletResponse;
 
 @Configuration
 @EnableResourceServer
-public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
+public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -27,11 +31,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .antMatchers("/register").permitAll()
                     .antMatchers("/activate").permitAll()
                     .antMatchers("/authenticate").permitAll()
-                    .antMatchers("/account/reset-password/init").permitAll()
-                    .antMatchers("/account/reset-password/finish").permitAll()
                     .antMatchers(HttpMethod.GET, "/users/**").permitAll()
                     .antMatchers(HttpMethod.PUT, "/users").hasAuthority(Constants.ADMIN_AUTHORITY)
-                    .antMatchers(HttpMethod.DELETE, "/users/{login}").hasAuthority(Constants.ADMIN_AUTHORITY)
+                    .antMatchers(HttpMethod.DELETE, "/users/**").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers(HttpMethod.GET, "/authorities").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers("/**").authenticated();
     }

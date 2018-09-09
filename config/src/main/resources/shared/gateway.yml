@@ -9,6 +9,19 @@ zuul:
       path: /uaa/**
       url: http://uaa:5000
       stripPrefix: false
+      sensitiveHeaders:
+
+    media:
+      path: /media/**
+      serviceId: media
+      stripPrefix: false
+      sensitiveHeaders:
+
+    profile:
+      path: /profile/**
+      serviceId: profile
+      stripPrefix: false
+      sensitiveHeaders:
 
 server:
   port: 4000

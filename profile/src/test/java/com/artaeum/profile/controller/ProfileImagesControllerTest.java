@@ -1,5 +1,6 @@
 package com.artaeum.profile.controller;
 
+import com.artaeum.profile.client.UaaClient;
 import com.artaeum.profile.config.Constants;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.junit.After;
@@ -9,6 +10,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -35,6 +37,9 @@ public class ProfileImagesControllerTest {
 
     @Value("classpath:image.png")
     private Resource imagePNG;
+
+    @MockBean
+    private UaaClient uaaClient;
 
     @Autowired
     private ProfileImagesController profileImagesController;

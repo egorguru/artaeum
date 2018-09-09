@@ -10,17 +10,11 @@ spring:
     password: ${POSTGRES_PASSWORD}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: ${EMAIL_ADDRESS}
-    password: ${EMAIL_PASSWORD}
-    protocol: smtp
 
 security:
   oauth2:
@@ -30,7 +24,3 @@ security:
       accessTokenUri: http://uaa:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
-
-artaeum:
-  mail:
-    url: ${MAIL_URL}

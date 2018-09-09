@@ -6,7 +6,6 @@ import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.dto.UserReset;
-import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +20,8 @@ public class AccountController {
 
     private UserService userService;
 
-    private MailService mailService;
-
-    public AccountController(UserService userService, MailService mailService) {
+    public AccountController(UserService userService) {
         this.userService = userService;
-        this.mailService = mailService;
     }
 
     @GetMapping("/account/current")
@@ -43,8 +39,7 @@ public class AccountController {
             throw new EmailAlreadyUsedException();
         }
         // must be validation for langKey
-        User newUser = this.userService.register(user);
-        this.mailService.sendActivationEmail(newUser);
+        this.userService.register(user);
     }
 
     @GetMapping("/activate")
@@ -80,25 +75,7 @@ public class AccountController {
         this.userService.update(principal.getName(), userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
     }
 
-    @PostMapping(path = "/account/reset-password/init")
-    public void requestPasswordReset(@RequestBody String mail) {
-        mailService.sendPasswordResetMail(
-                userService.requestPasswordReset(mail)
-                        .orElseThrow(EmailNotFoundException::new));
-    }
-
-    @PostMapping(path = "/account/reset-password/finish")
-    public void finishPasswordReset(@RequestBody UserReset user) {
-        if (!checkPasswordLength(user.getPassword())) {
-            throw new InvalidPasswordException();
-        }
-        Optional<User> updatedUser = userService.completePasswordReset(user.getPassword(), user.getResetKey());
-        if (!updatedUser.isPresent()) {
-            throw new UserNotFoundException("User not found for this reset key");
-        }
-    }
-
-    @PostMapping(path = "/account/change-password")
+    @PostMapping("/account/change-password")
     @ResponseStatus(HttpStatus.OK)
     public void changePassword(@RequestBody String password, Principal principal) {
         if (!this.checkPasswordLength(password)) {

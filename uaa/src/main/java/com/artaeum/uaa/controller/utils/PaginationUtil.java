@@ -6,8 +6,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 public final class PaginationUtil {
 
-    private PaginationUtil() {
-    }
+    private PaginationUtil() {}
 
     public static HttpHeaders generatePaginationHttpHeaders(Page page, String baseUrl) {
         HttpHeaders headers = new HttpHeaders();

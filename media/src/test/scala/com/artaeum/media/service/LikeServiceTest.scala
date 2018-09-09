@@ -7,7 +7,6 @@ import org.mockito.Mockito.when
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
-import org.springframework.context.ApplicationContext
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.junit4.SpringRunner
 
@@ -23,9 +22,6 @@ class LikeServiceTest {
   @Autowired
   var likeService: LikeService = _
 
-  @Autowired
-  var context: ApplicationContext = _
-
   @MockBean
   var uaaClient: UaaClient = _
 
@@ -33,9 +29,6 @@ class LikeServiceTest {
   def init(): Unit = {
     when(this.uaaClient.getUserIdByLogin(USER_LOGIN)).thenReturn(USER_ID)
     when(this.uaaClient.getUserLoginById(USER_ID)).thenReturn(USER_LOGIN)
-    val factory = this.context.getAutowireCapableBeanFactory
-    factory.autowireBean(this.uaaClient)
-    factory.initializeBean(this.uaaClient, "uaaClient")
   }
 
   @Test

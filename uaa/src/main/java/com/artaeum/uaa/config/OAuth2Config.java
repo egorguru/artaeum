@@ -18,32 +18,32 @@ import org.springframework.security.oauth2.provider.token.store.InMemoryTokenSto
 @EnableAuthorizationServer
 public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
+    private PasswordEncoder passwordEncoder;
+
     private Environment env;
 
     private AuthenticationManager authenticationManager;
 
     private UserDetailsService userDetailsService;
 
-    private PasswordEncoder passwordEncoder;
-
     public OAuth2Config(
+            PasswordEncoder passwordEncoder,
             Environment env,
             AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService,
-            PasswordEncoder passwordEncoder
+            UserDetailsService userDetailsService
     ) {
+        this.passwordEncoder = passwordEncoder;
         this.env = env;
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) {
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
-                .passwordEncoder(this.passwordEncoder);
+                .passwordEncoder(passwordEncoder);
     }
 
     @Override
@@ -71,11 +71,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         endpoints
                 .tokenStore(tokenStore())
-                .authenticationManager(this.authenticationManager)
-                .userDetailsService(this.userDetailsService);
+                .authenticationManager(authenticationManager)
+                .userDetailsService(userDetailsService);
     }
 
     @Bean

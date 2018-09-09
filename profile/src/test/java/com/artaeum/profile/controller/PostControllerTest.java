@@ -9,9 +9,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -43,18 +43,20 @@ public class PostControllerTest {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
+    @Autowired
     private PostController postController;
 
+    @Autowired
     private PostService postService;
 
     @Autowired
     private PostRepository postRepository;
 
-    @Mock
-    private UaaClient uaaClient;
-
     @Autowired
     private PageableHandlerMethodArgumentResolver pageableArgumentResolver;
+
+    @MockBean
+    private UaaClient uaaClient;
 
     private MockMvc mockMvc;
 
@@ -62,8 +64,6 @@ public class PostControllerTest {
     public void init() {
         when(this.uaaClient.getUserIdByLogin(USER_LOGIN)).thenReturn(USER_ID);
         when(this.uaaClient.getUserLoginById(USER_ID)).thenReturn(USER_LOGIN);
-        this.postService = new PostService(this.postRepository, this.uaaClient);
-        this.postController = new PostController(this.postService);
         this.mockMvc = MockMvcBuilders
                 .standaloneSetup(this.postController)
                 .setCustomArgumentResolvers(this.pageableArgumentResolver)
