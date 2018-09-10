@@ -26,12 +26,10 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
 
     private UserDetailsService userDetailsService;
 
-    public OAuth2Config(
-            PasswordEncoder passwordEncoder,
-            Environment env,
-            AuthenticationManager authenticationManager,
-            UserDetailsService userDetailsService
-    ) {
+    public OAuth2Config(PasswordEncoder passwordEncoder,
+                        Environment env,
+                        AuthenticationManager authenticationManager,
+                        UserDetailsService userDetailsService) {
         this.passwordEncoder = passwordEncoder;
         this.env = env;
         this.authenticationManager = authenticationManager;
@@ -39,7 +37,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer security) {
         security
                 .tokenKeyAccess("permitAll()")
                 .checkTokenAccess("isAuthenticated()")
@@ -50,28 +48,29 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
         clients
                 .inMemory()
-                    .withClient("browser")
-                    .authorizedGrantTypes("refresh_token", "password")
-                    .scopes("ui")
+                    .withClient("gateway")
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("GATEWAY_SERVICE_PASSWORD")))
+                    .authorizedGrantTypes("password", "refresh_token")
+                    .scopes("client.user")
                 .and()
                     .withClient("uaa")
-                    .secret(this.env.getProperty("UAA_SERVICE_PASSWORD"))
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("UAA_SERVICE_PASSWORD")))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server")
                 .and()
                     .withClient("profile")
-                    .secret(this.env.getProperty("PROFILE_SERVICE_PASSWORD"))
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("PROFILE_SERVICE_PASSWORD")))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server")
                 .and()
                     .withClient("media")
-                    .secret(this.env.getProperty("MEDIA_SERVICE_PASSWORD"))
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("MEDIA_SERVICE_PASSWORD")))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server");
     }
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+    public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints
                 .tokenStore(tokenStore())
                 .authenticationManager(authenticationManager)

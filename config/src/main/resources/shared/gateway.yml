@@ -3,20 +3,17 @@ zuul:
   host:
     connect-timeout-millis: 20000
     socket-timeout-millis: 20000
-
   routes:
     uaa:
       path: /uaa/**
       url: http://uaa:5000
       stripPrefix: false
       sensitiveHeaders:
-
     media:
       path: /media/**
       serviceId: media
       stripPrefix: false
       sensitiveHeaders:
-
     profile:
       path: /profile/**
       serviceId: profile
@@ -25,3 +22,12 @@ zuul:
 
 server:
   port: 4000
+
+security:
+  oauth2:
+    client:
+      clientId: gateway
+      clientSecret: ${GATEWAY_SERVICE_PASSWORD}
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      grant-type: client_credentials
+      scope: client.user
