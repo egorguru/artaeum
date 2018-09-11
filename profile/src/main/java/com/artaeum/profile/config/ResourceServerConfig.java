@@ -26,6 +26,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
+                    .antMatchers(HttpMethod.GET, "/subscriptions/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/posts/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/images/**").permitAll()
                     .antMatchers(HttpMethod.PUT).authenticated()

@@ -4,7 +4,6 @@ import com.artaeum.profile.client.UaaClient;
 import com.artaeum.profile.domain.Post;
 import com.artaeum.profile.dto.PostDTO;
 import com.artaeum.profile.repository.PostRepository;
-import com.artaeum.profile.service.PostService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,9 +44,6 @@ public class PostControllerTest {
 
     @Autowired
     private PostController postController;
-
-    @Autowired
-    private PostService postService;
 
     @Autowired
     private PostRepository postRepository;
