@@ -1,0 +1,19 @@
+server:
+  port: 8000
+
+mongodb:
+  host: chat-mongo
+  port: 27018
+  database: chat
+  username: ${MONGO_USER}
+  password: ${MONGO_PASSWORD}
+
+security:
+  oauth2:
+    client:
+      clientId: chat
+      clientSecret: ${CHAT_SERVICE_PASSWORD}
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      authorizationURL: http://uaa:5000/uaa/oauth/authorize
+      grant-type: client_credentials
+      scope: server

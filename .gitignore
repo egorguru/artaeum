@@ -9,3 +9,7 @@
 # Maven
 log/
 target/
+
+node_modules/
+dist/
+package-lock.json

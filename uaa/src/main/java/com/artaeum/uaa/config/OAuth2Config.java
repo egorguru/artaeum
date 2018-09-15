@@ -66,6 +66,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                     .withClient("media")
                     .secret(this.passwordEncoder.encode(this.env.getProperty("MEDIA_SERVICE_PASSWORD")))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
+                    .scopes("server")
+                .and()
+                    .withClient("chat")
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("CHAT_SERVICE_PASSWORD")))
+                    .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server");
     }
 

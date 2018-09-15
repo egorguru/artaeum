@@ -21,3 +21,6 @@ services:
 
   media:
     build: media
+
+  chat:
+    build: chat

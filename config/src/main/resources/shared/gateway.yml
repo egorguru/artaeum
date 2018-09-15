@@ -19,6 +19,9 @@ zuul:
       serviceId: profile
       stripPrefix: false
       sensitiveHeaders:
+    chat:
+      path: /chat/**
+      url: http://chat:8000
 
 server:
   port: 4000

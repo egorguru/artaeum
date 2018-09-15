@@ -1,0 +1,28 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "description": "Chat",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "webpack --mode production"
+  },
+  "author": "Egor Repnikov",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cloud-config-client": "^1.4.2",
+    "cors": "^2.8.4",
+    "eureka-js-client": "^4.4.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.13",
+    "passport": "^0.4.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-oauth2": "^1.4.0",
+    "request-promise": "^4.2.2",
+    "socket.io": "^2.1.1"
+  }
+}
