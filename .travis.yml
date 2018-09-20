@@ -1,5 +1,9 @@
 sudo: required
 
+cache:
+  directories:
+  - $HOME/.m2
+
 services:
   - docker
 
@@ -8,12 +12,12 @@ env:
     - COMMIT=${TRAVIS_COMMIT::7}
 
 script:
-  - mvn package -f config
-  - mvn package -f gateway
-  - mvn package -f media
-  - mvn package -f profile
-  - mvn package -f registry
-  - mvn package -f uaa
+  - mvn package -f config --quiet
+  - mvn package -f gateway --quiet
+  - mvn package -f media --quiet
+  - mvn package -f profile --quiet
+  - mvn package -f registry --quiet
+  - mvn package -f uaa --quiet
 
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
