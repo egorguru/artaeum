@@ -7,28 +7,13 @@ env:
   global:
     - COMMIT=${TRAVIS_COMMIT::7}
 
-addons:
-  apt:
-    update: true
-
-before_install:
-  - sudo apt-get install maven
-
-install:
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f config
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f gateway
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f media
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f profile
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f registry
-  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f uaa
-
 script:
-  - mvn test -f config
-  - mvn test -f gateway
-  - mvn test -f media
-  - mvn test -f profile
-  - mvn test -f registry
-  - mvn test -f uaa
+  - mvn package -f config
+  - mvn package -f gateway
+  - mvn package -f media
+  - mvn package -f profile
+  - mvn package -f registry
+  - mvn package -f uaa
 
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
