@@ -1,0 +1,61 @@
+sudo: required
+
+services:
+  - docker
+
+language: java
+
+env:
+  global:
+    - COMMIT=${TRAVIS_COMMIT::7}
+
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f config
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f gateway
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f media
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f profile
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f registry
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f uaa
+
+script:
+  - mvn test -f config
+  - mvn test -f gateway
+  - mvn test -f media
+  - mvn test -f profile
+  - mvn test -f registry
+  - mvn test -f uaa
+
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+
+  - export CONFIG=egorrepnikov/artaeum-config
+  - docker build -t $CONFIG:$COMMIT ./config
+  - docker tag $CONFIG:$COMMIT $CONFIG:$TAG
+  - docker push $CONFIG
+
+  - export GATEWAY=egorrepnikov/artaeum-gateway
+  - docker build -t $GATEWAY:$COMMIT ./gateway
+  - docker tag $GATEWAY:$COMMIT $GATEWAY:$TAG
+  - docker push $GATEWAY
+
+  - export MEDIA=egorrepnikov/artaeum-media
+  - docker build -t $MEDIA:$COMMIT ./media
+  - docker tag $MEDIA:$COMMIT $MEDIA:$TAG
+  - docker push $MEDIA
+
+  - export PROFILE=egorrepnikov/artaeum-profile
+  - docker build -t $PROFILE:$COMMIT ./profile
+  - docker tag $PROFILE:$COMMIT $PROFILE:$TAG
+  - docker push $PROFILE
+
+  - export REGISTRY=egorrepnikov/artaeum-registry
+  - docker build -t $REGISTRY:$COMMIT ./registry
+  - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
+  - docker push $REGISTRY
+
+  - export UAA=egorrepnikov/artaeum-uaa
+  - docker build -t $UAA:$COMMIT ./uaa
+  - docker tag $UAA:$COMMIT $UAA:$TAG
+  - docker push $UAA
