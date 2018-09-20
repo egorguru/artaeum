@@ -9,6 +9,13 @@ env:
   global:
     - COMMIT=${TRAVIS_COMMIT::7}
 
+addons:
+  apt:
+    update: true
+
+before_install:
+  - sudo apt-get install maven
+
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f config
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -f gateway
