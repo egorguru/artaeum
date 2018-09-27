@@ -1,0 +1,6 @@
+server:
+  port: 8001
+
+sidecar:
+  port: 8000
+  health-uri: http://chat:8000/chat/health

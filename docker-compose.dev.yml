@@ -10,8 +10,6 @@ services:
 
   gateway:
     build: gateway
-    ports:
-      - 8080:4000
 
   uaa:
     build: uaa
@@ -21,3 +19,9 @@ services:
 
   media:
     build: media
+
+  chat:
+   build: chat
+
+  chat-sidecar:
+    build: chat-sidecar

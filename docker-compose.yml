@@ -32,7 +32,7 @@ services:
       config:
         condition: service_healthy
     ports:
-    - 80:4000
+    - 8080:4000
 
   uaa:
     environment:
@@ -107,3 +107,40 @@ services:
       MONGODB_APPLICATION_DATABASE: media
     ports:
     - 27017:27017
+
+  chat:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_USER: $MONGO_USER
+      MONGO_PASSWORD: $MONGO_PASSWORD
+      CHAT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-chat
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+    - 8000:8000
+
+  chat-mongo:
+    image: aashreys/mongo-auth:latest
+    environment:
+      AUTH: 'yes'
+      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
+      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
+      MONGODB_APPLICATION_USER: $MONGO_USER
+      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
+      MONGODB_APPLICATION_DATABASE: chat
+    ports:
+    - 27017:27017
+
+  chat-sidecar:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-chat-sidecar
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy

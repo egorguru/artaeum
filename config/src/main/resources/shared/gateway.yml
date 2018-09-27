@@ -8,20 +8,18 @@ zuul:
       path: /uaa/**
       url: http://uaa:5000
       stripPrefix: false
-      sensitiveHeaders:
     media:
       path: /media/**
       serviceId: media
       stripPrefix: false
-      sensitiveHeaders:
     profile:
       path: /profile/**
       serviceId: profile
       stripPrefix: false
-      sensitiveHeaders:
     chat:
       path: /chat/**
       url: http://chat:8000
+      stripPrefix: false
 
 server:
   port: 4000
