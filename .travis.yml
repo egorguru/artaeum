@@ -11,7 +11,12 @@ env:
   global:
     - COMMIT=${TRAVIS_COMMIT::7}
 
+install:
+  - npm install --prefix chat
+
 script:
+  - npm run build --prefix chat
+  - mvn package -f chat-sidecar --quiet
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet
   - mvn package -f media --quiet
@@ -23,6 +28,16 @@ after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+
+  - export CHAT=egorrepnikov/artaeum-chat
+  - docker build -t $CHAT:$COMMIT ./chat
+  - docker tag $CHAT:$COMMIT $CHAT:$TAG
+  - docker push $CHAT
+
+  - export CHAT_SIDECAR=egorrepnikov/artaeum-chat-sidecar
+  - docker build -t $CHAT_SIDECAR:$COMMIT ./chat-sidecar
+  - docker tag $CHAT_SIDECAR:$COMMIT $CHAT_SIDECAR:$TAG
+  - docker push $CHAT_SIDECAR
 
   - export CONFIG=egorrepnikov/artaeum-config
   - docker build -t $CONFIG:$COMMIT ./config
