@@ -12,10 +12,10 @@ env:
     - COMMIT=${TRAVIS_COMMIT::7}
 
 install:
-  - npm install --prefix chat
+  - npm install --prefix chat --silent
 
 script:
-  - npm run build --prefix chat
+  - npm run build --prefix chat --silent
   - mvn package -f chat-sidecar --quiet
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet

@@ -106,7 +106,7 @@ services:
       MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
       MONGODB_APPLICATION_DATABASE: media
     ports:
-    - 27017:27017
+    - 27000:27017
 
   chat:
     environment:
@@ -133,7 +133,7 @@ services:
       MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
       MONGODB_APPLICATION_DATABASE: chat
     ports:
-    - 27017:27017
+    - 28000:27017
 
   chat-sidecar:
     environment:
