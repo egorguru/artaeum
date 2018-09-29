@@ -30,7 +30,8 @@ public class ArtaeumUserDetailsServiceTest {
         user.setPassword("password");
         user.setLangKey("en");
         this.userService.register(user);
-        assertEquals(this.artaeumUserDetailsService.loadUserByUsername("testlogin").getUsername(), user.getLogin());
-        assertEquals(this.artaeumUserDetailsService.loadUserByUsername("test@email.com").getUsername(), user.getLogin());
+        String userId = this.userService.getByLogin(user.getLogin()).get().getId().toString();
+        assertEquals(this.artaeumUserDetailsService.loadUserByUsername("testlogin").getUsername(), userId);
+        assertEquals(this.artaeumUserDetailsService.loadUserByUsername("test@email.com").getUsername(), userId);
     }
 }

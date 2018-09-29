@@ -104,15 +104,15 @@ public class AccountControllerTest {
     @Test
     public void whenGetPrincipal() throws Exception {
         this.mockMvc.perform(get("/account/current")
-                .principal(new UsernamePasswordAuthenticationToken("test", "password", Collections.emptyList())))
-                .andExpect(jsonPath("$.name").value("test"))
+                .principal(new UsernamePasswordAuthenticationToken("123", "password", Collections.emptyList())))
+                .andExpect(jsonPath("$.name").value("123"))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void whenChangePassword() throws Exception {
         this.mockMvc.perform(post("/account/change-password")
-                .principal(new UsernamePasswordAuthenticationToken("username", "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken("123", "password", Collections.emptyList()))
                 .content("password"))
                 .andExpect(status().isOk());
     }
@@ -140,7 +140,7 @@ public class AccountControllerTest {
 
         this.mockMvc.perform(post("/account")
                 .contentType(MediaType.APPLICATION_JSON)
-                .principal(new UsernamePasswordAuthenticationToken("userlogin", "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken(user.getId().toString(), "password", Collections.emptyList()))
                 .content(this.mapper.writeValueAsBytes(userDTO)))
                 .andExpect(status().isOk());
 

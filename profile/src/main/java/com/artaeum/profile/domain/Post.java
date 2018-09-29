@@ -3,7 +3,8 @@ package com.artaeum.profile.domain;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import java.time.ZonedDateTime;
+import javax.validation.constraints.NotBlank;
+import java.time.Instant;
 
 @Entity
 @Table(name = "posts")
@@ -16,12 +17,22 @@ public class Post {
     @Column(name = "user_id", nullable = false)
     private Long userId;
 
+    @NotBlank
     @Type(type = "text")
     @Column(nullable = false)
     private String text;
 
     @Column(name = "created_date", nullable = false)
-    private ZonedDateTime createdDate;
+    private Instant createdDate;
+
+    public Post() {}
+
+    public Post(Long id, Long userId, String text, Instant createdDate) {
+        this.id = id;
+        this.userId = userId;
+        this.text = text;
+        this.createdDate = createdDate;
+    }
 
     public Long getId() {
         return id;
@@ -47,11 +58,11 @@ public class Post {
         this.text = text;
     }
 
-    public ZonedDateTime getCreatedDate() {
+    public Instant getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(ZonedDateTime createdDate) {
+    public void setCreatedDate(Instant createdDate) {
         this.createdDate = createdDate;
     }
 }

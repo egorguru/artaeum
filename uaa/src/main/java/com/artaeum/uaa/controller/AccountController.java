@@ -59,22 +59,24 @@ public class AccountController {
 
     @GetMapping("/account")
     public UserDTO getCurrentAccount(Principal principal) {
-        return this.userService.getByLogin(principal.getName())
+        return this.userService.getById(Long.valueOf(principal.getName()))
                 .map(UserDTO::new)
                 .orElseThrow(UserNotFoundException::new);
     }
 
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody UserDTO userDTO, Principal principal) {
-        Optional<User> existingUserByLogin = this.userService.getByLogin(principal.getName());
-        if (!existingUserByLogin.isPresent()) {
-            throw new UserNotFoundException("User not found");
+        Optional<User> existingUserByLogin = this.userService.getByLogin(userDTO.getLogin());
+        if (existingUserByLogin.isPresent()) {
+            throw new LoginAlreadyUsedException();
         }
         Optional<User> existingUserByEmail = this.userService.getByEmail(userDTO.getEmail().toLowerCase());
         if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(principal.getName()))) {
             throw new EmailAlreadyUsedException();
         }
-        this.userService.update(principal.getName(), userDTO.getFirstName(), userDTO.getLastName(), userDTO.getEmail(), userDTO.getLangKey());
+        this.userService.update(Long.valueOf(principal.getName()), userDTO.getLogin(),
+                                userDTO.getFirstName(), userDTO.getLastName(),
+                                userDTO.getEmail(), userDTO.getLangKey());
     }
 
     @PostMapping("/account/change-password")

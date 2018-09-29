@@ -110,7 +110,7 @@ public class UserControllerTest {
         userDTO.setFirstName("newfirstname");
         userDTO.setLastName("newlastname");
         userDTO.setLangKey("ru");
-        Principal principal = new UsernamePasswordAuthenticationToken("userlogin", "password",
+        Principal principal = new UsernamePasswordAuthenticationToken("123", "password",
                 Collections.singletonList(new SimpleGrantedAuthority(Constants.ADMIN_AUTHORITY)));
         this.mockMvc.perform(put("/users")
                 .principal(principal)
@@ -133,7 +133,7 @@ public class UserControllerTest {
     @Transactional
     public void whenDeleteUser() throws Exception {
         User user = this.createUser();
-        Principal principal = new UsernamePasswordAuthenticationToken("userlogin", "password",
+        Principal principal = new UsernamePasswordAuthenticationToken("123", "password",
                 Collections.singletonList(new SimpleGrantedAuthority(Constants.ADMIN_AUTHORITY)));
         assertTrue(this.userRepository.findByLogin(user.getLogin()).isPresent());
         this.mockMvc.perform(delete("/users/{login}", user.getLogin())

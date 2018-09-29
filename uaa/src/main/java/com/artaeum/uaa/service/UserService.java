@@ -65,8 +65,8 @@ public class UserService {
                 });
     }
 
-    public void update(String login, String firstName, String lastName, String email, String langKey) {
-        this.userRepository.findByLogin(login)
+    public void update(Long id, String login, String firstName, String lastName, String email, String langKey) {
+        this.userRepository.findById(id)
                 .ifPresent(user -> {
                     user.setFirstName(firstName);
                     user.setLastName(lastName);

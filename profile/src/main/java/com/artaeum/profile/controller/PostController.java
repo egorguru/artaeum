@@ -2,7 +2,7 @@ package com.artaeum.profile.controller;
 
 import com.artaeum.profile.controller.error.NotFoundException;
 import com.artaeum.profile.controller.utils.PaginationUtil;
-import com.artaeum.profile.dto.PostDTO;
+import com.artaeum.profile.domain.Post;
 import com.artaeum.profile.service.PostService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,29 +27,29 @@ public class PostController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void create(@RequestBody @Valid PostDTO postDTO, Principal principal) {
-        postDTO.setUserLogin(principal.getName());
-        this.postService.create(postDTO);
+    public void create(@RequestBody @Valid Post post, Principal principal) {
+        post.setUserId(Long.valueOf(principal.getName()));
+        this.postService.create(post);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public void update(@RequestBody @Valid PostDTO postDTO, Principal principal) {
-        this.postService.get(postDTO.getId())
-                .filter(p -> p.getUserLogin().equals(principal.getName()))
-                .ifPresent(post -> this.postService.update(postDTO));
+    public void update(@RequestBody @Valid Post post, Principal principal) {
+        this.postService.get(post.getId())
+                .filter(p -> p.getUserId().equals(Long.valueOf(principal.getName())))
+                .ifPresent(this.postService::update);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> get(@PathVariable Long id) {
+    public ResponseEntity<Post> get(@PathVariable Long id) {
         return this.postService.get(id)
                 .map(post -> new ResponseEntity<>(post, HttpStatus.OK))
                 .orElseThrow(NotFoundException::new);
     }
 
     @GetMapping
-    public ResponseEntity<List<PostDTO>> getAllPosts(Pageable pageable) {
-        Page<PostDTO> page = this.postService.getAll(pageable);
+    public ResponseEntity<List<Post>> getAllPosts(Pageable pageable) {
+        Page<Post> page = this.postService.getAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -58,7 +58,7 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id, Principal principal) {
         this.postService.get(id)
-                .filter(p -> p.getUserLogin().equals(principal.getName()))
-                .ifPresent((post) -> this.postService.delete(post.getId()));
+                .filter(p -> p.getUserId().equals(Long.valueOf(principal.getName())))
+                .ifPresent(this.postService::delete);
     }
 }

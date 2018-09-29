@@ -1,6 +1,7 @@
 package com.artaeum.profile.controller;
 
 import com.artaeum.profile.controller.error.BadRequestException;
+import com.artaeum.profile.domain.Subscription;
 import com.artaeum.profile.service.SubscriptionService;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,24 +20,26 @@ public class SubscriptionController {
 
     @PostMapping("/subscribe")
     public void subscribe(@RequestBody String profile, Principal principal) {
-        if (profile.equals(principal.getName())) {
+        Long profileId = Long.valueOf(profile);
+        Long currentUserId = Long.valueOf(principal.getName());
+        if (profileId.equals(currentUserId)) {
             throw new BadRequestException("You can't subscribe to yourself");
         }
-        this.subscriptionService.subscribe(profile, principal.getName());
+        this.subscriptionService.subscribe(profileId, currentUserId);
     }
 
     @PostMapping("/unsubscribe")
     public void unsubscribe(@RequestBody String profile, Principal principal) {
-        this.subscriptionService.unsubscribe(profile, principal.getName());
+        this.subscriptionService.unsubscribe(Long.valueOf(profile), Long.valueOf(principal.getName()));
     }
 
-    @GetMapping("/{login}")
-    public List<String> getAllSubscriptionsByLogin(@PathVariable String login) {
-        return this.subscriptionService.getAllSubscriptions(login);
+    @GetMapping("/{userId}")
+    public List<Subscription> getAllSubscriptionsByLogin(@PathVariable Long userId) {
+        return this.subscriptionService.getAllSubscriptions(userId);
     }
 
-    @GetMapping("/{login}/subscribers")
-    public List<String> getAllSubscribersByLogin(@PathVariable String login) {
-        return this.subscriptionService.getAllSubscribers(login);
+    @GetMapping("/{userId}/subscribers")
+    public List<Subscription> getAllSubscribersByLogin(@PathVariable Long userId) {
+        return this.subscriptionService.getAllSubscribers(userId);
     }
 }

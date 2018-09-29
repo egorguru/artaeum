@@ -37,7 +37,7 @@ public class ArtaeumUserDetailsService implements UserDetailsService {
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
         return new org.springframework.security.core.userdetails.User(
-                user.getLogin(),
+                user.getId().toString(),
                 user.getPassword(),
                 grantedAuthorities
         );
