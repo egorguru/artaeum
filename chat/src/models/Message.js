@@ -1,6 +1,6 @@
-import { Schema, model } from 'mongoose'
+import mongoose from 'mongoose'
 
-const messagesSchema = new Schema({
+const messagesSchema = new mongoose.Schema({
   text: {
     type: String,
     required: true
@@ -19,4 +19,4 @@ const messagesSchema = new Schema({
   }
 })
 
-export default model('messages', messagesSchema)
+export default mongoose.model('messages', messagesSchema)

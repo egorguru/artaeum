@@ -6,7 +6,6 @@ import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.security.auth.UserPrincipal;
 import org.apache.commons.lang.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -105,7 +104,7 @@ public class AccountControllerTest {
     @Test
     public void whenGetPrincipal() throws Exception {
         this.mockMvc.perform(get("/account/current")
-                .principal(new UserPrincipal("test")))
+                .principal(new UsernamePasswordAuthenticationToken("test", "password", Collections.emptyList())))
                 .andExpect(jsonPath("$.name").value("test"))
                 .andExpect(status().isOk());
     }

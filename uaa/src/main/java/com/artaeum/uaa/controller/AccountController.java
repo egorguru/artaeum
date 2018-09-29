@@ -1,11 +1,13 @@
 package com.artaeum.uaa.controller;
 
 import com.artaeum.uaa.config.Constants;
-import com.artaeum.uaa.controller.error.*;
+import com.artaeum.uaa.controller.error.EmailAlreadyUsedException;
+import com.artaeum.uaa.controller.error.InvalidPasswordException;
+import com.artaeum.uaa.controller.error.LoginAlreadyUsedException;
+import com.artaeum.uaa.controller.error.UserNotFoundException;
 import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
-import com.artaeum.uaa.dto.UserReset;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

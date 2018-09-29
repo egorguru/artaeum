@@ -4,7 +4,7 @@
   "description": "Chat",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack"
   },
   "author": "Egor Repnikov",
   "license": "MIT",
