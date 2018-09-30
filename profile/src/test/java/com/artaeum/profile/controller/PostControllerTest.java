@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class PostControllerTest {
 
-    private static final Long USER_ID = 123L;
+    private static final String USER_ID = "uuid-123";
 
     private static final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
@@ -63,7 +63,7 @@ public class PostControllerTest {
         postDTO.setUserId(USER_ID);
         postDTO.setText("text");
         this.mockMvc.perform(post("/posts")
-                .principal(new UsernamePasswordAuthenticationToken(USER_ID.toString(), "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken(USER_ID, "password", Collections.emptyList()))
                 .content(objectMapper.writeValueAsBytes(postDTO))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated());
@@ -77,7 +77,7 @@ public class PostControllerTest {
     public void whenUpdatePost() throws Exception {
         Post post = this.createPost();
         this.mockMvc.perform(put("/posts")
-                .principal(new UsernamePasswordAuthenticationToken(USER_ID.toString(), "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken(USER_ID, "password", Collections.emptyList()))
                 .content(objectMapper.writeValueAsBytes(post))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
@@ -119,7 +119,7 @@ public class PostControllerTest {
     public void whenDeletePost() throws Exception {
         Post post = this.createPost();
         this.mockMvc.perform(delete("/posts/" + post.getId())
-                .principal(new UsernamePasswordAuthenticationToken(USER_ID.toString(), "password", Collections.emptyList())))
+                .principal(new UsernamePasswordAuthenticationToken(USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
         Optional<Post> result = this.postRepository.findById(post.getId());
         assertFalse(result.isPresent());

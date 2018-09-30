@@ -28,9 +28,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class SubscriptionControllerTest {
 
-    private static final Long FIRST_USER_ID = 123L;
+    private static final String FIRST_USER_ID = "uuid-123";
 
-    private static final Long SECOND_USER_ID = 321L;
+    private static final String SECOND_USER_ID = "uuid-321";
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;
@@ -50,9 +50,9 @@ public class SubscriptionControllerTest {
     @Test
     public void whenSubscribeAndGetIt() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        SECOND_USER_ID.toString(), "password", Collections.emptyList())))
+                        SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
         Subscription result = this.subscriptionRepository.findAll().get(0);
         assertEquals(FIRST_USER_ID, result.getProfileId());
@@ -62,9 +62,9 @@ public class SubscriptionControllerTest {
     @Test
     public void whenSubscribeToYourself() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        FIRST_USER_ID.toString(), "password", Collections.emptyList())))
+                        FIRST_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isBadRequest());
     }
 
@@ -72,14 +72,14 @@ public class SubscriptionControllerTest {
     @Transactional
     public void whenSubscribeAndUnsubscribe() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        SECOND_USER_ID.toString(), "password", Collections.emptyList())))
+                        SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
         this.mockMvc.perform(post("/subscriptions/unsubscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        SECOND_USER_ID.toString(), "password", Collections.emptyList())))
+                        SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
         assertTrue(this.subscriptionRepository.findAll().isEmpty());
     }
@@ -87,24 +87,24 @@ public class SubscriptionControllerTest {
     @Test
     public void whenSubscribeAndGetAllForSubscriber() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        SECOND_USER_ID.toString(), "password", Collections.emptyList())))
+                        SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/subscriptions/{login}", SECOND_USER_ID.toString()))
+        this.mockMvc.perform(get("/subscriptions/{login}", SECOND_USER_ID))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].profileId").value(FIRST_USER_ID.toString()));
+                .andExpect(jsonPath("$.[0].profileId").value(FIRST_USER_ID));
     }
 
     @Test
     public void whenSubscribeAndGetAllByProfile() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
-                .content(FIRST_USER_ID.toString())
+                .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
-                        SECOND_USER_ID.toString(), "password", Collections.emptyList())))
+                        SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/subscriptions/{login}/subscribers", FIRST_USER_ID.toString()))
+        this.mockMvc.perform(get("/subscriptions/{login}/subscribers", FIRST_USER_ID))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.[0].subscriberId").value(SECOND_USER_ID.toString()));
+                .andExpect(jsonPath("$.[0].subscriberId").value(SECOND_USER_ID));
     }
 }

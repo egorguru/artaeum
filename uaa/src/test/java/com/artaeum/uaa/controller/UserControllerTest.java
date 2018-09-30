@@ -90,6 +90,20 @@ public class UserControllerTest {
     }
 
     @Test
+    @Transactional
+    public void whenGetUserById() throws Exception {
+        User user = this.createUser();
+        this.mockMvc.perform(get("/users/{id}", user.getId())
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.login").value(user.getLogin()))
+                .andExpect(jsonPath("$.firstName").value(user.getFirstName()))
+                .andExpect(jsonPath("$.lastName").value(user.getLastName()))
+                .andExpect(jsonPath("$.email").value(user.getEmail()))
+                .andExpect(jsonPath("$.langKey").value(user.getLangKey()));
+    }
+
+    @Test
     public void whenGetNotExistingUser() throws Exception {
         this.mockMvc.perform(get("/api/users/unknown"))
                 .andExpect(status().isNotFound());

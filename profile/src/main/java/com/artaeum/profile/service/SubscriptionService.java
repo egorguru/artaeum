@@ -16,21 +16,21 @@ public class SubscriptionService {
         this.subscriptionRepository = subscriptionRepository;
     }
 
-    public void subscribe(Long profile, Long subscriber) {
+    public void subscribe(String profile, String subscriber) {
         if (!this.subscriptionRepository.findByProfileIdAndSubscriberId(profile, subscriber).isPresent()) {
             this.subscriptionRepository.save(new Subscription(profile, subscriber, ZonedDateTime.now()));
         }
     }
 
-    public void unsubscribe(Long profile, Long subscriber) {
+    public void unsubscribe(String profile, String subscriber) {
         this.subscriptionRepository.deleteByProfileIdAndSubscriberId(profile, subscriber);
     }
 
-    public List<Subscription> getAllSubscriptions(Long subscriber) {
+    public List<Subscription> getAllSubscriptions(String subscriber) {
         return this.subscriptionRepository.findAllBySubscriberId(subscriber);
     }
 
-    public List<Subscription> getAllSubscribers(Long profile) {
+    public List<Subscription> getAllSubscribers(String profile) {
         return this.subscriptionRepository.findAllByProfileId(profile);
     }
 }

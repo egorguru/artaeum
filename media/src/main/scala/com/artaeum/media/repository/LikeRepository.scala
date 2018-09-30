@@ -11,7 +11,7 @@ trait LikeRepository extends MongoRepository[Like, String] {
 
   def findAllByResourceTypeAndResourceId(resourceType: String, resourceId: Long): util.List[Like]
 
-  def findAllByUserId(userId: Long): util.List[Like]
+  def findAllByUserId(userId: String): util.List[Like]
 
-  def findByResourceTypeAndResourceIdAndUserId(resourceType: String, resourceId: Long, userId: Long): Like
+  def findByResourceTypeAndResourceIdAndUserId(resourceType: String, resourceId: Long, userId: String): Like
 }

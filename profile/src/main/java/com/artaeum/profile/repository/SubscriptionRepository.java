@@ -10,11 +10,11 @@ import java.util.Optional;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Long> {
 
-    Optional<Subscription> findByProfileIdAndSubscriberId(Long profileId, Long subscriberId);
+    Optional<Subscription> findByProfileIdAndSubscriberId(String profileId, String subscriberId);
 
-    List<Subscription> findAllByProfileId(Long profileId);
+    List<Subscription> findAllByProfileId(String profileId);
 
-    List<Subscription> findAllBySubscriberId(Long subscriberId);
+    List<Subscription> findAllBySubscriberId(String subscriberId);
 
-    void deleteByProfileIdAndSubscriberId(Long profileId, Long subscriberId);
+    void deleteByProfileIdAndSubscriberId(String profileId, String subscriberId);
 }

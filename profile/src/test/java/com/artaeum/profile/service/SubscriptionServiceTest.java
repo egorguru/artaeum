@@ -18,9 +18,9 @@ import static org.junit.Assert.assertTrue;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class SubscriptionServiceTest {
 
-    private static final Long FIRST_USER_ID = 123L;
+    private static final String FIRST_USER_ID = "uuid-123";
 
-    private static final Long SECOND_USER_ID = 321L;
+    private static final String SECOND_USER_ID = "uuid-321";
 
     @Autowired
     private SubscriptionRepository subscriptionRepository;

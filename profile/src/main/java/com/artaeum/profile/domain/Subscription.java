@@ -12,17 +12,17 @@ public class Subscription {
     private Long id;
 
     @Column(name = "profile_id", nullable = false)
-    private Long profileId;
+    private String profileId;
 
     @Column(name = "subscriber_id", nullable = false)
-    private Long subscriberId;
+    private String subscriberId;
 
     @Column(name = "created_date", nullable = false)
     private ZonedDateTime createdDate;
 
     public Subscription() {}
 
-    public Subscription(Long profileId, Long subscriberId, ZonedDateTime createdDate) {
+    public Subscription(String profileId, String subscriberId, ZonedDateTime createdDate) {
         this.profileId = profileId;
         this.subscriberId = subscriberId;
         this.createdDate = createdDate;
@@ -36,19 +36,19 @@ public class Subscription {
         this.id = id;
     }
 
-    public Long getProfileId() {
+    public String getProfileId() {
         return profileId;
     }
 
-    public void setProfileId(Long profileId) {
+    public void setProfileId(String profileId) {
         this.profileId = profileId;
     }
 
-    public Long getSubscriberId() {
+    public String getSubscriberId() {
         return subscriberId;
     }
 
-    public void setSubscriberId(Long subscriberId) {
+    public void setSubscriberId(String subscriberId) {
         this.subscriberId = subscriberId;
     }
 

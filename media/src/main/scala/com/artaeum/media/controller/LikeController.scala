@@ -15,10 +15,10 @@ class LikeController(likeService: LikeService) {
                         @PathVariable resourceId: Long): util.List[Like] = this.likeService.getAll(resourceType, resourceId)
 
   @GetMapping(path = Array("/{userId}/likes"))
-  def getAllForUser(@PathVariable userId: Long): util.List[Like] = this.likeService.getAll(userId)
+  def getAllForUser(@PathVariable userId: String): util.List[Like] = this.likeService.getAll(userId)
 
   @PostMapping(Array("/{resourceType}/{resourceId}/likes"))
   def saveOrRemove(@PathVariable resourceType: String,
                    @PathVariable resourceId: Long,
-                   principal: Principal): Unit = this.likeService.saveOrRemove(resourceType, resourceId, principal.getName.toLong)
+                   principal: Principal): Unit = this.likeService.saveOrRemove(resourceType, resourceId, principal.getName)
 }

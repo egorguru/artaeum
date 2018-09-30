@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class LikeControllerTest {
 
-  val USER_ID = 123L
+  val USER_ID = "uuid-123"
 
   @Autowired
   var likeController: LikeController = _
@@ -42,7 +42,7 @@ class LikeControllerTest {
     val (resourceType, resourceId) = ("type", 1)
     this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID.toString, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
       .andExpect(status().isOk)
     val result = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
     Assert.assertEquals(1, result.size)
@@ -56,13 +56,13 @@ class LikeControllerTest {
     val (resourceType, resourceId) = ("type", 2)
     this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID.toString, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
       .andExpect(status().isOk)
     val beforeRemove = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
     Assert.assertFalse(beforeRemove.isEmpty)
     this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID.toString, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
       .andExpect(status().isOk)
     val afterRemove = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
     Assert.assertTrue(afterRemove.isEmpty)
@@ -76,11 +76,11 @@ class LikeControllerTest {
     like.setUserId(USER_ID)
     like.setCreatedDate(Instant.now())
     this.likeRepository.insert(like)
-    this.mockMvc.perform(get("/{userLogin}/likes", USER_ID.toString))
+    this.mockMvc.perform(get("/{userId}/likes", USER_ID))
       .andExpect(status().isOk)
       .andExpect(jsonPath("$.[*].resourceType").value(hasItem(like.resourceType)))
       .andExpect(jsonPath("$.[*].resourceId").value(hasItem(like.resourceId.toInt)))
-      .andExpect(jsonPath("$.[*].userId").value(hasItem(USER_ID.toInt)))
+      .andExpect(jsonPath("$.[*].userId").value(hasItem(USER_ID)))
   }
 
   @Test
@@ -95,6 +95,6 @@ class LikeControllerTest {
       .andExpect(status().isOk)
       .andExpect(jsonPath("$.[*].resourceType").value(hasItem(like.resourceType)))
       .andExpect(jsonPath("$.[*].resourceId").value(hasItem(like.resourceId.toInt)))
-      .andExpect(jsonPath("$.[*].userId").value(hasItem(USER_ID.toInt)))
+      .andExpect(jsonPath("$.[*].userId").value(hasItem(USER_ID)))
   }
 }

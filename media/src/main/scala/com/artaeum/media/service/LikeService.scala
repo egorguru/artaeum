@@ -13,11 +13,11 @@ class LikeService(likeRepository: LikeRepository) {
     this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
   }
 
-  def getAll(userId: Long): util.List[Like] = {
+  def getAll(userId: String): util.List[Like] = {
     this.likeRepository.findAllByUserId(userId)
   }
 
-  def saveOrRemove(resourceType: String, resourceId: Long, userId: Long): Unit = {
+  def saveOrRemove(resourceType: String, resourceId: Long, userId: String): Unit = {
     this.likeRepository
       .findByResourceTypeAndResourceIdAndUserId(resourceType, resourceId, userId) match {
       case l: Like => this.likeRepository.delete(l)

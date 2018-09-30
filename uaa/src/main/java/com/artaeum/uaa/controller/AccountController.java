@@ -59,7 +59,7 @@ public class AccountController {
 
     @GetMapping("/account")
     public UserDTO getCurrentAccount(Principal principal) {
-        return this.userService.getById(Long.valueOf(principal.getName()))
+        return this.userService.getById(principal.getName())
                 .map(UserDTO::new)
                 .orElseThrow(UserNotFoundException::new);
     }
@@ -74,7 +74,7 @@ public class AccountController {
         if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(principal.getName()))) {
             throw new EmailAlreadyUsedException();
         }
-        this.userService.update(Long.valueOf(principal.getName()), userDTO.getLogin(),
+        this.userService.update(principal.getName(), userDTO.getLogin(),
                                 userDTO.getFirstName(), userDTO.getLastName(),
                                 userDTO.getEmail(), userDTO.getLangKey());
     }

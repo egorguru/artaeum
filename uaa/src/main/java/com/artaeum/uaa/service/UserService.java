@@ -65,7 +65,7 @@ public class UserService {
                 });
     }
 
-    public void update(Long id, String login, String firstName, String lastName, String email, String langKey) {
+    public void update(String id, String login, String firstName, String lastName, String email, String langKey) {
         this.userRepository.findById(id)
                 .ifPresent(user -> {
                     user.setFirstName(firstName);
@@ -92,7 +92,7 @@ public class UserService {
         return this.userRepository.findAll(pageable).map(UserDTO::new);
     }
 
-    public Optional<User> getById(Long id) {
+    public Optional<User> getById(String id) {
         return this.userRepository.findById(id);
     }
 

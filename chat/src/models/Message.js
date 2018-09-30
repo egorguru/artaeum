@@ -6,11 +6,11 @@ const messagesSchema = new mongoose.Schema({
     required: true
   },
   sender: {
-    type: Number,
+    type: String,
     required: true
   },
   receiver: {
-    type: Number,
+    type: String,
     required: true
   },
   createdDate: {

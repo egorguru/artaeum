@@ -20,26 +20,25 @@ public class SubscriptionController {
 
     @PostMapping("/subscribe")
     public void subscribe(@RequestBody String profile, Principal principal) {
-        Long profileId = Long.valueOf(profile);
-        Long currentUserId = Long.valueOf(principal.getName());
-        if (profileId.equals(currentUserId)) {
+        String currentUser = principal.getName();
+        if (profile.equals(currentUser)) {
             throw new BadRequestException("You can't subscribe to yourself");
         }
-        this.subscriptionService.subscribe(profileId, currentUserId);
+        this.subscriptionService.subscribe(profile, currentUser);
     }
 
     @PostMapping("/unsubscribe")
     public void unsubscribe(@RequestBody String profile, Principal principal) {
-        this.subscriptionService.unsubscribe(Long.valueOf(profile), Long.valueOf(principal.getName()));
+        this.subscriptionService.unsubscribe(profile, principal.getName());
     }
 
     @GetMapping("/{userId}")
-    public List<Subscription> getAllSubscriptionsByLogin(@PathVariable Long userId) {
+    public List<Subscription> getAllSubscriptionsByLogin(@PathVariable String userId) {
         return this.subscriptionService.getAllSubscriptions(userId);
     }
 
     @GetMapping("/{userId}/subscribers")
-    public List<Subscription> getAllSubscribersByLogin(@PathVariable Long userId) {
+    public List<Subscription> getAllSubscribersByLogin(@PathVariable String userId) {
         return this.subscriptionService.getAllSubscribers(userId);
     }
 }

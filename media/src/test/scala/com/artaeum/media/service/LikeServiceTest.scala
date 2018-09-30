@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class LikeServiceTest {
 
-  val USER_ID = 123
+  val USER_ID = "uuid-123"
 
   @Autowired
   var likeService: LikeService = _

@@ -28,7 +28,7 @@ public class PostController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void create(@RequestBody @Valid Post post, Principal principal) {
-        post.setUserId(Long.valueOf(principal.getName()));
+        post.setUserId(principal.getName());
         this.postService.create(post);
     }
 
@@ -36,7 +36,7 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public void update(@RequestBody @Valid Post post, Principal principal) {
         this.postService.get(post.getId())
-                .filter(p -> p.getUserId().equals(Long.valueOf(principal.getName())))
+                .filter(p -> p.getUserId().equals(principal.getName()))
                 .ifPresent(this.postService::update);
     }
 
@@ -58,7 +58,7 @@ public class PostController {
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id, Principal principal) {
         this.postService.get(id)
-                .filter(p -> p.getUserId().equals(Long.valueOf(principal.getName())))
+                .filter(p -> p.getUserId().equals(principal.getName()))
                 .ifPresent(this.postService::delete);
     }
 }

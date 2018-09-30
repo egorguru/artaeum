@@ -23,14 +23,14 @@ public class ProfileImagesController {
         this.imageService = imageService;
     }
 
-    @GetMapping("/avatar/{name:.+}")
-    public ResponseEntity<Resource> getAvatar(@PathVariable String name) throws IOException {
-        return this.prepareResponseEntity(Constants.AVATAR_IMAGE_DIR, name);
+    @GetMapping("/avatar/{userId:.+}")
+    public ResponseEntity<Resource> getAvatar(@PathVariable String userId) throws IOException {
+        return this.prepareResponseEntity(Constants.AVATAR_IMAGE_DIR, userId);
     }
 
-    @GetMapping("/background/{name:.+}")
-    public ResponseEntity<Resource> getBackground(@PathVariable String name) throws IOException {
-        return this.prepareResponseEntity(Constants.BACKGROUND_IMAGE_DIR, name);
+    @GetMapping("/background/{userId:.+}")
+    public ResponseEntity<Resource> getBackground(@PathVariable String userId) throws IOException {
+        return this.prepareResponseEntity(Constants.BACKGROUND_IMAGE_DIR, userId);
     }
 
     @PostMapping("/avatar")
@@ -48,8 +48,8 @@ public class ProfileImagesController {
         throw new InternalServerException();
     }
 
-    private ResponseEntity<Resource> prepareResponseEntity(String type, String name) throws IOException {
-        Resource image = this.imageService.load(type, name);
+    private ResponseEntity<Resource> prepareResponseEntity(String type, String userId) throws IOException {
+        Resource image = this.imageService.load(type, userId);
         if (!image.exists()) {
             throw new NotFoundException();
         }

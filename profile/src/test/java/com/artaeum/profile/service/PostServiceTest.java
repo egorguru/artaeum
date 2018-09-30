@@ -19,7 +19,7 @@ import static org.junit.Assert.*;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 public class PostServiceTest {
 
-    private static final Long USER_ID = 123L;
+    private static final String USER_ID = "uuid-123";
 
     @Autowired
     private PostRepository postRepository;

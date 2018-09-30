@@ -15,7 +15,7 @@ public class Post {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     @NotBlank
     @Type(type = "text")
@@ -27,7 +27,7 @@ public class Post {
 
     public Post() {}
 
-    public Post(Long id, Long userId, String text, Instant createdDate) {
+    public Post(Long id, String userId, String text, Instant createdDate) {
         this.id = id;
         this.userId = userId;
         this.text = text;
@@ -42,11 +42,11 @@ public class Post {
         this.id = id;
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

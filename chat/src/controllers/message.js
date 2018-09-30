@@ -7,7 +7,7 @@ const router = new Router().prefix('/messages')
 
 router.get('/:receiver', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const messages = await Message
-    .find({ userId: ctx.state.user.name, receiver: ctx.params.receiver })
+    .find({ sender: ctx.state.user.name, receiver: ctx.params.receiver })
     .sort({ date: -1 })
     .skip(+ctx.query.offset)
     .limit(+ctx.query.limit)
@@ -24,10 +24,11 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
   ctx.body = message
 })
 
-router.put('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const message = await Message.findByIdAndUpdate(
-    ctx.params.id,
-    { $set: { text: ctx.request.body.text } },
+router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const { id, text } = ctx.request.body
+  const message = await Message.findOneAndUpdate(
+    { _id: id, sender: ctx.state.user.name },
+    { $set: { text: text } },
     { new: true }
   )
   ctx.body = message

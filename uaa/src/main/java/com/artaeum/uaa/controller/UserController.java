@@ -36,24 +36,17 @@ public class UserController {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @GetMapping("/{login:" + Constants.LOGIN_REGEX + "}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable String login) {
-        UserDTO userDTO = this.userService.getByLogin(login)
-                .map(UserDTO::new)
-                .orElseThrow(UserNotFoundException::new);
-        return new ResponseEntity<>(userDTO, HttpStatus.OK);
+    @GetMapping("/{loginOrId}")
+    public ResponseEntity<UserDTO> getUserByLoginOrId(@PathVariable String loginOrId) {
+        User user = this.userService.getById(loginOrId)
+                .orElseGet(() -> this.userService.getByLogin(loginOrId)
+                        .orElseThrow(UserNotFoundException::new));
+        return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
     }
 
-    @GetMapping("/id/{login}")
-    public Long getUserIdByLogin(@PathVariable String login) {
+    @GetMapping("/{login}/id")
+    public String getUserLoginById(@PathVariable String login) {
         return this.userService.getByLogin(login)
-                .map(User::getId)
-                .orElseThrow(UserNotFoundException::new);
-    }
-
-    @GetMapping("/login/{id}")
-    public String getUserIdByLogin(@PathVariable Long id) {
-        return this.userService.getById(id)
                 .map(User::getLogin)
                 .orElseThrow(UserNotFoundException::new);
     }
