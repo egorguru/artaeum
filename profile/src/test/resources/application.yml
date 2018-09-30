@@ -9,6 +9,3 @@ spring:
     password:
   jpa:
     database: H2
-    hibernate:
-      ddl-auto: create
-    show-sql: true

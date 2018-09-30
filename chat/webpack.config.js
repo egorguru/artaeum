@@ -7,5 +7,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'chat.js'
   },
+  stats: 'errors-only',
   mode: 'production'
 }
