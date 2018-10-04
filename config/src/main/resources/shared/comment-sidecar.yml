@@ -3,4 +3,4 @@ server:
 
 sidecar:
   port: 9000
-  health-uri: http://comment:9000/chat/health
+  health-uri: http://comment:9000/comment/health
