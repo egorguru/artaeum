@@ -1,3 +1,3 @@
-import bodyParser from 'koa-bodyparser'
+const bodyParser = require('koa-bodyparser')
 
-export default bodyParser()
+module.exports = bodyParser()

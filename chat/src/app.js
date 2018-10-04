@@ -1,8 +1,8 @@
-import Koa from 'koa'
+const Koa = require('koa')
 
-import mongoClient from './lib/mongo-client'
-import handlers from './handlers'
-import controllers from './controllers'
+const mongoClient = require('./lib/mongo-client')
+const handlers = require('./handlers')
+const controllers = require('./controllers')
 
 const app = new Koa()
 
@@ -13,4 +13,4 @@ app.use(controllers.allowedMethods())
 
 mongoClient()
 
-export default app
+module.exports = app

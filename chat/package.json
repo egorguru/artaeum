@@ -4,13 +4,15 @@
   "description": "Chat",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack"
+    "test": "mocha --opts src/tests/mocha.opts",
+    "start": "node ./src/index.js"
   },
   "author": "Egor Repnikov",
   "license": "MIT",
   "devDependencies": {
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0"
+    "inmemory-mongo": "0.0.2",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
   },
   "dependencies": {
     "cloud-config-client": "^1.4.2",
@@ -20,7 +22,6 @@
     "koa-router": "^7.4.0",
     "mongoose": "^5.2.13",
     "passport-http-bearer": "^1.0.1",
-    "passport-oauth2": "^1.4.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "socket.io": "^2.1.1"

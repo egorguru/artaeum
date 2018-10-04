@@ -1,8 +1,8 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
-import config from './config-client'
+const config = require('./config-client')
 
-export default function() {
+module.exports = function() {
   config.then((c) => {
     mongoose
       .connect(

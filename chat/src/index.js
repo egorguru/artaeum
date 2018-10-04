@@ -1,5 +1,5 @@
-import app from './app'
-import config from './lib/config-client'
+const app = require('./app')
+const config = require('./lib/config-client')
 
 config.then((c) => {
   app.listen(+c.get('server.port'), () => {

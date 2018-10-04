@@ -1,7 +1,7 @@
 FROM node
 MAINTAINER Egor Repnikov
 
-ADD dist/chat.js /app/
-CMD ["node", "/app/chat.js"]
+ADD ./ /app/
+CMD ["node", "/app/src/index.js"]
 
 EXPOSE 8000

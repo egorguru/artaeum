@@ -1,4 +1,4 @@
-import Router from 'koa-router'
+const Router = require('koa-router')
 
 const router = new Router()
 
@@ -7,4 +7,4 @@ router.get('/health', (ctx) => {
   ctx.body = { status: 'UP' }
 })
 
-export default router.routes()
+module.exports = router.routes()

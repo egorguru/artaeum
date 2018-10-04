@@ -1,6 +1,6 @@
-import passport from 'koa-passport'
-import passportConfig from '../lib/passport-config'
+const passport = require('koa-passport')
+const passportConfig = require('../lib/passport-config')
 
 passportConfig(passport)
 
-export default passport.initialize()
+module.exports = passport.initialize()

@@ -1,8 +1,8 @@
-import bodyParser from './body-parser'
-import errors from './errors'
-import passportInit from './passport-init'
+const bodyParser = require('./body-parser')
+const errors = require('./errors')
+const passportInit = require('./passport-init')
 
-export default [
+module.exports = [
   bodyParser,
   errors,
   passportInit

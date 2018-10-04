@@ -1,0 +1,4 @@
+--colors
+--timeout 5000
+--require should
+src/tests/**/*.test.js

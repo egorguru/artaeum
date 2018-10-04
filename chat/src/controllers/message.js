@@ -1,7 +1,7 @@
-import Router from 'koa-router'
-import passport from 'koa-passport'
+const Router = require('koa-router')
+const passport = require('koa-passport')
 
-import Message from '../models/Message'
+const Message = require('../models/Message')
 
 const router = new Router().prefix('/messages')
 
@@ -41,4 +41,4 @@ router.delete('/:id', passport.authenticate('bearer', { session: false }), async
   })
 })
 
-export default router.routes()
+module.exports = router.routes()

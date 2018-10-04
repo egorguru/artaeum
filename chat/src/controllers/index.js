@@ -1,10 +1,10 @@
-import Router from 'koa-router'
+const Router = require('koa-router')
 
-import health from './health'
-import message from './message'
+const health = require('./health')
+const message = require('./message')
 
 const router = new Router().prefix('/chat')
 
 router.use(health, message)
 
-export default router
+module.exports = router

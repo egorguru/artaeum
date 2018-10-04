@@ -1,6 +1,6 @@
-import { load } from 'cloud-config-client'
+const { load } = require('cloud-config-client')
 
-export default load({
+module.exports = load({
   application: 'chat',
   name: 'chat',
   endpoint: 'http://config:8888',
