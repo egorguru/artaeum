@@ -25,3 +25,9 @@ services:
 
   chat-sidecar:
     build: chat-sidecar
+
+  comment:
+    build: comment
+
+  comment-sidecar:
+    build: comment-sidecar

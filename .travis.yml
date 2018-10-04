@@ -13,10 +13,11 @@ env:
 
 install:
   - npm install --prefix chat --silent
+  - npm install --prefix comment --silent
 
 script:
-  - npm run build --prefix chat --silent
   - mvn package -f chat-sidecar --quiet
+  - mvn package -f comment-sidecar --quiet
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet
   - mvn package -f media --quiet
@@ -38,6 +39,16 @@ after_success:
   - docker build -t $CHAT_SIDECAR:$COMMIT ./chat-sidecar
   - docker tag $CHAT_SIDECAR:$COMMIT $CHAT_SIDECAR:$TAG
   - docker push $CHAT_SIDECAR
+
+  - export COMMENT=egorrepnikov/artaeum-comment
+  - docker build -t $COMMENT:$COMMIT ./comment
+  - docker tag $COMMENT:$COMMIT $COMMENT:$TAG
+  - docker push $COMMENT
+
+  - export COMMENT_SIDECAR=egorrepnikov/artaeum-comment-sidecar
+  - docker build -t $COMMENT_SIDECAR:$COMMIT ./comment-sidecar
+  - docker tag $COMMENT_SIDECAR:$COMMIT $COMMENT_SIDECAR:$TAG
+  - docker push $COMMENT_SIDECAR
 
   - export CONFIG=egorrepnikov/artaeum-config
   - docker build -t $CONFIG:$COMMIT ./config

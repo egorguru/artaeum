@@ -1,0 +1,6 @@
+server:
+  port: 9001
+
+sidecar:
+  port: 9000
+  health-uri: http://comment:9000/chat/health
