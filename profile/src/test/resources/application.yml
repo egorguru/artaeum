@@ -9,3 +9,5 @@ spring:
     password:
   jpa:
     database: H2
+  main:
+    banner-mode: "off"

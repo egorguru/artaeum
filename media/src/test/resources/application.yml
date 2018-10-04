@@ -1,7 +1,11 @@
 eureka:
   client:
     enabled: false
+
+spring:
   data:
     mongodb:
       database: media
       port: 0
+  main:
+    banner-mode: "off"
