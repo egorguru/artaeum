@@ -31,3 +31,6 @@ services:
 
   comment-sidecar:
     build: comment-sidecar
+
+  storage:
+    build: storage

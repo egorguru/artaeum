@@ -24,6 +24,10 @@ zuul:
       path: /comment/**
       url: http://comment:9000
       stripPrefix: false
+    storage:
+      path: /storage/**
+      serviceId: storage
+      stripPrefix: false
 
 server:
   port: 4000

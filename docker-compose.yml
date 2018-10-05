@@ -46,6 +46,7 @@ services:
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
       CHAT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
       COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
     restart: always
     depends_on:
@@ -182,3 +183,16 @@ services:
     depends_on:
       config:
         condition: service_healthy
+
+  storage:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-storage
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+    - 10000:10000

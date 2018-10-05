@@ -1,0 +1,10 @@
+eureka:
+  client:
+    enabled: false
+
+spring:
+  main:
+    banner-mode: "off"
+
+artaeum:
+  resources: testResource,testAgain

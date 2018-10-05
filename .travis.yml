@@ -23,6 +23,7 @@ script:
   - mvn package -f media --quiet
   - mvn package -f profile --quiet
   - mvn package -f registry --quiet
+  - mvn package -f storage --quiet
   - mvn package -f uaa --quiet
 
 after_success:
@@ -74,6 +75,11 @@ after_success:
   - docker build -t $REGISTRY:$COMMIT ./registry
   - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
+
+  - export STORAGE=egorrepnikov/artaeum-storage
+  - docker build -t $STORAGE:$COMMIT ./storage
+  - docker tag $STORAGE:$COMMIT $STORAGE:$TAG
+  - docker push $STORAGE
 
   - export UAA=egorrepnikov/artaeum-uaa
   - docker build -t $UAA:$COMMIT ./uaa

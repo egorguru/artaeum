@@ -76,6 +76,11 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
                     .withClient("comment")
                     .secret(this.passwordEncoder.encode(this.env.getProperty("COMMENT_SERVICE_PASSWORD")))
                     .authorizedGrantTypes("client_credentials", "refresh_token")
+                    .scopes("server")
+                .and()
+                    .withClient("storage")
+                    .secret(this.passwordEncoder.encode(this.env.getProperty("STORAGE_SERVICE_PASSWORD")))
+                    .authorizedGrantTypes("client_credentials", "refresh_token")
                     .scopes("server");
     }
 
