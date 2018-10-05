@@ -17,3 +17,6 @@ security:
       accessTokenUri: http://uaa:5000/uaa/oauth/token
       grant-type: client_credentials
       scope: server
+
+artaeum:
+  resources: profile

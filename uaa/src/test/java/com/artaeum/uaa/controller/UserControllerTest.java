@@ -137,8 +137,6 @@ public class UserControllerTest {
         assertEquals(user.getFirstName(), result.getFirstName());
         assertEquals(user.getLastName(), result.getLastName());
         assertEquals(user.getLangKey(), result.getLangKey());
-        result.getAuthorities().forEach(a -> System.out.println(a.getName()));
-        System.out.println(this.authorityRepository.findById(Constants.USER_AUTHORITY).get().getName());
         assertTrue(result.getAuthorities().contains(this.authorityRepository.findById(Constants.USER_AUTHORITY).get()));
         assertTrue(result.getAuthorities().contains(this.authorityRepository.findById((Constants.MODERATOR_AUTHORITY)).get()));
     }

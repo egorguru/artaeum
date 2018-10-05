@@ -15,10 +15,6 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
-  http:
-    multipart:
-      max-file-size: 500KB
-      max-request-size: 500KB
 
 security:
   oauth2:
