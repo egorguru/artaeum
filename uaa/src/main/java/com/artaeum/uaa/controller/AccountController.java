@@ -1,13 +1,12 @@
 package com.artaeum.uaa.controller;
 
 import com.artaeum.uaa.config.Constants;
-import com.artaeum.uaa.controller.error.EmailAlreadyUsedException;
-import com.artaeum.uaa.controller.error.InvalidPasswordException;
-import com.artaeum.uaa.controller.error.LoginAlreadyUsedException;
-import com.artaeum.uaa.controller.error.UserNotFoundException;
+import com.artaeum.uaa.controller.error.*;
 import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
+import com.artaeum.uaa.dto.UserReset;
+import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +21,11 @@ public class AccountController {
 
     private UserService userService;
 
-    public AccountController(UserService userService) {
+    private MailService mailService;
+
+    public AccountController(UserService userService, MailService mailService) {
         this.userService = userService;
+        this.mailService = mailService;
     }
 
     @GetMapping("/account/current")
@@ -41,13 +43,13 @@ public class AccountController {
             throw new EmailAlreadyUsedException();
         }
         // must be validation for langKey
-        this.userService.register(user);
+        User newUser = this.userService.register(user);
+        this.mailService.sendActivationEmail(newUser);
     }
 
     @GetMapping("/activate")
     public void activateAccount(@RequestParam(value = "key") String key) {
-        Optional<User> user = this.userService.activateRegistration(key);
-        if (!user.isPresent()) {
+        if (this.userService.activateRegistration(key).isPresent()) {
             throw new UserNotFoundException("User not found for this reset key");
         }
     }
@@ -77,6 +79,24 @@ public class AccountController {
         this.userService.update(principal.getName(), userDTO.getLogin(),
                                 userDTO.getFirstName(), userDTO.getLastName(),
                                 userDTO.getEmail(), userDTO.getLangKey());
+    }
+
+    @PostMapping(path = "/account/reset-password/init")
+    public void requestPasswordReset(@RequestBody String mail) {
+        mailService.sendPasswordResetMail(
+                userService.requestPasswordReset(mail)
+                        .orElseThrow(EmailNotFoundException::new));
+    }
+
+    @PostMapping(path = "/account/reset-password/finish")
+    public void finishPasswordReset(@RequestBody UserReset user) {
+        if (!checkPasswordLength(user.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+        Optional<User> updatedUser = userService.completePasswordReset(user.getPassword(), user.getResetKey());
+        if (!updatedUser.isPresent()) {
+            throw new UserNotFoundException("User not found for this reset key");
+        }
     }
 
     @PostMapping("/account/change-password")

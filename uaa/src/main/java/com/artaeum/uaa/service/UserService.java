@@ -22,7 +22,7 @@ import java.util.Set;
 @Service
 public class UserService {
 
-    private static final int RESET_KEY_SIZE = 20;
+    private static final int KEY_SIZE = 20;
 
     private UserRepository userRepository;
 
@@ -43,6 +43,7 @@ public class UserService {
         newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
         newUser.setLangKey(user.getLangKey());
         newUser.setRegisterDate(ZonedDateTime.now());
+        newUser.setActivationKey(RandomStringUtils.randomNumeric(KEY_SIZE));
         this.authorityRepository.findById(Constants.USER_AUTHORITY)
                 .ifPresent(authority -> newUser.getAuthorities().add(authority));
         return this.userRepository.save(newUser);
@@ -68,6 +69,7 @@ public class UserService {
     public void update(String id, String login, String firstName, String lastName, String email, String langKey) {
         this.userRepository.findById(id)
                 .ifPresent(user -> {
+                    user.setLogin(login);
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
                     user.setEmail(email);
@@ -113,7 +115,7 @@ public class UserService {
         return this.userRepository.findByEmail(mail)
                 .filter(User::isActivated)
                 .map(user -> {
-                    user.setResetKey(RandomStringUtils.randomNumeric(RESET_KEY_SIZE));
+                    user.setResetKey(RandomStringUtils.randomNumeric(KEY_SIZE));
                     return user;
                 });
     }

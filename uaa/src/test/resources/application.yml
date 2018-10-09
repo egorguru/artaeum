@@ -11,3 +11,12 @@ spring:
     database: H2
   main:
     banner-mode: "off"
+  mail:
+    host: localhost@localhost
+    username: localhost@localhost
+  messages:
+    basename: i18n/messages
+
+artaeum:
+  mail:
+    url: localhost
