@@ -34,3 +34,6 @@ services:
 
   storage:
     build: storage
+
+  web-client:
+    build: web-client
