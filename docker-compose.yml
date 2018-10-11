@@ -199,9 +199,3 @@ services:
         condition: service_healthy
     ports:
     - 10000:10000
-
-  web-client:
-    image: egorrepnikov/artaeum-web-client
-    restart: always
-    ports:
-    - 80:80

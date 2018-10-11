@@ -14,7 +14,6 @@ env:
 install:
   - npm install --prefix chat --silent
   - npm install --prefix comment --silent
-  - npm install --prefix web-client --silent
 
 script:
   - mvn package -f chat-sidecar --quiet
@@ -26,7 +25,6 @@ script:
   - mvn package -f registry --quiet
   - mvn package -f storage --quiet
   - mvn package -f uaa --quiet
-  - npm run build --prefix web-client --silent
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -87,8 +85,3 @@ after_success:
   - docker build -t $UAA:$COMMIT ./uaa
   - docker tag $UAA:$COMMIT $UAA:$TAG
   - docker push $UAA
-
-  - export WEB_CLIENT=egorrepnikov/artaeum-web-client
-  - docker build -t $WEB_CLIENT:$COMMIT ./web-client
-  - docker tag $WEB_CLIENT:$COMMIT $WEB_CLIENT:$TAG
-  - docker push $WEB_CLIENT
