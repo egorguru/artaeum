@@ -2,35 +2,38 @@ version: '2.1'
 
 services:
 
-  config:
-    build: config
+  # config:
+  #   build: config
 
-  registry:
-    build: registry
+  # registry:
+  #   build: registry
 
-  gateway:
-    build: gateway
+  # gateway:
+  #   build: gateway
 
-  uaa:
-    build: uaa
+  # uaa:
+  #   build: uaa
 
-  profile:
-    build: profile
+  # profile:
+  #   build: profile
 
-  media:
-    build: media
+  # media:
+  #   build: media
 
-  chat:
-   build: chat
+  # chat:
+  #  build: chat
 
-  chat-sidecar:
-    build: chat-sidecar
+  # chat-sidecar:
+  #   build: chat-sidecar
 
-  comment:
-    build: comment
+  # comment:
+  #   build: comment
 
-  comment-sidecar:
-    build: comment-sidecar
+  # comment-sidecar:
+  #   build: comment-sidecar
 
-  storage:
-    build: storage
+  # storage:
+  #   build: storage
+
+  web-client:
+    build: web-client
