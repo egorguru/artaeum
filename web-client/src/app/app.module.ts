@@ -4,6 +4,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { MainComponent, FooterComponent, HeaderComponent } from './layouts'
 import { AppRoutingModule } from './app-routing.module'
 import { HomeModule } from './home'
+import { SharedModule } from './shared'
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HomeModule } from './home'
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     HomeModule
   ],
   bootstrap: [MainComponent],
