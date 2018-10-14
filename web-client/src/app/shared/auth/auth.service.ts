@@ -8,7 +8,7 @@ export class AuthServerProvider {
   constructor(private http: HttpClient) {}
 
   login(credentials): Observable<any> {
-    return this.http.post('auth/login', {
+    return this.http.post('login', {
       username: credentials.username,
       password: credentials.password,
       rememberMe: credentials.rememberMe
