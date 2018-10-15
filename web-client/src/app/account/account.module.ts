@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared'
 import { accountRoutes } from './account.route'
 import { LoginComponent } from './login/login.component'
+import { RegisterComponent } from './register/register.component'
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { LoginComponent } from './login/login.component'
     RouterModule.forChild(accountRoutes)
   ],
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ]
 })
 export class AccountModule {}

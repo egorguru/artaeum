@@ -1,0 +1,34 @@
+<section class="login-block">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-centered login-sec">
+          <h2 class="text-center">Registration</h2>
+          <form class="login-form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="login" class="text-uppercase">Login</label>
+              <input type="text" id="login" class="form-control" formControlName="login">
+            </div>
+            <div class="form-group">
+              <label for="email" class="text-uppercase">Email</label>
+              <input type="text" id="email" class="form-control" formControlName="email">
+            </div>
+            <div class="form-group">
+              <label for="password" class="text-uppercase">Password</label>
+              <input type="password" id="password" class="form-control" formControlName="password">
+            </div>
+            <div class="form-group">
+              <label for="language" class="text-uppercase">Your language</label>
+              <select class="form-control" id="language" formControlName="language">
+                <option value="en">English</option>
+                <option value="ru">Russian</option>
+              </select>
+            </div>
+            <div class="form-check">
+              <button type="submit" class="btn btn-login float-right" [disabled]="form.invalid">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -16,4 +16,8 @@ export class AccountService {
   save(user: any): Observable<HttpResponse<any>> {
     return this.http.post('uaa/account', user, { observe: 'response' })
   }
+
+  register(user: any): Observable<HttpResponse<any>> {
+    return this.http.post('uaa/register', user, { observe: 'response' })
+  }
 }
