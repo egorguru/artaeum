@@ -5,6 +5,7 @@ import { MainComponent, FooterComponent, HeaderComponent } from './layouts'
 import { AppRoutingModule } from './app-routing.module'
 import { HomeModule } from './home'
 import { SharedModule } from './shared'
+import { AccountModule } from './account'
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from './shared'
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    HomeModule
+    HomeModule,
+    AccountModule
   ],
   bootstrap: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

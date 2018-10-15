@@ -23,6 +23,9 @@ import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from '.
       multi: true,
     }
   ],
-  exports: [HasAuthorityDirective]
+  exports: [
+    SharedLibsModule,
+    HasAuthorityDirective
+  ]
 })
 export class SharedModule {}

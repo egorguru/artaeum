@@ -12,7 +12,7 @@ export class ApplyTokenInterceptor implements HttpInterceptor {
       return next.handle(req)
     }
     return next.handle(req.clone({
-      headers: req.headers.set('Authorization', token)
+      headers: req.headers.set('Authorization', `Bearer ${token}`)
     }))
   }
 }
