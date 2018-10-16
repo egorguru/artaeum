@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module'
 import { HomeModule } from './home'
 import { SharedModule } from './shared'
 import { AccountModule } from './account'
+import { ProfileModule } from './profile'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AccountModule } from './account'
     AppRoutingModule,
     SharedModule,
     HomeModule,
-    AccountModule
+    AccountModule,
+    ProfileModule
   ],
   bootstrap: [MainComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
