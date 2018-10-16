@@ -19,9 +19,10 @@
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #fff;
-  color: rgba(255, 255, 255, 0.8);
-  border: 0;
+  font-family: "Roboto", sans-serif;
+  color: #B1B1B1;
+  font-weight: 500;
+  line-height: 20px;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
