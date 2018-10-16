@@ -1,0 +1,57 @@
+.navbar-brand {
+  width: 105px;
+  border: 0;
+  font-family: 'Merriweather', serif;
+  text-transform: uppercase;
+}
+
+.navbar {
+  background: #242629;
+}
+
+.navbar.navbar-no-bg {
+  background: #242629;
+}
+
+.navbar-dark .navbar-nav {
+  font-size: 15px;
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
+  border: 0;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #fff;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .navbar-dark .navbar-toggler:focus {
+    outline: 0;
+  }
+
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+}
