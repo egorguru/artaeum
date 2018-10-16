@@ -1,0 +1,16 @@
+#footer {
+  color: #586069;
+  font-size: 12px;
+}
+
+#footer-logo {
+  font-family: 'Merriweather', serif;
+  color: #c6cbd1;
+  font-size: 30px;
+  text-decoration: none;
+  line-height: 15px;
+}
+
+#footer-logo:hover {
+  color: #959da5;
+}
