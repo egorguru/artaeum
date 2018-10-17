@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SubscriptionService {
@@ -24,6 +25,10 @@ public class SubscriptionService {
 
     public void unsubscribe(String profile, String subscriber) {
         this.subscriptionRepository.deleteByProfileIdAndSubscriberId(profile, subscriber);
+    }
+
+    public Optional<Subscription> getByProfileIdAndUserId(String profileId, String userId) {
+        return this.subscriptionRepository.findByProfileIdAndSubscriberId(profileId, userId);
     }
 
     public List<Subscription> getAllSubscriptions(String subscriber) {

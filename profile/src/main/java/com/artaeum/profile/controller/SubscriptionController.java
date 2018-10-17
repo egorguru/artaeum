@@ -1,6 +1,7 @@
 package com.artaeum.profile.controller;
 
 import com.artaeum.profile.controller.error.BadRequestException;
+import com.artaeum.profile.controller.error.NotFoundException;
 import com.artaeum.profile.domain.Subscription;
 import com.artaeum.profile.service.SubscriptionService;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,19 @@ public class SubscriptionController {
         this.subscriptionService.unsubscribe(profile, principal.getName());
     }
 
+    @GetMapping("/{profileId}/is")
+    public Subscription getSubscription(@PathVariable String profileId, Principal principal) {
+        return this.subscriptionService.getByProfileIdAndUserId(profileId, principal.getName())
+                .orElseThrow(NotFoundException::new);
+    }
+
     @GetMapping("/{userId}")
     public List<Subscription> getAllSubscriptionsByLogin(@PathVariable String userId) {
         return this.subscriptionService.getAllSubscriptions(userId);
     }
 
-    @GetMapping("/{userId}/subscribers")
-    public List<Subscription> getAllSubscribersByLogin(@PathVariable String userId) {
-        return this.subscriptionService.getAllSubscribers(userId);
+    @GetMapping("/{profileId}/subscribers")
+    public List<Subscription> getAllSubscribersByLogin(@PathVariable String profileId) {
+        return this.subscriptionService.getAllSubscribers(profileId);
     }
 }

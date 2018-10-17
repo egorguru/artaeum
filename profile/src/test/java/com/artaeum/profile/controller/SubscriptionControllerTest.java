@@ -107,4 +107,26 @@ public class SubscriptionControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].subscriberId").value(SECOND_USER_ID));
     }
+
+    @Test
+    public void whenSubscribeAndGetThisSubscription() throws Exception {
+        this.mockMvc.perform(post("/subscriptions/subscribe")
+                .content(FIRST_USER_ID)
+                .principal(new UsernamePasswordAuthenticationToken(
+                        SECOND_USER_ID, "password", Collections.emptyList())))
+                .andExpect(status().isOk());
+        this.mockMvc.perform(get("/subscriptions/{profileId}/is", FIRST_USER_ID)
+                .principal(new UsernamePasswordAuthenticationToken(
+                        SECOND_USER_ID, "password", Collections.emptyList())))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.subscriberId").value(SECOND_USER_ID));
+    }
+
+    @Test
+    public void whenGetSubscriptionIfNotSubscribed() throws Exception {
+        this.mockMvc.perform(get("/subscriptions/{login}/is", FIRST_USER_ID)
+                .principal(new UsernamePasswordAuthenticationToken(
+                        SECOND_USER_ID, "password", Collections.emptyList())))
+                .andExpect(status().isNotFound());
+    }
 }
