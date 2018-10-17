@@ -1,1 +1,35 @@
-{}
+{
+  "users": [
+    {
+      "id": 1,
+      "login": "egor_repnikov",
+      "firstName": "Egor",
+      "lastName": "Repnikov",
+      "email": "egor@artaeum.com",
+      "activated": true,
+      "langKey": "en",
+      "authorities": ["user", "moderator", "admin"],
+      "createdDate": "17.10.2018 12:52:02"
+    }, {
+      "id": 2,
+      "login": "chief_moderator",
+      "firstName": "Chief",
+      "lastName": "Moderator",
+      "email": "moderator@artaeum.com",
+      "activated": true,
+      "langKey": "en",
+      "authorities": ["user", "moderator", "admin"],
+      "createdDate": "17.10.2018 12:56:02"
+    }, {
+      "id": 3,
+      "login": "stalin",
+      "firstName": "Joseph",
+      "lastName": "Jughashvili",
+      "email": "jughashvili@artaeum.com",
+      "activated": true,
+      "langKey": "ru",
+      "authorities": ["user"],
+      "createdDate": "17.10.2018 12:58:02"
+    }
+  ]
+}

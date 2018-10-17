@@ -105,7 +105,7 @@ public class UserControllerTest {
 
     @Test
     public void whenGetNotExistingUser() throws Exception {
-        this.mockMvc.perform(get("/api/users/unknown"))
+        this.mockMvc.perform(get("/users/unknown"))
                 .andExpect(status().isNotFound());
     }
 
