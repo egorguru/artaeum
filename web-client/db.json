@@ -31,5 +31,23 @@
       "authorities": ["user"],
       "createdDate": "17.10.2018 12:58:02"
     }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 3,
+      "text": "short text",
+      "createdDate": "17.10.2018 13:22:02"
+    }, {
+      "id": 2,
+      "userId": 3,
+      "text": "short text",
+      "createdDate": "17.10.2018 13:23:02"
+    }, {
+      "id": 3,
+      "userId": 2,
+      "text": "short text",
+      "createdDate": "17.10.2018 13:24:02"
+    }
   ]
 }
