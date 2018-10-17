@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "server:start": "node server/index.js"
+    "server:start": "node server/index.js",
+    "dev": "concurrently --kill-others \"json-server --watch db.json --port 8080\" \"npm run start\""
   },
   "dependencies": {
     "@angular/animations": "^6.0.3",
@@ -38,9 +39,11 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "concurrently": "^4.0.1",
     "html-webpack-plugin": "^3.2.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
+    "json-server": "^0.14.0",
     "karma": "~1.7.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "~2.0.0",
