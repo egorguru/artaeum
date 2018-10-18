@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "egor_repnikov",
       "login": "egor_repnikov",
       "firstName": "Egor",
       "lastName": "Repnikov",
@@ -11,7 +11,7 @@
       "authorities": ["user", "moderator", "admin"],
       "createdDate": "17.10.2018 12:52:02"
     }, {
-      "id": 2,
+      "id": "chief_moderator",
       "login": "chief_moderator",
       "firstName": "Chief",
       "lastName": "Moderator",
@@ -21,7 +21,7 @@
       "authorities": ["user", "moderator", "admin"],
       "createdDate": "17.10.2018 12:56:02"
     }, {
-      "id": 3,
+      "id": "stalin",
       "login": "stalin",
       "firstName": "Joseph",
       "lastName": "Jughashvili",
@@ -35,17 +35,17 @@
   "posts": [
     {
       "id": 1,
-      "userId": 3,
+      "userId": "stalin",
       "text": "short text",
       "createdDate": "17.10.2018 13:22:02"
     }, {
       "id": 2,
-      "userId": 3,
+      "userId": "stalin",
       "text": "short text",
       "createdDate": "17.10.2018 13:23:02"
     }, {
       "id": 3,
-      "userId": 2,
+      "userId": "chief_moderator",
       "text": "short text",
       "createdDate": "17.10.2018 13:24:02"
     }
@@ -56,21 +56,21 @@
       "text": "rand comment",
       "resourceType": "post",
       "resourceId": 1,
-      "userId": 2,
+      "userId": "chief_moderator",
       "createdDate": "18.10.2018 11:37:02"
     }, {
       "_id": "2",
       "text": "next rand comment",
       "resourceType": "post",
       "resourceId": 1,
-      "userId": 3,
+      "userId": "stalin",
       "createdDate": "18.10.2018 11:38:02"
     }, {
       "_id": "3",
       "text": "rand comment new again",
       "resourceType": "post",
       "resourceId": 1,
-      "userId": 3,
+      "userId": "stalin",
       "createdDate": "18.10.2018 11:39:02"
     }
   ]

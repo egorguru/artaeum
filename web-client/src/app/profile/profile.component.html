@@ -1,4 +1,4 @@
-<section class="profile-page">
+<section class="profile-page" *ngIf="user">
   <div
     class="page-header"
     data-parallax="true"
@@ -19,7 +19,7 @@
               <div class="name">
                 <h3
                   class="title"
-                  ngIf="user.firstName && user.lastName"
+                  *ngIf="user.firstName && user.lastName"
                 >{{ user.firstName }} {{ user.lastName }}</h3>
                 <h6>@{{ user.login }}</h6>
                 <a href="#" class="btn btn-just-icon btn-link">
