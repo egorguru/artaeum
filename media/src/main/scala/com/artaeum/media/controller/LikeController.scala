@@ -14,7 +14,7 @@ class LikeController(likeService: LikeService) {
   def getAllForResource(@PathVariable resourceType: String,
                         @PathVariable resourceId: Long): util.List[Like] = this.likeService.getAll(resourceType, resourceId)
 
-  @GetMapping(path = Array("/{userId}/likes"))
+  @GetMapping(Array("/{userId}/likes"))
   def getAllForUser(@PathVariable userId: String): util.List[Like] = this.likeService.getAll(userId)
 
   @PostMapping(Array("/{resourceType}/{resourceId}/likes"))
