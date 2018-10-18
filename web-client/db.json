@@ -49,5 +49,29 @@
       "text": "short text",
       "createdDate": "17.10.2018 13:24:02"
     }
+  ],
+  "comments": [
+    {
+      "_id": "1",
+      "text": "rand comment",
+      "resourceType": "post",
+      "resourceId": 1,
+      "userId": 2,
+      "createdDate": "18.10.2018 11:37:02"
+    }, {
+      "_id": "2",
+      "text": "next rand comment",
+      "resourceType": "post",
+      "resourceId": 1,
+      "userId": 3,
+      "createdDate": "18.10.2018 11:38:02"
+    }, {
+      "_id": "3",
+      "text": "rand comment new again",
+      "resourceType": "post",
+      "resourceId": 1,
+      "userId": 3,
+      "createdDate": "18.10.2018 11:39:02"
+    }
   ]
 }
