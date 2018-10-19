@@ -1,0 +1,44 @@
+<div class="col-md-6 offset-md-3 post-main" *ngIf="posts && user">
+  <div class="card post-card" *ngFor="let p of posts">
+    <div class="card-header">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="mr-2">
+            <img class="rounded-circle" width="45" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" [alt]="p.id">
+          </div>
+          <div class="ml-2">
+            <div class="h5 m-0">@{{ user.login }}</div>
+            <div
+              class="h7 text-muted"
+              *ngIf="user.firstName && user.lastName"
+            >{{ user.firstName }} {{ user.lastName }} | <i class="fa fa-clock-o"></i> {{ p.createdDate | dateConverter:true }}</div>
+          </div>
+        </div>
+        <div>
+          <div class="dropdown">
+            <button class="btn btn-link dropdown-toggle post-button" type="button" id="post-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-ellipsis-h"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="post-drop1">
+              <a
+                class="dropdown-item"
+                role="button"
+                *ngIf="currentUser && p.id === currentUser.id"
+                (click)="delete(p.id)"
+              >Remove</a>
+              <a class="dropdown-item" href="#">Report</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-text" [innerHTML]="p.text"></p>
+    </div>
+    <div class="card-footer">
+      <a href="#" class="card-link post-button" role="button"><i class="fa fa-heart"></i></a>
+      <a href="#" class="card-link post-button" role="button"><i class="fa fa-comment"></i></a>
+      <a href="#" class="card-link post-button" role="button"><i class="fa fa-share"></i></a>
+    </div>
+  </div>
+</div>

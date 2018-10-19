@@ -1,5 +1,5 @@
 .profile-page {
-  padding: 0;
+  padding-top: 0;
 }
 
 h6 {
@@ -186,10 +186,6 @@ img.rounded {
 }
 
 /* dropdown */
-
-
-
-
 .dropdown-menu {
   position: absolute;
   top: 100%;

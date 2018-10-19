@@ -10,8 +10,16 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
-  get(param: string | number): Observable<HttpResponse<User>> {
+  get(param: string): Observable<HttpResponse<User>> {
     return this.http.get<User>(`uaa/users/${param}`, { observe: 'response' })
+  }
+
+  getUserIdByLogin(login: string): Observable<HttpResponse<string>> {
+    return this.http.get<string>(`uaa/users/${login}/id`, { observe: 'response' })
+  }
+
+  getUserLoginById(id: string): Observable<HttpResponse<string>> {
+    return this.http.get<string>(`uaa/users/${id}/login`, { observe: 'response' })
   }
 
   query(req?: any): Observable<HttpResponse<User[]>> {

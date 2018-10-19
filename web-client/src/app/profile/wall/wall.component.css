@@ -1,0 +1,26 @@
+.h7 {
+  font-size: 0.8rem;
+}
+
+.card {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.post-button {
+  text-decoration: none;
+  color: #586069;
+}
+
+.post-button:hover {
+  color: #959da5;
+}
+
+.post-wrapper {
+  margin-top: 0.97rem;
+}
+
+.dropdown-toggle::after {
+  content: none;
+  display: none;
+}

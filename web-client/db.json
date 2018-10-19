@@ -9,7 +9,7 @@
       "activated": true,
       "langKey": "en",
       "authorities": ["user", "moderator", "admin"],
-      "createdDate": "17.10.2018 12:52:02"
+      "createdDate": "1539962514747"
     }, {
       "id": "chief_moderator",
       "login": "chief_moderator",
@@ -19,7 +19,7 @@
       "activated": true,
       "langKey": "en",
       "authorities": ["user", "moderator", "admin"],
-      "createdDate": "17.10.2018 12:56:02"
+      "createdDate": "1539962514747"
     }, {
       "id": "stalin",
       "login": "stalin",
@@ -29,25 +29,25 @@
       "activated": true,
       "langKey": "ru",
       "authorities": ["user"],
-      "createdDate": "17.10.2018 12:58:02"
+      "createdDate": "1539962514747"
     }
   ],
   "posts": [
     {
       "id": 1,
       "userId": "stalin",
-      "text": "short text",
-      "createdDate": "17.10.2018 13:22:02"
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
+      "createdDate": "1539962513747"
     }, {
       "id": 2,
       "userId": "stalin",
-      "text": "short text",
-      "createdDate": "17.10.2018 13:23:02"
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
+      "createdDate": "1539962514747"
     }, {
       "id": 3,
       "userId": "chief_moderator",
-      "text": "short text",
-      "createdDate": "17.10.2018 13:24:02"
+      "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
+      "createdDate": "1539962514947"
     }
   ],
   "comments": [
@@ -57,21 +57,21 @@
       "resourceType": "post",
       "resourceId": 1,
       "userId": "chief_moderator",
-      "createdDate": "18.10.2018 11:37:02"
+      "createdDate": "1539962514747"
     }, {
       "_id": "2",
       "text": "next rand comment",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "stalin",
-      "createdDate": "18.10.2018 11:38:02"
+      "createdDate": "1539962514747"
     }, {
       "_id": "3",
       "text": "rand comment new again",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "stalin",
-      "createdDate": "18.10.2018 11:39:02"
+      "createdDate": "1539962514747"
     }
   ]
 }
