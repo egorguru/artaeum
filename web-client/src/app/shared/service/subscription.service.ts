@@ -20,20 +20,21 @@ export class SubscriptionService {
 
   get(profileId: string): Observable<HttpResponse<Subscription>> {
     return this.http.get<Subscription>(
-      `profile/subscriptions/${profileId}/is`,
+      `profile/subscriptions/${profileId}/my`,
       { observe: 'response' }
     )
   }
 
-  queryForAllSubscriptions(userId: string, req?: any): Observable<HttpResponse<Subscription[]>> {
-    return this.http.get<Subscription[]>(`profile/subscriptions/${userId}`, {
-      params: createRequestOption(req),
-      observe: 'response'
-    })
+  queryForAllSubscriptions(profileId: string, req?: any): Observable<HttpResponse<Subscription[]>> {
+    return this.query(profileId, 'subscriptions', req)
   }
 
   queryForAllSubscribers(profileId: string, req?: any): Observable<HttpResponse<Subscription[]>> {
-    return this.http.get<Subscription[]>(`profile/subscriptions/${profileId}/subscribers`, {
+    return this.query(profileId, 'subscribers', req)
+  }
+
+  private query(profileId: string, dist: string, req?: any): Observable<HttpResponse<Subscription[]>> {
+    return this.http.get<Subscription[]>(`profile/subscriptions/${profileId}/${dist}`, {
       params: createRequestOption(req),
       observe: 'response'
     })

@@ -41,10 +41,11 @@ export class WallComponent implements OnInit {
   }
 
   loadAll() {
-    this.postService.queryByUser(this.user.id, {
+    this.postService.query({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc']
+      sort: ['id,desc'],
+      userId: this.user.id
     }).subscribe((res) => {
       this.posts = res.body
       this.totalItems = res.headers.get('X-Total-Count')

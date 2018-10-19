@@ -1,5 +1,4 @@
 {
   "/:service/:resource": "/:resource",
-  "/:service/:resource/:id": "/:resource/:id",
-  "/profile/posts/user/:uid": "/posts"
+  "/:service/:resource/:id": "/:resource/:id"
 }

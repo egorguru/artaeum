@@ -29,13 +29,6 @@ export class PostService {
     })
   }
 
-  queryByUser(userId: string, req?: any): Observable<HttpResponse<Post[]>> {
-    return this.http.get<Post[]>(`profile/posts/user/${userId}`, {
-      params: createRequestOption(req),
-      observe: 'response'
-    })
-  }
-
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete(`profile/posts/${id}`, { observe: 'response' })
   }
