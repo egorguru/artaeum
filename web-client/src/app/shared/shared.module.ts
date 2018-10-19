@@ -4,10 +4,14 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SharedLibsModule } from './shared-libs.module'
 import { HasAuthorityDirective } from './directive'
 import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from './interceptor'
+import { DateConverterPipe } from './pipe'
 
 @NgModule({
   imports: [SharedLibsModule],
-  declarations: [HasAuthorityDirective],
+  declarations: [
+    HasAuthorityDirective,
+    DateConverterPipe
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
@@ -25,7 +29,8 @@ import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from '.
   ],
   exports: [
     SharedLibsModule,
-    HasAuthorityDirective
+    HasAuthorityDirective,
+    DateConverterPipe
   ]
 })
 export class SharedModule {}
