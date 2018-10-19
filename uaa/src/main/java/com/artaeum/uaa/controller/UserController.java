@@ -44,10 +44,17 @@ public class UserController {
         return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
     }
 
-    @GetMapping("/{login}/id")
-    public String getUserLoginById(@PathVariable String login) {
-        return this.userService.getByLogin(login)
+    @GetMapping("/{id}/login")
+    public String getUserLoginById(@PathVariable String id) {
+        return this.userService.getById(id)
                 .map(User::getLogin)
+                .orElseThrow(UserNotFoundException::new);
+    }
+
+    @GetMapping("/{login}/id")
+    public String getUserIdByLogin(@PathVariable String login) {
+        return this.userService.getByLogin(login)
+                .map(User::getId)
                 .orElseThrow(UserNotFoundException::new);
     }
 
