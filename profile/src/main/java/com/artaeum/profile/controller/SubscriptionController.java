@@ -33,15 +33,15 @@ public class SubscriptionController {
         this.subscriptionService.unsubscribe(profile, principal.getName());
     }
 
-    @GetMapping("/{profileId}/is")
+    @GetMapping("/{profileId}/my")
     public Subscription getSubscription(@PathVariable String profileId, Principal principal) {
         return this.subscriptionService.getByProfileIdAndUserId(profileId, principal.getName())
                 .orElseThrow(NotFoundException::new);
     }
 
-    @GetMapping("/{userId}")
-    public List<Subscription> getAllSubscriptionsByLogin(@PathVariable String userId) {
-        return this.subscriptionService.getAllSubscriptions(userId);
+    @GetMapping("/{profileId}/subscriptions")
+    public List<Subscription> getAllSubscriptionsByLogin(@PathVariable String profileId) {
+        return this.subscriptionService.getAllSubscriptions(profileId);
     }
 
     @GetMapping("/{profileId}/subscribers")

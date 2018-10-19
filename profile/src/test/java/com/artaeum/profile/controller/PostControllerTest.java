@@ -118,7 +118,7 @@ public class PostControllerTest {
     @Test
     public void getAllPostsByUser() throws Exception {
         Post post = this.createPost();
-        this.mockMvc.perform(get("/posts/user/{userId}?sort=id,desc", USER_ID)
+        this.mockMvc.perform(get("/posts?userId={userId}", USER_ID)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id").value(post.getId()))

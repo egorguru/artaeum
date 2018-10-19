@@ -91,7 +91,7 @@ public class SubscriptionControllerTest {
                 .principal(new UsernamePasswordAuthenticationToken(
                         SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/subscriptions/{login}", SECOND_USER_ID))
+        this.mockMvc.perform(get("/subscriptions/{profileId}/subscriptions", SECOND_USER_ID))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].profileId").value(FIRST_USER_ID));
     }
@@ -103,7 +103,7 @@ public class SubscriptionControllerTest {
                 .principal(new UsernamePasswordAuthenticationToken(
                         SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/subscriptions/{login}/subscribers", FIRST_USER_ID))
+        this.mockMvc.perform(get("/subscriptions/{profileId}/subscribers", FIRST_USER_ID))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].subscriberId").value(SECOND_USER_ID));
     }
@@ -115,7 +115,7 @@ public class SubscriptionControllerTest {
                 .principal(new UsernamePasswordAuthenticationToken(
                         SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk());
-        this.mockMvc.perform(get("/subscriptions/{profileId}/is", FIRST_USER_ID)
+        this.mockMvc.perform(get("/subscriptions/{profileId}/my", FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
                         SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isOk())
@@ -124,7 +124,7 @@ public class SubscriptionControllerTest {
 
     @Test
     public void whenGetSubscriptionIfNotSubscribed() throws Exception {
-        this.mockMvc.perform(get("/subscriptions/{login}/is", FIRST_USER_ID)
+        this.mockMvc.perform(get("/subscriptions/{login}/my", FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
                         SECOND_USER_ID, "password", Collections.emptyList())))
                 .andExpect(status().isNotFound());

@@ -54,13 +54,6 @@ public class PostController {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<Post>> getAllPostsByUser(@PathVariable String userId, Pageable pageable) {
-        Page<Post> page = this.postService.getAllByUser(pageable, userId);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts/" + userId);
-        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-    }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id, Principal principal) {

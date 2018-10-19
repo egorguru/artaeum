@@ -36,10 +36,6 @@ public class PostService {
         return this.postRepository.findAll(pageable);
     }
 
-    public Page<Post> getAllByUser(Pageable pageable, String userId) {
-        return this.postRepository.findAllByUserId(pageable, userId);
-    }
-
     public void delete(Post post) {
         this.postRepository.delete(post);
     }
