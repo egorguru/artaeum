@@ -1,0 +1,65 @@
+<div class="post-modal-content" data-toggle="modal" [attr.data-target]="'#post' + post.id">
+  <ng-content></ng-content>
+</div>
+<div 
+  class="modal fade" [id]="'post' + post.id"
+  tabindex="-1" role="dialog"
+  aria-labelledby="modalLabel" aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header card-header">
+        <div class="dropdown">
+          <button
+            class="btn btn-link dropdown-toggle post-button"
+            type="button" id="post-drop1" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false"
+          >
+            <i class="fa fa-ellipsis-h"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="post-drop1">
+            <a
+              class="dropdown-item post-link"
+              role="button"
+              *ngIf="currentUser && post.userId === currentUser.id"
+              (click)="delete(post.id)"
+            >Remove</a>
+            <a class="dropdown-item post-link" role="button">Report</a>
+          </div>
+        </div>
+        <button type="button" data-dismiss="modal" class="btn btn-link post-button">
+          <span aria-hidden="true"><i class="fa fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-header">
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="mr-2">
+              <img
+                class="rounded-circle"
+                width="45"
+                src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg"
+                [alt]="post.id"
+              >
+            </div>
+            <div class="ml-2">
+              <div class="h5 m-0">@{{ author.login }}</div>
+              <div
+                class="h7 text-muted"
+                *ngIf="author.firstName && author.lastName"
+              >{{ author.firstName }} {{author.lastName }} | {{ post.createdDate | dateConverter:true }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+        <p class="card-text" [innerHTML]="post.text"></p>
+      </div>
+      <div class="modal-footer">
+        <a href="#" class="card-link post-button" role="button"><i class="fa fa-heart"></i></a>
+        <a href="#" class="card-link post-button" role="button"><i class="fa fa-comment"></i></a>
+        <a href="#" class="card-link post-button" role="button"><i class="fa fa-share"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

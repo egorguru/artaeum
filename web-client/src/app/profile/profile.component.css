@@ -15,10 +15,6 @@ h6 {
   margin-bottom: 10px;
 }
 
-a .material-icons {
-  vertical-align: middle;
-}
-
 .profile-page .page-header {
   height: 380px;
   background-position:center;
@@ -37,7 +33,6 @@ a .material-icons {
 .main {
   background: #FFF;
   position: relative;
-  z-index: 3;
 }
 
 .profile-page .profile {

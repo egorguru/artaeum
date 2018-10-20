@@ -32,7 +32,14 @@
     </div>
   </div>
   <div class="card-body">
-    <p class="card-text" [innerHTML]="post.text"></p>
+    <ae-modal-post
+      [post]="post"
+      [author]="author"
+      [currentUser]="currentUser"
+      [deleteFunction]="delete"
+    >
+      <p class="card-text" [innerHTML]="post.text"></p>
+    </ae-modal-post>
   </div>
   <div class="card-footer">
     <a href="#" class="card-link post-button" role="button"><i class="fa fa-heart"></i></a>
