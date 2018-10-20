@@ -6,8 +6,7 @@ import { UserService, User, Post, PostService, Principal } from '../../shared'
 
 @Component({
   selector: 'ae-wall',
-  templateUrl: './wall.component.html',
-  styleUrls: ['./wall.component.css']
+  templateUrl: './wall.component.html'
 })
 export class WallComponent implements OnInit {
 

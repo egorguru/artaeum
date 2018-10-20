@@ -24,3 +24,7 @@
   content: none;
   display: none;
 }
+
+.post-link:hover {
+  cursor: pointer;
+}
