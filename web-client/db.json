@@ -48,6 +48,11 @@
       "userId": "chief_moderator",
       "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
       "createdDate": "1539962514947"
+    }, {
+      "id": 4,
+      "userId": "stalin",
+      "text": "short text",
+      "createdDate": "1539962515947"
     }
   ],
   "comments": [

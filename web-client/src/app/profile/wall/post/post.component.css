@@ -3,7 +3,7 @@
 }
 
 .card {
-  width: 100%;
+  max-width: none;
   margin-bottom: 30px;
 }
 
@@ -27,4 +27,16 @@
 
 .post-link:hover {
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .card {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 500px;
+  }
 }
