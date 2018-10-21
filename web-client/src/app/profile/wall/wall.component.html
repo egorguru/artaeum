@@ -1,4 +1,4 @@
-<div class="col" *ngIf="posts && user">
+<div class="col" *ngIf="posts && posts.length && user">
   <ae-post
     *ngFor="let p of posts"
     [post]="p"
@@ -6,4 +6,11 @@
     [currentUser]="currentUser"
     [deleteFunction]="delete"
   ></ae-post>
+  <ngb-pagination
+    [collectionSize]="totalItems"
+    [(page)]="page"
+    [pageSize]="postsPerPage"
+    [maxSize]="5"
+    (pageChange)="loadPage(page)"
+  ></ngb-pagination>
 </div>
