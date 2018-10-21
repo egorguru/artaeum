@@ -18,8 +18,8 @@ export class CommentService {
     return this.http.put<Comment>('comment/comments', comment, { observe: 'response' })
   }
 
-  query(req?: any): Observable<HttpResponse<Comment[]>> {
-    return this.http.get<Comment[]>('comment/comments', {
+  query(resourceType: string, resourceId: number, req?: any): Observable<HttpResponse<Comment[]>> {
+    return this.http.get<Comment[]>(`comment/comments/${resourceType}/${resourceId}`, {
       params: createRequestOption(req), // incompatible with server
       observe: 'response'
     })

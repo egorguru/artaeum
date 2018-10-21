@@ -5,12 +5,14 @@ import { SharedLibsModule } from './shared-libs.module'
 import { HasAuthorityDirective } from './directive'
 import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from './interceptor'
 import { DateConverterPipe } from './pipe'
+import { CommentComponent } from './component'
 
 @NgModule({
   imports: [SharedLibsModule],
   declarations: [
     HasAuthorityDirective,
-    DateConverterPipe
+    DateConverterPipe,
+    CommentComponent
   ],
   providers: [
     {
@@ -30,7 +32,8 @@ import { DateConverterPipe } from './pipe'
   exports: [
     SharedLibsModule,
     HasAuthorityDirective,
-    DateConverterPipe
+    DateConverterPipe,
+    CommentComponent
   ]
 })
 export class SharedModule {}

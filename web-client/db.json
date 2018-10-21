@@ -57,21 +57,21 @@
   ],
   "comments": [
     {
-      "_id": "1",
+      "id": 1,
       "text": "rand comment",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "chief_moderator",
       "createdDate": "1539962514747"
     }, {
-      "_id": "2",
+      "id": 2,
       "text": "next rand comment",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962514747"
     }, {
-      "_id": "3",
+      "id": 3,
       "text": "rand comment new again",
       "resourceType": "post",
       "resourceId": 1,

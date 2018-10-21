@@ -1,0 +1,32 @@
+<div class="comments" *ngIf="comments">
+  <div class="action-box">
+    <ul class="comment-list">
+      <li *ngFor="let c of comments">
+        <div class="comment-image">
+          <img src="https://pp.userapi.com/c636420/v636420118/64919/C9WP9k8V734.jpg" />
+        </div>
+        <div class="comment-text">
+          <a
+            *ngIf="getUser(c.userId)"
+            [routerLink]="['/u', getUser(c.userId).login]"
+          >{{ getUser(c.userId).firstName }} {{ getUser(c.userId).lastName }}</a>
+          <p>{{ c.text }}</p>
+          <span class="date sub-text">{{ c.createdDate | dateConverter:true }}</span>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline" [formGroup]="form" (ngSubmit)="createComment()">
+      <div class="form-group">
+        <input
+          class="form-control"
+          type="text"
+          placeholder="Your comment..."
+          formControlName="text"
+        />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-link">Send</button>
+      </div>
+    </form>
+  </div>      
+</div>
