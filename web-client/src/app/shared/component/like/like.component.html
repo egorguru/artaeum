@@ -1,0 +1,11 @@
+<a
+  class="like"
+  role="button"
+  data-toggle="tooltip"
+  data-placement="top"
+  *ngIf="likes && countOfLikes !== undefined"
+  [title]="countOfLikes"
+  (click)="like()"
+>
+  <i class="fa" [ngClass]="isLike ? 'fa-heart' : 'fa-heart-o'"></i>
+</a>

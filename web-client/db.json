@@ -8,9 +8,14 @@
       "email": "egor@artaeum.com",
       "activated": true,
       "langKey": "en",
-      "authorities": ["user", "moderator", "admin"],
+      "authorities": [
+        "user",
+        "moderator",
+        "admin"
+      ],
       "createdDate": "1539962514747"
-    }, {
+    },
+    {
       "id": "chief_moderator",
       "login": "chief_moderator",
       "firstName": "Chief",
@@ -18,9 +23,14 @@
       "email": "moderator@artaeum.com",
       "activated": true,
       "langKey": "en",
-      "authorities": ["user", "moderator", "admin"],
+      "authorities": [
+        "user",
+        "moderator",
+        "admin"
+      ],
       "createdDate": "1539962514747"
-    }, {
+    },
+    {
       "id": "stalin",
       "login": "stalin",
       "firstName": "Joseph",
@@ -28,7 +38,9 @@
       "email": "jughashvili@artaeum.com",
       "activated": true,
       "langKey": "ru",
-      "authorities": ["user"],
+      "authorities": [
+        "user"
+      ],
       "createdDate": "1539962514747"
     }
   ],
@@ -38,17 +50,20 @@
       "userId": "stalin",
       "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
       "createdDate": "1539962513747"
-    }, {
+    },
+    {
       "id": 2,
       "userId": "stalin",
       "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius. Alias sit temporibus asperiores minima architecto?",
       "createdDate": "1539962514747"
-    }, {
+    },
+    {
       "id": 3,
       "userId": "chief_moderator",
       "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
       "createdDate": "1539962514947"
-    }, {
+    },
+    {
       "id": 4,
       "userId": "stalin",
       "text": "short text",
@@ -63,20 +78,38 @@
       "resourceId": 1,
       "userId": "chief_moderator",
       "createdDate": "1539962514747"
-    }, {
+    },
+    {
       "id": 2,
       "text": "next rand comment",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962514747"
-    }, {
+    },
+    {
       "id": 3,
       "text": "rand comment new again",
       "resourceType": "post",
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962514747"
+    }
+  ],
+  "likes": [
+    {
+      "id": 1,
+      "resourceType": "post",
+      "resourceId": 1,
+      "userId": "chief_moderator",
+      "createdDate": "1539962515947"
+    },
+    {
+      "id": 2,
+      "resourceType": "post",
+      "resourceId": 1,
+      "userId": "stalin",
+      "createdDate": "1539962515967"
     }
   ]
 }

@@ -32,7 +32,7 @@ export class Principal {
 
   async identity(): Promise<any> {
     if (this.userIdentity) {
-        return Promise.resolve(this.userIdentity)
+      return Promise.resolve(this.userIdentity)
     }
     try {
       const response = await this.accountService.get().toPromise()

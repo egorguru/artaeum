@@ -70,6 +70,5 @@ export class CommentComponent implements OnInit {
       this.userService.get(c.userId)
         .subscribe((u) => this.users.push(u.body))
     })
-    setTimeout(() => console.log(this.users), 3000)
   }
 }
