@@ -42,7 +42,9 @@
     </ae-modal-post>
   </div>
   <div class="card-footer">
-    <a href="#" class="card-link post-button" role="button"><i class="fa fa-heart"></i></a>
+    <span class="card-link">
+      <ae-like [resourceType]="'post'" [resourceId]="post.id"></ae-like>
+    </span>
     <a href="#" class="card-link post-button" role="button"><i class="fa fa-comment"></i></a>
     <a href="#" class="card-link post-button" role="button"><i class="fa fa-share"></i></a>
   </div>
