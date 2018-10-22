@@ -1,21 +1,107 @@
-.banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
-.carousel-inner{border-radius:0 10px 10px 0;}
-.carousel-caption{text-align:left; left:5%;}
-.login-sec{
-  padding: 50px 30px; position:relative;
-  background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);
+button {
+  outline: none;
+  background: none;
+  border: none;
 }
-.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
-.login-sec .copy-text i{color:#FEB58A;}
-.login-sec .copy-text a{color:#E36262;}
-.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
-.login-sec h2:after{content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
-.btn-login{background: #DE6262; color:#fff; font-weight:600;}
-.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
-.banner-text h2{color:#fff; font-weight:600;}
-.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
-.banner-text p{color:#fff;}
-.col-centered {
-  float: none;
+
+.btn-register {
+  color: #fff;
+  padding: 0;
+}
+
+.btn-register:hover {
+  color: #ccc;
+}
+
+.wrapper {
   margin: 0 auto;
+  max-width: 780px;
+}
+
+input {
+  outline: none;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 33px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.input-register {
+  padding: 5px 0;
+  font-size: 16px;
+  color: #ccc;
+  background: transparent;
+}
+
+.title {
+  font-size: 24px;
+  color: #fff;
+  font-weight: 400;
+  margin-bottom: 36px;
+}
+
+.card-register {
+  background: #000;
+  border-radius: 10px;
+  width: 100%;
+  display: table;
+}
+
+.card-heading {
+  background: url("/assets/register-photo.jpg") top left/cover no-repeat;
+  border-radius: 10px 0 0 10px;
+  display: table-cell;
+  width: 50%;
+}
+
+.card-body {
+  padding: 57px 65px;
+  padding-bottom: 65px;
+  display: table-cell;
+}
+
+option {
+  font-size: 14px;
+}
+
+select, select:focus, select:visited {
+  appearance: none;
+  border: none;
+  background-color: #000;
+  width: 100%;
+  padding: 0;
+  color: rgb(169, 169, 161);
+}
+
+@media (max-width: 767px) {
+  section {
+    padding: 0 0 15px;
+  }
+
+  .card-register {
+    display: block;
+    border-radius: 0;
+  }
+
+  .card-heading {
+    display: block;
+    width: 100%;
+    border-radius: 0;
+    padding-top: 400px;
+    background-position: center center;
+  }
+
+  .card-body {
+    display: block;
+    width: 100%;
+    padding: 37px 30px;
+    padding-bottom: 45px;
+  }
 }
