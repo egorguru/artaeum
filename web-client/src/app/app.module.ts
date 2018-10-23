@@ -7,6 +7,7 @@ import { HomeModule } from './home'
 import { SharedModule } from './shared'
 import { AccountModule } from './account'
 import { ProfileModule } from './profile'
+import { SettingsModule } from './settings'
 import { PagesModule } from './pages'
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PagesModule } from './pages'
     HomeModule,
     AccountModule,
     ProfileModule,
+    SettingsModule,
     PagesModule
   ],
   bootstrap: [MainComponent],
