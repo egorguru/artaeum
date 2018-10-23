@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'username': new FormControl(null, [
+      'username': new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(50),
         Validators.pattern('^[_\'.@A-Za-z0-9-]*$')
       ]),
-      'password': new FormControl(null, [
+      'password': new FormControl('', [
         Validators.required,
         Validators.minLength(5),
         Validators.maxLength(50)
