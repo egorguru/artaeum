@@ -39,6 +39,8 @@ public class UserServiceTest {
         UserRegister user = new UserRegister();
         user.setLogin("testlogin");
         user.setEmail("test@email.com");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword("password");
         user.setLangKey("en");
         this.userService.register(user);

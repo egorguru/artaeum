@@ -40,6 +40,8 @@ public class UserService {
         User newUser = new User();
         newUser.setLogin(user.getLogin());
         newUser.setEmail(user.getEmail());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
         newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
         newUser.setLangKey(user.getLangKey());
         newUser.setRegisterDate(ZonedDateTime.now());

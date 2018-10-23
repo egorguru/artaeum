@@ -54,6 +54,8 @@ public class AccountControllerTest {
         UserRegister user = new UserRegister();
         user.setEmail("test@email.com");
         user.setLogin("testlogin");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword("password");
         user.setLangKey("en");
         String json = this.mapper.writeValueAsString(user);
@@ -67,6 +69,8 @@ public class AccountControllerTest {
         UserRegister user = new UserRegister();
         user.setEmail("test@email.com");
         user.setLogin("ba");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword("password");
         user.setLangKey("en");
         String json = this.mapper.writeValueAsString(user);
@@ -80,6 +84,8 @@ public class AccountControllerTest {
         UserRegister user = new UserRegister();
         user.setEmail("testemail");
         user.setLogin("testlogin");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword("password");
         user.setLangKey("en");
         String json = this.mapper.writeValueAsString(user);
@@ -93,6 +99,8 @@ public class AccountControllerTest {
         UserRegister user = new UserRegister();
         user.setEmail("test@email.com");
         user.setLogin("testlogin");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword("pass1");
         user.setLangKey("en");
         String json = this.mapper.writeValueAsString(user);
@@ -104,7 +112,8 @@ public class AccountControllerTest {
     @Test
     public void whenGetPrincipal() throws Exception {
         this.mockMvc.perform(get("/account/current")
-                .principal(new UsernamePasswordAuthenticationToken("123", "password", Collections.emptyList())))
+                .principal(new UsernamePasswordAuthenticationToken(
+                        "123", "password", Collections.emptyList())))
                 .andExpect(jsonPath("$.name").value("123"))
                 .andExpect(status().isOk());
     }
@@ -112,7 +121,8 @@ public class AccountControllerTest {
     @Test
     public void whenChangePassword() throws Exception {
         this.mockMvc.perform(post("/account/change-password")
-                .principal(new UsernamePasswordAuthenticationToken("123", "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken(
+                        "123", "password", Collections.emptyList()))
                 .content("password"))
                 .andExpect(status().isOk());
     }
@@ -123,6 +133,8 @@ public class AccountControllerTest {
         User user = new User();
         user.setLogin("userlogin");
         user.setEmail("user@test");
+        user.setFirstName("First");
+        user.setLastName("Last");
         user.setPassword(RandomStringUtils.random(60));
         user.setActivated(true);
         user.setLangKey("ru");
@@ -140,7 +152,8 @@ public class AccountControllerTest {
 
         this.mockMvc.perform(post("/account")
                 .contentType(MediaType.APPLICATION_JSON)
-                .principal(new UsernamePasswordAuthenticationToken(user.getId().toString(), "password", Collections.emptyList()))
+                .principal(new UsernamePasswordAuthenticationToken(
+                        user.getId(), "password", Collections.emptyList()))
                 .content(this.mapper.writeValueAsBytes(userDTO)))
                 .andExpect(status().isOk());
 

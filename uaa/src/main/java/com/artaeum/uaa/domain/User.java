@@ -21,20 +21,20 @@ public class User {
     @Column(length = 50, unique = true, nullable = false)
     private String login;
 
-    @Column(length = 100, unique = true)
+    @Column(length = 100, unique = true, nullable = false)
     private String email;
 
     @JsonIgnore
-    @Column(length = 60)
+    @Column(length = 60, nullable = false)
     private String password;
 
-    @Column(name = "first_name", length = 50)
+    @Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
-    @Column(name = "last_name", length = 50)
+    @Column(name = "last_name", length = 50, nullable = false)
     private String lastName;
 
-    @Column(name = "lang_key", nullable = false, length = 6)
+    @Column(name = "lang_key", length = 6, nullable = false)
     private String langKey;
 
     @Column(nullable = false)
