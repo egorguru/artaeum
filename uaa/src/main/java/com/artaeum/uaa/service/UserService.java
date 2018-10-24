@@ -108,8 +108,8 @@ public class UserService {
         return this.userRepository.findOneWithAuthoritiesByEmail(email);
     }
 
-    public void changePassword(String login, String password) {
-        this.userRepository.findByLogin(login)
+    public void changePassword(String id, String password) {
+        this.userRepository.findById(id)
                 .ifPresent(user -> user.setPassword(this.passwordEncoder.encode(password)));
     }
 
