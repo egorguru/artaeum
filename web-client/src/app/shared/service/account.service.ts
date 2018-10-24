@@ -20,4 +20,8 @@ export class AccountService {
   register(user: any): Observable<HttpResponse<any>> {
     return this.http.post('uaa/register', user, { observe: 'response' })
   }
+
+  changePassword(password: string) {
+    return this.http.post('uaa/account/change-password', password, { observe: 'response' })
+  }
 }

@@ -2,7 +2,8 @@ import { Routes } from '@angular/router'
 
 import { SettingsComponent } from './settings.component'
 import { UserRouteAccessService } from '../shared'
-import { changeCommonRoute } from './change-common/change-common.route'
+import { changeCommonRoute } from './change-common'
+import { changePasswordRoute } from './change-password'
 
 export const settingsRoutes: Routes = [{
   path: 'settings',
@@ -12,6 +13,7 @@ export const settingsRoutes: Routes = [{
   },
   canActivate: [UserRouteAccessService],
   children: [
-    changeCommonRoute
+    changeCommonRoute,
+    changePasswordRoute
   ]
 }]

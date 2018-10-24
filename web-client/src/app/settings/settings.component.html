@@ -7,12 +7,13 @@
             class="list-group-item list-group-item-action"
             routerLink="/settings"
             [routerLinkActive]="['active']"
+            [routerLinkActiveOptions]="{ exact: true }"
           >Common settings</a>
           <a
             class="list-group-item list-group-item-action"
-            routerLink="/settings/common-settings"
+            routerLink="/settings/change-password"
             [routerLinkActive]="['active']"
-          >Not active</a>
+          >Change password</a>
         </div>
       </div>
       <div class="col-md-9">
