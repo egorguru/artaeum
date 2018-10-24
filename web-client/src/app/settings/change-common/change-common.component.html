@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>Common settings</h4>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label for="login" class="col-4 col-form-label">Login</label>
+        <div class="col-8">
+          <input id="login" class="form-control here" type="text"
+            placeholder="Login" formControlName="login">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="email" class="col-4 col-form-label">Email</label>
+        <div class="col-8">
+          <input id="email" class="form-control here" type="text"
+            placeholder="Email" formControlName="email">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="firstName" class="col-4 col-form-label">First name</label>
+        <div class="col-8">
+          <input id="firstName" class="form-control here" type="text"
+            placeholder="First name" formControlName="firstName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="lastName" class="col-4 col-form-label">Last name</label>
+        <div class="col-8">
+          <input id="lastName" class="form-control here" type="text"
+            placeholder="Last name" formControlName="lastName">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="language" class="col-4 col-form-label">Language</label>
+        <div class="col-8">
+          <select id="language" class="custom-select" formControlName="langKey">
+            <option value="en">English</option>
+            <option value="ru">Russian</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-4 col-8">
+          <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
