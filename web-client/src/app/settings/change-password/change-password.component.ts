@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Title } from '@angular/platform-browser'
 
 import { AccountService } from '../../shared'
 
@@ -12,10 +13,12 @@ export class ChangePasswordComponent implements OnInit {
   form: FormGroup
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private title: Title
   ) {}
 
   ngOnInit() {
+    this.title.setTitle('Change password - Artaeum')
     this.form = new FormGroup({
       'password': new FormControl(null, [
         Validators.required,

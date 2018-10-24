@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
+import { Title } from '@angular/platform-browser'
 
-import { Principal, AccountService, User } from '../../shared'
+import { Principal, AccountService } from '../../shared'
 
 @Component({
   selector: 'ae-change-common',
@@ -13,10 +14,12 @@ export class ChangeCommonComponent implements OnInit {
 
   constructor(
     private principal: Principal,
-    private accountService: AccountService
-  ) { }
+    private accountService: AccountService,
+    private title: Title
+  ) {}
 
   ngOnInit() {
+    this.title.setTitle('Common settings - Artaeum')
     this.form = new FormGroup({
       'login': new FormControl(null, [
         Validators.required,
