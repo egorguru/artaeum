@@ -1,4 +1,7 @@
 const mongoose = require('mongoose')
+const autoIncrement = require('mongoose-auto-increment')
+
+autoIncrement.initialize(mongoose.connection)
 
 const commentsSchema = new mongoose.Schema({
   text: {
@@ -22,5 +25,7 @@ const commentsSchema = new mongoose.Schema({
     default: Date.now()
   }
 })
+
+commentsSchema.plugin(autoIncrement.plugin, { model: 'comments' })
 
 module.exports = mongoose.model('comments', commentsSchema)
