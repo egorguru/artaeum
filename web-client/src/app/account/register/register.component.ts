@@ -47,19 +47,16 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(50)
       ]),
-      'language': new FormControl('Your language', [
+      'langKey': new FormControl('Your language', [
         Validators.required
       ])
     })
   }
 
   onSubmit() {
-    const { login, email, password, langKey } = this.form.value
-    this.accountService.register({
-      login, email, password, langKey
-    }).subscribe((res) => {
+    this.accountService.register(this.form.value).subscribe((res) => {
       if (res.status === 201) {
-        this.router.navigate(['login'])
+        this.router.navigate(['/login'])
       }
     })
   }
