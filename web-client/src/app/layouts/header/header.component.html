@@ -1,16 +1,28 @@
 <nav class="navbar navbar-dark navbar-expand-md navbar-no-bg">
   <div class="container">
     <a routerLink="" class="navbar-brand">Artæum</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse"
+        data-target="#navbarNav" aria-controls="navbarNav"
+        aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!currentUser">
           <a class="nav-link scroll-link" routerLink="login">Login</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="!currentUser">
           <a class="nav-link scroll-link" routerLink="register">Register</a>
+        </li>
+        <li class="nav-item dropdown dmenu" *ngIf="currentUser">
+          <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+            Account
+          </a>
+          <div class="dropdown-menu sm-menu">
+            <a class="dropdown-item" [routerLink]="['/u', currentUser.login]">My profile</a>
+            <a class="dropdown-item" routerLink="settings">Settings</a>
+            <a class="dropdown-item" href="#">Logout</a>
+          </div>
         </li>
       </ul>
     </div>

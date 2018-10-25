@@ -39,6 +39,10 @@
   padding-right: 1rem;
 }
 
+.dropdown-item:active {
+  background: #000;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
   .navbar-expand-md .navbar-nav .nav-link {
     padding-left: 0.6rem;
