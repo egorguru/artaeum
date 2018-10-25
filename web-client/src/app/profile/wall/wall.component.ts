@@ -34,9 +34,11 @@ export class WallComponent implements OnInit {
     })
     this.activatedRoute.parent.params
       .subscribe((params) => this.userService.get(params['login'])
-        .subscribe((res) => this.user = res.body))
+        .subscribe((res) => {
+          this.user = res.body
+          this.loadAll()
+        }))
     this.principal.identity().then((user) => this.currentUser = user)
-    this.loadAll()
   }
 
   loadAll() {
