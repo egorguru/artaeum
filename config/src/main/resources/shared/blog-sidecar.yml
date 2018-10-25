@@ -1,0 +1,6 @@
+server:
+  port: 11001
+
+sidecar:
+  port: 11000
+  health-uri: http://blog:11000/blog/health

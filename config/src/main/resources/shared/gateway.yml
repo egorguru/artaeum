@@ -28,6 +28,10 @@ zuul:
       path: /storage/**
       serviceId: storage
       stripPrefix: false
+    blog:
+      path: /blog/**
+      url: http://blog:11000
+      stripPrefix: false
 
 server:
   port: 4000

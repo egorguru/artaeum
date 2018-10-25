@@ -1,0 +1,29 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "description": "Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --opts src/tests/mocha.opts",
+    "start": "node ./src/index.js"
+  },
+  "author": "Egor Repnikov",
+  "license": "MIT",
+  "dependencies": {
+    "cloud-config-client": "^1.4.2",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "mongoose": "^5.3.1",
+    "mongoose-auto-increment": "^5.0.1",
+    "passport-http-bearer": "^1.0.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "inmemory-mongo": "0.0.2",
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
+  }
+}

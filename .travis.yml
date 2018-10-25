@@ -12,11 +12,13 @@ env:
     - COMMIT=${TRAVIS_COMMIT::7}
 
 install:
+  - npm install --prefix blog --silent
   - npm install --prefix chat --silent
   - npm install --prefix comment --silent
   - npm install --prefix web-client --silent
 
 script:
+  - mvn package -f blog-sidecar --quiet
   - mvn package -f chat-sidecar --quiet
   - mvn package -f comment-sidecar --quiet
   - mvn package -f config --quiet
@@ -32,6 +34,16 @@ after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
+
+  - export BLOG=egorrepnikov/artaeum-blog
+  - docker build -t $BLOG:$COMMIT ./blog
+  - docker tag $BLOG:$COMMIT $BLOG:$TAG
+  - docker push $BLOG
+
+  - export BLOG_SIDECAR=egorrepnikov/artaeum-blog-sidecar
+  - docker build -t $BLOG_SIDECAR:$COMMIT ./blog-sidecar
+  - docker tag $BLOG_SIDECAR:$COMMIT $BLOG_SIDECAR:$TAG
+  - docker push $BLOG_SIDECAR
 
   - export CHAT=egorrepnikov/artaeum-chat
   - docker build -t $CHAT:$COMMIT ./chat

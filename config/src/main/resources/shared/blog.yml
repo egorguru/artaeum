@@ -1,0 +1,19 @@
+server:
+  port: 11000
+
+mongodb:
+  host: blog-mongo
+  port: 27017
+  database: blog
+  username: MONGO_USER
+  password: MONGO_PASSWORD
+
+security:
+  oauth2:
+    client:
+      clientId: blog
+      clientSecret: BLOG_SERVICE_PASSWORD
+      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      authorizationURL: http://uaa:5000/uaa/oauth/authorize
+      grant-type: client_credentials
+      scope: server

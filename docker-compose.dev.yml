@@ -37,3 +37,9 @@ services:
 
   web-client:
     build: web-client
+
+  blog:
+    build: blog
+
+  blog-sidecar:
+    build: blog-sidecar
