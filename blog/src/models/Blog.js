@@ -6,7 +6,8 @@ autoIncrement.initialize(mongoose.connection)
 const blogsSchema = new mongoose.Schema({
   body: {
     type: String,
-    required: true
+    required: true,
+    minlength: 1
   },
   userId: {
     type: String,
