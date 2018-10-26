@@ -1,4 +1,9 @@
 <div class="col" *ngIf="posts && posts.length && user">
+  <ae-create-post
+    *ngIf="currentUser && currentUser.id === user.id"
+    [currentUser]="currentUser"
+    (updateWall)="loadAll()"
+  ></ae-create-post>
   <ae-post
     *ngFor="let p of posts"
     [post]="p"

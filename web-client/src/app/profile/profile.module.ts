@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared'
 import { profileRoutes } from './profile.route'
 import { ProfileComponent } from './profile.component'
-import { WallComponent, ModalPostComponent, PostComponent } from './wall'
+import { WallComponent, ModalPostComponent, PostComponent, CreatePostComponent } from './wall'
 
 @NgModule({
   imports: [
@@ -15,7 +15,8 @@ import { WallComponent, ModalPostComponent, PostComponent } from './wall'
     ProfileComponent,
     WallComponent,
     ModalPostComponent,
-    PostComponent
+    PostComponent,
+    CreatePostComponent
   ]
 })
 export class ProfileModule {}
