@@ -13,22 +13,6 @@
           >{{ author.firstName }} {{ author.lastName }} | {{ post.createdDate | dateConverter:true }}</div>
         </div>
       </div>
-      <div>
-        <div class="dropdown">
-          <button class="btn btn-link dropdown-toggle post-button" type="button" id="post-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-ellipsis-h"></i>
-          </button>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="post-drop1">
-            <a
-              class="dropdown-item post-link"
-              role="button"
-              *ngIf="currentUser && post.userId === currentUser.id"
-              (click)="delete(post.id)"
-            >Remove</a>
-            <a class="dropdown-item post-link" role="button">Report</a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
   <div class="card-body">
@@ -45,7 +29,8 @@
     <span class="card-link">
       <ae-like [resourceType]="'post'" [resourceId]="post.id"></ae-like>
     </span>
-    <a href="#" class="card-link post-button" role="button"><i class="fa fa-comment"></i></a>
-    <a href="#" class="card-link post-button" role="button"><i class="fa fa-share"></i></a>
+    <span class="card-link">
+      <ae-comment-button [resourceType]="'post'" [resourceId]="post.id"></ae-comment-button>
+    </span>
   </div>
 </div>

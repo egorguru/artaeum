@@ -59,8 +59,9 @@
         <span class="card-link">
           <ae-like [resourceType]="'post'" [resourceId]="post.id"></ae-like>
         </span>
-        <a href="#" class="card-link post-button" role="button"><i class="fa fa-comment"></i></a>
-        <a href="#" class="card-link post-button" role="button"><i class="fa fa-share"></i></a>
+        <span class="card-link">
+          <ae-comment-button [resourceType]="'post'" [resourceId]="post.id"></ae-comment-button>
+        </span>
       </div>
       <ae-comment
         [resourceType]="'post'"
