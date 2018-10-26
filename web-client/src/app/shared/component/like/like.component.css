@@ -1,3 +1,7 @@
 .like:hover {
   cursor: pointer;
 }
+
+.liked {
+  color: #ff0000;
+}
