@@ -6,7 +6,6 @@ autoIncrement.initialize(mongoose.connection)
 const commentsSchema = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
     minlength: 1
   },
   resourceType: {

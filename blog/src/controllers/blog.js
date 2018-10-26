@@ -10,7 +10,7 @@ router.get('/', async (ctx) => {
   const size = +ctx.query.size
   const blogs = await Blog
     .find()
-    .sort({ date: -1 })
+    .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
   ctx.body = blogs

@@ -10,7 +10,7 @@ router.get('/:receiver', passport.authenticate('bearer', { session: false }), as
   const size = +ctx.query.size
   const messages = await Message
     .find({ sender: ctx.state.user.name, receiver: ctx.params.receiver })
-    .sort({ date: -1 })
+    .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
   ctx.body = messages

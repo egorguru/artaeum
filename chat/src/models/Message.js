@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const messagesSchema = new mongoose.Schema({
   text: {
     type: String,
-    required: true,
     minlength: 1
   },
   sender: {

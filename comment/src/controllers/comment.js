@@ -10,7 +10,7 @@ router.get('/:resourceType/:resourceId', async (ctx) => {
   const size = +ctx.query.size
   const comments = await Comment
     .find({ resourceType: ctx.params.resourceType, resourceId: ctx.params.resourceId })
-    .sort({ date: -1 })
+    .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
   ctx.body = comments
