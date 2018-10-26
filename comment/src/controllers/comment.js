@@ -6,11 +6,13 @@ const Comment = require('../models/Comment')
 const router = new Router().prefix('/comments')
 
 router.get('/:resourceType/:resourceId', async (ctx) => {
+  const page = +ctx.query.page
+  const size = +ctx.query.size
   const comments = await Comment
     .find({ resourceType: ctx.params.resourceType, resourceId: ctx.params.resourceId })
     .sort({ date: -1 })
-    .skip(+ctx.query.offset)
-    .limit(+ctx.query.limit)
+    .skip(page * size)
+    .limit(size)
   ctx.body = comments
 })
 
@@ -27,9 +29,9 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { id, text } = ctx.request.body
+  const { _id, text } = ctx.request.body
   const comment = await Comment.findOneAndUpdate(
-    { _id: id, userId: ctx.state.user.name },
+    { _id, userId: ctx.state.user.name },
     { $set: { text: text } },
     { new: true }
   )

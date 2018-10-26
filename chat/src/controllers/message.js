@@ -6,11 +6,13 @@ const Message = require('../models/Message')
 const router = new Router().prefix('/messages')
 
 router.get('/:receiver', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const page = +ctx.query.page
+  const size = +ctx.query.size
   const messages = await Message
     .find({ sender: ctx.state.user.name, receiver: ctx.params.receiver })
     .sort({ date: -1 })
-    .skip(+ctx.query.offset)
-    .limit(+ctx.query.limit)
+    .skip(page * size)
+    .limit(size)
   ctx.body = messages
 })
 
@@ -25,9 +27,9 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { id, text } = ctx.request.body
+  const { _id, text } = ctx.request.body
   const message = await Message.findOneAndUpdate(
-    { _id: id, sender: ctx.state.user.name },
+    { _id, sender: ctx.state.user.name },
     { $set: { text: text } },
     { new: true }
   )
