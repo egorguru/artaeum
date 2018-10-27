@@ -1,0 +1,19 @@
+<div class="col-md-10 mx-auto" *ngIf="blogPosts && blogPosts.length && user">
+  <div class="post" *ngFor="let p of blogPosts">
+    <a [routerLink]="['/blogs', p._id]">
+      <h2>{{ p.title }}</h2>
+    </a>
+    <p>Posted by
+      <a [routerLink]="['/u', user.login]">@{{ user.login }}</a>
+      on {{ p.createdDate | dateConverter }}</p>
+    <hr>
+  </div>
+  <ngb-pagination
+    [collectionSize]="totalItems"
+    [(page)]="page"
+    [pageSize]="postsPerPage"
+    [maxSize]="5"
+    (pageChange)="loadPage(page)"
+  ></ngb-pagination>
+</div>
+  

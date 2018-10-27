@@ -72,6 +72,7 @@
   ],
   "comments": [
     {
+      "id": 1,
       "_id": 1,
       "text": "rand comment",
       "resourceType": "post",
@@ -80,6 +81,7 @@
       "createdDate": "1539962514747"
     },
     {
+      "id": 2,
       "_id": 2,
       "text": "next rand comment",
       "resourceType": "post",
@@ -88,6 +90,7 @@
       "createdDate": "1539962514747"
     },
     {
+      "id": 3,
       "_id": 3,
       "text": "rand comment new again",
       "resourceType": "post",
@@ -96,6 +99,7 @@
       "createdDate": "1539962514747"
     },
     {
+      "id": 4,
       "_id": 4,
       "text": "rand comment new new again",
       "resourceType": "blog",
@@ -122,6 +126,7 @@
   ],
   "blogs": [
     {
+      "id": 1,
       "_id": 1,
       "userId": "stalin",
       "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
@@ -129,6 +134,7 @@
       "createdDate": "1539962516967"
     },
     {
+      "id": 2,
       "_id": 2,
       "userId": "stalin",
       "title": "Lorem ipsum",
@@ -136,6 +142,7 @@
       "createdDate": "1539962517967"
     },
     {
+      "id": 3,
       "_id": 3,
       "userId": "chief_moderator",
       "title": "Lorem ipsum",

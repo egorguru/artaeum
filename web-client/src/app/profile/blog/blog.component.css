@@ -1,0 +1,24 @@
+.post a h2 {
+  font-size: 26px;
+  font-weight: 800;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.post a {
+  text-decoration: none;
+  transition: all .2s;
+  color: #3C4858;
+}
+
+.post a:hover {
+  color: #000;
+}
+
+.post p {
+  font-size: 16px;
+  font-style: italic;
+  margin-top: 0;
+  color: #868e96;
+  line-height: 1.5;
+  margin: 10px 0 30px;
+}

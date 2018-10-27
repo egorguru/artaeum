@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment as env } from '../../../environments/environment'
 
-import { UserService, User, Post, PostService, Principal } from '../../shared'
+import { UserService, User, BlogPost, BlogService, Principal } from '../../shared'
 
 @Component({
-  selector: 'ae-wall',
-  templateUrl: './wall.component.html'
+  selector: 'ae-blog',
+  templateUrl: './blog.component.html',
+  styleUrls: ['./blog.component.css']
 })
-export class WallComponent implements OnInit {
+export class BlogComponent implements OnInit {
 
   currentUser: User
   user: User
-  posts: Post[]
+  blogPosts: BlogPost[]
   page: any
   previousPage: any
   totalItems: any
@@ -20,10 +21,10 @@ export class WallComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    public postService: PostService,
+    public blogService: BlogService,
+    public principal: Principal,
     public activatedRoute: ActivatedRoute,
-    public router: Router,
-    public principal: Principal
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -42,13 +43,13 @@ export class WallComponent implements OnInit {
   }
 
   loadAll() {
-    this.postService.query({
+    this.blogService.query({
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc'],
       userId: this.user.id
     }).subscribe((res) => {
-      this.posts = res.body
+      this.blogPosts = res.body
       this.totalItems = res.headers.get('X-Total-Count')
     })
   }
@@ -65,9 +66,5 @@ export class WallComponent implements OnInit {
       })
       this.loadAll()
     }
-  }
-
-  delete(id: number) {
-    this.postService.delete(id).subscribe(() => this.loadAll())
   }
 }
