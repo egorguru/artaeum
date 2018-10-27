@@ -4,6 +4,10 @@ const autoIncrement = require('mongoose-auto-increment')
 autoIncrement.initialize(mongoose.connection)
 
 const blogsSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    minlength: 1
+  },
   body: {
     type: String,
     minlength: 1

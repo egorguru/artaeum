@@ -1,5 +1,6 @@
 export * from './pagination'
 export * from './account.service'
+export * from './blog.service'
 export * from './comment.service'
 export * from './like.service'
 export * from './post.service'
