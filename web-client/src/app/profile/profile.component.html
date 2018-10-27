@@ -27,8 +27,15 @@
         </div>
         <div class="row">
           <div class="profile-nav">
-            <a [routerLink]="['/u', user.login]" [routerLinkActive]="'active'">Wall</a>
-            <a [routerLink]="['/u', user.login, 'blog']">Blog</a>
+            <a
+              [routerLink]="['/u', user.login]"
+              [routerLinkActive]="'active'"
+              [routerLinkActiveOptions]="{ exact: true }"
+            >Wall</a>
+            <a
+              [routerLink]="['/u', user.login, 'blog']"
+              [routerLinkActive]="'active'"
+            >Blog</a>
           </div>
         </div>
         <div class="row justify-content-md-center">
