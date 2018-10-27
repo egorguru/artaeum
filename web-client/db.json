@@ -72,7 +72,7 @@
   ],
   "comments": [
     {
-      "id": 1,
+      "_id": 1,
       "text": "rand comment",
       "resourceType": "post",
       "resourceId": 1,
@@ -80,7 +80,7 @@
       "createdDate": "1539962514747"
     },
     {
-      "id": 2,
+      "_id": 2,
       "text": "next rand comment",
       "resourceType": "post",
       "resourceId": 1,
@@ -88,7 +88,7 @@
       "createdDate": "1539962514747"
     },
     {
-      "id": 3,
+      "_id": 3,
       "text": "rand comment new again",
       "resourceType": "post",
       "resourceId": 1,
@@ -110,6 +110,26 @@
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962515967"
+    }
+  ],
+  "blogs": [
+    {
+      "_id": 1,
+      "userId": "stalin",
+      "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
+      "createdDate": "1539962516967"
+    },
+    {
+      "_id": 2,
+      "userId": "stalin",
+      "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
+      "createdDate": "1539962517967"
+    },
+    {
+      "_id": 3,
+      "userId": "chief_moderator",
+      "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
+      "createdDate": "1539962518967"
     }
   ]
 }
