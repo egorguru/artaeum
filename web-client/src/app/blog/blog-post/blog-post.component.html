@@ -1,0 +1,33 @@
+<section *ngIf="blogPost && author">
+  <header class="masthead" style="background-image: url('/assets/register-photo.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{ blogPost.title }}</h1>
+            <span class="meta">Posted by
+              <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
+              on {{ blogPost.createdDate | dateConverter:true }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto" [innerHTML]="blogPost.body"></div>
+      </div>
+    </div>
+  </article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <h4>Comments</h4>
+        <ae-comment [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-comment>
+      </div>
+    </div>
+  </div>
+</section>
