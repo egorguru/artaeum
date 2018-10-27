@@ -94,6 +94,14 @@
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962514747"
+    },
+    {
+      "_id": 4,
+      "text": "rand comment new new again",
+      "resourceType": "blog",
+      "resourceId": 1,
+      "userId": "chief_moderator",
+      "createdDate": "1539962519747"
     }
   ],
   "likes": [
@@ -116,18 +124,21 @@
     {
       "_id": 1,
       "userId": "stalin",
+      "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
       "createdDate": "1539962516967"
     },
     {
       "_id": 2,
       "userId": "stalin",
+      "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
       "createdDate": "1539962517967"
     },
     {
       "_id": 3,
       "userId": "chief_moderator",
+      "title": "Lorem ipsum",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
       "createdDate": "1539962518967"
     }

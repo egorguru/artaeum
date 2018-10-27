@@ -8,6 +8,7 @@ import { SharedModule } from './shared'
 import { AccountModule } from './account'
 import { ProfileModule } from './profile'
 import { SettingsModule } from './settings'
+import { BlogModule } from './blog'
 import { PagesModule } from './pages'
 
 @NgModule({
@@ -24,6 +25,7 @@ import { PagesModule } from './pages'
     AccountModule,
     ProfileModule,
     SettingsModule,
+    BlogModule,
     PagesModule
   ],
   bootstrap: [MainComponent],
