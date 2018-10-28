@@ -122,6 +122,13 @@
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962515967"
+    },
+    {
+      "id": 3,
+      "resourceType": "blog",
+      "resourceId": 1,
+      "userId": "stalin",
+      "createdDate": "1539962525967"
     }
   ],
   "blogs": [

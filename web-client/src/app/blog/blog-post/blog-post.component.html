@@ -20,6 +20,18 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto" [innerHTML]="blogPost.body"></div>
       </div>
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <ae-like [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-like>
+            </li>
+            <li class="list-inline-item">
+              <ae-comment-button [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-comment-button>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </article>
   <div class="container">
