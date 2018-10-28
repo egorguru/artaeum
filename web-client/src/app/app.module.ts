@@ -9,6 +9,7 @@ import { AccountModule } from './account'
 import { ProfileModule } from './profile'
 import { SettingsModule } from './settings'
 import { BlogModule } from './blog'
+import { PostModule } from './post'
 import { PagesModule } from './pages'
 
 @NgModule({
@@ -26,6 +27,7 @@ import { PagesModule } from './pages'
     ProfileModule,
     SettingsModule,
     BlogModule,
+    PostModule,
     PagesModule
   ],
   bootstrap: [MainComponent],
