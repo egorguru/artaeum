@@ -1,0 +1,39 @@
+<section>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-6 col-md-8 col-xs-12">
+        <div class="card">
+          <div class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="mr-2">
+                  <img class="rounded-circle" width="45" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" [alt]="post.id">
+                </div>
+                <div class="ml-2">
+                  <div class="h5 m-0">@{{ author.login }}</div>
+                  <div
+                    class="text-muted"
+                    *ngIf="author.firstName && author.lastName"
+                  >{{ author.firstName }} {{ author.lastName }} | {{ post.createdDate | dateConverter:true }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="card-text" [innerHTML]="post.text"></p>
+          </div>
+          <div class="card-footer">
+            <span class="card-link">
+              <ae-like [resourceType]="'post'" [resourceId]="post.id"></ae-like>
+            </span>
+            <span class="card-link">
+              <ae-comment-button [resourceType]="'post'" [resourceId]="post.id"></ae-comment-button>
+            </span>
+          </div>
+        </div>
+        <ae-comment [resourceType]="'post'" [resourceId]="post.id"></ae-comment>
+      </div>
+    </div>
+  </div>
+</section>
+  
