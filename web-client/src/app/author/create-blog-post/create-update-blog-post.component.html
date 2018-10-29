@@ -1,0 +1,30 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 mx-auto">
+        <form *ngIf="blogPost" role="form" novalidate (ngSubmit)="save()" #form="ngForm">
+          <div class="form-group">
+            <input class="form-control" type="text" name="title" placeholder="Title" required [(ngModel)]="blogPost.title" />
+          </div>
+          <div class="form-group">
+            <quill-editor
+              name="body"
+              [required]="true"
+              [style]="{
+                'font-size': '20px',
+                'font-family': 'Lora, \'Times New Roman\', serif',
+                'line-height': '1.5'
+              }"
+              [modules]="toolbar"
+              [placeholder]="'Let\'s write it!'"
+              [(ngModel)]="blogPost.body"
+            ></quill-editor>
+          </div>
+          <button type="submit" [disabled]="form.form.invalid" class="btn btn-dark">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

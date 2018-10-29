@@ -10,8 +10,8 @@ export class BlogService {
 
   constructor(private http: HttpClient) {}
 
-  create(blogPost: BlogPost): Observable<HttpResponse<any>> {
-    return this.http.post('blog/blogs', blogPost, { observe: 'response' })
+  create(blogPost: BlogPost): Observable<HttpResponse<BlogPost>> {
+    return this.http.post<BlogPost>('blog/blogs', blogPost, { observe: 'response' })
   }
 
   update(blogPost: BlogPost): Observable<HttpResponse<BlogPost>> {
