@@ -1,11 +1,11 @@
 export class Comment {
   constructor(
-    public _id: number,
-    public text: string,
-    public resourceType: string,
-    public resourceId: number,
-    public userId: string,
-    public createdDate: Date
+    public _id?: number,
+    public text?: string,
+    public resourceType?: string,
+    public resourceId?: number,
+    public userId?: string,
+    public createdDate?: Date
   ) {
     this._id = _id ? _id : null
     this.text = text ? text : null

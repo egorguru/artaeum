@@ -1,9 +1,9 @@
 export class Subscription {
   constructor(
-    public id: number,
-    public profileId: string,
-    public subscriberId: string,
-    public createdDate: Date
+    public id?: number,
+    public profileId?: string,
+    public subscriberId?: string,
+    public createdDate?: Date
   ) {
     this.id = id ? id : null
     this.profileId = profileId ? profileId : null
