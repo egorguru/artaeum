@@ -32,5 +32,10 @@
     <span class="card-link">
       <ae-comment-button [resourceType]="'post'" [resourceId]="post.id"></ae-comment-button>
     </span>
+    <span class="card-link post-button">
+      <a [routerLink]="['/posts', post.id]">
+        <i class="fa fa-link"></i>
+      </a>
+    </span>
   </div>
 </div>
