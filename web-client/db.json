@@ -156,5 +156,25 @@
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
       "createdDate": "1539962518967"
     }
+  ],
+  "subscriptions": [
+    {
+      "id": 1,
+      "profileId": "egor_repnikov",
+      "subscriberId": "stalin",
+      "createdDate": "1539962528967"
+    },
+    {
+      "id": 2,
+      "profileId": "stalin",
+      "subscriberId": "egor_repnikov",
+      "createdDate": "1539962529967"
+    },
+    {
+      "id": 3,
+      "profileId": "chief_moderator",
+      "subscriberId": "stalin",
+      "createdDate": "1539962538967"
+    }
   ]
 }

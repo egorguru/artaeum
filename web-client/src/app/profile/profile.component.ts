@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { UserService, User } from '../shared'
+import { User, Subscription, UserService, SubscriptionService } from '../shared'
 
 @Component({
   selector: 'ae-profile',
@@ -12,9 +12,11 @@ import { UserService, User } from '../shared'
 export class ProfileComponent implements OnInit {
 
   user: User
+  subscription: Subscription
 
   constructor(
     private userService: UserService,
+    private subscriptionService: SubscriptionService,
     private activedRoute: ActivatedRoute,
     private router: Router,
     private title: Title
@@ -22,10 +24,26 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
-      this.userService.get(params['login']).subscribe((response) => {
-        this.user = response.body
-        this.title.setTitle(`${response.body.login} - Artaeum`)
+      this.userService.get(params['login']).subscribe((res) => {
+        this.user = res.body
+        this.title.setTitle(`${res.body.login} - Artaeum`)
+        this.loadSubscription()
       }, () => this.router.navigate(['/404']))
     })
+  }
+
+  subscribe(): void {
+    this.subscriptionService.subscribe(this.user.id)
+      .subscribe(this.loadSubscription)
+  }
+
+  unsubscribe(): void {
+    this.subscriptionService.unsubscribe(this.user.id)
+      .subscribe(this.loadSubscription)
+  }
+
+  private loadSubscription(): void {
+    this.subscriptionService.get(this.user.id)
+      .subscribe((res) => this.subscription = res.body)
   }
 }

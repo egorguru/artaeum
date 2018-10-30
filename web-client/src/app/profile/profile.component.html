@@ -22,6 +22,10 @@
                 >{{ user.firstName }} {{ user.lastName }}</h3>
                 <h6>@{{ user.login }}</h6>
               </div>
+              <div class="pb-4" *aeHasAuthority="'user'">
+                <button class="btn btn-dark" *ngIf="!subscription">Subscribe</button>
+                <button class="btn btn-dark" *ngIf="subscription">Unsubscribe</button>
+              </div>
             </div>
           </div>
         </div>
