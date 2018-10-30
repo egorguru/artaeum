@@ -6,6 +6,7 @@ import { profileRoutes } from './profile.route'
 import { ProfileComponent } from './profile.component'
 import { WallComponent, ModalPostComponent, PostComponent, CreatePostComponent } from './wall'
 import { BlogComponent } from './blog'
+import { SubscribersComponent } from './subscribers'
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { BlogComponent } from './blog'
     ModalPostComponent,
     PostComponent,
     CreatePostComponent,
-    BlogComponent
+    BlogComponent,
+    SubscribersComponent
   ]
 })
 export class ProfileModule {}
