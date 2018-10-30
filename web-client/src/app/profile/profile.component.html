@@ -4,50 +4,47 @@
     style="background-image:url('https://www.visittheusa.com/sites/default/files/styles/hero_m_1300x700/public/images/hero_media_image/2016-09/HERO_Columbia%20River%20Gorge-Photo%20by%20Larry%20Geddis_72DPI.jpg?itok=EXpLmKFo');"
   ></div>
   <div class="main">
-    <div class="profile-content">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6 ml-auto mr-auto">
-            <div class="profile">
-              <div class="avatar">
-                <img
-                  src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg"
-                  [alt]="user.login"
-                  class="img-raised rounded-circle img-fluid">
-              </div>
-              <div class="name pb-4">
-                <h3
-                  class="title"
-                  *ngIf="user.firstName && user.lastName"
-                >{{ user.firstName }} {{ user.lastName }}</h3>
-                <h6>@{{ user.login }}</h6>
-              </div>
-              <div class="pb-1" *aeHasAuthority="'user'">
-                <button class="btn btn-dark" *ngIf="!subscription">Subscribe</button>
-                <button class="btn btn-dark" *ngIf="subscription">Unsubscribe</button>
-              </div>
-              <a class="text-dark" [routerLink]="['/u', user.login, 'subscribers']">
-                <i class="fa fa-users pb-4" title="Subscribers"> Subscribers</i>
-              </a>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div class="profile">
+            <img
+              src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg"
+              [alt]="user.login"
+              class="img-raised rounded-circle img-fluid"
+            >
+            <div class="name pb-4">
+              <h3
+                class="title"
+                *ngIf="user.firstName && user.lastName"
+              >{{ user.firstName }} {{ user.lastName }}</h3>
+              <h6>@{{ user.login }}</h6>
             </div>
+            <div class="pb-2" *aeHasAuthority="'user'">
+              <button class="btn btn-dark" *ngIf="!subscription">Subscribe</button>
+              <button class="btn btn-dark" *ngIf="subscription">Unsubscribe</button>
+            </div>
+            <a class="text-dark" [routerLink]="['/u', user.login, 'subscribers']">
+              <i class="fa fa-users pb-4" title="Subscribers"> Subscribers</i>
+            </a>
           </div>
         </div>
-        <div class="row">
-          <div class="profile-nav">
-            <a
-              [routerLink]="['/u', user.login]"
-              [routerLinkActive]="'active'"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >Wall</a>
-            <a
-              [routerLink]="['/u', user.login, 'blog']"
-              [routerLinkActive]="'active'"
-            >Blog</a>
-          </div>
+      </div>
+      <div class="row">
+        <div class="profile-nav">
+          <a
+            [routerLink]="['/u', user.login]"
+            [routerLinkActive]="'active'"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >Wall</a>
+          <a
+            [routerLink]="['/u', user.login, 'blog']"
+            [routerLinkActive]="'active'"
+          >Blog</a>
         </div>
-        <div class="row justify-content-md-center">
-          <router-outlet></router-outlet>
-        </div>
+      </div>
+      <div class="row justify-content-md-center">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>
