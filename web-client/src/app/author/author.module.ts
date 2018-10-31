@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared'
 import { authorRoutes } from './author.route'
 import { CreateUpdateBlogPostComponent } from './create-blog-post'
+import { AuthorComponent } from './author.component'
 
 @NgModule({
   imports: [
@@ -11,6 +12,7 @@ import { CreateUpdateBlogPostComponent } from './create-blog-post'
     RouterModule.forChild(authorRoutes)
   ],
   declarations: [
+    AuthorComponent,
     CreateUpdateBlogPostComponent
   ]
 })
