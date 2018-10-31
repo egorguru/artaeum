@@ -5,3 +5,8 @@
 section {
   padding: 50px 0;
 }
+
+.list-group .active {
+  background-color: #000;
+  border-color: #000;
+}

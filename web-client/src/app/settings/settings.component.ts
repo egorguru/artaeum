@@ -2,7 +2,6 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'ae-settings',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  templateUrl: './settings.component.html'
 })
 export class SettingsComponent {}
