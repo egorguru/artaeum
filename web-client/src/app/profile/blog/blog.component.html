@@ -1,3 +1,6 @@
+<div class="col-md-10 mx-auto text-center mb-4">
+  <a class="btn btn-dark" routerLink="/author/blogs">Create article</a>
+</div>
 <div class="col-md-10 mx-auto" *ngIf="blogPosts && blogPosts.length && user">
   <div class="post" *ngFor="let p of blogPosts">
     <a [routerLink]="['/blogs', p._id]">
@@ -5,7 +8,12 @@
     </a>
     <p>Posted by
       <a [routerLink]="['/u', user.login]">@{{ user.login }}</a>
-      on {{ p.createdDate | dateConverter }}</p>
+      on {{ p.createdDate | dateConverter }} |
+      <a
+        *ngIf="currentUser && currentUser.id === user.id"
+        [routerLink]="['/author/blogs', p._id]"
+      ><i class="fa fa-pencil" title="Edit"></i></a>
+    </p>
     <hr>
   </div>
   <ngb-pagination
