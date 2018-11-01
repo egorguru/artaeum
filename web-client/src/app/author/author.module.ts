@@ -5,6 +5,7 @@ import { SharedModule } from '../shared'
 import { authorRoutes } from './author.route'
 import { CreateUpdateBlogPostComponent } from './create-blog-post'
 import { AuthorComponent } from './author.component'
+import { DashboardComponent } from './dashboard'
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { AuthorComponent } from './author.component'
   ],
   declarations: [
     AuthorComponent,
-    CreateUpdateBlogPostComponent
+    CreateUpdateBlogPostComponent,
+    DashboardComponent
   ]
 })
 export class AuthorModule {}

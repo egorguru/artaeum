@@ -2,6 +2,7 @@ import { Routes } from '@angular/router'
 import { UserRouteAccessService } from '../shared'
 
 import { AuthorComponent } from './author.component'
+import { dashboardRoute } from './dashboard'
 import { createUpdateBlogPostRoutes } from './create-blog-post'
 
 export const authorRoutes: Routes = [{
@@ -12,6 +13,7 @@ export const authorRoutes: Routes = [{
   },
   canActivate: [UserRouteAccessService],
   children: [
+    dashboardRoute,
     ...createUpdateBlogPostRoutes
   ]
 }]

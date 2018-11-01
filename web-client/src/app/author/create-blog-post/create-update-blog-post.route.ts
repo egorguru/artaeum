@@ -8,5 +8,5 @@ export const createUpdateBlogPostRoutes = [
   {
     path: 'blogs/:id',
     component: CreateUpdateBlogPostComponent
-  },
+  }
 ]
