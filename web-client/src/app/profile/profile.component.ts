@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { User, Subscription, UserService, SubscriptionService } from '../shared'
+import { User, Subscription, UserService, SubscriptionService, Principal } from '../shared'
 
 @Component({
   selector: 'ae-profile',
@@ -11,10 +11,12 @@ import { User, Subscription, UserService, SubscriptionService } from '../shared'
 })
 export class ProfileComponent implements OnInit {
 
+  currentUser: User
   user: User
   subscription: Subscription
 
   constructor(
+    private principal: Principal,
     private userService: UserService,
     private subscriptionService: SubscriptionService,
     private activedRoute: ActivatedRoute,
@@ -23,6 +25,7 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.principal.identity().then((u) => this.currentUser = u)
     this.activedRoute.params.subscribe((params) => {
       this.userService.get(params['login']).subscribe((res) => {
         this.user = res.body

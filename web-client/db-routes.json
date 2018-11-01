@@ -1,11 +1,11 @@
 {
   "/uaa/account": "/uaa/users/stalin",
-  "/profile/subscriptions/:profileId/my": "/subscriptions/1",
   "/media/:userId/likes": "/likes?userId=:userId",
   "/:service/:resource": "/:resource",
   "/:service/:resource/:id": "/:resource/:id",
   "/comment/comments/:type/:id": "/comments?resourceType=:type&resourceId=:id",
   "/media/:type/:id/likes": "/likes?resourceType=:type&resourceId=:id",
   "/profile/subscriptions/:profileId/subscriptions": "/subscriptions?subscriberId=:profileId",
-  "/profile/subscriptions/:profileId/subscribers": "/subscriptions?profileId=:profileId"
+  "/profile/subscriptions/:profileId/subscribers": "/subscriptions?profileId=:profileId",
+  "/profile/subscriptions/:profileId/my": "/subscriptions/1"
 }

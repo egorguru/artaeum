@@ -20,7 +20,7 @@
               >{{ user.firstName }} {{ user.lastName }}</h3>
               <h6>@{{ user.login }}</h6>
             </div>
-            <div class="pb-2" *aeHasAuthority="'user'">
+            <div class="pb-2" *ngIf="currentUser && currentUser.id !== user.id">
               <button class="btn btn-dark" *ngIf="!subscription">Subscribe</button>
               <button class="btn btn-dark" *ngIf="subscription">Unsubscribe</button>
             </div>
