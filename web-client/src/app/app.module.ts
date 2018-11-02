@@ -11,6 +11,7 @@ import { SettingsModule } from './settings'
 import { BlogModule } from './blog'
 import { PostModule } from './post'
 import { AuthorModule } from './author'
+import { TimelineModule } from './timeline'
 import { PagesModule } from './pages'
 
 @NgModule({
@@ -30,6 +31,7 @@ import { PagesModule } from './pages'
     BlogModule,
     PostModule,
     AuthorModule,
+    TimelineModule,
     PagesModule
   ],
   bootstrap: [MainComponent],
