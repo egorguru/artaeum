@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared'
 import { profileRoutes } from './profile.route'
 import { ProfileComponent } from './profile.component'
-import { WallComponent, ModalPostComponent, PostComponent, CreatePostComponent } from './wall'
+import { WallComponent, CreatePostComponent } from './wall'
 import { BlogComponent } from './blog'
 import { SubscribersComponent } from './subscribers'
 
@@ -16,8 +16,6 @@ import { SubscribersComponent } from './subscribers'
   declarations: [
     ProfileComponent,
     WallComponent,
-    ModalPostComponent,
-    PostComponent,
     CreatePostComponent,
     BlogComponent,
     SubscribersComponent

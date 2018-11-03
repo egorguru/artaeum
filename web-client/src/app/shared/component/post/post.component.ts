@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 
-import { User, Post } from '../../../shared'
+import { User, Post } from '../../model'
 
 @Component({
   selector: 'ae-post',
@@ -13,6 +13,7 @@ export class PostComponent {
   @Input() author: User
   @Input() currentUser: User
   @Input() deleteFunction: Function
+  @Input() modal: boolean
 
   delete(id: number) {
     this.deleteFunction(id)

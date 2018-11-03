@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router'
 
 import { SharedModule } from '../shared'
 import { postRoutes } from './post.route'
-import { PostComponent } from './post'
+import { SinglePostComponent } from './single-post'
 
 @NgModule({
   imports: [
@@ -11,7 +11,7 @@ import { PostComponent } from './post'
     RouterModule.forChild(postRoutes)
   ],
   declarations: [
-    PostComponent
+    SinglePostComponent
   ]
 })
 export class PostModule {}

@@ -5,7 +5,7 @@ import { SharedLibsModule } from './shared-libs.module'
 import { HasAuthorityDirective } from './directive'
 import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from './interceptor'
 import { DateConverterPipe } from './pipe'
-import { CommentComponent, LikeComponent, CommentButtonComponent } from './component'
+import { CommentComponent, LikeComponent, CommentButtonComponent, PostComponent, ModalPostComponent } from './component'
 
 @NgModule({
   imports: [SharedLibsModule],
@@ -14,7 +14,9 @@ import { CommentComponent, LikeComponent, CommentButtonComponent } from './compo
     DateConverterPipe,
     CommentComponent,
     LikeComponent,
-    CommentButtonComponent
+    CommentButtonComponent,
+    PostComponent,
+    ModalPostComponent
   ],
   providers: [
     {
@@ -37,7 +39,9 @@ import { CommentComponent, LikeComponent, CommentButtonComponent } from './compo
     DateConverterPipe,
     CommentComponent,
     LikeComponent,
-    CommentButtonComponent
+    CommentButtonComponent,
+    PostComponent,
+    ModalPostComponent
   ]
 })
 export class SharedModule {}

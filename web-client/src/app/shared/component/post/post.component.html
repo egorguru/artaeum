@@ -6,7 +6,9 @@
           <img class="rounded-circle" width="45" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" [alt]="post.id">
         </div>
         <div class="ml-2">
-          <div class="h5 m-0">@{{ author.login }}</div>
+          <div class="h5 m-0">
+            <a class="login-link" [routerLink]="['/u', author.login]">@{{ author.login }}</a>
+          </div>
           <div
             class="h7 text-muted"
             *ngIf="author.firstName && author.lastName"
@@ -17,6 +19,7 @@
   </div>
   <div class="card-body">
     <ae-modal-post
+      *ngIf="modal"
       [post]="post"
       [author]="author"
       [currentUser]="currentUser"
@@ -24,6 +27,7 @@
     >
       <p class="card-text" [innerHTML]="post.text"></p>
     </ae-modal-post>
+    <p class="card-text" *ngIf="!modal" [innerHTML]="post.text"></p>
   </div>
   <div class="card-footer">
     <span class="card-link">

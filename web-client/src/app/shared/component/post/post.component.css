@@ -1,3 +1,12 @@
+.login-link {
+  text-decoration: none;
+  color: #161010;
+}
+
+.login-link:hover {
+  color: #2e3d50;
+}
+
 .h7 {
   font-size: 0.8rem;
 }

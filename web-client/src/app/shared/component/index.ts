@@ -1,3 +1,5 @@
 export * from './comment'
 export * from './comment-button'
 export * from './like'
+export * from './modal-post'
+export * from './post'

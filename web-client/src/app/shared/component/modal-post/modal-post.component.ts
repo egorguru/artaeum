@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 
-import { User, Post } from '../../../shared'
+import { User, Post } from '../../model'
 
 @Component({
   selector: 'ae-modal-post',
