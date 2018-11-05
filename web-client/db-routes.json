@@ -1,6 +1,7 @@
 {
   "/uaa/account": "/uaa/users/stalin",
   "/media/:userId/likes": "/likes?userId=:userId",
+  "/:service/:resource\\?page=:page&size=:size&sort=id,desc": "/:resource?_page=:page&_limit=:size&_sort=id&_order=desc",
   "/:service/:resource": "/:resource",
   "/:service/:resource/:id": "/:resource/:id",
   "/comment/comments/:type/:id": "/comments?resourceType=:type&resourceId=:id",
