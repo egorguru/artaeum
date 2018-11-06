@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment as env} from '../../../environments/environment'
 
-import { BlogService, Principal, BlogPost } from '../../shared'
+import { ArticleService, Principal, Article } from '../../shared'
 
 @Component({
-  selector: 'ae-create-update-blog-post',
-  templateUrl: './create-update-blog-post.component.html'
+  selector: 'ae-create-update-article',
+  templateUrl: './create-update-article.component.html'
 })
-export class CreateUpdateBlogPostComponent implements OnInit {
+export class CreateUpdateArticleComponent implements OnInit {
 
-  blogPost: BlogPost
+  article: Article
   toolbar: any
 
   constructor(
-    private blogService: BlogService,
+    private articleService: ArticleService,
     private principal: Principal,
     private route: ActivatedRoute,
     private router: Router
@@ -24,35 +24,35 @@ export class CreateUpdateBlogPostComponent implements OnInit {
     this.toolbar = env.QUILL_TOOLBAR
     this.route.params.subscribe((params) => {
       if (params['id']) {
-        this.blogService.get(params['id'])
-          .subscribe((res) => this.checkAuthorAndInitBlogPost(res.body))
+        this.articleService.get(params['id'])
+          .subscribe((res) => this.checkAuthorAndInitArticle(res.body))
       } else {
-        this.blogPost = new BlogPost()
+        this.article = new Article()
       }
     })
   }
 
   save(): void {
-    if (this.blogPost._id) {
-      this.blogService.update(this.blogPost)
+    if (this.article._id) {
+      this.articleService.update(this.article)
         .subscribe((res) => this.successfulSave(res.body._id))
     } else {
-      this.blogService.create(this.blogPost)
+      this.articleService.create(this.article)
         .subscribe((res) => this.successfulSave(res.body._id))
     }
   }
 
-  private checkAuthorAndInitBlogPost(blogPost: BlogPost): void {
+  private checkAuthorAndInitArticle(article: Article): void {
     this.principal.identity().then((user) => {
-      if (user.id !== blogPost.userId) {
+      if (user.id !== article.userId) {
         this.router.navigate(['/'])
       } else {
-        this.blogPost = blogPost
+        this.article = article
       }
     })
   }
 
   private successfulSave(postId: number) {
-    this.router.navigate(['/blogs', postId])
+    this.router.navigate(['/articles', postId])
   }
 }

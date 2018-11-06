@@ -1,4 +1,4 @@
-export class BlogPost {
+export class Article {
   constructor(
     public _id?: number,
     public title?: string,

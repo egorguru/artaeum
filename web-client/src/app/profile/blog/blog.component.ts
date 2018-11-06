@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment as env } from '../../../environments/environment'
 
-import { UserService, User, BlogPost, BlogService, Principal } from '../../shared'
+import { UserService, User, Article, ArticleService, Principal } from '../../shared'
 
 @Component({
   selector: 'ae-blog',
@@ -12,7 +12,7 @@ export class BlogComponent implements OnInit {
 
   currentUser: User
   user: User
-  blogPosts: BlogPost[]
+  articles: Article[]
   page: any
   previousPage: any
   totalItems: any
@@ -20,7 +20,7 @@ export class BlogComponent implements OnInit {
 
   constructor(
     public userService: UserService,
-    public blogService: BlogService,
+    public articleService: ArticleService,
     public principal: Principal,
     public activatedRoute: ActivatedRoute,
     public router: Router
@@ -42,13 +42,13 @@ export class BlogComponent implements OnInit {
   }
 
   loadAll() {
-    this.blogService.query({
+    this.articleService.query({
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc'],
       userId: this.user.id
     }).subscribe((res) => {
-      this.blogPosts = res.body
+      this.articles = res.body
       this.totalItems = res.headers.get('X-Total-Count')
     })
   }
@@ -68,6 +68,6 @@ export class BlogComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    this.blogService.delete(id).subscribe(() => this.loadAll())
+    this.articleService.delete(id).subscribe(() => this.loadAll())
   }
 }

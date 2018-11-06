@@ -8,7 +8,7 @@ import { SharedModule } from './shared'
 import { AccountModule } from './account'
 import { ProfileModule } from './profile'
 import { SettingsModule } from './settings'
-import { BlogModule } from './blog'
+import { ArticleModule } from './article'
 import { PostModule } from './post'
 import { AuthorModule } from './author'
 import { TimelineModule } from './timeline'
@@ -28,7 +28,7 @@ import { PagesModule } from './pages'
     AccountModule,
     ProfileModule,
     SettingsModule,
-    BlogModule,
+    ArticleModule,
     PostModule,
     AuthorModule,
     TimelineModule,

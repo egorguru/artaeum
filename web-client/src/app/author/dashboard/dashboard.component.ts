@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 
-import { SubscriptionService, BlogService, PostService, LikeService, Principal } from '../../shared'
+import { SubscriptionService, ArticleService, PostService, LikeService, Principal } from '../../shared'
 
 @Component({
   selector: 'ae-dashboard',
@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private principal: Principal,
     private subscriptionService: SubscriptionService,
-    private blogService: BlogService,
+    private articleService: ArticleService,
     private postService: PostService,
     private likeService: LikeService
   ) {}
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     this.principal.identity().then((u) => {
       this.subscriptionService.queryForAllSubscribers(u.id)
         .subscribe((res) => this.subsCount = this.getCount(res))
-      this.blogService.query({ userId: u.id })
+      this.articleService.query({ userId: u.id })
         .subscribe((res) => this.articlesCount = this.getCount(res))
       this.postService.query({ userId: u.id })
         .subscribe((res) => this.postsCount = this.getCount(res))

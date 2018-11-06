@@ -1,14 +1,14 @@
-<section *ngIf="blogPost && author">
+<section *ngIf="article && author">
   <header class="masthead" style="background-image: url('/assets/register-photo.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-            <h1>{{ blogPost.title }}</h1>
+            <h1>{{ article.title }}</h1>
             <span class="meta">Posted by
               <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
-              on {{ blogPost.createdDate | dateConverter:true }}
+              on {{ article.createdDate | dateConverter:true }}
             </span>
           </div>
         </div>
@@ -18,16 +18,16 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto" [innerHTML]="blogPost.body"></div>
+        <div class="col-lg-8 col-md-10 mx-auto" [innerHTML]="article.body"></div>
       </div>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <ul class="list-inline">
             <li class="list-inline-item">
-              <ae-like [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-like>
+              <ae-like [resourceType]="'article'" [resourceId]="article._id"></ae-like>
             </li>
             <li class="list-inline-item">
-              <ae-comment-button [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-comment-button>
+              <ae-comment-button [resourceType]="'article'" [resourceId]="article._id"></ae-comment-button>
             </li>
           </ul>
         </div>
@@ -38,7 +38,7 @@
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
         <h4>Comments</h4>
-        <ae-comment [resourceType]="'blog'" [resourceId]="blogPost._id"></ae-comment>
+        <ae-comment [resourceType]="'article'" [resourceId]="article._id"></ae-comment>
       </div>
     </div>
   </div>

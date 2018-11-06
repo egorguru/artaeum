@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router'
 
 import { SharedModule } from '../shared'
 import { authorRoutes } from './author.route'
-import { CreateUpdateBlogPostComponent } from './create-blog-post'
+import { CreateUpdateArticleComponent } from './create-update-article'
 import { AuthorComponent } from './author.component'
 import { DashboardComponent } from './dashboard'
 
@@ -14,7 +14,7 @@ import { DashboardComponent } from './dashboard'
   ],
   declarations: [
     AuthorComponent,
-    CreateUpdateBlogPostComponent,
+    CreateUpdateArticleComponent,
     DashboardComponent
   ]
 })

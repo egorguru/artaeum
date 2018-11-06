@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core'
 
-import { User, BlogPost } from '../../model'
+import { User, Article } from '../../model'
 
 @Component({
   selector: 'ae-article',
@@ -9,7 +9,7 @@ import { User, BlogPost } from '../../model'
 })
 export class ArticleComponent {
 
-  @Input() article: BlogPost
+  @Input() article: Article
   @Input() author: User
   @Input() currentUser: User
   @Input() deleteFunction: Function

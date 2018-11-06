@@ -3,7 +3,7 @@ const autoIncrement = require('mongoose-auto-increment')
 
 autoIncrement.initialize(mongoose.connection)
 
-const blogsSchema = new mongoose.Schema({
+const articlesSchema = new mongoose.Schema({
   title: {
     type: String,
     minlength: 1
@@ -22,6 +22,6 @@ const blogsSchema = new mongoose.Schema({
   }
 })
 
-blogsSchema.plugin(autoIncrement.plugin, { model: 'blogs' })
+articlesSchema.plugin(autoIncrement.plugin, { model: 'articles' })
 
-module.exports = mongoose.model('blogs', blogsSchema)
+module.exports = mongoose.model('articles', articlesSchema)

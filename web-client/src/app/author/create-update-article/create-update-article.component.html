@@ -1,6 +1,6 @@
-<form *ngIf="blogPost" role="form" novalidate (ngSubmit)="save()" #form="ngForm">
+<form *ngIf="article" role="form" novalidate (ngSubmit)="save()" #form="ngForm">
   <div class="form-group">
-    <input class="form-control" type="text" name="title" placeholder="Title" required [(ngModel)]="blogPost.title" />
+    <input class="form-control" type="text" name="title" placeholder="Title" required [(ngModel)]="article.title" />
   </div>
   <div class="form-group">
     <quill-editor
@@ -13,7 +13,7 @@
       }"
       [modules]="toolbar"
       [placeholder]="'Let\'s write it!'"
-      [(ngModel)]="blogPost.body"
+      [(ngModel)]="article.body"
     ></quill-editor>
   </div>
   <button type="submit" [disabled]="form.form.invalid" class="btn btn-dark">

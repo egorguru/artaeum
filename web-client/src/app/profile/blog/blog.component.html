@@ -1,10 +1,10 @@
 <div class="col-md-10 mx-auto text-center mb-4">
-  <a class="btn btn-dark" routerLink="/author/blogs">Create article</a>
+  <a class="btn btn-dark" routerLink="/author/articles">Create article</a>
 </div>
-<div class="col-md-10 mx-auto" *ngIf="blogPosts && blogPosts.length && user">
+<div class="col-md-10 mx-auto" *ngIf="articles && articles.length && user">
   <ae-article
-    *ngFor="let p of blogPosts"
-    [article]="p"
+    *ngFor="let a of articles"
+    [article]="a"
     [author]="user"
     [currentUser]="currentUser"
     [deleteFunction]="deletePost"

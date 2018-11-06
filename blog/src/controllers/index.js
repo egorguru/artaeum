@@ -1,10 +1,10 @@
 const Router = require('koa-router')
 
-const blog = require('./blog')
+const article = require('./article')
 const health = require('./health')
 
 const router = new Router().prefix('/blog')
 
-router.use(blog, health)
+router.use(article, health)
 
 module.exports = router

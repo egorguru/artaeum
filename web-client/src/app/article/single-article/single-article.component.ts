@@ -2,20 +2,20 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { User, BlogPost, BlogService, UserService } from '../../shared'
+import { User, Article, ArticleService, UserService } from '../../shared'
 
 @Component({
-  selector: 'ae-blog-post',
-  templateUrl: './blog-post.component.html',
-  styleUrls: ['./blog-post.component.css']
+  selector: 'ae-single-article',
+  templateUrl: './single-article.component.html',
+  styleUrls: ['./single-article.component.css']
 })
-export class BlogPostComponent implements OnInit {
+export class SingleArticleComponent implements OnInit {
 
-  blogPost: BlogPost
+  article: Article
   author: User
 
   constructor(
-    private blogService: BlogService,
+    private articleService: ArticleService,
     private userService: UserService,
     private activedRoute: ActivatedRoute,
     private router: Router,
@@ -24,8 +24,8 @@ export class BlogPostComponent implements OnInit {
 
   ngOnInit() {
     this.activedRoute.params.subscribe((params) => {
-      this.blogService.get(params['id']).subscribe((res) => {
-        this.blogPost = res.body
+      this.articleService.get(params['id']).subscribe((res) => {
+        this.article = res.body
         this.title.setTitle(`${res.body.title} - Artaeum`)
         this.loadAuthor()
       }, () => this.router.navigate(['/404']))
@@ -33,7 +33,7 @@ export class BlogPostComponent implements OnInit {
   }
 
   private loadAuthor() {
-    this.userService.get(this.blogPost.userId)
+    this.userService.get(this.article.userId)
       .subscribe((res) => this.author = res.body)
   }
 }

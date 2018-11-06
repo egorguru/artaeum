@@ -1,4 +1,4 @@
-export * from './blog-post.model'
+export * from './article.model'
 export * from './comment.model'
 export * from './like.model'
 export * from './post.model'

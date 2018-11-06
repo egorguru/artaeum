@@ -2,23 +2,23 @@ import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { environment as env } from '../../../environments/environment'
 
-import { User, BlogService, UserService, Principal, BlogPost } from '../../shared'
+import { User, ArticleService, UserService, Principal, Article } from '../../shared'
 
 @Component({
-  selector: 'ae-all-blog-posts',
-  templateUrl: './all-blog-posts.component.html'
+  selector: 'ae-all-articles',
+  templateUrl: './all-articles.component.html'
 })
-export class AllBlogPostsComponent implements OnInit {
+export class AllArticlesComponent implements OnInit {
 
   currentUser: User
-  articles: BlogPost[] = []
+  articles: Article[] = []
   users: User[] = []
 
   page = 0
 
   constructor(
     private principal: Principal,
-    private blogService: BlogService,
+    private articleService: ArticleService,
     private userService: UserService,
     private title: Title
   ) {}
@@ -30,7 +30,7 @@ export class AllBlogPostsComponent implements OnInit {
   }
 
   loadArticles(): void {
-    this.blogService.query({
+    this.articleService.query({
       page: this.page++,
       size: env.POSTS_PER_PAGE,
       sort: ['id,desc']
@@ -41,7 +41,7 @@ export class AllBlogPostsComponent implements OnInit {
   }
 
   deleteArticle(id: number): void {
-    this.blogService.delete(id)
+    this.articleService.delete(id)
       .subscribe(() => this.articles.map((a, i) => {
         if (a._id === id) {
           this.articles.splice(i, 1)
