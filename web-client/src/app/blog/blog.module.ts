@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router'
 
 import { SharedModule } from '../shared'
 import { blogRoutes } from './blog.route'
+import { AllBlogPostsComponent } from './all-blog-posts'
 import { BlogPostComponent } from './blog-post'
 
 @NgModule({
@@ -11,6 +12,7 @@ import { BlogPostComponent } from './blog-post'
     RouterModule.forChild(blogRoutes)
   ],
   declarations: [
+    AllBlogPostsComponent,
     BlogPostComponent
   ]
 })

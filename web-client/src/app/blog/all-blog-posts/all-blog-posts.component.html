@@ -1,0 +1,22 @@
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div *ngFor="let a of articles">
+          <ae-article
+            *ngIf="users[a.userId]"
+            [article]="a"
+            [author]="users[a.userId]"
+            [currentUser]="currentUser"
+            [deleteFunction]="deleteArticle"
+          ></ae-article>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <button class="btn btn-dark" (click)="loadArticles()">Load more</button>
+      </div>
+    </div>
+  </div>
+</section>
