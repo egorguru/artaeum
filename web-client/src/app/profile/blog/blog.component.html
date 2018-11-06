@@ -1,5 +1,9 @@
 <div class="col-md-10 mx-auto text-center mb-4">
-  <a class="btn btn-dark" routerLink="/author/articles">Create article</a>
+  <a
+    *ngIf="currentUser && user && currentUser.id === user.id"
+    class="btn btn-dark"
+    routerLink="/author/articles"
+  >Create article</a>
 </div>
 <div class="col-md-10 mx-auto" *ngIf="articles && articles.length && user">
   <ae-article
