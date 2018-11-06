@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router'
 
 import { SharedModule } from '../shared'
 import { timelineRoutes } from './timeline.route'
+import { TimelineComponent } from './timeline.component'
 import { LastPostsComponent } from './last-posts'
 
 @NgModule({
@@ -11,6 +12,7 @@ import { LastPostsComponent } from './last-posts'
     RouterModule.forChild(timelineRoutes)
   ],
   declarations: [
+    TimelineComponent,
     LastPostsComponent
   ]
 })
