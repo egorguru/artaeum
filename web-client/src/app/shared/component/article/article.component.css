@@ -12,6 +12,7 @@
 
 .post a:hover {
   color: #000;
+  cursor: pointer;
 }
 
 .post p {

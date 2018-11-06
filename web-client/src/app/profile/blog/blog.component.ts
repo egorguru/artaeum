@@ -6,8 +6,7 @@ import { UserService, User, BlogPost, BlogService, Principal } from '../../share
 
 @Component({
   selector: 'ae-blog',
-  templateUrl: './blog.component.html',
-  styleUrls: ['./blog.component.css']
+  templateUrl: './blog.component.html'
 })
 export class BlogComponent implements OnInit {
 
@@ -66,5 +65,9 @@ export class BlogComponent implements OnInit {
       })
       this.loadAll()
     }
+  }
+
+  deletePost(id: number): void {
+    this.blogService.delete(id).subscribe(() => this.loadAll())
   }
 }

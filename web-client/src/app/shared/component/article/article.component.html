@@ -1,0 +1,18 @@
+<div class="post">
+  <a [routerLink]="['/blogs', article._id]">
+    <h2>{{ article.title }}</h2>
+  </a>
+  <p>Posted by
+    <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
+    on {{ article.createdDate | dateConverter }} |
+    <span *ngIf="currentUser && currentUser.id === author.id">
+      <a [routerLink]="['/author/blogs', article._id]">
+        <i class="fa fa-pencil" title="Edit"></i>
+      </a> |
+      <a role="button" (click)="delete()">
+        <i class="fa fa-remove" title="Remove"></i>
+      </a>
+    </span>
+  </p>
+  <hr>
+</div>

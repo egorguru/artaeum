@@ -2,20 +2,13 @@
   <a class="btn btn-dark" routerLink="/author/blogs">Create article</a>
 </div>
 <div class="col-md-10 mx-auto" *ngIf="blogPosts && blogPosts.length && user">
-  <div class="post" *ngFor="let p of blogPosts">
-    <a [routerLink]="['/blogs', p._id]">
-      <h2>{{ p.title }}</h2>
-    </a>
-    <p>Posted by
-      <a [routerLink]="['/u', user.login]">@{{ user.login }}</a>
-      on {{ p.createdDate | dateConverter }} |
-      <a
-        *ngIf="currentUser && currentUser.id === user.id"
-        [routerLink]="['/author/blogs', p._id]"
-      ><i class="fa fa-pencil" title="Edit"></i></a>
-    </p>
-    <hr>
-  </div>
+  <ae-article
+    *ngFor="let p of blogPosts"
+    [article]="p"
+    [author]="user"
+    [currentUser]="currentUser"
+    [deleteFunction]="deletePost"
+  ></ae-article>
   <ngb-pagination
     [collectionSize]="totalItems"
     [(page)]="page"
