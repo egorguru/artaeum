@@ -23,7 +23,7 @@
       [post]="post"
       [author]="author"
       [currentUser]="currentUser"
-      [deleteFunction]="delete"
+      (aeOnDelete)="delete()"
     >
       <p class="card-text" [innerHTML]="post.text"></p>
     </ae-modal-post>

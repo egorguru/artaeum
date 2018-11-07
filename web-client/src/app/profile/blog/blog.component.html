@@ -11,7 +11,7 @@
     [article]="a"
     [author]="user"
     [currentUser]="currentUser"
-    [deleteFunction]="deletePost"
+    (aeOnDelete)="deleteArticle(a._id)"
   ></ae-article>
   <ngb-pagination
     [collectionSize]="totalItems"

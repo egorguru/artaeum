@@ -67,7 +67,11 @@ export class WallComponent implements OnInit {
     }
   }
 
-  delete(id: number) {
-    this.postService.delete(id).subscribe(() => this.loadAll())
+  deletePost(id: number) {
+    this.postService.delete(id).subscribe(() => this.posts.map((p, i) => {
+      if (p.id === id) {
+        this.posts.splice(i, 1)
+      }
+    }))
   }
 }

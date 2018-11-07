@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, EventEmitter, Output } from '@angular/core'
 
 import { User, Article } from '../../model'
 
@@ -12,9 +12,9 @@ export class ArticleComponent {
   @Input() article: Article
   @Input() author: User
   @Input() currentUser: User
-  @Input() deleteFunction: Function
+  @Output() aeOnDelete = new EventEmitter<void>()
 
   delete(): void {
-    this.deleteFunction(this.article._id)
+    this.aeOnDelete.emit()
   }
 }

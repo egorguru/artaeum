@@ -9,8 +9,8 @@
     [post]="p"
     [author]="user"
     [currentUser]="currentUser"
-    [deleteFunction]="delete"
     [modal]="true"
+    (aeOnDelete)="deletePost(p.id)"
   ></ae-post>
   <ngb-pagination
     [collectionSize]="totalItems"

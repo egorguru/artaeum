@@ -33,9 +33,9 @@ export class SinglePostComponent implements OnInit {
     })
   }
 
-  delete(id: number): void {
+  deletePost(id: number): void {
     this.postService.delete(id)
-      .subscribe(() => this.router.navigate['/'])
+      .subscribe(() => this.router.navigate(['/u', this.currentUser.login]))
   }
 
   private loadAuthorAndSetTitle() {

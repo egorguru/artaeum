@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 import { User, Post } from '../../model'
 
@@ -9,12 +9,12 @@ import { User, Post } from '../../model'
 })
 export class ModalPostComponent {
 
-  @Input() deleteFunction: Function
   @Input() currentUser: User
   @Input() author: User
   @Input() post: Post
+  @Output() aeOnDelete = new EventEmitter<void>()
 
-  delete(id: number) {
-    this.deleteFunction(id)
+  delete() {
+    this.aeOnDelete.emit()
   }
 }

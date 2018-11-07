@@ -67,7 +67,11 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  deletePost(id: number): void {
-    this.articleService.delete(id).subscribe(() => this.loadAll())
+  deleteArticle(id: number): void {
+    this.articleService.delete(id).subscribe(() => this.articles.map((a, i) => {
+      if (a._id === id) {
+        this.articles.splice(i, 1)
+      }
+    }))
   }
 }

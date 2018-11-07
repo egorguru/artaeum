@@ -8,8 +8,8 @@
             [post]="p"
             [author]="users[p.userId]"
             [currentUser]="currentUser"
-            [deleteFunction]="deletePost"
             [modal]="true"
+            (aeOnDelete)="deletePost(p.id)"
           ></ae-post>
         </div>
       </div>

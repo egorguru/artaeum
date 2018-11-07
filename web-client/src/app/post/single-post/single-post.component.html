@@ -6,8 +6,8 @@
           [post]="post"
           [author]="author"
           [currentUser]="currentUser"
-          [deleteFunction]="delete"
           [modal]="false"
+          (aeOnDelete)="deletePost(post.id)"
         ></ae-post>
         <ae-comment [resourceType]="'post'" [resourceId]="post.id"></ae-comment>
       </div>

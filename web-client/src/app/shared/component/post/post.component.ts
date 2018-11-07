@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 
 import { User, Post } from '../../model'
 
@@ -12,10 +12,10 @@ export class PostComponent {
   @Input() post: Post
   @Input() author: User
   @Input() currentUser: User
-  @Input() deleteFunction: Function
   @Input() modal: boolean
+  @Output() aeOnDelete = new EventEmitter<void>()
 
-  delete(id: number) {
-    this.deleteFunction(id)
+  delete() {
+    this.aeOnDelete.emit()
   }
 }
