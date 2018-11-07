@@ -195,6 +195,13 @@
       "resourceId": 1,
       "userId": "stalin",
       "createdDate": "1539962525967"
+    },
+    {
+      "id": 4,
+      "resourceType": "post",
+      "resourceId": 12,
+      "userId": "egor_repnikov",
+      "createdDate": "1539962525967"
     }
   ],
   "articles": [
