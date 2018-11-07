@@ -1,11 +1,11 @@
 <div class="col mx-auto">
   <div *ngFor="let p of posts">
     <ae-post
-      *ngIf="users[p.userId]"
       [post]="p"
       [author]="users[p.userId]"
       [currentUser]="currentUser"
       (aeOnDelete)="deletePost(p.id)"
+      [modal]="true"
     ></ae-post>
   </div>
   <button class="btn btn-dark" (click)="loadPosts()">Load more</button>

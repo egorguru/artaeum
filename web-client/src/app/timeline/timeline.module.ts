@@ -5,6 +5,7 @@ import { SharedModule } from '../shared'
 import { timelineRoutes } from './timeline.route'
 import { TimelineComponent } from './timeline.component'
 import { LastPostsComponent } from './last-posts'
+import { LastArticlesComponent } from './last-articles'
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { LastPostsComponent } from './last-posts'
   ],
   declarations: [
     TimelineComponent,
-    LastPostsComponent
+    LastPostsComponent,
+    LastArticlesComponent
   ]
 })
 export class TimelineModule {}

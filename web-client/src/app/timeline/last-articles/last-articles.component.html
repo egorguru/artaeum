@@ -1,0 +1,11 @@
+<div class="col mx-auto">
+  <div *ngFor="let a of articles">
+    <ae-article
+      [article]="a"
+      [author]="users[a.userId]"
+      [currentUser]="currentUser"
+      (aeOnDelete)="deleteArticle(a._id)"
+    ></ae-article>
+  </div>
+  <button class="btn btn-dark" (click)="loadArticles()">Load more</button>
+</div>

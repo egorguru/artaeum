@@ -4,18 +4,18 @@ import { environment as env} from '../../../environments/environment'
 
 import {
   Principal, SubscriptionService,
-  UserService, PostService,
-  User, Post, Subscription
+  UserService, ArticleService,
+  User, Article, Subscription
 } from '../../shared'
 
 @Component({
-  selector: 'ae-last-posts',
-  templateUrl: './last-posts.component.html'
+  selector: 'ae-last-articles',
+  templateUrl: './last-articles.component.html'
 })
-export class LastPostsComponent implements OnInit {
+export class LastArticlesComponent implements OnInit {
 
   currentUser: User
-  posts: Post[] = []
+  articles: Article[] = []
   users: User[] = []
 
   private page = 0
@@ -25,12 +25,12 @@ export class LastPostsComponent implements OnInit {
     private principal: Principal,
     private subscriptionService: SubscriptionService,
     private userService: UserService,
-    private postService: PostService,
+    private articleService: ArticleService,
     private title: Title
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('Posts from your subscriptions - Artaeum')
+    this.title.setTitle('Articles from your subscriptions - Artaeum')
     this.principal.identity().then((u) => {
       this.currentUser = u
       this.subscriptionService.queryForAllSubscriptions(u.id)
@@ -38,21 +38,21 @@ export class LastPostsComponent implements OnInit {
     })
   }
 
-  loadPosts(): void {
-    this.postService.query({
+  loadArticles(): void {
+    this.articleService.query({
       page: this.page++,
       size: env.POSTS_PER_PAGE,
       sort: ['id,desc'],
       userId: this.userIds
     }).subscribe((res) => {
-      this.posts = this.posts.concat(res.body)
+      this.articles = this.articles.concat(res.body)
     })
   }
 
-  deletePost(id: number): void {
-    this.postService.delete(id).subscribe(() => this.posts.map((p, i) => {
-      if (p.id === id) {
-        this.posts.splice(i, 1)
+  deleteArticle(id: number): void {
+    this.articleService.delete(id).subscribe(() => this.articles.map((a, i) => {
+      if (a._id === id) {
+        this.articles.splice(i, 1)
       }
     }))
   }
@@ -62,7 +62,7 @@ export class LastPostsComponent implements OnInit {
       this.users[u.body.id] = u.body
       this.userIds.push(u.body.id)
       if (i === Object.keys(subs).length - 1) {
-        this.loadPosts()
+        this.loadArticles()
       }
     }))
   }
