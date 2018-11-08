@@ -7,7 +7,7 @@
       <div class="table-container">
         <table class="table-users table">
           <tbody>
-            <tr *ngFor="let s of subscribers; let i = index">
+            <tr *ngFor="let s of subscribers">
               <td width="10">
                 <img class="pull-left rounded-circle" width="50" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" />  
               </td>
@@ -17,7 +17,7 @@
                 {{ s.firstName }} {{ s.lastName }}
               </td>
               <td>
-                Subscribed on {{ subscriptions[i].createdDate | dateConverter }}
+                Subscribed on {{ subscriptions[s.id].createdDate | dateConverter }}
               </td>
             </tr>
           </tbody>
