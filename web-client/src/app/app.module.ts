@@ -13,6 +13,7 @@ import { PostModule } from './post'
 import { AuthorModule } from './author'
 import { TimelineModule } from './timeline'
 import { PagesModule } from './pages'
+import { SearchModule } from './search'
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { PagesModule } from './pages'
     PostModule,
     AuthorModule,
     TimelineModule,
+    SearchModule,
     PagesModule
   ],
   bootstrap: [MainComponent],
