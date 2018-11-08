@@ -1,0 +1,10 @@
+.search input {
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-size: 1.35em;
+  padding: 0.35em 50px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  color: #4e4e4e;
+}
