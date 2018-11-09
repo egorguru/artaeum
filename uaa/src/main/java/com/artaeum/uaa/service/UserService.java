@@ -92,6 +92,17 @@ public class UserService {
                 });
     }
 
+    public Page<UserDTO> search(Pageable pageable, String query) {
+        return this.userRepository
+                .findAllByLoginContainingOrFirstNameContainingOrLastNameContainingOrLoginLike(
+                        pageable,
+                        query,
+                        query,
+                        query,
+                        query
+                ).map(UserDTO::new);
+    }
+
     public Page<UserDTO> getAll(Pageable pageable) {
         return this.userRepository.findAll(pageable).map(UserDTO::new);
     }

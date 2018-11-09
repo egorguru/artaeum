@@ -36,6 +36,14 @@ public class UserController {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<UserDTO>> search(Pageable pageable, @RequestParam String query) {
+        Page<UserDTO> page = this.userService.search(pageable, query);
+        HttpHeaders headers = PaginationUtil
+                .generatePaginationHttpHeaders(page, "/users/search?query=" + query);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     @GetMapping("/{loginOrId}")
     public ResponseEntity<UserDTO> getUserByLoginOrId(@PathVariable String loginOrId) {
         User user = this.userService.getById(loginOrId)

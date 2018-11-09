@@ -104,6 +104,27 @@ public class UserControllerTest {
     }
 
     @Test
+    @Transactional
+    public void whenSearchUser() throws Exception {
+        User user = this.createUser();
+        this.mockMvc.perform(get("/users/search?query=tes")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].login").value(user.getLogin()))
+                .andExpect(jsonPath("$[0].firstName").value(user.getFirstName()))
+                .andExpect(jsonPath("$[0].lastName").value(user.getLastName()));
+    }
+
+    @Test
+    @Transactional
+    public void whenSearchUserWithoutQuery() throws Exception {
+        User user = this.createUser();
+        this.mockMvc.perform(get("/users/search")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     public void whenGetNotExistingUser() throws Exception {
         this.mockMvc.perform(get("/users/unknown"))
                 .andExpect(status().isNotFound());

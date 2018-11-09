@@ -2,6 +2,7 @@ package com.artaeum.uaa.service;
 
 import com.artaeum.uaa.config.Constants;
 import com.artaeum.uaa.domain.User;
+import com.artaeum.uaa.dto.UserDTO;
 import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.repository.AuthorityRepository;
 import com.artaeum.uaa.repository.UserRepository;
@@ -10,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -99,6 +101,20 @@ public class UserServiceTest {
         assertTrue(this.userRepository.findByLogin("testtest").isPresent());
         this.userService.removeNotActivatedUsers();
         assertFalse(this.userRepository.findByLogin("testtest").isPresent());
+    }
+
+    @Test
+    public void whenSearchUser() {
+        User expected = this.createUser();
+        UserDTO result = this.userService.search(PageRequest.of(0, 1), "tes").getContent().get(0);
+        assertEquals(expected.getLogin(), result.getLogin());
+    }
+
+    @Test
+    public void whenSearchNotExistingUser() {
+        this.createUser();
+        List<UserDTO> result = this.userService.search(PageRequest.of(0, 1), "set").getContent();
+        assertTrue(result.isEmpty());
     }
 
     private User createUser() {
