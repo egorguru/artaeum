@@ -36,6 +36,10 @@ public class PostService {
         return this.postRepository.findAll(pageable);
     }
 
+    public Page<Post> search(Pageable pageable, String query) {
+        return this.postRepository.findAllByTextLikeOrTextContaining(pageable, query, query);
+    }
+
     public void delete(Post post) {
         this.postRepository.delete(post);
     }

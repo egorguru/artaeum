@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,5 +81,19 @@ public class PostServiceTest {
         assertNotNull(this.postRepository.getOne(post.getId()));
         this.postService.delete(post);
         assertFalse(this.postRepository.findById(post.getId()).isPresent());
+    }
+
+    @Test
+    @Transactional
+    public void whenSearchPost() {
+        Post post = new Post();
+        post.setText("test text");
+        post.setCreatedDate(Instant.now());
+        post.setUserId(USER_ID);
+        post = this.postRepository.save(post);
+        Post result = this.postService
+                .search(PageRequest.of(0, 2), "text")
+                .getContent().get(0);
+        assertEquals(post.getText(), result.getText());
     }
 }

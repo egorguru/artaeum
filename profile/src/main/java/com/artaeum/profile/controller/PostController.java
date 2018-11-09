@@ -54,6 +54,13 @@ public class PostController {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<Post>> search(Pageable pageable, String query) {
+        Page<Post> page = this.postService.search(pageable, query);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts/search");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void delete(@PathVariable Long id, Principal principal) {

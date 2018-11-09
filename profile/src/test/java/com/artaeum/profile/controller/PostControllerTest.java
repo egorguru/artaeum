@@ -128,6 +128,18 @@ public class PostControllerTest {
     }
 
     @Test
+    public void getPostViaSearch() throws Exception {
+        Post post = this.createPost();
+        this.mockMvc.perform(get("/posts/search?page=0&size=1&query=text")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.[0].id").value(post.getId()))
+                .andExpect(jsonPath("$.[0].text").value(post.getText()))
+                .andExpect(jsonPath("$.[0].userId").value(USER_ID))
+                .andExpect(jsonPath("$.[0].createdDate").value(post.getCreatedDate().getEpochSecond()));
+    }
+
+    @Test
     public void whenDeletePost() throws Exception {
         Post post = this.createPost();
         this.mockMvc.perform(delete("/posts/" + post.getId())
