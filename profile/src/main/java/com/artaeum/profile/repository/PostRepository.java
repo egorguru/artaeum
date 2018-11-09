@@ -11,5 +11,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     void deleteById(Long id);
 
-    Page<Post> findAllByTextLikeOrTextContaining(Pageable pageable, String queryLike, String queryContaining);
+    Page<Post> findAllByTextContainingOrTextLike(Pageable pageable, String queryContaining, String queryLike);
 }
