@@ -16,14 +16,33 @@ router.get('/', async (ctx) => {
   ctx.body = articles
 })
 
+router.get('/search', async (ctx) => {
+  const page = +ctx.query.page
+  const size = +ctx.query.size
+  const query = ctx.query.query
+  const condition = {
+    title: {
+      $regex: query,
+      $options: "i"
+    }
+  }
+  const articles = await Article
+    .find(condition)
+    .sort({ createdDate: -1 })
+    .skip(page * size)
+    .limit(size)
+  ctx.body = articles
+})
+
 router.get('/:id', async (ctx) => {
   const article = await Article.findById(ctx.params.id)
   ctx.body = article
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { body } = ctx.request.body
+  const { title, body } = ctx.request.body
   const article = await new Article({
+    title,
     body,
     userId: ctx.state.user.name
   }).save()
@@ -32,10 +51,13 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { _id, body } = ctx.request.body
+  const { _id, title, body } = ctx.request.body
   const article = await Article.findOneAndUpdate(
     { _id, userId: ctx.state.user.name },
-    { $set: { body } },
+    { $set: {
+      title,
+      body
+    } },
     { new: true }
   )
   ctx.body = article
