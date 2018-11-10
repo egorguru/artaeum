@@ -1,0 +1,29 @@
+<div class="col">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="table-container">
+        <table class="table-users table">
+          <tbody>
+            <tr *ngFor="let u of users">
+              <td width="10">
+                <img class="pull-left rounded-circle" width="50" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" />  
+              </td>
+              <td>
+                <a [routerLink]="['/u', u.login]">@{{ u.login }}</a>
+                <br>
+                {{ u.firstName }} {{ u.lastName }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <ngb-pagination
+    [collectionSize]="totalItems"
+    [(page)]="page"
+    [pageSize]="postsPerPage"
+    [maxSize]="5"
+    (pageChange)="loadPage(page)"
+  ></ngb-pagination>
+</div>

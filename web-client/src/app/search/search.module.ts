@@ -6,6 +6,7 @@ import { searchRoutes } from './search.route'
 import { SearchComponent } from './search.component'
 import { PostsComponent } from './posts'
 import { ArticlesComponent } from './articles'
+import { ProfilesComponent } from './profiles'
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ArticlesComponent } from './articles'
   declarations: [
     SearchComponent,
     PostsComponent,
-    ArticlesComponent
+    ArticlesComponent,
+    ProfilesComponent
   ]
 })
 export class SearchModule {}

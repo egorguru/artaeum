@@ -29,6 +29,13 @@ export class UserService {
     })
   }
 
+  search(req?: any): Observable<HttpResponse<User[]>> {
+    return this.http.get<User[]>('profile/users/search', {
+      params: createRequestOption(req),
+      observe: 'response'
+    })
+  }
+
   update(user: User): Observable<HttpResponse<User>> {
     return this.http.put<User>('uaa/users', user, { observe: 'response' })
   }
