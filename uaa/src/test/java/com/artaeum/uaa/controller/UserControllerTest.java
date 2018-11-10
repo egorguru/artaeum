@@ -118,7 +118,7 @@ public class UserControllerTest {
     @Test
     @Transactional
     public void whenSearchUserWithoutQuery() throws Exception {
-        User user = this.createUser();
+        this.createUser();
         this.mockMvc.perform(get("/users/search")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest());
