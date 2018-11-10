@@ -29,6 +29,13 @@ export class PostService {
     })
   }
 
+  search(req?: any): Observable<HttpResponse<Post[]>> {
+    return this.http.get<Post[]>('profile/posts/search', {
+      params: createRequestOption(req),
+      observe: 'response'
+    })
+  }
+
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete(`profile/posts/${id}`, { observe: 'response' })
   }

@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router'
 import { SharedModule } from '../shared'
 import { searchRoutes } from './search.route'
 import { SearchComponent } from './search.component'
+import { PostsComponent } from './posts'
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { SearchComponent } from './search.component'
     RouterModule.forChild(searchRoutes)
   ],
   declarations: [
-    SearchComponent
+    SearchComponent,
+    PostsComponent
   ]
 })
 export class SearchModule {}
