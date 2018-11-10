@@ -1,0 +1,19 @@
+<div class="col">
+    <div *ngFor="let a of articles">
+      <ae-article
+        *ngIf="users[a.userId]"
+        [article]="a"
+        [author]="users[a.userId]"
+        [currentUser]="currentUser"
+        (aeOnDelete)="deleteArticle(a._id)"
+      ></ae-article>
+    </div>
+    <ngb-pagination
+      [collectionSize]="totalItems"
+      [(page)]="page"
+      [pageSize]="postsPerPage"
+      [maxSize]="5"
+      (pageChange)="loadPage(page)"
+    ></ngb-pagination>
+  </div>
+  

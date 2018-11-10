@@ -29,6 +29,13 @@ export class ArticleService {
     })
   }
 
+  search(req?: any): Observable<HttpResponse<Article[]>> {
+    return this.http.get<Article[]>('profile/articles/search', {
+      params: createRequestOption(req),
+      observe: 'response'
+    })
+  }
+
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete(`blog/articles/${id}`, { observe: 'response' })
   }

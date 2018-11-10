@@ -18,7 +18,7 @@
           [routerLink]="['/search']"
           [queryParams]="{ query: query }"
           [routerLinkActive]="'active'"
-          [routerLinkActiveOptions]="{ match: ['/search'] }"
+          [routerLinkActiveOptions]="{ match: ['/search'], exact: true }"
         >Posts</a>
         <a
           [routerLink]="['/search/articles']"
