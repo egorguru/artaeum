@@ -9,9 +9,15 @@ import { Principal } from '../../shared'
 })
 export class SmartButtonComponent {
 
+  isOpen = false
+
   constructor(private principal: Principal) {}
 
   isAuth(): boolean {
     return this.principal.isAuthenticated()
+  }
+
+  reverseIsOpen(): void {
+    this.isOpen = !this.isOpen
   }
 }

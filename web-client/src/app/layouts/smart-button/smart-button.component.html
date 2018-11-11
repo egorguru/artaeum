@@ -1,6 +1,13 @@
 <nav class="menu">
-  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+  <input
+    type="checkbox" id="menu-open" class="menu-open"
+    [checked]="isOpen" (change)="reverseIsOpen()"
+  />
   <label class="menu-open-button" for="menu-open">æ</label>
-  <a routerLink="timeline" class="menu-item"><i class="fa fa-rss"></i></a>
-  <a routerLink="author" class="menu-item"><i class="fa fa-tachometer"></i></a>
+  <a class="menu-item" routerLink="timeline" (click)="reverseIsOpen()">
+    <i class="fa fa-rss"></i>
+  </a>
+  <a class="menu-item" routerLink="author" (click)="reverseIsOpen()">
+    <i class="fa fa-tachometer"></i>
+  </a>
 </nav>
