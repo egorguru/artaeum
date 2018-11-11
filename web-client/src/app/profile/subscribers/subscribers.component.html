@@ -1,13 +1,10 @@
 <div class="col-md-12 mx-auto" *ngIf="subscribers">
   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Subscribers</h3>
-    </div>
     <div class="panel-body">
       <div class="table-container">
         <table class="table-users table">
           <tbody>
-            <tr *ngFor="let s of subscribers">
+            <tr *ngFor="let s of subscribers; let i = index">
               <td width="10">
                 <img class="pull-left rounded-circle" width="50" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" />  
               </td>
@@ -17,7 +14,7 @@
                 {{ s.firstName }} {{ s.lastName }}
               </td>
               <td>
-                Subscribed on {{ subscriptions[s.id].createdDate | dateConverter }}
+                Subscribed on {{ subscriptions[i].createdDate | dateConverter }}
               </td>
             </tr>
           </tbody>

@@ -12,7 +12,7 @@ export class SubscribersComponent implements OnInit {
   currentUser: User
   user: User
   subscriptions: Subscription[]
-  subscribers = {}
+  subscribers: User[] = []
   page: any
   previousPage: any
   totalItems: any
@@ -34,6 +34,6 @@ export class SubscribersComponent implements OnInit {
   private loadUsers(subs: Subscription[]): void {
     this.subscriptions = subs
     subs.map((s) => this.userService.get(s.subscriberId)
-      .subscribe((res) => this.subscribers[s.subscriberId] = res.body))
+      .subscribe((res) => this.subscribers.push(res.body)))
   }
 }
