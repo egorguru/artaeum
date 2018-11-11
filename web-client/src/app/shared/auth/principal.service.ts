@@ -19,7 +19,7 @@ export class Principal {
     if (this.authenticated && this.userIdentity && this.userIdentity.authorities) {
       for (let i = 0; i < authorities.length; i++) {
         if (this.userIdentity.authorities.includes(authorities[i])) {
-            return true
+          return true
         }
       }
     }

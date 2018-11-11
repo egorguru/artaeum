@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 
-import { MainComponent, FooterComponent, HeaderComponent } from './layouts'
+import { MainComponent, FooterComponent, HeaderComponent, SmartButtonComponent } from './layouts'
 import { AppRoutingModule } from './app-routing.module'
 import { HomeModule } from './home'
 import { SharedModule } from './shared'
@@ -19,7 +19,8 @@ import { SearchModule } from './search'
   declarations: [
     MainComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    SmartButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,133 @@
+.menu-item,
+.menu-open-button {
+  background: #EEEEEE;
+  border-radius: 100%;
+  width: 70px;
+  height: 70px;
+  margin-left: -40px;
+  position: absolute;
+  color: #000;
+  text-align: center;
+  line-height: 70px;
+  transform: translate3d(0, 0, 0);
+  transition: transform ease-out 200ms;
+}
+
+.menu-open {
+  display: none;
+}
+
+.menu {
+  position: fixed;
+  bottom: 120px;
+  right: 110px;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 26px;
+}
+
+.menu-item:hover {
+  background: #EEEEEE;
+  color: #414141;
+}
+
+.menu-item:nth-child(3) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(4) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(5) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(6) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(7) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(8) {
+  transition-duration: 180ms;
+}
+
+.menu-item:nth-child(9) {
+  transition-duration: 180ms;
+}
+
+.menu-open-button {
+  user-select: none;
+  font-family: 'Merriweather', serif;
+  line-height: 66px;
+  font-size: 45px;
+  z-index: 2;
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-duration: 400ms;
+  transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+  cursor: pointer;
+  box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+}
+
+.menu-open-button:hover {
+  transform: scale(1.2, 1.2) translate3d(0, 0, 0);
+}
+
+.menu-open:checked + .menu-open-button {
+  transition-timing-function: linear;
+  transition-duration: 200ms;
+  transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+}
+
+.menu-open:checked ~ .menu-item {
+  transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(3) {
+  transition-duration: 180ms;
+  transform: translate3d(0.08361px, -104.99997px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(4) {
+  transition-duration: 280ms;
+  transform: translate3d(90.9466px, -52.47586px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(5) {
+  transition-duration: 380ms;
+  transform: translate3d(90.9466px, 52.47586px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(6) {
+  transition-duration: 480ms;
+  transform: translate3d(0.08361px, 104.99997px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(7) {
+  transition-duration: 580ms;
+  transform: translate3d(-90.86291px, 52.62064px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(8) {
+  transition-duration: 680ms;
+  transform: translate3d(-91.03006px, -52.33095px, 0);
+}
+
+.menu-open:checked ~ .menu-item:nth-child(9) {
+  transition-duration: 780ms;
+  transform: translate3d(-0.25084px, -104.9997px, 0);
+}
+
+@media (max-width: 767px) {
+  .menu {
+    right: unset;
+    left: 50%;
+    bottom: 110px;
+    transform: translateX(-50%);
+  }
+}
