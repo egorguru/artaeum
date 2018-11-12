@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment as env } from '../../../environments/environment'
 
-import { UserService, User, Article, ArticleService, Principal } from '../../shared'
+import {
+  User, Article,
+  UserService, ArticleService,
+  Principal, SmartButtonService
+} from '../../shared'
 
 @Component({
   selector: 'ae-blog',
@@ -19,6 +23,7 @@ export class BlogComponent implements OnInit {
   postsPerPage: number
 
   constructor(
+    private smartButtonService: SmartButtonService,
     public userService: UserService,
     public articleService: ArticleService,
     public principal: Principal,
@@ -36,9 +41,9 @@ export class BlogComponent implements OnInit {
       .subscribe((params) => this.userService.get(params['login'])
         .subscribe((res) => {
           this.user = res.body
+          this.identityUserAndInitSmartButton(params['login'])
           this.loadAll()
         }))
-    this.principal.identity().then((user) => this.currentUser = user)
   }
 
   loadAll() {
@@ -73,5 +78,18 @@ export class BlogComponent implements OnInit {
         this.articles.splice(i, 1)
       }
     }))
+  }
+
+  private identityUserAndInitSmartButton(profileId: string): void {
+    this.principal.identity().then((u) => {
+      this.currentUser = u
+      if (profileId === u.login) {
+        this.smartButtonService.add({
+          className: 'fa fa-pencil',
+          link: 'author/articles',
+          title: 'Create article'
+        })
+      }
+    })
   }
 }

@@ -2,18 +2,14 @@ import { Injectable } from '@angular/core'
 import { Router, NavigationEnd } from '@angular/router'
 import { environment as env } from '../../../environments/environment'
 
-interface SmartButtonElement {
-  className: string
-  link: string,
-  title: string
-}
+import { SmartButtonElement } from '../interface'
 
 @Injectable({ providedIn: 'root' })
 export class SmartButtonService {
 
   elements: SmartButtonElement[] = []
 
-  constructor(private router: Router) {
+  constructor(router: Router) {
     router.events.subscribe((v) => {
       if (v instanceof NavigationEnd) {
         this.elements = []

@@ -1,30 +1,33 @@
-import { Component } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { Router, NavigationEnd } from '@angular/router'
 
-import { Principal, SmartButtonService, User } from '../../shared'
+import { Principal, SmartButtonService, User, SmartButtonElement } from '../../shared'
 
 @Component({
   selector: 'ae-smart-button',
   templateUrl: './smart-button.component.html',
   styleUrls: ['./smart-button.component.css']
 })
-export class SmartButtonComponent {
+export class SmartButtonComponent implements OnInit {
 
   currentUser: User
   isOpen = false
-  extraElements: any[]
+  extraElements: SmartButtonElement[]
 
   constructor(
     private principal: Principal,
     private smartButtonService: SmartButtonService,
-    private router: Router
+    router: Router
   ) {
-    this.principal.identity().then((u) => this.currentUser = u)
     router.events.subscribe((v) => {
       if (v instanceof NavigationEnd) {
         this.extraElements = this.smartButtonService.get()
       }
     })
+  }
+
+  ngOnInit() {
+    this.principal.identity().then((u) => this.currentUser = u)
   }
 
   reverseIsOpen(): void {

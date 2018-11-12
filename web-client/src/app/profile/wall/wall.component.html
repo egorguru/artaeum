@@ -1,10 +1,11 @@
-<div class="col" *ngIf="posts && posts.length && user">
+<div class="col">
   <ae-create-post
-    *ngIf="currentUser && currentUser.id === user.id"
+    *ngIf="user && currentUser && currentUser.id === user.id"
     [currentUser]="currentUser"
     (updateWall)="loadAll()"
   ></ae-create-post>
-  <ae-post
+  <div *ngIf="posts && posts.length && user">
+    <ae-post
     *ngFor="let p of posts"
     [post]="p"
     [author]="user"
@@ -19,4 +20,5 @@
     [maxSize]="5"
     (pageChange)="loadPage(page)"
   ></ngb-pagination>
+  </div>
 </div>
