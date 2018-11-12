@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { User, Article, ArticleService, UserService } from '../../shared'
+import {
+  User, Article,
+  ArticleService, UserService,
+  SmartButtonService, Principal
+} from '../../shared'
 
 @Component({
   selector: 'ae-single-article',
@@ -15,6 +19,8 @@ export class SingleArticleComponent implements OnInit {
   author: User
 
   constructor(
+    private principal: Principal,
+    private smartButtonService: SmartButtonService,
     private articleService: ArticleService,
     private userService: UserService,
     private activedRoute: ActivatedRoute,
@@ -27,8 +33,21 @@ export class SingleArticleComponent implements OnInit {
       this.articleService.get(params['id']).subscribe((res) => {
         this.article = res.body
         this.title.setTitle(`${res.body.title} - Artaeum`)
+        this.checkUserAndInitSmartButton()
         this.loadAuthor()
       }, () => this.router.navigate(['/404']))
+    })
+  }
+
+  private checkUserAndInitSmartButton(): void {
+    this.principal.identity().then((u) => {
+      if (this.article.userId === u.id) {
+        this.smartButtonService.add({
+          className: 'fa fa-edit',
+          link: 'author/articles/' + this.article._id,
+          title: 'Edit'
+        })
+      }
     })
   }
 

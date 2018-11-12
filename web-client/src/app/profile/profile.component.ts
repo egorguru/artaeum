@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
 
-import { User, Subscription, UserService, SubscriptionService, Principal } from '../shared'
+import { User, Subscription, UserService, SubscriptionService, Principal, SmartButtonService } from '../shared'
 
 @Component({
   selector: 'ae-profile',
@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   subscription: Subscription
 
   constructor(
+    private smartButtonService: SmartButtonService,
     private principal: Principal,
     private userService: UserService,
     private subscriptionService: SubscriptionService,
@@ -25,6 +26,11 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.smartButtonService.add({
+      className: 'fa fa-tachometer',
+      link: 'author',
+      title: 'Dashboard'
+    })
     this.principal.identity().then((u) => this.currentUser = u)
     this.activedRoute.params.subscribe((params) => {
       this.userService.get(params['login']).subscribe((res) => {

@@ -1,14 +1,14 @@
-<nav class="menu">
+<nav class="menu" *ngIf="currentUser">
   <input
     type="checkbox" id="menu-open" class="menu-open"
     [checked]="isOpen" (change)="reverseIsOpen()"
   />
   <label class="menu-open-button" for="menu-open">æ</label>
+  <a class="menu-item" [routerLink]="['/u', currentUser.login]" (click)="reverseIsOpen()">
+    <i class="fa fa-user" title="My profile"></i>
+  </a>
   <a class="menu-item" routerLink="timeline" (click)="reverseIsOpen()">
     <i class="fa fa-rss" title="Subscriptions"></i>
-  </a>
-  <a class="menu-item" routerLink="author" (click)="reverseIsOpen()">
-    <i class="fa fa-tachometer" title="Dashboard"></i>
   </a>
   <a
     class="menu-item"

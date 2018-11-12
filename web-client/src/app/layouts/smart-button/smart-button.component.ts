@@ -1,7 +1,7 @@
 import { Component } from '@angular/core'
 import { Router, NavigationEnd } from '@angular/router'
 
-import { Principal, SmartButtonService } from '../../shared'
+import { Principal, SmartButtonService, User } from '../../shared'
 
 @Component({
   selector: 'ae-smart-button',
@@ -10,6 +10,7 @@ import { Principal, SmartButtonService } from '../../shared'
 })
 export class SmartButtonComponent {
 
+  currentUser: User
   isOpen = false
   extraElements: any[]
 
@@ -18,15 +19,12 @@ export class SmartButtonComponent {
     private smartButtonService: SmartButtonService,
     private router: Router
   ) {
+    this.principal.identity().then((u) => this.currentUser = u)
     router.events.subscribe((v) => {
       if (v instanceof NavigationEnd) {
         this.extraElements = this.smartButtonService.get()
       }
     })
-  }
-
-  isAuth(): boolean {
-    return this.principal.isAuthenticated()
   }
 
   reverseIsOpen(): void {
