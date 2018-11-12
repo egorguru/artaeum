@@ -23,5 +23,6 @@ export const environment = {
       ['clean'],
       ['link', 'image', 'video']
     ]
-  }
+  },
+  COUNT_OF_SMART_BUTTON_ELEMENTS: 4
 }

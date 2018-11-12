@@ -5,9 +5,17 @@
   />
   <label class="menu-open-button" for="menu-open">æ</label>
   <a class="menu-item" routerLink="timeline" (click)="reverseIsOpen()">
-    <i class="fa fa-rss"></i>
+    <i class="fa fa-rss" title="Subscriptions"></i>
   </a>
   <a class="menu-item" routerLink="author" (click)="reverseIsOpen()">
-    <i class="fa fa-tachometer"></i>
+    <i class="fa fa-tachometer" title="Dashboard"></i>
+  </a>
+  <a
+    class="menu-item"
+    *ngFor="let e of extraElements"
+    [routerLink]="e.link"
+    (click)="reverseIsOpen()"
+  >
+    <i [class]="e.className" [title]="e.title"></i>
   </a>
 </nav>
