@@ -1,21 +1,19 @@
 package com.artaeum.media.controller
 
 import java.nio.file.{Files, Paths}
-import java.util.Collections
 
-import org.junit.{After, Before, Test}
 import org.junit.runner.RunWith
+import org.junit.{After, Before, Test}
 import org.springframework.beans.factory.annotation.{Autowired, Value}
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.core.io.Resource
 import org.springframework.http.MediaType
 import org.springframework.mock.web.MockMultipartFile
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
-import org.springframework.security.core.authority.SimpleGrantedAuthority
+import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.servlet.MockMvc
-import org.springframework.test.web.servlet.request.{MockHttpServletRequestBuilder, MockMvcRequestBuilders}
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.{get, delete}
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.{delete, get}
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers.{content, status}
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 
@@ -48,13 +46,12 @@ class ImageControllerTest {
   }
 
   @Test
+  @WithMockUser
   def whenUploadImageAndGetIt(): Unit = {
     val file = new MockMultipartFile("image", "testimage.png",
       "image/png", Files.readAllBytes(Paths.get(this.imagePNG.getURI)))
     val builder = MockMvcRequestBuilders.multipart("/images/{resource}", TEST_RESOURCE)
       .file(file).param("imageName", TEST_NAME_WITHOUT_EXPANSION)
-      .principal(new UsernamePasswordAuthenticationToken(
-        "testuser", "password", Collections.emptyList[SimpleGrantedAuthority]))
     this.mockMvc.perform(builder).andExpect(status.isOk)
     this.mockMvc.perform(get("/images/{resource}/{name}", TEST_RESOURCE, TEST_NAME))
       .andExpect(status.isOk)
@@ -62,17 +59,14 @@ class ImageControllerTest {
   }
 
   @Test
+  @WithMockUser
   def whenUploadImageAndDeleteItAndGetIt(): Unit = {
     val file = new MockMultipartFile("image", "testimage.png",
       "image/png", Files.readAllBytes(Paths.get(this.imagePNG.getURI)))
     val builder = MockMvcRequestBuilders.multipart("/images/{resource}", TEST_RESOURCE)
       .file(file).param("imageName", TEST_NAME_WITHOUT_EXPANSION)
-      .principal(new UsernamePasswordAuthenticationToken(
-        "testuser", "password", Collections.emptyList[SimpleGrantedAuthority]))
     this.mockMvc.perform(builder).andExpect(status.isOk)
-    this.mockMvc.perform(delete("/images/{resource}/{name}", TEST_RESOURCE, TEST_NAME)
-      .principal(new UsernamePasswordAuthenticationToken(
-        "testuser", "password", Collections.emptyList[SimpleGrantedAuthority])))
+    this.mockMvc.perform(delete("/images/{resource}/{name}", TEST_RESOURCE, TEST_NAME))
     this.mockMvc.perform(get("/images/{resource}/{name}", TEST_RESOURCE, TEST_NAME))
       .andExpect(status.isNotFound)
   }
