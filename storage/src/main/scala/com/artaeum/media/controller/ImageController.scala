@@ -1,29 +1,32 @@
 package com.artaeum.media.controller
 
 import java.io.IOException
+import java.nio.file.Files
 
 import com.artaeum.media.controller.error.{InternalServerException, NotFoundException}
 import com.artaeum.media.service.ImageService
-import org.springframework.core.io.Resource
-import org.springframework.http.{HttpStatus, ResponseEntity}
+import javax.activation.FileTypeMap
+import org.springframework.http.{MediaType, ResponseEntity}
 import org.springframework.web.bind.annotation._
-import org.springframework.web.multipart.MultipartFile
 
 @RestController
 @RequestMapping(Array("/images"))
 class ImageController(imageService: ImageService) {
 
   @GetMapping(Array("/{resource}/{name:.+}"))
-  def get(@PathVariable resource: String, @PathVariable name: String): ResponseEntity[Resource] = {
+  def get(@PathVariable resource: String, @PathVariable name: String): ResponseEntity[Array[Byte]] = {
     val image = this.imageService.load(resource, name)
     if (!image.exists) throw new NotFoundException
-    new ResponseEntity[Resource](image, HttpStatus.OK)
+    ResponseEntity.ok()
+      .contentLength(image.length())
+      .contentType(MediaType.valueOf(FileTypeMap.getDefaultFileTypeMap.getContentType(image)))
+      .body(Files.readAllBytes(image.toPath))
   }
 
   @PostMapping(Array("/{resource}"))
-  def save(@RequestParam("image") image: MultipartFile,
+  def save(@RequestParam image: String,
            @PathVariable resource: String,
-           @RequestParam("imageName") name: String): Unit = {
+           @RequestParam name: String): Unit = {
     this.imageService.save(image, resource, name)
   }
 
