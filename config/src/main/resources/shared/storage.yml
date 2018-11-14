@@ -2,6 +2,7 @@ server:
   servlet:
     context-path: /storage
   port: 10000
+  max-http-header-size: 16777216
 
 spring:
   http:

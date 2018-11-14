@@ -1,22 +1,20 @@
 package com.artaeum.profile.client;
 
+import com.artaeum.profile.config.FeignClientConfig;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.core.io.Resource;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("storage")
+@FeignClient(value = "storage", configuration = FeignClientConfig.class)
 public interface StorageClient {
 
-    @GetMapping("/{resource}/{name:.+}")
-    ResponseEntity<Resource> get(@PathVariable String resource, @PathVariable String name);
-
-    @PostMapping("/{resource}")
-    void save(@RequestParam("image") MultipartFile image,
+    @PostMapping("/storage/images/{resource}")
+    void save(@RequestParam String image,
               @PathVariable String resource,
-              @RequestParam("imageName") String name);
+              @RequestParam String name);
 
-    @DeleteMapping("/{resource}/{name:.+}")
+    @DeleteMapping("/storage/images/{resource}/{name:.+}")
     void delete(@PathVariable String resource, @PathVariable String name);
 }

@@ -73,6 +73,7 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-profile
     restart: always
     depends_on:

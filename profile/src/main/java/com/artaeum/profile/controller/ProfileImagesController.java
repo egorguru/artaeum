@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 
@@ -21,12 +20,12 @@ public class ProfileImagesController {
     }
 
     @PostMapping("/avatar")
-    public void saveAvatarForUser(@RequestParam("image") MultipartFile image, Principal principal) {
-        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("avatar-%s", principal.getName()));
+    public void saveAvatarForUser(@RequestParam String image, Principal principal) {
+        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("%s-avatar", principal.getName()));
     }
 
     @PostMapping("/background")
-    public void saveBackgroundForUser(@RequestParam("image") MultipartFile image, Principal principal) {
-        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("background-%s", principal.getName()));
+    public void saveBackgroundForUser(@RequestParam String image, Principal principal) {
+        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("%s-background", principal.getName()));
     }
 }
