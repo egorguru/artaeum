@@ -1,5 +1,5 @@
 <section *ngIf="article && author">
-  <header class="masthead" style="background-image: url('/assets/register-photo.jpg')">
+  <header class="masthead" [style.background-image]="imageUrl + '-article.jpg'">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">

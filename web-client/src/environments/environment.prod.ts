@@ -1,6 +1,7 @@
 export const environment = {
   production: true,
   SERVER_API_URL: 'http://localhost:8080',
+  IMAGE_BASE_URL: 'http://localhost:8080/storage/images/',
   POSTS_PER_PAGE: 10,
   MOUNTHS_IN_ENGLISH: [
     'January', 'February', 'March', 'April',

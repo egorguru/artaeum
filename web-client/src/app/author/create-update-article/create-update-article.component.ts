@@ -12,6 +12,7 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   article: Article
   toolbar: any
+  imageUrl: string
 
   constructor(
     private articleService: ArticleService,
@@ -22,6 +23,7 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   ngOnInit() {
     this.toolbar = env.QUILL_TOOLBAR
+    this.imageUrl = env.IMAGE_BASE_URL + 'blog/'
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.articleService.get(params['id'])
@@ -30,6 +32,12 @@ export class CreateUpdateArticleComponent implements OnInit {
         this.article = new Article()
       }
     })
+  }
+
+  loadImg($event): void {
+    const reader: FileReader = new FileReader()
+    reader.onloadend = () => this.article.image = reader.result.toString()
+    reader.readAsDataURL($event.target.files[0])
   }
 
   save(): void {
