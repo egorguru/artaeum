@@ -2,8 +2,11 @@ const Router = require('koa-router')
 const passport = require('koa-passport')
 
 const Article = require('../models/Article')
+const storage = require('../client/storage')
 
 const router = new Router().prefix('/articles')
+
+const IMAGE_NAME_END = '-article'
 
 router.get('/', async (ctx) => {
   const page = +ctx.query.page
@@ -40,18 +43,19 @@ router.get('/:id', async (ctx) => {
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { title, body } = ctx.request.body
+  const { title, body, image } = ctx.request.body
   const article = await new Article({
     title,
     body,
     userId: ctx.state.user.name
   }).save()
+  await storage.save(image, article._id + IMAGE_NAME_END)
   ctx.status = 201
   ctx.body = article
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { _id, title, body } = ctx.request.body
+  const { _id, title, body, image } = ctx.request.body
   const article = await Article.findOneAndUpdate(
     { _id, userId: ctx.state.user.name },
     { $set: {
@@ -60,14 +64,19 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     } },
     { new: true }
   )
+  if (image) {
+    await storage.save(image, article._id + IMAGE_NAME_END)
+  }
   ctx.body = article
 })
 
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  await Article.remove({
-    _id: ctx.params.id,
+  const id = ctx.params.id
+  await Article.deleteOne({
+    _id: id,
     userId: ctx.state.user.name
   })
+  await storage.delete(id + IMAGE_NAME_END + '.jpg')
   ctx.body = { message: 'Article has been deleted' }
 })
 
