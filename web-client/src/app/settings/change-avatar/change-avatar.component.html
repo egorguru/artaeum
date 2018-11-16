@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4>Profile image</h4>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row justify-content-center mb-3">
+      <button class="btn btn-dark">
+        <label for="image">Load image</label>
+        <input
+          type="file"
+          accept="image/*"
+          name="image"
+          id="image"
+          class="form-control-file"
+          (change)="loadImg($event)"
+        />
+      </button>
+    </div>
+    <div class="row justify-content-center mb-3">
+      <div class="card ml-5 mr-5">
+        <div class="card-img">
+          <img class="w-100" *ngIf="image" [src]="image">
+          <img class="w-100" *ngIf="!image && currentUser" [src]="imageUrl + currentUser.id + '-avatar.jpg'">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-dark" [disabled]="!image" (click)="save()">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
