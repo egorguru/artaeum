@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http'
 import { SharedLibsModule } from './shared-libs.module'
 import { HasAuthorityDirective } from './directive'
 import { APIInterceptor, ApplyTokenInterceptor, AuthExpiredInterceptor } from './interceptor'
-import { DateConverterPipe } from './pipe'
+import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 import {
   CommentComponent, LikeComponent,
   CommentButtonComponent, PostComponent,
@@ -16,6 +16,7 @@ import {
   declarations: [
     HasAuthorityDirective,
     DateConverterPipe,
+    ImageAppenderPipe,
     CommentComponent,
     LikeComponent,
     CommentButtonComponent,
@@ -42,6 +43,7 @@ import {
     SharedLibsModule,
     HasAuthorityDirective,
     DateConverterPipe,
+    ImageAppenderPipe,
     CommentComponent,
     LikeComponent,
     CommentButtonComponent,
