@@ -6,10 +6,10 @@ import { Principal, User } from '../../shared'
 import { ProfileImagesService } from 'src/app/shared/service/profile-images.service'
 
 @Component({
-  selector: 'ae-change-avatar',
-  templateUrl: './change-avatar.component.html'
+  selector: 'ae-change-background',
+  templateUrl: './change-background.component.html'
 })
-export class ChangeAvatarComponent implements OnInit {
+export class ChangeBackgroundComponent implements OnInit {
 
   imageUrl: string
   image: string
@@ -23,7 +23,7 @@ export class ChangeAvatarComponent implements OnInit {
 
   ngOnInit() {
     this.imageUrl = env.IMAGE_BASE_URL + 'profile/'
-    this.title.setTitle('Profile image - Artaeum')
+    this.title.setTitle('Profile background image - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
   }
 
@@ -34,7 +34,7 @@ export class ChangeAvatarComponent implements OnInit {
   }
 
   save(): void {
-    this.profileImagesService.changeAvatar(this.image)
+    this.profileImagesService.changeBackground(this.image)
       .subscribe(() => this.image = null)
   }
 }

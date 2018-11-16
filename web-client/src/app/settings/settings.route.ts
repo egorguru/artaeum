@@ -5,6 +5,7 @@ import { UserRouteAccessService } from '../shared'
 import { changeCommonRoute } from './change-common'
 import { changePasswordRoute } from './change-password'
 import { changeAvatarRoute } from './change-avatar'
+import { changeBackgroundRoute } from './change-background'
 
 export const settingsRoutes: Routes = [{
   path: 'settings',
@@ -16,6 +17,7 @@ export const settingsRoutes: Routes = [{
   children: [
     changeCommonRoute,
     changePasswordRoute,
-    changeAvatarRoute
+    changeAvatarRoute,
+    changeBackgroundRoute
   ]
 }]

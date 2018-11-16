@@ -7,6 +7,7 @@ import { SettingsComponent } from './settings.component'
 import { ChangeCommonComponent } from './change-common'
 import { ChangePasswordComponent } from './change-password'
 import { ChangeAvatarComponent } from './change-avatar'
+import { ChangeBackgroundComponent } from './change-background'
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { ChangeAvatarComponent } from './change-avatar'
     SettingsComponent,
     ChangeCommonComponent,
     ChangePasswordComponent,
-    ChangeAvatarComponent
+    ChangeAvatarComponent,
+    ChangeBackgroundComponent
   ]
 })
 export class SettingsModule {}
