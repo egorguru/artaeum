@@ -12,7 +12,6 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   article: Article
   toolbar: any
-  imageUrl: string
 
   constructor(
     private articleService: ArticleService,
@@ -23,7 +22,6 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   ngOnInit() {
     this.toolbar = env.QUILL_TOOLBAR
-    this.imageUrl = env.IMAGE_BASE_URL + 'blog/'
     this.route.params.subscribe((params) => {
       if (params['id']) {
         this.articleService.get(params['id'])

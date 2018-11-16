@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
-import { environment as env } from '../../../environments/environment'
 
 import { Principal, User } from '../../shared'
 import { ProfileImagesService } from 'src/app/shared/service/profile-images.service'
@@ -11,7 +10,6 @@ import { ProfileImagesService } from 'src/app/shared/service/profile-images.serv
 })
 export class ChangeAvatarComponent implements OnInit {
 
-  imageUrl: string
   image: string
   currentUser: User
 
@@ -22,7 +20,6 @@ export class ChangeAvatarComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.imageUrl = env.IMAGE_BASE_URL + 'profile/'
     this.title.setTitle('Profile image - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
   }

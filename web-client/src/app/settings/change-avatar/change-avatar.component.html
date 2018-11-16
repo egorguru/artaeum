@@ -23,7 +23,7 @@
       <div class="card ml-5 mr-5">
         <div class="card-img">
           <img class="w-100" *ngIf="image" [src]="image">
-          <img class="w-100" *ngIf="!image && currentUser" [src]="imageUrl + currentUser.id + '-avatar.jpg'">
+          <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'avatar'">
         </div>
       </div>
     </div>

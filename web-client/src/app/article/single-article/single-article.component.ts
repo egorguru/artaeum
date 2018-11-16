@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
-import { environment as env } from '../../../environments/environment'
 
 import {
   User, Article,
@@ -18,7 +17,6 @@ export class SingleArticleComponent implements OnInit {
 
   article: Article
   author: User
-  imageUrl: string
 
   constructor(
     private principal: Principal,
@@ -31,7 +29,6 @@ export class SingleArticleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.imageUrl = env.IMAGE_BASE_URL + 'blog/'
     this.activedRoute.params.subscribe((params) => {
       this.articleService.get(params['id']).subscribe((res) => {
         this.article = res.body
