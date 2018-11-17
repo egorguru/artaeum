@@ -9,5 +9,6 @@
   "/media/:type/:id/likes": "/likes?resourceType=:type&resourceId=:id",
   "/profile/subscriptions/:profileId/subscriptions": "/subscriptions?subscriberId=:profileId",
   "/profile/subscriptions/:profileId/subscribers": "/subscriptions?profileId=:profileId",
-  "/profile/subscriptions/:profileId/my": "/subscriptions/1"
+  "/profile/subscriptions/:profileId/my": "/subscriptions/1",
+  "/storage/images/:service/:id-:resource.jpg": "/public/mock.jpg"
 }

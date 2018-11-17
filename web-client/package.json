@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server:start": "node server/index.js",
-    "dev": "concurrently --kill-others \"json-server --watch db.json --port 8080 --routes db-routes.json\" \"npm run start\""
+    "dev": "concurrently --kill-others \"json-server --watch dev-server/db.json --port 8080 --routes dev-server/db-routes.json\" \"npm run start\""
   },
   "dependencies": {
     "@angular/animations": "^7.0.2",
