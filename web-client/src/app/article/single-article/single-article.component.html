@@ -1,5 +1,5 @@
 <section *ngIf="article && author">
-  <header class="masthead" [style.background-image]="article._id | imageAppender:'blog':'article'">
+  <header class="masthead" [ngStyle]="{'background-image': 'url(' + article._id | imageAppender:'blog':'article' + ')'}">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
