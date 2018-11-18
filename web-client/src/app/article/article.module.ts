@@ -14,6 +14,7 @@ import { SingleArticleComponent } from './single-article'
   declarations: [
     AllArticlesComponent,
     SingleArticleComponent
-  ]
+  ],
+  exports: [AllArticlesComponent]
 })
 export class ArticleModule {}
