@@ -36,6 +36,10 @@ public class PostService {
         return this.postRepository.findAll(pageable);
     }
 
+    public Page<Post> getAllByUserId(Pageable pageable, String userId) {
+        return this.postRepository.findAllByUserId(pageable, userId);
+    }
+
     public Page<Post> search(Pageable pageable, String query) {
         return this.postRepository.findAllByTextContainingOrTextLike(pageable, query, query);
     }

@@ -48,9 +48,16 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Post>> getAllPosts(Pageable pageable) {
-        Page<Post> page = this.postService.getAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts");
+    public ResponseEntity<List<Post>> getAllPosts(Pageable pageable, @RequestParam(required = false) String userId) {
+        Page<Post> page;
+        HttpHeaders headers;
+        if (userId == null) {
+            page = this.postService.getAll(pageable);
+            headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts");
+        } else {
+            page = this.postService.getAllByUserId(pageable, userId);
+            headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts?userId=" + userId);
+        }
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

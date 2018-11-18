@@ -11,8 +11,9 @@ const IMAGE_NAME_END = '-article'
 router.get('/', async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
+  const userId = ctx.query.userId
   const articles = await Article
-    .find()
+    .find({ userId })
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
