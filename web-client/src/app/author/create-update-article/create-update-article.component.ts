@@ -20,7 +20,7 @@ export class CreateUpdateArticleComponent implements OnInit {
     private router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.toolbar = env.QUILL_TOOLBAR
     this.route.params.subscribe((params) => {
       if (params['id']) {
@@ -58,7 +58,7 @@ export class CreateUpdateArticleComponent implements OnInit {
     })
   }
 
-  private successfulSave(postId: number) {
+  private successfulSave(postId: number): void {
     this.router.navigate(['/articles', postId])
   }
 }

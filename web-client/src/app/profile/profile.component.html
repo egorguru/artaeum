@@ -10,6 +10,7 @@
           <div class="profile">
             <img
               [src]="user.id | imageAppender:'profile':'avatar'"
+              onError="this.src = '/assets/register-photo.jpg'"
               [alt]="user.login"
               class="img-raised rounded-circle img-fluid"
             >

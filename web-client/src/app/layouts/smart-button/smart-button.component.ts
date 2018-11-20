@@ -26,7 +26,7 @@ export class SmartButtonComponent implements OnInit {
     })
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.principal.identity().then((u) => this.currentUser = u)
   }
 

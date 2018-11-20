@@ -24,7 +24,7 @@ export class LikeComponent implements OnInit {
     private principal: Principal
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.principal.identity().then((u) => this.currentUser = u)
     this.loadAll()
   }
@@ -33,7 +33,7 @@ export class LikeComponent implements OnInit {
     if (this.currentUser) {
       this.likeService
         .saveOrRemove(this.resourceType, this.resourceId)
-        .subscribe(this.loadAll)
+        .subscribe(() => this.loadAll())
     }
   }
 

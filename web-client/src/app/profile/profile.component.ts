@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.smartButtonService.add({
       className: 'fa fa-tachometer',
       link: 'author',
@@ -43,12 +43,12 @@ export class ProfileComponent implements OnInit {
 
   subscribe(): void {
     this.subscriptionService.subscribe(this.user.id)
-      .subscribe(this.loadSubscription)
+      .subscribe(() => this.loadSubscription())
   }
 
   unsubscribe(): void {
     this.subscriptionService.unsubscribe(this.user.id)
-      .subscribe(this.loadSubscription)
+      .subscribe(() => this.loadSubscription())
   }
 
   private loadSubscription(): void {

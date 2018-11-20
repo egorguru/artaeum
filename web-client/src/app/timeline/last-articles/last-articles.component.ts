@@ -29,7 +29,7 @@ export class LastArticlesComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Articles from your subscriptions - Artaeum')
     this.principal.identity().then((u) => {
       this.currentUser = u
@@ -50,11 +50,12 @@ export class LastArticlesComponent implements OnInit {
   }
 
   deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(() => this.articles.map((a, i) => {
-      if (a._id === id) {
-        this.articles.splice(i, 1)
-      }
-    }))
+    this.articleService.delete(id)
+      .subscribe(() => this.articles.map((a, i) => {
+        if (a._id === id) {
+          this.articles.splice(i, 1)
+        }
+      }))
   }
 
   private loadUsers(subs: Subscription[]): void {

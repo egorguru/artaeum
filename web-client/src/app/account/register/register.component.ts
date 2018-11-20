@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     private accountService: AccountService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = new FormGroup({
       'login': new FormControl(null, [
         Validators.required,
@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.accountService.register(this.form.value).subscribe((res) => {
       if (res.status === 201) {
         this.router.navigate(['/login'])

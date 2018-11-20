@@ -17,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Change password - Artaeum')
     this.form = new FormGroup({
       'password': new FormControl(null, [
@@ -28,7 +28,7 @@ export class ChangePasswordComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.accountService.changePassword(this.form.value.password)
       .subscribe(() => this.form.reset())
   }

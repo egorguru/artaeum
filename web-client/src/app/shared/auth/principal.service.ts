@@ -10,7 +10,7 @@ export class Principal {
 
   constructor(private accountService: AccountService) {}
 
-  authenticate(identity) {
+  authenticate(identity): void {
     this.userIdentity = identity
     this.authenticated = identity !== null
   }

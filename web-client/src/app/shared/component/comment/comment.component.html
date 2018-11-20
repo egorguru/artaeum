@@ -3,7 +3,7 @@
     <ul class="comment-list">
       <li *ngFor="let c of comments">
         <div class="comment-image">
-          <img [src]="c.userId | imageAppender:'profile':'avatar'" />
+          <img [src]="c.userId | imageAppender:'profile':'avatar'" onError="this.src = '/assets/register-photo.jpg'" />
         </div>
         <div class="comment-text">
           <a

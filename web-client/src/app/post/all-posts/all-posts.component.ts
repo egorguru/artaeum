@@ -13,7 +13,6 @@ export class AllPostsComponent implements OnInit {
   currentUser: User
   posts: Post[] = []
   users: User[] = []
-
   page = 0
 
   constructor(
@@ -23,7 +22,7 @@ export class AllPostsComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Last posts - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
     this.loadPosts()

@@ -23,7 +23,7 @@ export class SinglePostComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.principal.identity().then((u) => this.currentUser = u)
     this.activedRoute.params.subscribe((params) => {
       this.postService.get(params['id']).subscribe((res) => {
@@ -38,11 +38,10 @@ export class SinglePostComponent implements OnInit {
       .subscribe(() => this.router.navigate(['/u', this.currentUser.login]))
   }
 
-  private loadAuthorAndSetTitle() {
-    this.userService.get(this.post.userId)
-      .subscribe((res) => {
-        this.author = res.body
-        this.title.setTitle(`@${res.body.login}'s post - Artaeum`)
-      })
+  private loadAuthorAndSetTitle(): void {
+    this.userService.get(this.post.userId).subscribe((res) => {
+      this.author = res.body
+      this.title.setTitle(`@${res.body.login}'s post - Artaeum`)
+    })
   }
 }

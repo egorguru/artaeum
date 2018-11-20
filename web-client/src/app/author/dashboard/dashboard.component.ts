@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
     private likeService: LikeService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.principal.identity().then((u) => {
       this.subscriptionService.queryForAllSubscribers(u.id)
         .subscribe((res) => this.subsCount = this.getCount(res))

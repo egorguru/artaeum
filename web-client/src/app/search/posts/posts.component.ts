@@ -27,7 +27,7 @@ export class PostsComponent implements OnInit {
     public principal: Principal
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.postsPerPage = env.POSTS_PER_PAGE
     this.activatedRoute.data.subscribe((data) => {
       this.page = data.pagingParams.page
@@ -40,7 +40,7 @@ export class PostsComponent implements OnInit {
     this.principal.identity().then((user) => this.currentUser = user)
   }
 
-  loadAll() {
+  loadAll(): void {
     this.postService.search({
       page: this.page - 1,
       size: this.postsPerPage,
@@ -53,7 +53,7 @@ export class PostsComponent implements OnInit {
     })
   }
 
-  loadPage(page: number) {
+  loadPage(page: number): void {
     if (page !== this.previousPage) {
       this.previousPage = page
       this.router.navigate(['/search'], {
@@ -68,12 +68,13 @@ export class PostsComponent implements OnInit {
     }
   }
 
-  deletePost(id: number) {
-    this.postService.delete(id).subscribe(() => this.posts.map((p, i) => {
-      if (p.id === id) {
-        this.posts.splice(i, 1)
-      }
-    }))
+  deletePost(id: number): void {
+    this.postService.delete(id)
+      .subscribe(() => this.posts.map((p, i) => {
+        if (p.id === id) {
+          this.posts.splice(i, 1)
+        }
+      }))
   }
 
   private loadUsers(): void {

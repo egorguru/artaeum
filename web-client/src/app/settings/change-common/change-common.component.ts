@@ -18,7 +18,7 @@ export class ChangeCommonComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Common settings - Artaeum')
     this.form = new FormGroup({
       'login': new FormControl(null, [
@@ -50,11 +50,11 @@ export class ChangeCommonComponent implements OnInit {
     this.setFormValues()
   }
 
-  onSubmit() {
-    this.accountService.save(this.form.value).subscribe(this.setFormValues)
+  onSubmit(): void {
+    this.accountService.save(this.form.value).subscribe(() => this.setFormValues())
   }
 
-  private setFormValues() {
+  private setFormValues(): void {
     this.principal.identity().then((user) => {
       this.form.setValue({
         'login': user.login,

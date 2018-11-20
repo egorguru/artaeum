@@ -24,7 +24,7 @@ export class SubscribersComponent implements OnInit {
     public activatedRoute: ActivatedRoute
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activatedRoute.parent.params.subscribe((params) => {
       this.subscriptionService.queryForAllSubscribers(params['login'])
         .subscribe((res) => this.loadUsers(res.body))

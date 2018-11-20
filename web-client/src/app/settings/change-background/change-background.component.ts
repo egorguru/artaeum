@@ -19,7 +19,7 @@ export class ChangeBackgroundComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Profile background image - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
   }

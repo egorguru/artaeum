@@ -13,9 +13,9 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private loginService: LoginService, private router: Router) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = new FormGroup({
       'username': new FormControl('', [
         Validators.required,
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const formData = this.form.value
     this.loginService.login({
       username: formData.username,

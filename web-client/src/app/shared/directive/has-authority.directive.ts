@@ -13,8 +13,7 @@ export class HasAuthorityDirective {
     private viewContainerRef: ViewContainerRef
   ) {}
 
-  @Input()
-  set aeHasAuthority(value: string | string[]) {
+  @Input() set aeHasAuthority(value: string | string[]) {
     const authorities = typeof value === 'string' ? [value] : value
     this.viewContainerRef.clear()
     if (this.principal.hasAuthorities(authorities)) {

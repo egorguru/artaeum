@@ -31,7 +31,7 @@ export class BlogComponent implements OnInit {
     public router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.postsPerPage = env.POSTS_PER_PAGE
     this.activatedRoute.data.subscribe((data) => {
       this.page = data.pagingParams.page
@@ -46,7 +46,7 @@ export class BlogComponent implements OnInit {
         }))
   }
 
-  loadAll() {
+  loadAll(): void {
     this.articleService.query({
       page: this.page - 1,
       size: this.postsPerPage,
@@ -58,7 +58,7 @@ export class BlogComponent implements OnInit {
     })
   }
 
-  loadPage(page: number) {
+  loadPage(page: number): void {
     if (page !== this.previousPage) {
       this.previousPage = page
       this.router.navigate(['/u', this.user.login], {
@@ -73,10 +73,11 @@ export class BlogComponent implements OnInit {
   }
 
   deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(() => this.articles.map((a, i) => {
-      if (a._id === id) {
-        this.articles.splice(i, 1)
-      }
+    this.articleService.delete(id)
+      .subscribe(() => this.articles.map((a, i) => {
+        if (a._id === id) {
+          this.articles.splice(i, 1)
+        }
     }))
   }
 

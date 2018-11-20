@@ -28,7 +28,7 @@ export class SingleArticleComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activedRoute.params.subscribe((params) => {
       this.articleService.get(params['id']).subscribe((res) => {
         this.article = res.body
@@ -51,7 +51,7 @@ export class SingleArticleComponent implements OnInit {
     })
   }
 
-  private loadAuthor() {
+  private loadAuthor(): void {
     this.userService.get(this.article.userId)
       .subscribe((res) => this.author = res.body)
   }

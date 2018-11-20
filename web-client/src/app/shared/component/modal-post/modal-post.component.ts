@@ -14,7 +14,7 @@ export class ModalPostComponent {
   @Input() post: Post
   @Output() aeOnDelete = new EventEmitter<void>()
 
-  delete() {
+  delete(): void {
     this.aeOnDelete.emit()
   }
 }

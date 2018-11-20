@@ -14,31 +14,26 @@ export class LoginService implements OnInit {
     private authServerProvider: AuthServerProvider
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     if (this.principal.isAuthenticated()) {
       this.isUserLoggedIn.next(true)
     }
   }
 
-  login(credentials, callback?) {
-    const cb = callback || function() {}
+  login(credentials): Promise<any> {
     return new Promise((resolve, reject) => {
       this.authServerProvider.login(credentials).subscribe((data) => {
         window.localStorage.setItem('access_token', data.access_token)
         this.isUserLoggedIn.next(true)
-        this.principal.identity().then((account) => {
-          resolve(data)
-        })
-        return cb()
+        this.principal.identity().then((account) => resolve(data))
       }, (err) => {
         this.logout()
         reject(err)
-        return cb(err)
       })
     })
   }
 
-  logout() {
+  logout(): void {
     this.isUserLoggedIn.next(false)
     window.localStorage.removeItem('access_token')
     this.principal.authenticate(null)

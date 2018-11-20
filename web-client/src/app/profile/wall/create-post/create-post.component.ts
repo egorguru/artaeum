@@ -16,7 +16,7 @@ export class CreatePostComponent implements OnInit {
 
   constructor(private postService: PostService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = new FormGroup({
       'post': new FormControl(null, [
         Validators.required,
@@ -25,11 +25,10 @@ export class CreatePostComponent implements OnInit {
     })
   }
 
-  onSubmit() {
-    this.postService.create(this.form.value)
-      .subscribe(() => {
-        this.form.reset()
-        this.updateWall.emit()
-      })
+  onSubmit(): void {
+    this.postService.create(this.form.value).subscribe(() => {
+      this.form.reset()
+      this.updateWall.emit()
+    })
   }
 }

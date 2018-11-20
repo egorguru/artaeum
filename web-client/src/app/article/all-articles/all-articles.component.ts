@@ -13,17 +13,16 @@ export class AllArticlesComponent implements OnInit {
   currentUser: User
   articles: Article[] = []
   users: User[] = []
-
   page = 0
 
   constructor(
+    private title: Title,
     private principal: Principal,
     private articleService: ArticleService,
-    private userService: UserService,
-    private title: Title
+    private userService: UserService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Last articles - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
     this.loadArticles()

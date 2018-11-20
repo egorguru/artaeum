@@ -26,7 +26,7 @@ export class CommentComponent implements OnInit {
     private principal: Principal
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.principal.identity().then((user) => {
       this.currentUser = user
       this.loadAll()
@@ -49,11 +49,11 @@ export class CommentComponent implements OnInit {
       this.resourceType, this.resourceId,
       null, null
     )
-    this.commentService.create(comment).subscribe(this.loadAll)
+    this.commentService.create(comment).subscribe(() => this.loadAll())
   }
 
   deleteComment(id: number): void {
-    this.commentService.delete(id).subscribe(this.loadAll)
+    this.commentService.delete(id).subscribe(() => this.loadAll())
   }
 
   private loadAll(): void {

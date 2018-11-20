@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     private loginService: LoginService
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.loginService.isUserLoggedIn.subscribe((val) => {
       this.principal.identity().then((user) => this.currentUser = user)
     })

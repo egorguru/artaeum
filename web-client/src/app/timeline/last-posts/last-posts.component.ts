@@ -29,7 +29,7 @@ export class LastPostsComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Posts from your subscriptions - Artaeum')
     this.principal.identity().then((u) => {
       this.currentUser = u
@@ -50,11 +50,12 @@ export class LastPostsComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    this.postService.delete(id).subscribe(() => this.posts.map((p, i) => {
-      if (p.id === id) {
-        this.posts.splice(i, 1)
-      }
-    }))
+    this.postService.delete(id)
+      .subscribe(() => this.posts.map((p, i) => {
+        if (p.id === id) {
+          this.posts.splice(i, 1)
+        }
+      }))
   }
 
   private loadUsers(subs: Subscription[]): void {

@@ -24,7 +24,7 @@ export class ProfilesComponent implements OnInit {
     public router: Router
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.postsPerPage = env.POSTS_PER_PAGE
     this.activatedRoute.data.subscribe((data) => {
       this.page = data.pagingParams.page
@@ -36,7 +36,7 @@ export class ProfilesComponent implements OnInit {
     })
   }
 
-  loadAll() {
+  loadAll(): void {
     this.userService.search({
       page: this.page - 1,
       size: this.postsPerPage,
@@ -48,7 +48,7 @@ export class ProfilesComponent implements OnInit {
     })
   }
 
-  loadPage(page: number) {
+  loadPage(page: number): void {
     if (page !== this.previousPage) {
       this.previousPage = page
       this.router.navigate(['/search'], {

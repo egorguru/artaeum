@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Search - Artaeum')
     this.activatedRoute.queryParams
       .subscribe((params) => this.query = params['query'])

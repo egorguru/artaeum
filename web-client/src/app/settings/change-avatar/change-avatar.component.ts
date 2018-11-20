@@ -19,7 +19,7 @@ export class ChangeAvatarComponent implements OnInit {
     private title: Title
   ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.title.setTitle('Profile image - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
   }

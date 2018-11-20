@@ -16,7 +16,7 @@ export class CommentButtonComponent implements OnInit {
 
   constructor(private commentService: CommentService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.commentService.query(this.resourceType, this.resourceId)
       .subscribe((res) => this.commentsCount = Object.keys(res.body).length || 0)
   }

@@ -8,7 +8,7 @@ export class ResolvePagingParamsService implements Resolve<any> {
 
   constructor(private paginationService: PaginationService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): any {
     const page = route.queryParams['page'] ? route.queryParams['page'] : '1'
     const sort = route.queryParams['sort'] ? route.queryParams['sort'] : 'id,desc'
     return {
