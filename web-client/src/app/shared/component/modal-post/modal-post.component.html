@@ -38,7 +38,7 @@
               <img
                 class="rounded-circle"
                 width="45"
-                src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg"
+                [src]="post.userId | imageAppender:'profile':'avatar'"
                 [alt]="post.id"
               >
             </div>

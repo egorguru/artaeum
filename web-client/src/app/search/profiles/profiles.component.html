@@ -6,7 +6,7 @@
           <tbody>
             <tr *ngFor="let u of users">
               <td width="10">
-                <img class="pull-left rounded-circle" width="50" src="https://pp.userapi.com/c840728/v840728979/6ad8/HiE9Tede5GE.jpg" />  
+                <img class="pull-left rounded-circle" width="50" [src]="u.id | imageAppender:'profile':'avatar'" />  
               </td>
               <td>
                 <a [routerLink]="['/u', u.login]">@{{ u.login }}</a>

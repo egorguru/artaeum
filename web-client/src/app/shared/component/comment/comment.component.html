@@ -3,7 +3,7 @@
     <ul class="comment-list">
       <li *ngFor="let c of comments">
         <div class="comment-image">
-          <img src="https://pp.userapi.com/c636420/v636420118/64919/C9WP9k8V734.jpg" />
+          <img [src]="c.userId | imageAppender:'profile':'avatar'" />
         </div>
         <div class="comment-text">
           <a
