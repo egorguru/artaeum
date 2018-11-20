@@ -1,1 +1,20 @@
-<ae-all-articles></ae-all-articles>
+<section class="pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="tab-nav">
+        <a
+          role="button"
+          (click)="show('articles')"
+          [ngClass]="{ 'active': showVal == 'articles' }"
+        >Articles</a>
+        <a
+          role="button"
+          (click)="show('posts')"
+          [ngClass]="{ 'active': showVal == 'posts' }"
+        >Posts</a>
+      </div>
+    </div>
+  </div>
+</section>
+<ae-all-articles *ngIf="showVal == 'articles'"></ae-all-articles>
+<ae-all-posts *ngIf="showVal == 'posts'"></ae-all-posts>

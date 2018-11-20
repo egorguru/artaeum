@@ -4,4 +4,11 @@ import { Component } from '@angular/core'
   selector: 'ae-home',
   templateUrl: './home.component.html'
 })
-export class HomeComponent {}
+export class HomeComponent {
+
+  showVal = 'articles'
+
+  show(val: string): void {
+    this.showVal = val
+  }
+}

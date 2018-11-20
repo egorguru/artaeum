@@ -14,6 +14,7 @@ import { SinglePostComponent } from './single-post'
   declarations: [
     AllPostsComponent,
     SinglePostComponent
-  ]
+  ],
+  exports: [AllPostsComponent]
 })
 export class PostModule {}
