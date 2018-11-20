@@ -21,7 +21,9 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.principal.identity().then((user) => this.currentUser = user)
+    this.loginService.isUserLoggedIn.subscribe((val) => {
+      this.principal.identity().then((user) => this.currentUser = user)
+    })
   }
 
   reverseIsShowSearch(): void {
