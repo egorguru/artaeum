@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 
-import { Principal, User } from '../../shared'
+import { Principal, User, LoginService } from '../../shared'
 
 @Component({
   selector: 'ae-header',
@@ -16,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private principal: Principal
+    private principal: Principal,
+    private loginService: LoginService
   ) {}
 
   ngOnInit() {
@@ -30,5 +31,10 @@ export class HeaderComponent implements OnInit {
   search(): void {
     this.reverseIsShowSearch()
     this.router.navigate(['/search'], { queryParams: { query: this.searchQuery } })
+  }
+
+  logout(): void {
+    this.loginService.logout()
+    this.router.navigate(['/'])
   }
 }

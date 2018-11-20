@@ -24,7 +24,7 @@ export class AllArticlesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('Last posts - Artaeum')
+    this.title.setTitle('Last articles - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
     this.loadArticles()
   }

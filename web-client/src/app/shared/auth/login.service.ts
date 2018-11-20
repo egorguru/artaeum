@@ -26,6 +26,7 @@ export class LoginService {
   }
 
   logout() {
+    window.localStorage.removeItem('access_token')
     this.principal.authenticate(null)
   }
 }
