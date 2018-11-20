@@ -4,9 +4,11 @@ const path = require('path')
 const app = express()
 const router = express.Router()
 
-router.use(express.static(
-  path.resolve(__dirname, '..', 'dist', 'web-client')
-))
+const dist = path.resolve(__dirname, '..', 'dist', 'web-client')
+
+router.use(express.static(dist))
+
+router.get('**', (req, res) => res.sendFile('index.html', { root: dist }))
 
 app.use(router)
 
