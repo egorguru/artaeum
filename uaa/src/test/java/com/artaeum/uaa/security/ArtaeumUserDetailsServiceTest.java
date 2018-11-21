@@ -1,6 +1,8 @@
 package com.artaeum.uaa.security;
 
+import com.artaeum.uaa.domain.User;
 import com.artaeum.uaa.dto.UserRegister;
+import com.artaeum.uaa.repository.UserRepository;
 import com.artaeum.uaa.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +24,9 @@ public class ArtaeumUserDetailsServiceTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Test
     public void whenLoadExistingUser() {
         UserRegister user = new UserRegister();
@@ -32,6 +37,9 @@ public class ArtaeumUserDetailsServiceTest {
         user.setPassword("password");
         user.setLangKey("en");
         this.userService.register(user);
+        User editUser = this.userService.getByLogin(user.getLogin()).get();
+        editUser.setActivated(true);
+        this.userRepository.save(editUser);
         String userId = this.userService.getByLogin(user.getLogin()).get().getId();
         assertEquals(this.artaeumUserDetailsService.loadUserByUsername("testlogin").getUsername(), userId);
         assertEquals(this.artaeumUserDetailsService.loadUserByUsername("test@email.com").getUsername(), userId);

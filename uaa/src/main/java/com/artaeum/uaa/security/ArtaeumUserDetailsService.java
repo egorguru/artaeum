@@ -33,6 +33,9 @@ public class ArtaeumUserDetailsService implements UserDetailsService {
     }
 
     private org.springframework.security.core.userdetails.User createSpringSecurityUser(User user) {
+        if (!user.isActivated()) {
+            throw new UserNotActivatedException("User " + user.getLogin() + " was not activated");
+        }
         List<GrantedAuthority> grantedAuthorities = user.getAuthorities().stream()
                 .map(authority -> new SimpleGrantedAuthority(authority.getName()))
                 .collect(Collectors.toList());
