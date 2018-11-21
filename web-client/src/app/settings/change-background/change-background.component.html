@@ -23,7 +23,7 @@
         <div class="card">
           <div class="card-img">
             <img class="w-100" *ngIf="image" [src]="image">
-            <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'background'" onError="this.src = '/assets/register-photo.jpg'">
+            <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'background'" onError="this.src = '/assets/ae.jpg'">
           </div>
         </div>
       </div>

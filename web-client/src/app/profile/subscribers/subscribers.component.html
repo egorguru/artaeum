@@ -6,7 +6,7 @@
           <tbody>
             <tr *ngFor="let s of subscribers; let i = index">
               <td width="10">
-                <img class="pull-left rounded-circle" width="50" [src]="subscriptions[i].id | imageAppender:'profile':'avatar'" onError="this.src = '/assets/register-photo.jpg'" />  
+                <img class="pull-left rounded-circle" width="50" [src]="subscriptions[i].id | imageAppender:'profile':'avatar'" onError="this.src = '/assets/ae.jpg'" />  
               </td>
               <td>
                 <a [routerLink]="['/u', s.login]">@{{ s.login }}</a>

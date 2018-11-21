@@ -55,7 +55,7 @@ input {
 }
 
 .card-heading {
-  background: url("/assets/register-photo.jpg") top left/cover no-repeat;
+  background: url("/assets/ae-widescreen.jpg") center center/cover no-repeat;
   border-radius: 10px 0 0 10px;
   display: table-cell;
   width: 50%;

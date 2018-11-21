@@ -1,7 +1,7 @@
 <section class="profile-page" *ngIf="user">
   <div
     class="page-header"
-    [ngStyle]="{'background-image': 'url(' + user.id | imageAppender:'profile':'background' + ')'}"
+    [ngStyle]="{'background-image': 'url(' + (user.id | imageAppender:'profile':'background') + '), url(/assets/ae-widescreen.jpg)'}"
   ></div>
   <div class="main">
     <div class="container">
@@ -10,7 +10,7 @@
           <div class="profile">
             <img
               [src]="user.id | imageAppender:'profile':'avatar'"
-              onError="this.src = '/assets/register-photo.jpg'"
+              onError="this.src = '/assets/ae.jpg'"
               [alt]="user.login"
               class="img-raised rounded-circle img-fluid"
             >
