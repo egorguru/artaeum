@@ -22,7 +22,11 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginService.isUserLoggedIn.subscribe((val) => {
-      this.principal.identity().then((user) => this.currentUser = user)
+      if (val) {
+        this.principal.identity().then((user) => this.currentUser = user)
+      } else {
+        this.currentUser = null
+      }
     })
   }
 
