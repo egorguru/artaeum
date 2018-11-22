@@ -15,7 +15,7 @@
         </div>
       </li>
     </ul>
-    <form class="form-inline" [formGroup]="form" (ngSubmit)="createComment()">
+    <form class="form-inline" [formGroup]="form" (ngSubmit)="createComment()" *ngIf="currentUser">
       <div class="form-group">
         <input
           class="form-control"
