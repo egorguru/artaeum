@@ -49,8 +49,8 @@ public class AccountController {
 
     @GetMapping("/activate")
     public void activateAccount(@RequestParam(value = "key") String key) {
-        if (this.userService.activateRegistration(key).isPresent()) {
-            throw new UserNotFoundException("User not found for this reset key");
+        if (!this.userService.activateRegistration(key).isPresent()) {
+            throw new InternalServerException("User not found for this reset key");
         }
     }
 
