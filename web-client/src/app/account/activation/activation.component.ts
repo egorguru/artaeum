@@ -18,11 +18,10 @@ export class ActivationComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      this.activationService.activate(params['key'])
-        .subscribe(
-          () => this.isError = false,
-          () => this.isError = true
-        )
+      this.activationService.activate(params['key']).subscribe(
+        () => this.isError = false,
+        () => this.isError = true
+      )
     })
   }
 }
