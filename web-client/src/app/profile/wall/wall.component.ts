@@ -19,11 +19,11 @@ export class WallComponent implements OnInit {
   postsPerPage: number
 
   constructor(
-    public userService: UserService,
-    public postService: PostService,
-    public activatedRoute: ActivatedRoute,
-    public router: Router,
-    public principal: Principal
+    private userService: UserService,
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private principal: Principal
   ) {}
 
   ngOnInit(): void {

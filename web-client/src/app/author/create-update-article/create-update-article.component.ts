@@ -14,10 +14,10 @@ export class CreateUpdateArticleComponent implements OnInit {
   toolbar: any
 
   constructor(
-    private articleService: ArticleService,
-    private principal: Principal,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private articleService: ArticleService,
+    private principal: Principal
   ) {}
 
   ngOnInit(): void {

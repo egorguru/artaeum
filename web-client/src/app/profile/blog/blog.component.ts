@@ -24,11 +24,11 @@ export class BlogComponent implements OnInit {
 
   constructor(
     private smartButtonService: SmartButtonService,
-    public userService: UserService,
-    public articleService: ArticleService,
-    public principal: Principal,
-    public activatedRoute: ActivatedRoute,
-    public router: Router
+    private userService: UserService,
+    private articleService: ArticleService,
+    private principal: Principal,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

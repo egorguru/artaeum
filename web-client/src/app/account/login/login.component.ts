@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core'
+import { Title } from '@angular/platform-browser'
 import { Router } from '@angular/router'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 
@@ -13,9 +14,14 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(
+    private title: Title,
+    private router: Router,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
+    this.title.setTitle('Login - Artaeum')
     this.form = new FormGroup({
       'username': new FormControl('', [
         Validators.required,

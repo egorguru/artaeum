@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
+import { Title } from '@angular/platform-browser'
 
 import { PasswordResetFinishService } from './password-reset-finish.service'
 
@@ -16,12 +17,13 @@ export class PasswordResetFinishComponent implements OnInit {
   key: string
 
   constructor(
+    private title: Title,
     private passwordResetFinishService: PasswordResetFinishService,
     private route: ActivatedRoute
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
+    this.title.setTitle('Password reset - Artaeum')
     this.route.queryParams.subscribe((params) => {
       this.key = params['key']
     })

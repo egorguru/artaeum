@@ -19,9 +19,9 @@ export class SubscribersComponent implements OnInit {
   postsPerPage: number
 
   constructor(
-    public userService: UserService,
-    public subscriptionService: SubscriptionService,
-    public activatedRoute: ActivatedRoute
+    private userService: UserService,
+    private subscriptionService: SubscriptionService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit(): void {

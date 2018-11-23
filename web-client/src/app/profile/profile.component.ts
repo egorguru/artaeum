@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     this.activedRoute.params.subscribe((params) => {
       this.userService.get(params['login']).subscribe((res) => {
         this.user = res.body
-        this.title.setTitle(`${res.body.login} - Artaeum`)
+        this.title.setTitle(`@${res.body.login} - Artaeum`)
         this.loadSubscription()
       }, () => this.router.navigate(['/404']))
     })
