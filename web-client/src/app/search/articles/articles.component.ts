@@ -20,11 +20,11 @@ export class ArticlesComponent implements OnInit {
   postsPerPage: number
 
   constructor(
-    public userService: UserService,
-    public articleService: ArticleService,
-    public activatedRoute: ActivatedRoute,
-    public router: Router,
-    public principal: Principal
+    private userService: UserService,
+    private articleService: ArticleService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private principal: Principal
   ) {}
 
   ngOnInit(): void {

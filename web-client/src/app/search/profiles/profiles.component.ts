@@ -19,9 +19,9 @@ export class ProfilesComponent implements OnInit {
   postsPerPage: number
 
   constructor(
-    public userService: UserService,
-    public activatedRoute: ActivatedRoute,
-    public router: Router
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {

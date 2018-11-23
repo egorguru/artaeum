@@ -96,9 +96,8 @@ public class UserService {
     @Transactional(readOnly = true)
     public Page<UserDTO> search(Pageable pageable, String query) {
         return this.userRepository
-                .findAllByLoginContainingOrFirstNameContainingOrLastNameContainingOrLoginLike(
+                .findAllByLoginLikeOrFirstNameLikeOrLastNameLike(
                         pageable,
-                        query,
                         query,
                         query,
                         query

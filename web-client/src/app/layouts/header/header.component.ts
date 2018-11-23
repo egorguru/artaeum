@@ -21,9 +21,10 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loadCurrentUser()
     this.loginService.isUserLoggedIn.subscribe((val) => {
       if (val) {
-        this.principal.identity().then((user) => this.currentUser = user)
+        this.loadCurrentUser()
       } else {
         this.currentUser = null
       }
@@ -42,5 +43,9 @@ export class HeaderComponent implements OnInit {
   logout(): void {
     this.loginService.logout()
     this.router.navigate(['/'])
+  }
+
+  private loadCurrentUser(): void {
+    this.principal.identity().then((user) => this.currentUser = user)
   }
 }
