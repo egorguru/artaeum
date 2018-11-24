@@ -6,7 +6,7 @@ zuul:
   routes:
     uaa:
       path: /uaa/**
-      url: http://uaa:5000
+      serviceId: uaa
       stripPrefix: false
     media:
       path: /media/**
@@ -18,11 +18,11 @@ zuul:
       stripPrefix: false
     chat:
       path: /chat/**
-      url: http://chat:8000
+      url: ${CHAT_SERVICE_URL}
       stripPrefix: false
     comment:
       path: /comment/**
-      url: http://comment:9000
+      url: ${COMMENT_SERVICE_URL}
       stripPrefix: false
     storage:
       path: /storage/**
@@ -30,7 +30,7 @@ zuul:
       stripPrefix: false
     blog:
       path: /blog/**
-      url: http://blog:11000
+      url: ${BLOG_SERVICE_URL}
       stripPrefix: false
 
 server:
