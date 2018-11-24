@@ -84,7 +84,7 @@ public class AccountController {
     @PostMapping(path = "/account/reset-password/init")
     public void requestPasswordReset(@RequestBody String mail) {
         mailService.sendPasswordResetMail(
-                userService.requestPasswordReset(mail)
+                this.userService.requestPasswordReset(mail)
                         .orElseThrow(EmailNotFoundException::new));
     }
 
@@ -93,7 +93,7 @@ public class AccountController {
         if (!checkPasswordLength(user.getPassword())) {
             throw new InvalidPasswordException();
         }
-        Optional<User> updatedUser = userService.completePasswordReset(user.getPassword(), user.getResetKey());
+        Optional<User> updatedUser = this.userService.completePasswordReset(user.getPassword(), user.getResetKey());
         if (!updatedUser.isPresent()) {
             throw new UserNotFoundException("User not found for this reset key");
         }
@@ -105,7 +105,7 @@ public class AccountController {
         if (!this.checkPasswordLength(password)) {
             throw new InvalidPasswordException();
         }
-        userService.changePassword(principal.getName(), password);
+        this.userService.changePassword(principal.getName(), password);
     }
 
     private boolean checkPasswordLength(String password) {

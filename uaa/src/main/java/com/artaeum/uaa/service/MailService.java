@@ -55,20 +55,20 @@ public class MailService {
         Context context = new Context(locale);
         context.setVariable(USER, user);
         context.setVariable(BASE_URL, this.env.getProperty("artaeum.mail.url"));
-        String content = templateEngine.process(templateName, context);
-        String subject = messageSource.getMessage(titleKey, null, locale);
+        String content = this.templateEngine.process(templateName, context);
+        String subject = this.messageSource.getMessage(titleKey, null, locale);
         this.sendEmail(user.getEmail(), subject, content);
     }
 
     private void sendEmail(String to, String subject, String content) {
-        MimeMessage mimeMessage = javaMailSender.createMimeMessage();
+        MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
         try {
             MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, CharEncoding.UTF_8);
             message.setTo(to);
             message.setFrom(this.env.getProperty("spring.mail.username"));
             message.setSubject(subject);
             message.setText(content, true);
-            javaMailSender.send(mimeMessage);
+            this.javaMailSender.send(mimeMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }

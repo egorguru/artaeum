@@ -107,7 +107,7 @@ public class UserControllerTest {
     @Transactional
     public void whenSearchUser() throws Exception {
         User user = this.createUser();
-        this.mockMvc.perform(get("/users/search?query=tes")
+        this.mockMvc.perform(get("/users/search?query=test")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].login").value(user.getLogin()))

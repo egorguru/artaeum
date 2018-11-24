@@ -135,9 +135,9 @@ public class UserService {
     }
 
     public Optional<User> completePasswordReset(String password, String key) {
-        return userRepository.findByResetKey(key)
+        return this.userRepository.findByResetKey(key)
                 .map(user -> {
-                    user.setPassword(passwordEncoder.encode(password));
+                    user.setPassword(this.passwordEncoder.encode(password));
                     user.setResetKey(null);
                     return user;
                 });

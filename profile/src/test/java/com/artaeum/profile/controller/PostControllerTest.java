@@ -128,6 +128,7 @@ public class PostControllerTest {
     }
 
     @Test
+    @Transactional
     public void getPostViaSearch() throws Exception {
         Post post = this.createPost();
         this.mockMvc.perform(get("/posts/search?page=0&size=1&query=text")
