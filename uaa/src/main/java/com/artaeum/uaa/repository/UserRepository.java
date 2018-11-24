@@ -30,11 +30,12 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     List<User> findAllByActivatedIsFalseAndRegisterDateBefore(ZonedDateTime time);
 
-    Page<User> findAllByLoginLikeOrFirstNameLikeOrLastNameLike(
+    Page<User> findAllByLoginContainingOrFirstNameContainingOrLastNameContainingOrLoginLike(
             Pageable pageable,
             String loginContaining,
             String firstNameContaining,
-            String lastNameContaining
+            String lastNameContaining,
+            String loginLike
     );
 
     void deleteByLogin(String login);

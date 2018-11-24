@@ -13,5 +13,5 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     Page<Post> findAllByUserId(Pageable pageable, String userId);
 
-    Page<Post> findAllByTextLike(Pageable pageable, String query);
+    Page<Post> findAllByTextContainingOrTextLike(Pageable pageable, String queryContaining, String queryLike);
 }
