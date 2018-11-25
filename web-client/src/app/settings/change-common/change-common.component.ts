@@ -51,7 +51,7 @@ export class ChangeCommonComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.accountService.save(this.form.value).subscribe(() => this.setFormValues())
+    this.accountService.save(this.form.value).subscribe()
   }
 
   private setFormValues(): void {

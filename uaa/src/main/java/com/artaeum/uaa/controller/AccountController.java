@@ -68,15 +68,17 @@ public class AccountController {
 
     @PostMapping("/account")
     public void saveAccount(@Valid @RequestBody UserDTO userDTO, Principal principal) {
+        String currentUserId = principal.getName();
         Optional<User> existingUserByLogin = this.userService.getByLogin(userDTO.getLogin());
-        if (existingUserByLogin.isPresent()) {
+        if (existingUserByLogin.isPresent() && !existingUserByLogin.get().getId().equals(currentUserId)) {
             throw new LoginAlreadyUsedException();
         }
-        Optional<User> existingUserByEmail = this.userService.getByEmail(userDTO.getEmail().toLowerCase());
-        if (existingUserByEmail.isPresent() && (!existingUserByEmail.get().getLogin().equalsIgnoreCase(principal.getName()))) {
+        String emailLowerCase = userDTO.getEmail().toLowerCase();
+        Optional<User> existingUserByEmail = this.userService.getByEmail(emailLowerCase);
+        if (existingUserByEmail.isPresent() && !existingUserByEmail.get().getId().equals(currentUserId)) {
             throw new EmailAlreadyUsedException();
         }
-        this.userService.update(principal.getName(), userDTO.getLogin(),
+        this.userService.update(currentUserId, userDTO.getLogin(),
                                 userDTO.getFirstName(), userDTO.getLastName(),
                                 userDTO.getEmail(), userDTO.getLangKey());
     }
