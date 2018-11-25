@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
+@Transactional
 public class UserService {
 
     private static final int KEY_SIZE = 20;
@@ -93,7 +94,6 @@ public class UserService {
                 });
     }
 
-    @Transactional(readOnly = true)
     public Page<UserDTO> search(Pageable pageable, String query) {
         return this.userRepository
                 .findAllByLoginContainingOrFirstNameContainingOrLastNameContainingOrLoginLike(
