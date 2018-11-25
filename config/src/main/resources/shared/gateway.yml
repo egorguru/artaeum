@@ -6,7 +6,7 @@ zuul:
   routes:
     uaa:
       path: /uaa/**
-      serviceId: uaa
+      url: ${UAA_SERVICE_URL}
       stripPrefix: false
     media:
       path: /media/**
