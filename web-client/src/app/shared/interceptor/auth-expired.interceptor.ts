@@ -26,15 +26,11 @@ export class AuthExpiredInterceptor implements HttpInterceptor {
       tap(
         (event: HttpEvent<any>) => {},
         (err: any) => {
-          if (err instanceof HttpErrorResponse) {
-            if (err.status === 401) {
-              if (this.principal.isAuthenticated()) {
-                this.principal.authenticate(null)
-              } else {
-                this.loginService.logout()
-                this.router.navigate(['/'])
-              }
-            }
+          if (err instanceof HttpErrorResponse &&
+                this.principal.isAuthenticated() &&
+                err.status === 401) {
+            this.loginService.logout()
+            this.router.navigate(['/'])
           }
         }
       )
