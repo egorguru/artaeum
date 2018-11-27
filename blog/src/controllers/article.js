@@ -48,7 +48,8 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
   const article = await new Article({
     title,
     body,
-    userId: ctx.state.user.name
+    userId: ctx.state.user.name,
+    createdDate: Date.now()
   }).save()
   await storage.save(image, article._id + IMAGE_NAME_END)
   ctx.status = 201

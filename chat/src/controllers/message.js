@@ -21,7 +21,8 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
   const message = await new Message({
     text: text,
     sender: ctx.state.user.name,
-    receiver: receiver
+    receiver: receiver,
+    createdDate: Date.now()
   }).save()
   ctx.body = message
 })
