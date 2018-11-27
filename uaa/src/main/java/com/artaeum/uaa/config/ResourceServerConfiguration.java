@@ -27,6 +27,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                     .antMatchers("/register").permitAll()
                     .antMatchers("/activate").permitAll()
                     .antMatchers("/authenticate").permitAll()
+                    .antMatchers("/account/reset-password/**").permitAll()
                     .antMatchers(HttpMethod.GET, "/users/**").permitAll()
                     .antMatchers(HttpMethod.PUT, "/users").hasAuthority(Constants.ADMIN_AUTHORITY)
                     .antMatchers(HttpMethod.DELETE, "/users/**").hasAuthority(Constants.ADMIN_AUTHORITY)
