@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       username: formData.username,
       password: formData.password
     }).then(() => {
-      this.router.navigate([''])
+      this.router.navigate(['/']).then(() => location.reload())
     })
   }
 }

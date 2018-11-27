@@ -21,14 +21,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadCurrentUser()
-    this.loginService.isUserLoggedIn.subscribe((val) => {
-      if (val) {
-        this.loadCurrentUser()
-      } else {
-        this.currentUser = null
-      }
-    })
+    this.principal.identity().then((user) => this.currentUser = user)
   }
 
   reverseIsShowSearch(): void {
@@ -42,10 +35,6 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.loginService.logout()
-    this.router.navigate(['/'])
-  }
-
-  private loadCurrentUser(): void {
-    this.principal.identity().then((user) => this.currentUser = user)
+    this.router.navigate(['/']).then(() => location.reload())
   }
 }

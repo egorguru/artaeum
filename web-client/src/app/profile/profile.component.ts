@@ -31,12 +31,14 @@ export class ProfileComponent implements OnInit {
       link: 'author',
       title: 'Dashboard'
     })
-    this.principal.identity().then((u) => this.currentUser = u)
     this.activedRoute.params.subscribe((params) => {
       this.userService.get(params['login']).subscribe((res) => {
         this.user = res.body
         this.title.setTitle(`@${res.body.login} - Artaeum`)
-        this.loadSubscription()
+        this.principal.identity().then((u) => {
+          this.currentUser = u
+          this.loadSubscription()
+        })
       }, () => this.router.navigate(['/404']))
     })
   }
@@ -52,7 +54,9 @@ export class ProfileComponent implements OnInit {
   }
 
   private loadSubscription(): void {
-    this.subscriptionService.get(this.user.id)
-      .subscribe((res) => this.subscription = res.body)
+    if (this.currentUser) {
+      this.subscriptionService.get(this.user.id)
+        .subscribe((res) => this.subscription = res.body)
+    }
   }
 }

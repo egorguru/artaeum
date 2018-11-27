@@ -44,7 +44,6 @@ export class ArticlesComponent implements OnInit {
     this.articleService.search({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       query: this.query
     }).subscribe((res) => {
       this.articles = res.body

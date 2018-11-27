@@ -32,8 +32,8 @@ export class PasswordResetFinishComponent implements OnInit {
 
   submit() {
     this.passwordResetFinishService.save({
-      key: this.key,
-      newPassword: this.resetAccount.password
+      resetKey: this.key,
+      password: this.resetAccount.password
     }).subscribe(
       () => this.success = true,
       () => this.error = true
