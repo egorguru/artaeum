@@ -13,7 +13,7 @@ router.get('/', async (ctx) => {
   const size = +ctx.query.size
   const userId = ctx.query.userId
   const articles = await Article
-    .find({ userId })
+    .find(userId ? { userId } : {})
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -24,14 +24,8 @@ router.get('/search', async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
   const query = ctx.query.query
-  const condition = {
-    title: {
-      $regex: query,
-      $options: "i"
-    }
-  }
   const articles = await Article
-    .find(condition)
+    .find({ $text: { $search: query } })
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -40,7 +34,11 @@ router.get('/search', async (ctx) => {
 
 router.get('/:id', async (ctx) => {
   const article = await Article.findById(ctx.params.id)
-  ctx.body = article
+  if (article) {
+    ctx.body = article
+  } else {
+    ctx.status = 404
+  }
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {

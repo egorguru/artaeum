@@ -220,6 +220,7 @@ services:
       MONGO_PASSWORD: $MONGO_PASSWORD
       BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+      STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
     image: egorrepnikov/artaeum-blog
     restart: always
     depends_on:

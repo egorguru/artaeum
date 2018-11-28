@@ -22,6 +22,8 @@ const articlesSchema = new mongoose.Schema({
   }
 })
 
+articlesSchema.index({ title: 'text' })
+
 articlesSchema.plugin(autoIncrement.plugin, { model: 'articles' })
 
 module.exports = mongoose.model('articles', articlesSchema)
