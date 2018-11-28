@@ -2,12 +2,14 @@
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <textarea
-          class="form-control"
-          rows="3"
-          placeholder="What's new?"
+        <quill-editor
+          name="body"
+          [style]="{ height: '100px', fontSize: '16px' }"
+          [required]="true"
+          [modules]="{ toolbar: false }"
+          [placeholder]="'What\'s new?'"
           formControlName="text"
-        ></textarea>
+        ></quill-editor>
       </div>
       <div class="btn-group">
         <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Share</button>
