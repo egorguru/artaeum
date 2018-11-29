@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Principal, User } from '../../shared'
-import { ProfileImagesService } from 'src/app/shared/service/profile-images.service'
+import { Principal, User, ProfileImagesService } from '../../shared'
 
 @Component({
   selector: 'ae-change-avatar',

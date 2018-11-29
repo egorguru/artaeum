@@ -1,10 +1,8 @@
 FROM node
 MAINTAINER Egor Repnikov
 
-ADD ./node_modules/ /app/node_modules/
-ADD ./server/ /app/server/
-ADD ./dist/ /app/dist/
+ADD ./dist/ /app/
 
-CMD ["node", "/app/server/index.js"]
+CMD ["node", "/app/server.js"]
 
 EXPOSE 80

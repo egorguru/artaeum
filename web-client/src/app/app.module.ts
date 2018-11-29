@@ -23,7 +23,7 @@ import { SearchModule } from './search'
     SmartButtonComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     SharedModule,
     HomeModule,

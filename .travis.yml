@@ -28,7 +28,7 @@ script:
   - mvn package -f registry --quiet
   - mvn package -f storage --quiet
   - mvn package -f uaa --quiet
-  - npm run build --prefix web-client --silent
+  - npm run build:ssr --prefix web-client --silent
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
