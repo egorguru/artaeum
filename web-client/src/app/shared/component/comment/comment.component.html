@@ -10,7 +10,7 @@
             *ngIf="getUser(c.userId)"
             [routerLink]="['/u', getUser(c.userId).login]"
           >{{ getUser(c.userId).firstName }} {{ getUser(c.userId).lastName }}</a>
-          <div class="content" [innerHTML]="c.text"></div>
+          <div [innerHTML]="c.text"></div>
           <span class="date sub-text">{{ c.createdDate | dateConverter:true }}</span>
         </div>
       </li>
