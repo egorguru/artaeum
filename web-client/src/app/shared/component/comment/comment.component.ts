@@ -44,11 +44,12 @@ export class CommentComponent implements OnInit {
   }
 
   createComment(): void {
-    const comment = new Comment(
-      null, this.form.value.text,
-      this.resourceType, this.resourceId,
-      null, null
-    )
+    const comment = {
+      text: this.form.value.text,
+      resourceType: this.resourceType,
+      resourceId: this.resourceId
+    }
+    this.form.reset()
     this.commentService.create(comment).subscribe(() => this.loadAll())
   }
 
@@ -61,7 +62,6 @@ export class CommentComponent implements OnInit {
       .subscribe((comments) => {
         this.comments = comments.body
         this.loadUsers()
-        this.form.reset()
       })
   }
 

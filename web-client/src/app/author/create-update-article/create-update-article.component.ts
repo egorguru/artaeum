@@ -33,7 +33,7 @@ export class CreateUpdateArticleComponent implements OnInit {
   }
 
   loadImg($event): void {
-    const reader: FileReader = new FileReader()
+    const reader = new FileReader()
     reader.onloadend = () => this.article.image = reader.result.toString()
     reader.readAsDataURL($event.target.files[0])
   }

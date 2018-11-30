@@ -26,8 +26,9 @@ export class CreatePostComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.postService.create(this.form.value).subscribe(() => {
-      this.form.reset()
+    const post = { text: this.form.value.text }
+    this.form.reset()
+    this.postService.create(post).subscribe(() => {
       this.updateWall.emit()
     })
   }
