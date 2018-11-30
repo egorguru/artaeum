@@ -10,19 +10,21 @@
             *ngIf="getUser(c.userId)"
             [routerLink]="['/u', getUser(c.userId).login]"
           >{{ getUser(c.userId).firstName }} {{ getUser(c.userId).lastName }}</a>
-          <p>{{ c.text }}</p>
+          <div class="content" [innerHTML]="c.text"></div>
           <span class="date sub-text">{{ c.createdDate | dateConverter:true }}</span>
         </div>
       </li>
     </ul>
     <form class="form-inline" [formGroup]="form" (ngSubmit)="createComment()" *ngIf="currentUser">
       <div class="form-group">
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Your comment..."
+        <quill-editor
+          name="text"
+          [style]="{ fontSize: '16px', border: 0 }"
+          [required]="true"
+          [modules]="{ toolbar: false }"
+          [placeholder]="'What do you think?'"
           formControlName="text"
-        />
+        ></quill-editor>
       </div>
       <div class="form-group">
         <button class="btn btn-link">Send</button>
