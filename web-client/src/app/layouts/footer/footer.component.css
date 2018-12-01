@@ -23,3 +23,12 @@ footer a {
 footer a:hover {
   color: #959da5;
 }
+
+.dropdown-menu {
+  background-color: inherit;
+  border: none;
+}
+
+.dropdown-item:hover {
+  cursor: pointer;
+}

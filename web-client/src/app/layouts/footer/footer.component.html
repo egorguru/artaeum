@@ -1,7 +1,16 @@
 <footer id="footer">
   <div class="container">
     <div class="row">
-      <p class="ml-auto">© 2018 Artaeum</p>
+      <p class="ml-auto mr-2">© 2018 Artaeum</p>
+      <div>
+        <a class="dropdown-toggle" href="#" id="langdrop" data-toggle="dropdown">
+          {{ languages[currentLang] }}
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" (click)="changeLanguage('en')">{{ languages['en'] }}</a>
+          <a class="dropdown-item" (click)="changeLanguage('ru')">{{ languages['ru'] }}</a>
+        </div>
+      </div>
       <a id="footer-logo" class="mx-auto" routerLink="/">æ</a>
       <p class="mr-auto">Created by <a routerLink="/u/egor_repnikov">Egor Repnikov</a></p>
     </div>
