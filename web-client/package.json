@@ -29,6 +29,8 @@
     "@ng-bootstrap/ng-bootstrap": "^4.0.0",
     "@nguniversal/express-engine": "^7.0.2",
     "@nguniversal/module-map-ngfactory-loader": "v7.0.2",
+    "@ngx-translate/core": "^11.0.1",
+    "@ngx-translate/http-loader": "^4.0.0",
     "bootstrap": "^4.1.3",
     "core-js": "^2.5.4",
     "express": "^4.16.4",

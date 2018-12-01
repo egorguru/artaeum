@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { QuillModule } from 'ngx-quill'
+import { TranslateModule } from '@ngx-translate/core'
 
 @NgModule({
   exports: [
@@ -14,7 +15,8 @@ import { QuillModule } from 'ngx-quill'
     FormsModule,
     RouterModule,
     NgbModule,
-    QuillModule
+    QuillModule,
+    TranslateModule
   ]
 })
 export class SharedLibsModule {}
