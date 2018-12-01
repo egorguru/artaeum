@@ -25,6 +25,7 @@ export class FooterComponent implements OnInit {
   }
 
   changeLanguage(lang: string) {
+    window.localStorage.setItem('lang_key', lang)
     this.translateService.use(lang)
   }
 }

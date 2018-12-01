@@ -30,5 +30,6 @@ footer a:hover {
 }
 
 .dropdown-item:hover {
+  background-color: inherit;
   cursor: pointer;
 }

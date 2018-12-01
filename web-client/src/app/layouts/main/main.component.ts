@@ -13,7 +13,11 @@ export class MainComponent implements OnInit {
     private translateService: TranslateService,
     private principal: Principal
   ) {
-    translateService.setDefaultLang('en')
+    if (typeof window !== 'undefined' && window.localStorage.getItem('lang_key')) {
+      translateService.setDefaultLang(window.localStorage.getItem('lang_key'))
+    } else {
+      translateService.setDefaultLang('en')
+    }
   }
 
   ngOnInit() {
