@@ -109,10 +109,14 @@
       }
     }
   },
+  "search": {
+    "query-input-placeholder": "..."
+  },
   "common": {
     "load-more": "Загрузить",
     "load-image": "Загрузить изображение",
     "articles": "Статьи",
-    "posts": "Посты"
+    "posts": "Посты",
+    "profiles": "Профили"
   }
 }

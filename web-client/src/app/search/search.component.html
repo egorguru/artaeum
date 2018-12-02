@@ -6,7 +6,7 @@
           <input
             type="text"
             name="query"
-            placeholder="What are you looking for?"
+            [placeholder]="'search.query-input-placeholder' | translate"
             [(ngModel)]="query"
           >
         </form>
@@ -19,17 +19,17 @@
           [queryParams]="{ query: query }"
           [routerLinkActive]="'active'"
           [routerLinkActiveOptions]="{ match: ['/search'], exact: true }"
-        >Posts</a>
+        >{{ 'common.posts' | translate }}</a>
         <a
           [routerLink]="['/search/articles']"
           [queryParams]="{ query: query }"
           [routerLinkActive]="'active'"
-        >Articles</a>
+        >{{ 'common.articles' | translate }}</a>
         <a
           [routerLink]="['/search/profiles']"
           [queryParams]="{ query: query }"
           [routerLinkActive]="'active'"
-        >Profiles</a>
+        >{{ 'common.profiles' | translate }}</a>
       </div>
     </div>
     <div class="row justify-content-md-center">

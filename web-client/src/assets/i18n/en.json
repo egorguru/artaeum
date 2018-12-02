@@ -109,10 +109,14 @@
       }
     }
   },
+  "search": {
+    "query-input-placeholder": "What are you looking for?"
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",
     "articles": "Articles",
-    "posts": "Posts"
+    "posts": "Posts",
+    "profiles": "Profiles"
   }
 }
