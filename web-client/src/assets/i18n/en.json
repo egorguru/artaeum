@@ -87,6 +87,12 @@
       "search": "What are you searching?"
     }
   },
+  "pages": {
+    "not-found": {
+      "message": "The Page can't be found",
+      "link": "Go TO Homepage"
+    }
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",
