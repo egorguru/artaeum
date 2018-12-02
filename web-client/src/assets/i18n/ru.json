@@ -53,5 +53,15 @@
       "lang-input-russian": "Русский",
       "submit": "Зарегистрироваться"
     }
+  },
+  "article": {
+    "single-article": {
+      "meta-1": "Опубликовано",
+      "meta-2": "",
+      "comments": "Комментарии"
+    }
+  },
+  "common": {
+    "load-more": "Загрузить"
   }
 }

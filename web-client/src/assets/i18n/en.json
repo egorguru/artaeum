@@ -53,5 +53,15 @@
       "lang-input-russian": "Russian",
       "submit": "Submit"
     }
+  },
+  "article": {
+    "single-article": {
+      "meta-1": "Posted by",
+      "meta-2": "on",
+      "comments": "Comments"
+    }
+  },
+  "common": {
+    "load-more": "Load more"
   }
 }
