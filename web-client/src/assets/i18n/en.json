@@ -93,6 +93,22 @@
       "link": "Go TO Homepage"
     }
   },
+  "profile": {
+    "subscribe": "Subscribe",
+    "unsubscribe": "Unsubscribe",
+    "subscribers-nav": "Subscribers",
+    "wall-nav": "Wall",
+    "blog-nav": "Blog",
+    "subscribers": {
+      "subscribed-on": "Subscribed on"
+    },
+    "wall": {
+      "create-post": {
+        "text-input-placeholder": "What's new?",
+        "submit": "Share"
+      }
+    }
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",

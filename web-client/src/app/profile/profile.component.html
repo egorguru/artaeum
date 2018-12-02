@@ -22,11 +22,11 @@
               <h6>@{{ user.login }}</h6>
             </div>
             <div class="pb-2" *ngIf="currentUser && currentUser.id !== user.id">
-              <button class="btn btn-dark" *ngIf="!subscription">Subscribe</button>
-              <button class="btn btn-dark" *ngIf="subscription">Unsubscribe</button>
+              <button class="btn btn-dark" *ngIf="!subscription">{{ 'profile.subscribe' | translate }}</button>
+              <button class="btn btn-dark" *ngIf="subscription">{{ 'profile.unsubscribe' | translate }}</button>
             </div>
             <a class="text-dark" [routerLink]="['/u', user.login, 'subscribers']">
-              <i class="fa fa-users pb-4" title="Subscribers"> Subscribers</i>
+              <i class="fa fa-users pb-4" title="Subscribers"> {{ 'profile.subscribers-nav' | translate }}</i>
             </a>
           </div>
         </div>
@@ -37,11 +37,11 @@
             [routerLink]="['/u', user.login]"
             [routerLinkActive]="'active'"
             [routerLinkActiveOptions]="{ exact: true }"
-          >Wall</a>
+          >{{ 'profile.wall-nav' | translate }}</a>
           <a
             [routerLink]="['/u', user.login, 'blog']"
             [routerLinkActive]="'active'"
-          >Blog</a>
+          >{{ 'profile.blog-nav' | translate }}</a>
         </div>
       </div>
       <div class="row justify-content-center">

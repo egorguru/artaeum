@@ -14,7 +14,7 @@
                 {{ s.firstName }} {{ s.lastName }}
               </td>
               <td>
-                Subscribed on {{ subscriptions[i].createdDate | dateConverter }}
+                {{ 'profile.subscribers.subscribed-on' | translate }} {{ subscriptions[i].createdDate | dateConverter }}
               </td>
             </tr>
           </tbody>

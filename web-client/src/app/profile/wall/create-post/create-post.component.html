@@ -7,12 +7,14 @@
           [style]="{ height: '100px', fontSize: '16px' }"
           [required]="true"
           [modules]="{ toolbar: false }"
-          [placeholder]="'What\'s new?'"
+          [placeholder]="'profile.wall.create-post.text-input-placeholder' | translate"
           formControlName="text"
         ></quill-editor>
       </div>
       <div class="btn-group">
-        <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Share</button>
+        <button type="submit" class="btn btn-dark" [disabled]="form.invalid">
+          {{ 'profile.wall.create-post.submit' | translate }}
+        </button>
       </div>
     </form>
   </div>

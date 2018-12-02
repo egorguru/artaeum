@@ -93,6 +93,22 @@
       "link": "На главную"
     }
   },
+  "profile": {
+    "subscribe": "Подписаться",
+    "unsubscribe": "Отписаться",
+    "subscribers-nav": "Подписчики",
+    "wall-nav": "Стена",
+    "blog-nav": "Блог",
+    "subscribers": {
+      "subscribed-on": "Подписчик с"
+    },
+    "wall": {
+      "create-post": {
+        "text-input-placeholder": "Что нового?",
+        "submit": "Отправить"
+      }
+    }
+  },
   "common": {
     "load-more": "Загрузить",
     "load-image": "Загрузить изображение",
