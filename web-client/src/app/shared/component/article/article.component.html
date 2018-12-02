@@ -2,9 +2,9 @@
   <a [routerLink]="['/articles', article._id]">
     <h2>{{ article.title }}</h2>
   </a>
-  <p>Posted by
+  <p>{{ 'shared.article.meta-1' | translate }}
     <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
-    on {{ article.createdDate | dateConverter }} |
+    {{ 'shared.article.meta-2' | translate }} {{ article.createdDate | dateConverter }} |
     <span *ngIf="currentUser && currentUser.id === author.id">
       <a [routerLink]="['/author/articles', article._id]">
         <i class="fa fa-pencil" title="Edit"></i>

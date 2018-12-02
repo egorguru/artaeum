@@ -22,12 +22,12 @@
           [style]="{ fontSize: '16px', border: 0 }"
           [required]="true"
           [modules]="{ toolbar: false }"
-          [placeholder]="'What do you think?'"
+          [placeholder]="'shared.comment.text-input-placeholder' | translate"
           formControlName="text"
         ></quill-editor>
       </div>
       <div class="form-group">
-        <button class="btn btn-link">Send</button>
+        <button class="btn btn-link">{{ 'shared.comment.submit' | translate }}</button>
       </div>
     </form>
   </div>      

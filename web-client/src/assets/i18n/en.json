@@ -141,6 +141,19 @@
       "submit": "Save"
     }
   },
+  "shared": {
+    "article": {
+      "meta-1": "Posted by",
+      "meta-2": "on"
+    },
+    "comment": {
+      "text-input-placeholder": "What do you think?",
+      "submit": "Send"
+    },
+    "modal-post": {
+      "remove-btn": "Remove"
+    }
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",

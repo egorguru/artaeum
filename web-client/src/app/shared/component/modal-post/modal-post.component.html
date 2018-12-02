@@ -14,6 +14,7 @@
             class="btn btn-link dropdown-toggle post-button"
             type="button" id="post-drop1" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false"
+            *ngIf="currentUser && post.userId === currentUser.id"
           >
             <i class="fa fa-ellipsis-h"></i>
           </button>
@@ -21,10 +22,8 @@
             <a
               class="dropdown-item post-link"
               role="button"
-              *ngIf="currentUser && post.userId === currentUser.id"
               (click)="delete()"
-            >Remove</a>
-            <a class="dropdown-item post-link" role="button">Report</a>
+            >{{ 'shared.modal-post.remove-btn' | translate }}</a>
           </div>
         </div>
         <button type="button" data-dismiss="modal" class="btn btn-link post-button">

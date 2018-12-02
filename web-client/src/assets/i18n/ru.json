@@ -56,7 +56,7 @@
   },
   "article": {
     "single-article": {
-      "meta-1": "Опубликовано",
+      "meta-1": "",
       "meta-2": "",
       "comments": "Комментарии"
     }
@@ -139,6 +139,19 @@
       "title": "Смена пароля",
       "new-password": "Новый пароль",
       "submit": "Сохранить"
+    }
+  },
+  "shared": {
+    "article": {
+      "meta-1": "",
+      "meta-2": ""
+    },
+    "comment": {
+      "text-input-placeholder": "Комментарий...",
+      "submit": "Отправить"
+    },
+    "modal-post": {
+      "remove-btn": "Удалить"
     }
   },
   "common": {
