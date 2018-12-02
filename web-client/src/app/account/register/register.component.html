@@ -3,32 +3,32 @@
     <div class="card-register">
       <div class="card-heading"></div>
       <div class="card-body">
-        <h2 class="title">Registration</h2>
+        <h2 class="title">{{ 'account.register.title' | translate }}</h2>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="input-group">
-            <input class="input-register" type="text" placeholder="Login" formControlName="login">
+            <input class="input-register" type="text" [placeholder]="'account.register.login-input' | translate" formControlName="login">
           </div>
           <div class="input-group">
             <input class="input-register" type="email" placeholder="Email" formControlName="email">
           </div>
           <div class="input-group">
-            <input class="input-register" type="text" placeholder="First name" formControlName="firstName">
+            <input class="input-register" type="text" [placeholder]="'account.register.first-name-input' | translate" formControlName="firstName">
           </div>
           <div class="input-group">
-            <input class="input-register" type="text" placeholder="Last name" formControlName="lastName">
+            <input class="input-register" type="text" [placeholder]="'account.register.last-name-input' | translate" formControlName="lastName">
           </div>
           <div class="input-group">
-            <input class="input-register" type="password" placeholder="Password" formControlName="password">
+            <input class="input-register" type="password" [placeholder]="'account.register.password-input' | translate" formControlName="password">
           </div>
           <div class="input-group">
             <select class="form-control" formControlName="langKey">
-              <option>Your language</option>
-              <option value="en">English</option>
-              <option value="ru">Russian</option>
+              <option>{{ 'account.register.lang-input-title' | translate }}</option>
+              <option value="en">{{ 'account.register.lang-input-english' | translate }}</option>
+              <option value="ru">{{ 'account.register.lang-input-russian' | translate }}</option>
             </select>
           </div>
           <div class="pt-3">
-            <button class="btn btn-register" type="submit" [disabled]="form.invalid">Submit</button>
+            <button class="btn btn-register" type="submit" [disabled]="form.invalid">{{ 'account.register.submit' | translate }}</button>
           </div>
         </form>
       </div>

@@ -1,1 +1,57 @@
-{}
+{
+  "account": {
+    "activation": {
+      "title": "Activation",
+      "success-1": "Your account has been activated. Let's ",
+      "success-2": "login",
+      "error-1": "Your account has not been activated.",
+      "error-2": "You should use the registration form again."
+    },
+    "login": {
+      "username-input": "Email or Login",
+      "password-input": "Password",
+      "login": "Login",
+      "register-invitation": "Don’t have an account?",
+      "register": "Sign Up",
+      "reset-invitation": "Forgot your password?",
+      "reset": "Reset it"
+    },
+    "password-reset": {
+      "finish": {
+        "title": "Password reset",
+        "key-missing": "Missing password reset key",
+        "new-password": "Сhoose a new password",
+        "error": "Password can't be reset",
+        "success-1": "Password reset was successful.",
+        "success-2": " Let's ",
+        "success-3": "login",
+        "password-input": "New password",
+        "password-empty": "Enter password",
+        "password-min-length": "Min 4 chars",
+        "password-max-length": "Max 50 chars",
+        "submit": "Reset"
+      },
+      "init": {
+        "title": "Password reset",
+        "error": "Bad credentials",
+        "success": "Check your email",
+        "email-empty": "Enter Email",
+        "email-bad": "Bad Email",
+        "email-min-length": "Min 6 chars",
+        "email-max-length": "Max 100 chars",
+        "submit": "Reset"
+      }
+    },
+    "register": {
+      "title": "Registration",
+      "login-input": "Login",
+      "first-name-input": "First name",
+      "last-name-input": "Last name",
+      "password-input": "Password",
+      "lang-input-title": "Language",
+      "lang-input-english": "English",
+      "lang-input-russian": "Russian",
+      "submit": "Submit"
+    }
+  }
+}

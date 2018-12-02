@@ -1,1 +1,57 @@
-{}
+{
+  "account": {
+    "activation": {
+      "title": "Активация",
+      "success-1": "Ваш аккаунт был активирован. Можете",
+      "success-2": "войти",
+      "error-1": "Ваш аккаунт не был активирован.",
+      "error-2": "Воспользуйтесь регистрационной формой заново."
+    },
+    "login": {
+      "username-input": "Email или Логин",
+      "password-input": "Пароль",
+      "login": "Войти",
+      "register-invitation": "Нет аккаунта?",
+      "register": "Регистрация",
+      "reset-invitation": "Забыли пароль?",
+      "reset": "Сброс"
+    },
+    "password-reset": {
+      "finish": {
+        "title": "Сброс пароля",
+        "key-missing": "Пропущен ключ для сброса пароля",
+        "new-password": "Выберете новый пароль",
+        "error": "Пароль не может быть сброшен",
+        "success-1": "Сброс пароля прошёл успешно.",
+        "success-2": " Можете ",
+        "success-3": "войти",
+        "password-input": "Новый пароль",
+        "password-empty": "Введите пароль",
+        "password-min-length": "Минимум 4 символа",
+        "password-max-length": "Максимум 50 символов",
+        "submit": "Сбросить"
+      },
+      "init": {
+        "title": "Сброс пароля",
+        "error": "Неверные данные",
+        "success": "Проверьте ваш Email",
+        "email-empty": "Введите Email",
+        "email-bad": "Неправильный Email",
+        "email-min-length": "Минимум 6 символов",
+        "email-max-length": "Максимум 100 символов",
+        "submit": "Сбросить"
+      }
+    },
+    "register": {
+      "title": "Регистрация",
+      "login-input": "Логин",
+      "first-name-input": "Имя",
+      "last-name-input": "Фамилия",
+      "password-input": "Пароль",
+      "lang-input-title": "Язык",
+      "lang-input-english": "Английский",
+      "lang-input-russian": "Русский",
+      "submit": "Зарегистрироваться"
+    }
+  }
+}
