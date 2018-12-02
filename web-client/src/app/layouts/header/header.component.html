@@ -9,19 +9,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" *ngIf="!currentUser">
-          <a class="nav-link scroll-link" routerLink="/login">Login</a>
+          <a class="nav-link scroll-link" routerLink="/login">{{ 'layouts.header.login' | translate }}</a>
         </li>
         <li class="nav-item" *ngIf="!currentUser">
-          <a class="nav-link scroll-link" routerLink="/register">Register</a>
+          <a class="nav-link scroll-link" routerLink="/register">{{ 'layouts.header.register' | translate }}</a>
         </li>
         <li class="nav-item dropdown dmenu" *ngIf="currentUser">
           <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-            Account
+            {{ 'layouts.header.account' | translate }}
           </a>
           <div class="dropdown-menu sm-menu">
-            <a class="dropdown-item" [routerLink]="['/u', currentUser.login]">My profile</a>
-            <a class="dropdown-item" routerLink="/settings">Settings</a>
-            <a class="dropdown-item" (click)="logout()">Logout</a>
+            <a class="dropdown-item" [routerLink]="['/u', currentUser.login]">{{ 'layouts.header.my-profile' | translate }}</a>
+            <a class="dropdown-item" routerLink="/settings">{{ 'layouts.header.setting' | translate }}</a>
+            <a class="dropdown-item" (click)="logout()">{{ 'layouts.header.logout' | translate }}</a>
           </div>
         </li>
         <li class="nav-item">
@@ -40,7 +40,7 @@
   <form (ngSubmit)="search()">
     <input
       name="searchQuery"
-      placeholder="What are you searching?"
+      [placeholder]="'layouts.header.search' | translate"
       [(ngModel)]="searchQuery"
     />
   </form>

@@ -76,6 +76,17 @@
       "likes": "Лайки"
     }
   },
+  "layouts": {
+    "header": {
+      "login": "Авторизация",
+      "register": "Регистрация",
+      "account": "Аккаунт",
+      "my-profile": "Мой профиль",
+      "setting": "Настройки",
+      "logout": "Выход",
+      "search": "..."
+    }
+  },
   "common": {
     "load-more": "Загрузить",
     "load-image": "Загрузить изображение",

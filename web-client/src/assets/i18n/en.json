@@ -76,6 +76,17 @@
       "likes": "Likes"
     }
   },
+  "layouts": {
+    "header": {
+      "login": "Login",
+      "register": "Sign Up",
+      "account": "Account",
+      "my-profile": "My profile",
+      "setting": "Settings",
+      "logout": "Logout",
+      "search": "What are you searching?"
+    }
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",
