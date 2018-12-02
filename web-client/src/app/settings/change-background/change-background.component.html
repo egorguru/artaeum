@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-      <h4>Profile background image</h4>
+      <h4>{{ 'settings.change-background.title' | translate }}</h4>
       <hr>
     </div>
   </div>
@@ -8,7 +8,7 @@
     <div class="col-md-12">
       <div class="row justify-content-center mb-2">
         <button class="btn btn-dark">
-          <label for="image">Load image</label>
+          <label for="image">{{ 'common.load-image' | translate }}</label>
           <input
             type="file"
             accept="image/*"
@@ -23,13 +23,13 @@
         <div class="card">
           <div class="card-img">
             <img class="w-100" *ngIf="image" [src]="image">
-            <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'background'" onError="this.src = '/assets/ae.jpg'">
+            <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'background'" onError="this.src = '/assets/ae-widescreen.jpg'">
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col text-center">
-          <button class="btn btn-dark" [disabled]="!image" (click)="save()">Save</button>
+          <button class="btn btn-dark" [disabled]="!image" (click)="save()">{{ 'settings.change-background.submit' | translate }}</button>
         </div>
       </div>
     </div>

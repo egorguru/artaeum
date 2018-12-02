@@ -112,6 +112,35 @@
   "search": {
     "query-input-placeholder": "What are you looking for?"
   },
+  "settings": {
+    "common-settings-nav": "Common settings",
+    "change-password-nav": "Change password",
+    "change-avatar-nav": "Change profile image",
+    "change-background-nav": "Change background image",
+    "change-avatar": {
+      "title": "Profile image",
+      "submit": "Save"
+    },
+    "change-background": {
+      "title": "Profile background image",
+      "submit": "Save"
+    },
+    "change-common": {
+      "title": "Common settings",
+      "login": "Login",
+      "first-name": "First name",
+      "last-name": "Last name",
+      "language": "Language",
+      "language-english": "English",
+      "language-russian": "Russian",
+      "submit": "Save"
+    },
+    "change-password": {
+      "title": "Change password",
+      "new-password": "New password",
+      "submit": "Save"
+    }
+  },
   "common": {
     "load-more": "Load more",
     "load-image": "Load image",

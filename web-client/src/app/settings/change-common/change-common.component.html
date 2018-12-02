@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h4>Common settings</h4>
+    <h4>{{ 'settings.change-common.title' | translate }}</h4>
     <hr>
   </div>
 </div>
@@ -8,10 +8,12 @@
   <div class="col-md-12">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="form-group row">
-        <label for="login" class="col-4 col-form-label">Login</label>
+        <label for="login" class="col-4 col-form-label">
+          {{ 'settings.change-common.login' | translate }}
+        </label>
         <div class="col-8">
           <input id="login" class="form-control here" type="text"
-            placeholder="Login" formControlName="login">
+            [placeholder]="'settings.change-common.login' | translate" formControlName="login">
         </div>
       </div>
       <div class="form-group row">
@@ -22,31 +24,37 @@
         </div>
       </div>
       <div class="form-group row">
-        <label for="firstName" class="col-4 col-form-label">First name</label>
+        <label for="firstName" class="col-4 col-form-label">
+          {{ 'settings.change-common.first-name' | translate }}
+        </label>
         <div class="col-8">
           <input id="firstName" class="form-control here" type="text"
-            placeholder="First name" formControlName="firstName">
+            [placeholder]="'settings.change-common.first-name' | translate" formControlName="firstName">
         </div>
       </div>
       <div class="form-group row">
-        <label for="lastName" class="col-4 col-form-label">Last name</label>
+        <label for="lastName" class="col-4 col-form-label">
+          {{ 'settings.change-common.last-name' | translate }}
+        </label>
         <div class="col-8">
           <input id="lastName" class="form-control here" type="text"
-            placeholder="Last name" formControlName="lastName">
+            [placeholder]="'settings.change-common.last-name' | translate" formControlName="lastName">
         </div>
       </div>
       <div class="form-group row">
-        <label for="language" class="col-4 col-form-label">Language</label>
+        <label for="language" class="col-4 col-form-label">
+          {{ 'settings.change-common.language' | translate }}
+        </label>
         <div class="col-8">
           <select id="language" class="custom-select" formControlName="langKey">
-            <option value="en">English</option>
-            <option value="ru">Russian</option>
+            <option value="en">{{ 'settings.change-common.language-english' | translate }}</option>
+            <option value="ru">{{ 'settings.change-common.language-russian' | translate }}</option>
           </select>
         </div>
       </div>
       <div class="form-group row">
         <div class="offset-4 col-8">
-          <button type="submit" class="btn btn-dark" [disabled]="form.invalid">Save</button>
+          <button type="submit" class="btn btn-dark" [disabled]="form.invalid">{{ 'settings.change-common.submit' | translate }}</button>
         </div>
       </div>
     </form>

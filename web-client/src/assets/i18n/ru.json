@@ -112,6 +112,35 @@
   "search": {
     "query-input-placeholder": "..."
   },
+  "settings": {
+    "common-settings-nav": "Общие настройки",
+    "change-password-nav": "Изменить пароль",
+    "change-avatar-nav": "Фото профиля",
+    "change-background-nav": "Фон профиля",
+    "change-avatar": {
+      "title": "Фото профиля",
+      "submit": "Сохранить"
+    },
+    "change-background": {
+      "title": "Фон профиля",
+      "submit": "Сохранить"
+    },
+    "change-common": {
+      "title": "Общие настройки",
+      "login": "Логин",
+      "first-name": "Имя",
+      "last-name": "Фамилия",
+      "language": "Язык",
+      "language-english": "Английский",
+      "language-russian": "Русский",
+      "submit": "Сохранить"
+    },
+    "change-password": {
+      "title": "Смена пароля",
+      "new-password": "Новый пароль",
+      "submit": "Сохранить"
+    }
+  },
   "common": {
     "load-more": "Загрузить",
     "load-image": "Загрузить изображение",

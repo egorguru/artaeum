@@ -8,22 +8,22 @@
             routerLink="/settings"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: true }"
-          >Common settings</a>
+          >{{ 'settings.common-settings-nav' | translate }}</a>
           <a
             class="list-group-item list-group-item-action"
             routerLink="/settings/change-password"
             [routerLinkActive]="['active']"
-          >Change password</a>
+          >{{ 'settings.change-password-nav' | translate }}</a>
           <a
             class="list-group-item list-group-item-action"
             routerLink="/settings/change-avatar"
             [routerLinkActive]="['active']"
-          >Change profile image</a>
+          >{{ 'settings.change-avatar-nav' | translate }}</a>
           <a
             class="list-group-item list-group-item-action"
             routerLink="/settings/change-background"
             [routerLinkActive]="['active']"
-          >Change background image</a>
+          >{{ 'settings.change-background-nav' | translate }}</a>
         </div>
       </div>
       <div class="col-md-9">
