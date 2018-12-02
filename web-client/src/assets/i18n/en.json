@@ -61,7 +61,23 @@
       "comments": "Comments"
     }
   },
+  "author": {
+    "dashboard-nav": "Dashboard",
+    "create-article-nav": "Create article",
+    "create-update-article": {
+      "title-input": "Title",
+      "body-input-placeholder": "Let's write it!",
+      "submit": "Save"
+    },
+    "dashboard": {
+      "subscribers": "Subscribers",
+      "articles": "Articles",
+      "posts": "Posts",
+      "likes": "Likes"
+    }
+  },
   "common": {
-    "load-more": "Load more"
+    "load-more": "Load more",
+    "load-image": "Load image"
   }
 }

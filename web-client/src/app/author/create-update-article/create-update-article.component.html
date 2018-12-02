@@ -1,10 +1,10 @@
 <form *ngIf="article" role="form" novalidate (ngSubmit)="save()" #form="ngForm">
   <div class="form-group">
-    <input class="form-control" type="text" name="title" placeholder="Title" required [(ngModel)]="article.title" />
+    <input class="form-control" type="text" name="title" [placeholder]="'author.create-update-article.title-input' | translate" required [(ngModel)]="article.title" />
   </div>
   <div class="form-group">
     <button class="btn btn-dark">
-      <label for="image">Load image</label>
+      <label for="image">{{ 'common.load-image' | translate }}</label>
       <input
         type="file"
         accept="image/*"
@@ -31,11 +31,11 @@
         'line-height': '1.5'
       }"
       [modules]="toolbar"
-      [placeholder]="'Let\'s write it!'"
+      [placeholder]="'author.create-update-article.body-input-placeholder' | translate"
       [(ngModel)]="article.body"
     ></quill-editor>
   </div>
   <button type="submit" [disabled]="form.form.invalid && (!article.image || !article._id)" class="btn btn-dark">
-    <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+    <span class="fa fa-save"></span>&nbsp;<span>{{ 'author.create-update-article.submit' | translate }}</span>
   </button>
 </form>

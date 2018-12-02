@@ -61,7 +61,23 @@
       "comments": "Комментарии"
     }
   },
+  "author": {
+    "dashboard-nav": "Панель управления",
+    "create-article-nav": "Создать статью",
+    "create-update-article": {
+      "title-input": "Название",
+      "body-input-placeholder": "Let's write it!",
+      "submit": "Сохранить"
+    },
+    "dashboard": {
+      "subscribers": "Подписчики",
+      "articles": "Статьи",
+      "posts": "Посты",
+      "likes": "Лайки"
+    }
+  },
   "common": {
-    "load-more": "Загрузить"
+    "load-more": "Загрузить",
+    "load-image": "Загрузить изображение"
   }
 }

@@ -8,12 +8,12 @@
             routerLink="/author"
             [routerLinkActive]="['active']"
             [routerLinkActiveOptions]="{ exact: true }"
-          >Dashboard</a>
+          >{{ 'author.dashboard-nav'| translate }}</a>
           <a
             class="list-group-item list-group-item-action"
             routerLink="/author/articles"
             [routerLinkActive]="['active']"
-          >Create article</a>
+          >{{ 'author.create-article-nav'| translate }}</a>
         </div>
       </div>
       <div class="col-md-9">
