@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 import { environment as env } from '../../../environments/environment'
+
+import { I18nService } from '../shared'
 
 @Component({
   selector: 'ae-footer',
@@ -12,18 +13,17 @@ export class FooterComponent implements OnInit {
   languages: any
   currentLang: string
 
-  constructor(private translateService: TranslateService) {}
+  constructor(private i18nService: I18nService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.languages = env.LANGUAGES
-    this.currentLang = this.translateService.defaultLang
-    this.translateService.onLangChange.subscribe((event) => {
+    this.currentLang = this.i18nService.getCurrentLang() || this.i18nService.getDefaultLang()
+    this.i18nService.getOnLangChange().subscribe((event) => {
       this.currentLang = event.lang
     })
   }
 
-  changeLanguage(lang: string) {
-    window.localStorage.setItem('lang_key', lang)
-    this.translateService.use(lang)
+  changeLanguage(lang: string): void {
+    this.i18nService.changeLanguage(lang)
   }
 }

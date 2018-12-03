@@ -18,7 +18,7 @@ export class UserRouteAccessService implements CanActivate {
         if (account) {
           return this.principal.hasAuthorities(authorities)
         }
-        this.router.navigate(['login'])
+        this.router.navigate(['/login'])
         return false
       })
     )

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { TranslateService } from '@ngx-translate/core'
 
-import { Principal } from '../../shared'
+import { I18nService } from '../shared'
 
 @Component({
   selector: 'ae-main',
@@ -9,20 +8,9 @@ import { Principal } from '../../shared'
 })
 export class MainComponent implements OnInit {
 
-  constructor(
-    private translateService: TranslateService,
-    private principal: Principal
-  ) {
-    if (typeof window !== 'undefined' && window.localStorage.getItem('lang_key')) {
-      translateService.setDefaultLang(window.localStorage.getItem('lang_key'))
-    } else {
-      translateService.setDefaultLang('en')
-    }
-  }
+  constructor(private i18nService: I18nService) {}
 
   ngOnInit() {
-    this.principal.identity().then((u) => {
-      this.translateService.use(u.langKey || 'en')
-    })
+    this.i18nService.init()
   }
 }
