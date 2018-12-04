@@ -1,3 +1,15 @@
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+ribbon:
+  ReadTimeout: 20000
+  ConnectTimeout: 20000
+
 zuul:
   ignoredServices: '*'
   host:
@@ -6,7 +18,7 @@ zuul:
   routes:
     uaa:
       path: /uaa/**
-      url: ${UAA_SERVICE_URL}
+      serviceId: uaa
       stripPrefix: false
     media:
       path: /media/**
