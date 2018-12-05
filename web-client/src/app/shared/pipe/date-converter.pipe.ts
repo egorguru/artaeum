@@ -14,8 +14,11 @@ export class DateConverterPipe implements PipeTransform {
     const currentLang = this.translateService.currentLang || this.translateService.defaultLang
     let result = `${env.MONTHS[currentLang][date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
     if (exactTime) {
-      result = `${result} ${date.getHours()}:${date.getMinutes()}`
+      const minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      result = `${result} ${date.getHours()}:${minutes}`
     }
     return result
   }
+
+
 }

@@ -78,7 +78,7 @@
   },
   "layouts": {
     "header": {
-      "login": "Авторизация",
+      "login": "Войти",
       "register": "Регистрация",
       "account": "Аккаунт",
       "my-profile": "Мой профиль",

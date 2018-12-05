@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(50)
       ]),
-      'langKey': new FormControl('Your language', [
+      'langKey': new FormControl('default', [
         Validators.required
       ])
     })

@@ -69,12 +69,13 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(id: number): void {
-    this.postService.delete(id)
-      .subscribe(() => this.posts.map((p, i) => {
+    this.postService.delete(id).subscribe(() => {
+      this.posts.map((p, i) => {
         if (p.id === id) {
           this.posts.splice(i, 1)
         }
-      }))
+      })
+    })
   }
 
   private loadUsers(): void {

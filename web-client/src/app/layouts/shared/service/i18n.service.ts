@@ -25,10 +25,12 @@ export class I18nService {
 
   changeLanguage(lang: string): void {
     window.localStorage.setItem('lang_key', lang)
-    this.principal.identity().then((u) => {
-      u.langKey = lang
-      this.accountService.save(u).subscribe()
-    })
+    if (this.principal.isAuthenticated()) {
+      this.principal.identity().then((u) => {
+        u.langKey = lang
+        this.accountService.save(u).subscribe()
+      })
+    }
     this.translateService.use(lang)
   }
 

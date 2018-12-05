@@ -30,7 +30,7 @@ export class AuthExpiredInterceptor implements HttpInterceptor {
                 (this.principal.isAuthenticated() || err.error.error === 'invalid_token') &&
                 err.status === 401) {
             this.loginService.logout()
-            this.router.navigate(['/login'])
+            this.router.navigate(['/'])
           }
         }
       )
