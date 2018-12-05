@@ -32,6 +32,7 @@ export const environment = {
     ]
   },
   COUNT_OF_SMART_BUTTON_ELEMENTS: 4,
+  LANG_KEYS: ['en', 'ru'],
   LANGUAGES: {
     en: '🇺🇸',
     ru: '🇷🇺'
