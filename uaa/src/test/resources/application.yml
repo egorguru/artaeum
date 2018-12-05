@@ -20,3 +20,4 @@ spring:
 artaeum:
   mail:
     url: localhost
+  languages: en,ru

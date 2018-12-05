@@ -2,6 +2,8 @@ package com.artaeum.uaa.config;
 
 public final class Constants {
 
+    public static final String DEFAULT_LANG_KEY = "en";
+
     public static final int PASSWORD_MIN_LENGTH = 6;
 
     public static final int PASSWORD_MAX_LENGTH = 60;

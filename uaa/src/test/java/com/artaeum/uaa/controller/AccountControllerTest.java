@@ -80,6 +80,23 @@ public class AccountControllerTest {
     }
 
     @Test
+    public void whenCreateUserWithInvalidLangKeyThenItWillBeEN() throws Exception {
+        UserRegister user = new UserRegister();
+        user.setEmail("test@email.com");
+        user.setLogin("testlogin");
+        user.setFirstName("First");
+        user.setLastName("Last");
+        user.setPassword("password");
+        user.setLangKey("cz");
+        String json = this.mapper.writeValueAsString(user);
+        this.mockMvc.perform(post("/register")
+                .contentType(MediaType.APPLICATION_JSON).content(json))
+                .andExpect(status().isCreated());
+        User result = this.userRepository.findByLogin("testlogin").get();
+        assertEquals(Constants.DEFAULT_LANG_KEY, result.getLangKey());
+    }
+
+    @Test
     public void whenCreateUserWithInvalidEmailThenThrowException() throws Exception {
         UserRegister user = new UserRegister();
         user.setEmail("testemail");

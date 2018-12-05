@@ -8,12 +8,14 @@ import com.artaeum.uaa.dto.UserRegister;
 import com.artaeum.uaa.dto.UserReset;
 import com.artaeum.uaa.service.MailService;
 import com.artaeum.uaa.service.UserService;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -23,9 +25,12 @@ public class AccountController {
 
     private MailService mailService;
 
-    public AccountController(UserService userService, MailService mailService) {
+    private Environment env;
+
+    public AccountController(UserService userService, MailService mailService, Environment env) {
         this.userService = userService;
         this.mailService = mailService;
+        this.env = env;
     }
 
     @GetMapping("/account/current")
@@ -42,7 +47,9 @@ public class AccountController {
         if (this.userService.getByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyUsedException();
         }
-        // must be validation for langKey
+        if (!this.checkCorrectLangKey(user.getLangKey())) {
+            user.setLangKey(Constants.DEFAULT_LANG_KEY);
+        }
         User newUser = this.userService.register(user);
         this.mailService.sendActivationEmail(newUser);
     }
@@ -108,6 +115,10 @@ public class AccountController {
             throw new InvalidPasswordException();
         }
         this.userService.changePassword(principal.getName(), password);
+    }
+
+    private boolean checkCorrectLangKey(String langKey) {
+        return this.env.getProperty("artaeum.languages", List.class).contains(langKey);
     }
 
     private boolean checkPasswordLength(String password) {
