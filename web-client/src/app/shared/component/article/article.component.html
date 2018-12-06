@@ -4,13 +4,11 @@
   </a>
   <p>{{ 'shared.article.meta-1' | translate }}
     <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
-    {{ 'shared.article.meta-2' | translate }} {{ article.createdDate | dateConverter }} |
+    {{ 'shared.article.meta-2' | translate }} {{ article.createdDate | dateConverter }}
     <span *ngIf="currentUser && currentUser.id === author.id">
+      |
       <a [routerLink]="['/author/articles', article._id]">
         <i class="fa fa-pencil" title="Edit"></i>
-      </a> |
-      <a role="button" (click)="delete()">
-        <i class="fa fa-remove" title="Remove"></i>
       </a>
     </span>
   </p>

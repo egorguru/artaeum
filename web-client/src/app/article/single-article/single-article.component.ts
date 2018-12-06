@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title } from '@angular/platform-browser'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 import {
   User, Article,
@@ -17,6 +18,7 @@ export class SingleArticleComponent implements OnInit {
 
   article: Article
   author: User
+  currentUser: User
 
   constructor(
     private principal: Principal,
@@ -25,7 +27,8 @@ export class SingleArticleComponent implements OnInit {
     private userService: UserService,
     private activedRoute: ActivatedRoute,
     private router: Router,
-    private title: Title
+    private title: Title,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -39,8 +42,19 @@ export class SingleArticleComponent implements OnInit {
     })
   }
 
+  modal(content): void {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-delete-article' })
+  }
+
+  deleteArticle(): void {
+    this.modalService.dismissAll('Remove article')
+    this.articleService.delete(this.article._id)
+      .subscribe(() => this.router.navigate(['/']))
+  }
+
   private checkUserAndInitSmartButton(): void {
     this.principal.identity().then((u) => {
+      this.currentUser = u
       if (this.article.userId === u.id) {
         this.smartButtonService.add({
           className: 'fa fa-edit',

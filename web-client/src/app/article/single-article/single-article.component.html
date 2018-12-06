@@ -1,3 +1,20 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-delete-article">{{ 'article.single-article.delete-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>{{ 'article.single-article.delete-modal.text-1' | translate }}</strong></p>
+    <span class="text-danger">{{ 'article.single-article.delete-modal.text-2' | translate }}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'article.single-article.delete-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-danger" ngbAutofocus (click)="deleteArticle()">{{ 'article.single-article.delete-modal.remove' | translate }}</button>
+  </div>
+</ng-template>
+
 <section *ngIf="article && author">
   <header class="masthead" [ngStyle]="{'background-image': 'url(' + (article._id | imageAppender:'blog':'article') + '), url(/assets/ae-widescreen.jpg)'}">
     <div class="overlay"></div>
@@ -9,6 +26,15 @@
             <span class="meta">{{ 'article.single-article.meta-1' | translate }}
               <a [routerLink]="['/u', author.login]">@{{ author.login }}</a>
               {{ 'article.single-article.meta-2' | translate }} {{ article.createdDate | dateConverter:true }}
+              <span *ngIf="currentUser && currentUser.id === author.id">
+                |
+                <a role="button" [routerLink]="['/author/articles', article._id]">
+                  <i class="fa fa-pencil" title="Edit"></i>
+                </a> |
+                <a role="button" (click)="modal(content)">
+                  <i class="fa fa-remove" title="Remove"></i>
+                </a>
+              </span>
             </span>
           </div>
         </div>

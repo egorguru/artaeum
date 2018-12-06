@@ -49,16 +49,6 @@ export class LastArticlesComponent implements OnInit {
     })
   }
 
-  deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(() => {
-      this.articles.map((a, i) => {
-        if (a._id === id) {
-          this.articles.splice(i, 1)
-        }
-      })
-    })
-  }
-
   private loadUsers(subs: Subscription[]): void {
     subs.map((s, i) => this.userService.get(s.profileId).subscribe((u) => {
       this.users[u.body.id] = u.body

@@ -4,7 +4,6 @@
       [article]="a"
       [author]="users[a.userId]"
       [currentUser]="currentUser"
-      (aeOnDelete)="deleteArticle(a._id)"
     ></ae-article>
   </div>
   <button class="btn btn-dark" (click)="loadArticles()">{{ 'common.load-more' | translate }}</button>

@@ -72,17 +72,6 @@ export class BlogComponent implements OnInit {
     }
   }
 
-  deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(() => {
-      this.articles.map((a, i) => {
-        if (a._id === id) {
-          console.log(i)
-          this.articles.splice(i, 1)
-        }
-      })
-    })
-  }
-
   private identityUserAndInitSmartButton(profileId: string): void {
     this.principal.identity().then((u) => {
       this.currentUser = u

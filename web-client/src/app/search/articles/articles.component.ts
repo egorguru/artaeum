@@ -67,16 +67,6 @@ export class ArticlesComponent implements OnInit {
     }
   }
 
-  deleteArticle(id: number): void {
-    this.articleService.delete(id).subscribe(() => {
-      this.articles.map((p, i) => {
-        if (p._id === id) {
-          this.articles.splice(i, 1)
-        }
-      })
-    })
-  }
-
   private loadUsers(): void {
     this.articles.map((s) => {
       if (!this.users[s.userId]) {
