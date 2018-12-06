@@ -2,8 +2,17 @@ import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { environment as env } from '../../../environments/environment'
 
 import { AccountService } from '../../shared'
+
+function validateLangKey(c: FormControl): any {
+  return env.LANG_KEYS.includes(c.value) ? null : {
+    validateLangKey: {
+      valid: false
+    }
+  }
+}
 
 @Component({
   selector: 'ae-register',
@@ -50,13 +59,12 @@ export class RegisterComponent implements OnInit {
         Validators.minLength(5),
         Validators.maxLength(50)
       ]),
-      'langKey': new FormControl('default', [
-        Validators.required
-      ])
+      'langKey': new FormControl('default', validateLangKey)
     })
   }
 
   onSubmit(): void {
+    this.form.disable()
     this.accountService.register(this.form.value).subscribe((res) => {
       if (res.status === 201) {
         this.router.navigate(['/login'])
