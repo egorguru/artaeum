@@ -5,7 +5,6 @@
       [author]="users[p.userId]"
       [currentUser]="currentUser"
       (aeOnDelete)="deletePost(p.id)"
-      [modal]="true"
     ></ae-post>
   </div>
   <button class="btn btn-dark" (click)="loadPosts()">{{ 'common.load-more' | translate }}</button>

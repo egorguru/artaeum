@@ -8,7 +8,7 @@ import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 import {
   CommentComponent, LikeComponent,
   CommentButtonComponent, PostComponent,
-  ModalPostComponent, ArticleComponent
+  ArticleComponent
 } from './component'
 
 @NgModule({
@@ -21,7 +21,6 @@ import {
     LikeComponent,
     CommentButtonComponent,
     PostComponent,
-    ModalPostComponent,
     ArticleComponent
   ],
   providers: [
@@ -48,7 +47,6 @@ import {
     LikeComponent,
     CommentButtonComponent,
     PostComponent,
-    ModalPostComponent,
     ArticleComponent
   ]
 })

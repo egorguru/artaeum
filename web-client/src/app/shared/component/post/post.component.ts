@@ -12,7 +12,6 @@ export class PostComponent {
   @Input() post: Post
   @Input() author: User
   @Input() currentUser: User
-  @Input() modal: boolean
   @Output() aeOnDelete = new EventEmitter<void>()
 
   delete(): void {

@@ -18,16 +18,7 @@
     </div>
   </div>
   <div class="card-body">
-    <ae-modal-post
-      *ngIf="modal"
-      [post]="post"
-      [author]="author"
-      [currentUser]="currentUser"
-      (aeOnDelete)="delete()"
-    >
-      <p class="card-text" [innerHTML]="post.text"></p>
-    </ae-modal-post>
-    <p class="card-text" *ngIf="!modal" [innerHTML]="post.text"></p>
+    <p class="card-text" [innerHTML]="post.text"></p>
   </div>
   <div class="card-footer">
     <span class="card-link">
