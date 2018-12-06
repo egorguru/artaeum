@@ -157,8 +157,15 @@
       "text-input-placeholder": "What do you think?",
       "submit": "Send"
     },
-    "modal-post": {
-      "remove-btn": "Remove"
+    "post": {
+      "remove-btn": "Remove",
+      "delete-modal": {
+        "title": "Post deletion",
+        "text-1": "Are you sure you want to delete this post?",
+        "text-2": "This operation can not be undone.",
+        "cancel": "Cancel",
+        "remove": "Remove"
+      }
     }
   },
   "common": {

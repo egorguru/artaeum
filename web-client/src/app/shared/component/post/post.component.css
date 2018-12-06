@@ -38,6 +38,11 @@
   cursor: pointer;
 }
 
+.dropdown button {
+  color: #586069;
+  padding: 0;
+}
+
 @media (max-width: 767px) {
   .card {
     width: 100%;

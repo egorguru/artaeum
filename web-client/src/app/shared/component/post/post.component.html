@@ -1,3 +1,20 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-delete-post">{{ 'shared.post.delete-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>{{ 'shared.post.delete-modal.text-1' | translate }}</strong></p>
+    <span class="text-danger">{{ 'shared.post.delete-modal.text-2' | translate }}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'shared.post.delete-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-danger" ngbAutofocus (click)="delete()">{{ 'shared.post.delete-modal.remove' | translate }}</button>
+  </div>
+</ng-template>
+
 <div class="card post-card">
   <div class="card-header">
     <div class="d-flex justify-content-between align-items-center">
@@ -13,6 +30,14 @@
             class="h7 text-muted"
             *ngIf="author.firstName && author.lastName"
           >{{ author.firstName }} {{ author.lastName }} | {{ post.createdDate | dateConverter:true }}</div>
+        </div>
+      </div>
+      <div class="dropdown" *ngIf="currentUser && currentUser.id === author.id">
+        <button class="btn btn-link dropdown-toggle" type="button" [id]="'post' + post.id" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-ellipsis-h"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right" [attr.aria-labelledby]="'post' + post.id">
+          <a role="button" class="dropdown-item" (click)="modal(content)">{{ 'shared.post.remove-btn' | translate }}</a>
         </div>
       </div>
     </div>
