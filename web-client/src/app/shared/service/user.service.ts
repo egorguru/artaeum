@@ -30,7 +30,7 @@ export class UserService {
   }
 
   search(req?: any): Observable<HttpResponse<User[]>> {
-    return this.http.get<User[]>('profile/users/search', {
+    return this.http.get<User[]>('uaa/users/search', {
       params: createRequestOption(req),
       observe: 'response'
     })

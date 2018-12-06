@@ -1,13 +1,28 @@
 import { NgModule } from '@angular/core'
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HttpClient, HttpBackend } from '@angular/common/http'
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common'
 import { RouterModule } from '@angular/router'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { QuillModule } from 'ngx-quill'
-import { TranslateModule } from '@ngx-translate/core'
+import { TranslateLoader, TranslateModule, TranslateStore } from '@ngx-translate/core'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+
+export function HttpLoaderFactory(handler: HttpBackend) {
+  return new TranslateHttpLoader(new HttpClient(handler), 'assets/i18n/', '.json')
+}
 
 @NgModule({
+  imports: [
+    TranslateModule.forChild({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpBackend]
+      }
+    })
+  ],
+  providers: [TranslateStore],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -19,4 +34,4 @@ import { TranslateModule } from '@ngx-translate/core'
     TranslateModule
   ]
 })
-export class SharedLibsModule {}
+export class SharedLibsModule { }
