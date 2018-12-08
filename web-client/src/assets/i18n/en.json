@@ -10,11 +10,11 @@
     "login": {
       "username-input": "Email or Login",
       "password-input": "Password",
-      "login": "Login",
+      "login": "Log In",
       "register-invitation": "Don’t have an account?",
       "register": "Sign Up",
       "reset-invitation": "Forgot your password?",
-      "reset": "Reset it"
+      "reset": "Reset"
     },
     "password-reset": {
       "finish": {
@@ -24,7 +24,7 @@
         "error": "Password can't be reset",
         "success-1": "Password reset was successful.",
         "success-2": " Let's ",
-        "success-3": "login",
+        "success-3": "Log In",
         "password-input": "New password",
         "password-empty": "Enter password",
         "password-min-length": "Min 4 chars",
@@ -85,7 +85,7 @@
   },
   "layouts": {
     "header": {
-      "login": "Login",
+      "login": "Log In",
       "register": "Sign Up",
       "account": "Account",
       "my-profile": "My profile",
