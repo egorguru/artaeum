@@ -1,11 +1,11 @@
 server:
   servlet:
     context-path: /uaa
-  port: 5000
+  port: ${PORT:5000}
 
 spring:
   datasource:
-    url: jdbc:postgresql://uaa-postgres:5432/uaa
+    url: ${POSTGRES_URL:jdbc:postgresql://uaa-postgres:5432/uaa}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
   jpa:
@@ -34,7 +34,7 @@ security:
     client:
       clientId: uaa
       clientSecret: ${UAA_SERVICE_PASSWORD}
-      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
       grant-type: client_credentials
       scope: server
 

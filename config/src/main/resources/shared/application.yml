@@ -3,9 +3,13 @@ eureka:
     prefer-ip-address: true
   client:
     serviceUrl:
-      defaultZone: http://registry:8761/eureka/
+      defaultZone: ${EUREKA_URL:http://registry:8761/eureka/}
 
 security:
   oauth2:
     resource:
-      user-info-uri: http://uaa:5000/uaa/account/current
+      user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
+
+server:
+  tomcat:
+    max-threads: ${SERVER_MAX_THREADS:50}

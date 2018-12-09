@@ -46,13 +46,13 @@ zuul:
       stripPrefix: false
 
 server:
-  port: 4000
+  port: ${PORT:4000}
 
 security:
   oauth2:
     client:
       clientId: gateway
       clientSecret: ${GATEWAY_SERVICE_PASSWORD}
-      accessTokenUri: http://uaa:5000/uaa/oauth/token
+      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
       grant-type: client_credentials
       scope: client.user
