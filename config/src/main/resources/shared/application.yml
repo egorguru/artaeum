@@ -9,7 +9,3 @@ security:
   oauth2:
     resource:
       user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
-
-server:
-  tomcat:
-    max-threads: ${SERVER_MAX_THREADS:50}

@@ -6,9 +6,9 @@ server:
 spring:
   data:
     mongodb:
-      host: media-mongo
-      port: 27017
-      database: media
+      host: ${MONGO_HOST:media-mongo}
+      port: ${MONGO_PORT:27017}
+      database: ${MONGO_DB:media}
       username: ${MONGO_USER}
       password: ${MONGO_PASSWORD}
 

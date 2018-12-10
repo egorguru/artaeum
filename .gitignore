@@ -17,3 +17,5 @@ yarn.lock
 .settings
 .classpath
 .project
+
+deploy.sh
