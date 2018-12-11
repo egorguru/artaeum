@@ -6,7 +6,7 @@ const config = require('./config-client')
 function initBearerStrategy(config) {
   return new BearerStrategy((token, done) => {
     rp({
-      uri: config.get('security.oauth2.resource.user-info-uri'),
+      uri: process.env[config.get('security.oauth2.resource.user-info-uri')] || 'http://uaa:5000/uaa/account/current',
       headers: { 'Authorization': `Bearer ${token}` },
       json: true
     }).then((data) => {
