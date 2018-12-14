@@ -1,6 +1,7 @@
 eureka:
   instance:
-    prefer-ip-address: true
+    hostname: ${HOSTNAME:localhost}
+    nonSecurePort: ${HOSTPORT:${server.port}}
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URL:http://registry:8761/eureka/}

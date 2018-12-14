@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  SERVER_API_URL: 'http://localhost:8080',
-  IMAGE_BASE_URL: 'http://localhost:8080/storage/images/',
+  SERVER_API_URL: 'https://ae-gateway.herokuapp.com',
+  IMAGE_BASE_URL: 'https://ae-gateway.herokuapp.com/storage/images/',
   POSTS_PER_PAGE: 10,
   MONTHS: {
     en: [
