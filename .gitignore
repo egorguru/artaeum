@@ -18,4 +18,4 @@ yarn.lock
 .classpath
 .project
 
-deploy.sh
+*.sh

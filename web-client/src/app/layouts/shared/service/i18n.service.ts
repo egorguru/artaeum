@@ -20,7 +20,7 @@ export class I18nService {
       this.principal.identity().then((u) => this.translateService.use(u.langKey))
     } else if (typeof window !== 'undefined' && window.localStorage.getItem('lang_key')) {
       this.translateService.use(window.localStorage.getItem('lang_key'))
-    } else {
+    } else if (typeof navigator !== 'undefined') {
       const userLang = navigator.language.substring(0, 2)
       if (env.LANG_KEYS.includes(userLang)) {
         this.translateService.use(userLang)
