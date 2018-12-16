@@ -68,6 +68,8 @@ export class RegisterComponent implements OnInit {
     this.accountService.register(this.form.value).subscribe((res) => {
       if (res.status === 201) {
         this.router.navigate(['/login'])
+      } else {
+        this.form.enable()
       }
     })
   }

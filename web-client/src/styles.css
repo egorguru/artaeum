@@ -52,3 +52,12 @@ section {
   font-weight: 400;
   text-transform: uppercase;
 }
+
+.ql-editor p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+.ql-editor p:last-child, .card-body p:last-child {
+  margin-bottom: 0;
+}
