@@ -24,6 +24,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                     .authorizeRequests()
+                    .antMatchers("/actuator/**").permitAll()
                     .antMatchers("/register").permitAll()
                     .antMatchers("/activate").permitAll()
                     .antMatchers("/authenticate").permitAll()

@@ -15,6 +15,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         .httpBasic
       .and
         .authorizeRequests
+        .antMatchers("/actuator/**").permitAll()
         .antMatchers(HttpMethod.GET).permitAll
         .anyRequest.authenticated
   }
