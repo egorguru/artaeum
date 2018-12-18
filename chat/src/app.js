@@ -1,6 +1,6 @@
 const Koa = require('koa')
 
-const mongoClient = require('./lib/mongo-client')
+const mongoConfig = require('./lib/mongo-config')
 const handlers = require('./handlers')
 const controllers = require('./controllers')
 
@@ -11,6 +11,6 @@ handlers.forEach((h) => app.use(h))
 app.use(controllers.routes())
 app.use(controllers.allowedMethods())
 
-mongoClient()
+mongoConfig()
 
 module.exports = app
