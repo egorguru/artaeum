@@ -18,9 +18,6 @@ install:
   - npm install --prefix web-client --silent
 
 script:
-  - mvn package -f blog-sidecar --quiet
-  - mvn package -f chat-sidecar --quiet
-  - mvn package -f comment-sidecar --quiet
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet
   - mvn package -f media --quiet
@@ -40,30 +37,15 @@ after_success:
   - docker tag $BLOG:$COMMIT $BLOG:$TAG
   - docker push $BLOG
 
-  - export BLOG_SIDECAR=egorrepnikov/artaeum-blog-sidecar
-  - docker build -t $BLOG_SIDECAR:$COMMIT ./blog-sidecar
-  - docker tag $BLOG_SIDECAR:$COMMIT $BLOG_SIDECAR:$TAG
-  - docker push $BLOG_SIDECAR
-
   - export CHAT=egorrepnikov/artaeum-chat
   - docker build -t $CHAT:$COMMIT ./chat
   - docker tag $CHAT:$COMMIT $CHAT:$TAG
   - docker push $CHAT
 
-  - export CHAT_SIDECAR=egorrepnikov/artaeum-chat-sidecar
-  - docker build -t $CHAT_SIDECAR:$COMMIT ./chat-sidecar
-  - docker tag $CHAT_SIDECAR:$COMMIT $CHAT_SIDECAR:$TAG
-  - docker push $CHAT_SIDECAR
-
   - export COMMENT=egorrepnikov/artaeum-comment
   - docker build -t $COMMENT:$COMMIT ./comment
   - docker tag $COMMENT:$COMMIT $COMMENT:$TAG
   - docker push $COMMENT
-
-  - export COMMENT_SIDECAR=egorrepnikov/artaeum-comment-sidecar
-  - docker build -t $COMMENT_SIDECAR:$COMMIT ./comment-sidecar
-  - docker tag $COMMENT_SIDECAR:$COMMIT $COMMENT_SIDECAR:$TAG
-  - docker push $COMMENT_SIDECAR
 
   - export CONFIG=egorrepnikov/artaeum-config
   - docker build -t $CONFIG:$COMMIT ./config

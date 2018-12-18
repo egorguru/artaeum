@@ -23,14 +23,8 @@ services:
   chat:
    build: chat
 
-  chat-sidecar:
-    build: chat-sidecar
-
   comment:
     build: comment
-
-  comment-sidecar:
-    build: comment-sidecar
 
   storage:
     build: storage
@@ -40,6 +34,3 @@ services:
 
   blog:
     build: blog
-
-  blog-sidecar:
-    build: blog-sidecar

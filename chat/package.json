@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "cloud-config-client": "^1.4.2",
+    "eureka-js-client": "^4.4.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-passport": "^4.1.1",

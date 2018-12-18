@@ -144,16 +144,6 @@ services:
     ports:
     - 28000:27017
 
-  chat-sidecar:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: egorrepnikov/artaeum-chat-sidecar
-    restart: always
-    depends_on:
-      config:
-        condition: service_healthy
-
   comment:
     environment:
       CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
@@ -179,16 +169,6 @@ services:
       MONGODB_APPLICATION_DATABASE: comment
     ports:
     - 29000:27017
-
-  comment-sidecar:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: egorrepnikov/artaeum-comment-sidecar
-    restart: always
-    depends_on:
-      config:
-        condition: service_healthy
 
   storage:
     environment:
@@ -236,13 +216,3 @@ services:
       MONGODB_APPLICATION_DATABASE: blog
     ports:
     - 30000:27017
-
-  blog-sidecar:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: egorrepnikov/artaeum-blog-sidecar
-    restart: always
-    depends_on:
-      config:
-        condition: service_healthy
