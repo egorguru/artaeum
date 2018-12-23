@@ -6,13 +6,16 @@ const hostPort = process.env.HOSTPORT || 11000
 module.exports = new Eureka({
   instance: {
     app: 'blog',
+    instanceId: `${hostName}:blog:${hostPort}`,
     hostName: hostName,
     ipAddr: '127.0.0.1',
     port: {
       '$': hostPort,
       '@enabled': true,
     },
-    vipAddress: `${hostName}:${hostPort}`,
+    vipAddress: `${hostName}`,
+    homePageUrl: `http://${hostName}:${hostPort}`,
+    statusPageUrl: `http://${hostName}:${hostPort}/blog/health`,
     healthCheckUrl: `http://${hostName}:${hostPort}/blog/health`,
     dataCenterInfo: {
       '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
@@ -23,6 +26,8 @@ module.exports = new Eureka({
     maxRetries: Number.MAX_VALUE,
     serviceUrls: {
       default: [process.env.EUREKA_URL || 'http://registry:8761/eureka/apps/']
-    }
+    },
+    registerWithEureka: true,
+    fetchRegistry: true
   }
 })
