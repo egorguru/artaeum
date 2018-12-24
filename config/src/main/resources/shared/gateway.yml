@@ -31,11 +31,11 @@ zuul:
       stripPrefix: false
     chat:
       path: /chat/**
-      url: ${CHAT_SERVICE_URL}
+      url: ${CHAT_SERVICE_URL:http://chat:8000}
       stripPrefix: false
     comment:
       path: /comment/**
-      url: ${COMMENT_SERVICE_URL}
+      url: ${COMMENT_SERVICE_URL:http://comment:9000}
       stripPrefix: false
     storage:
       path: /storage/**
@@ -43,7 +43,7 @@ zuul:
       stripPrefix: false
     blog:
       path: /blog/**
-      url: ${BLOG_SERVICE_URL}
+      url: ${BLOG_SERVICE_URL:http://blog:11000}
       stripPrefix: false
 
 server:
