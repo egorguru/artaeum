@@ -8,8 +8,8 @@ hystrix:
             timeoutInMilliseconds: 60000
 
 ribbon:
-  ReadTimeout: 15000
-  ConnectTimeout: 15000
+  ConnectTimeout: 20000
+  ReadTimeout: 39000
 
 zuul:
   ignoredServices: '*'
