@@ -3,19 +3,18 @@ hystrix:
     default:
       execution:
         isolation:
-          strategy: THREAD
           thread:
-            timeoutInMilliseconds: 60000
+            timeoutInMilliseconds: 101000
 
 ribbon:
-  ConnectTimeout: 20000
-  ReadTimeout: 39000
+  ConnectTimeout: 50000
+  ReadTimeout: 50000
 
 zuul:
   ignoredServices: '*'
   host:
-    connect-timeout-millis: 20000
-    socket-timeout-millis: 20000
+    connect-timeout-millis: 50000
+    socket-timeout-millis: 50000
   routes:
     uaa:
       path: /uaa/**
@@ -31,11 +30,11 @@ zuul:
       stripPrefix: false
     chat:
       path: /chat/**
-      url: ${CHAT_SERVICE_URL:http://chat:8000}
+      url: ${CHAT_SERVICE_URL}
       stripPrefix: false
     comment:
       path: /comment/**
-      url: ${COMMENT_SERVICE_URL:http://comment:9000}
+      url: ${COMMENT_SERVICE_URL}
       stripPrefix: false
     storage:
       path: /storage/**
@@ -43,7 +42,7 @@ zuul:
       stripPrefix: false
     blog:
       path: /blog/**
-      url: ${BLOG_SERVICE_URL:http://blog:11000}
+      url: ${BLOG_SERVICE_URL}
       stripPrefix: false
 
 server:
