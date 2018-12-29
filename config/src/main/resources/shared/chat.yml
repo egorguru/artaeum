@@ -7,5 +7,3 @@ security:
       authorizationURL: http://uaa:5000/uaa/oauth/authorize
       grant-type: client_credentials
       scope: server
-    resource:
-      user-info-uri: OAUTH2_USER_INFO_URI

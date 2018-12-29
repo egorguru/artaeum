@@ -7,14 +7,14 @@ hystrix:
             timeoutInMilliseconds: 101000
 
 ribbon:
-  ConnectTimeout: 50000
-  ReadTimeout: 50000
+  ConnectTimeout: 25000
+  ReadTimeout: 25000
 
 zuul:
   ignoredServices: '*'
   host:
-    connect-timeout-millis: 50000
-    socket-timeout-millis: 50000
+    connect-timeout-millis: 25000
+    socket-timeout-millis: 25000
   routes:
     uaa:
       path: /uaa/**

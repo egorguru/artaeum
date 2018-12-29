@@ -16,7 +16,7 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
   mail:
-    host: smtp.yandex.com
+    host: smtp.yandex.ru
     port: 465
     username: ${EMAIL_ADDRESS}
     password: ${EMAIL_PASSWORD}
