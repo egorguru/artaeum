@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { ServiceWorkerModule } from '@angular/service-worker'
+import { environment } from '../environments/environment'
 
 import { MainComponent, FooterComponent, HeaderComponent, SmartButtonComponent } from './layouts'
 import { AppRoutingModule } from './app-routing.module'
@@ -24,6 +26,7 @@ import { SearchModule } from './search'
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     AppRoutingModule,
     SharedModule,
     HomeModule,
