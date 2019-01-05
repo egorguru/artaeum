@@ -1,0 +1,136 @@
+version: '2.1'
+
+services:
+
+  docker-host:
+    image: qoomon/docker-host
+    cap_add: ['NET_ADMIN', 'NET_RAW']
+    mem_limit: 4M
+    restart: on-failure
+
+  config:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-config
+    restart: always
+
+  registry:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-registry
+    restart: always
+    ports:
+    - 8761:8761
+
+  gateway:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
+      CHAT_SERVICE_URL: $CHAT_SERVICE_URL
+      COMMENT_SERVICE_URL: $COMMENT_SERVICE_URL
+      BLOG_SERVICE_URL: $BLOG_SERVICE_URL
+    image: egorrepnikov/artaeum-gateway
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+    - 443:4000
+
+  uaa:
+    environment:
+      EMAIL_ADDRESS: $EMAIL_ADDRESS
+      EMAIL_PASSWORD: $EMAIL_PASSWORD
+      MAIL_URL: $MAIL_URL
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      POSTGRES_URL: $UAA_POSTGRES_URL
+      POSTGRES_USER: $UAA_POSTGRES_USER
+      POSTGRES_PASSWORD: $UAA_POSTGRES_PASSWORD
+      UAA_SERVICE_PASSWORD: $UAA_SERVICE_PASSWORD
+      PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
+      MEDIA_SERVICE_PASSWORD: $MEDIA_SERVICE_PASSWORD
+      GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
+      CHAT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
+      COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+      BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-uaa
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+
+  profile:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      POSTGRES_URL: $PROFILE_POSTGRES_URL
+      POSTGRES_USER: $PROFILE_POSTGRES_USER
+      POSTGRES_PASSWORD: $PROFILE_POSTGRES_PASSWORD
+      PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-profile
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+
+  media:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_HOST: $MEDIA_MONGO_HOST
+      MONGO_PORT: $MEDIA_MONGO_PORT
+      MONGO_DB: $MEDIA_MONGO_DB
+      MONGO_USER: $MEDIA_MONGO_USER
+      MONGO_PASSWORD: $MEDIA_MONGO_PASSWORD
+      MEDIA_SERVICE_PASSWORD: $MEDIA_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-media
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+
+  comment:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_URI: $COMMENT_MONGO_URI
+      COMMENT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-comment
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+
+  storage:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-storage
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    volumes:
+    - /home/ae/storage/profile:/profile
+    - /home/ae/storage/blog:/blog
+
+  blog:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_URI: $BLOG_MONGO_URI
+      BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+      STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
+    image: egorrepnikov/artaeum-blog
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
