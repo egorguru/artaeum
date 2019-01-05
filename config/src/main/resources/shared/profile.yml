@@ -5,9 +5,7 @@ server:
 
 spring:
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://profile-postgres:5433/profile}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    uri: ${POSTGRES_URI:jdbc:postgresql://postgres:password@profile-postgres:5432/profile}
   jpa:
     hibernate:
       ddl-auto: update
