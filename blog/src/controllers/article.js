@@ -14,6 +14,7 @@ router.get('/', async (ctx) => {
   const userId = ctx.query.userId
   const articles = await Article
     .find(userId ? { userId } : {})
+    .select('_id title userId createdDate')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -26,6 +27,7 @@ router.get('/search', async (ctx) => {
   const query = ctx.query.query
   const articles = await Article
     .find({ $text: { $search: query } })
+    .select('_id title userId createdDate')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
