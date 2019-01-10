@@ -6,6 +6,10 @@ section {
   padding: 50px 0;
 }
 
+.content * {
+  width: 100%;
+}
+
 .list-group .active {
   background-color: #000;
   border-color: #000;
@@ -60,4 +64,9 @@ section {
 
 .ql-editor p:last-child, .card-body p:last-child {
   margin-bottom: 0;
+}
+
+.page-item.active .page-link  {
+  background-color: #000;
+  border-color: #000;
 }

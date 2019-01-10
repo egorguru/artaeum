@@ -30,7 +30,7 @@ export class ArticleService {
   }
 
   search(req?: any): Observable<HttpResponse<Article[]>> {
-    return this.http.get<Article[]>('profile/articles/search', {
+    return this.http.get<Article[]>('blog/articles/search', {
       params: createRequestOption(req),
       observe: 'response'
     })

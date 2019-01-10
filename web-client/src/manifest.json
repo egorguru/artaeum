@@ -1,7 +1,7 @@
 {
   "name": "Artaeum",
   "short_name": "Artaeum",
-  "theme_color": "#1976d2",
+  "theme_color": "#242629",
   "background_color": "#fafafa",
   "display": "standalone",
   "scope": "/",
