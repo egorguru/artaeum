@@ -1,3 +1,7 @@
+<section *ngIf="!user" class="pt-4 mb-4">
+  <ae-loader></ae-loader>
+</section>
+
 <section class="profile-page" *ngIf="user">
   <div
     class="page-header"

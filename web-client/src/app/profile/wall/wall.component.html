@@ -4,6 +4,9 @@
     [currentUser]="currentUser"
     (updateWall)="loadAll()"
   ></ae-create-post>
+  <div *ngIf="!posts && !user" class="pt-4 mb-4">
+    <ae-loader></ae-loader>
+  </div>
   <div *ngIf="posts && posts.length && user">
     <ae-post
     *ngFor="let p of posts"
