@@ -1,4 +1,8 @@
-<section>
+<section *ngIf="!posts.length" class="pt-0 mb-4">
+  <ae-loader></ae-loader>
+</section>
+
+<section *ngIf="posts.length" class="pt-0">
   <div class="container">
     <div class="row">
       <div class="col-md-6 mx-auto">

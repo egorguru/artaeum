@@ -15,6 +15,10 @@
   </div>
 </ng-template>
 
+<section *ngIf="!article && !author" class="mt-5 mb-4">
+  <ae-loader></ae-loader>
+</section>
+
 <section *ngIf="article && author">
   <header class="masthead" [ngStyle]="{'background-image': 'url(' + (article._id | imageAppender:'blog':'article') + '), url(/assets/ae-widescreen.jpg)'}">
     <div class="overlay"></div>
@@ -44,7 +48,7 @@
   <article>
     <div class="container">
       <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto" [innerHTML]="article.body"></div>
+        <div class="col-lg-8 col-md-10 mx-auto content" [innerHTML]="article.body"></div>
       </div>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
