@@ -34,3 +34,6 @@ services:
 
   blog:
     build: blog
+
+  statistics:
+    build: statistics

@@ -221,3 +221,31 @@ services:
       MONGODB_APPLICATION_DATABASE: blog
     ports:
     - 30000:27017
+
+  statistics:
+    environment:
+      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
+      MONGO_URI: $STATISTICS_MONGO_URI
+      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+      STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
+    image: egorrepnikov/artaeum-statistics
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
+    ports:
+    - 12000:12000
+
+  statistics-mongo:
+    image: aashreys/mongo-auth:latest
+    environment:
+      AUTH: 'yes'
+      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
+      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
+      MONGODB_APPLICATION_USER: $MONGO_USER
+      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
+      MONGODB_APPLICATION_DATABASE: statistics
+    ports:
+    - 31000:27017
