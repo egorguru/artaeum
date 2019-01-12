@@ -26,7 +26,7 @@ class Server {
     req.on('data', (data) => {
       buffer += decoder.write(data)
     })
-    req.on('end', () => {
+    req.on('end', async () => {
       buffer += decoder.end()
       let chosencontroller = typeof (this.router[trimmedPath]) !== 'undefined' ?
         this.router[trimmedPath] : this.controllers.notFound
@@ -38,10 +38,10 @@ class Server {
         body: helpers.parseJsonToObject(buffer)
       }
       try {
-        const result = chosencontroller(data)
-        this.processcontrollerResponse(res, result)
+        const result = await chosencontroller(data)
+        this.processControllerResponse(res, result)
       } catch (e) {
-        this.processcontrollerResponse(res, {
+        this.processControllerResponse(res, {
           status: 500,
           body: {
             error: 'Internal Server Error'
@@ -51,7 +51,7 @@ class Server {
     })
   }
 
-  processcontrollerResponse(res, data) {
+  processControllerResponse(res, data) {
     const status = typeof (data.status) === 'number' ? data.status : 200
     const body = typeof (data.body) === 'object' ? data.body : {}
     res.setHeader('Content-Type', 'application/json')
