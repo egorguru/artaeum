@@ -75,7 +75,7 @@ export class BlogComponent implements OnInit {
   private identityUserAndInitSmartButton(profileId: string): void {
     this.principal.identity().then((u) => {
       this.currentUser = u
-      if (profileId === u.login) {
+      if (u && profileId === u.login) {
         this.smartButtonService.add({
           className: 'fa fa-pencil',
           link: 'author/articles',

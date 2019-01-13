@@ -49,8 +49,8 @@ export class CreateUpdateArticleComponent implements OnInit {
   }
 
   private checkAuthorAndInitArticle(article: Article): void {
-    this.principal.identity().then((user) => {
-      if (user.id !== article.userId) {
+    this.principal.identity().then((u) => {
+      if (u.id !== article.userId) {
         this.router.navigate(['/'])
       } else {
         this.article = article

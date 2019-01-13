@@ -37,7 +37,7 @@ export class ProfileComponent implements OnInit {
         this.title.setTitle(`@${res.body.login} - Artaeum`)
         this.principal.identity().then((u) => {
           this.currentUser = u
-          if (this.user.id !== this.currentUser.id) {
+          if (u && this.user.id !== u.id) {
             this.loadSubscription()
           }
         })

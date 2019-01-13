@@ -55,7 +55,7 @@ export class SingleArticleComponent implements OnInit {
   private checkUserAndInitSmartButton(): void {
     this.principal.identity().then((u) => {
       this.currentUser = u
-      if (this.article.userId === u.id) {
+      if (u && this.article.userId === u.id) {
         this.smartButtonService.add({
           className: 'fa fa-edit',
           link: 'author/articles/' + this.article._id,

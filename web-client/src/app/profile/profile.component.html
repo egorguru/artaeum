@@ -18,20 +18,22 @@
               [alt]="user.login"
               class="img-raised rounded-circle img-fluid"
             >
-            <div class="name pb-4">
+            <div class="name">
               <h3
                 class="title"
                 *ngIf="user.firstName && user.lastName"
               >{{ user.firstName }} {{ user.lastName }}</h3>
-              <h6>@{{ user.login }}</h6>
+              <div class="d-inline-flex">
+                <h6>@{{ user.login }}</h6>
+                <a class="text-dark" [routerLink]="['/u', user.login, 'subscribers']">
+                  <i class="fa fa-users" title="Subscribers"></i>
+                </a>
+              </div>
             </div>
-            <div class="pb-2" *ngIf="currentUser && currentUser.id !== user.id">
+            <div class="mb-4" *ngIf="currentUser && currentUser.id !== user.id">
               <button class="btn btn-dark" *ngIf="!subscription">{{ 'profile.subscribe' | translate }}</button>
               <button class="btn btn-dark" *ngIf="subscription">{{ 'profile.unsubscribe' | translate }}</button>
             </div>
-            <a class="text-dark" [routerLink]="['/u', user.login, 'subscribers']">
-              <i class="fa fa-users pb-4" title="Subscribers"> {{ 'profile.subscribers-nav' | translate }}</i>
-            </a>
           </div>
         </div>
       </div>

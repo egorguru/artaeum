@@ -2,17 +2,22 @@
   padding-top: 0;
 }
 
-h6 {
-  font-size: .80rem !important;
+.name {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.name h6 {
+  padding-right: 8px;
+  font-size: .95rem !important;
   font-weight: 500;
   font-family: 'Merriweather', serif;
   line-height: 1.5em;
   text-transform: lowercase;
 }
 
-.name h6 {
-  margin-top: 10px;
-  margin-bottom: 10px;
+.name a {
+  font-size: .95rem !important;
 }
 
 .profile-page .page-header {
@@ -65,10 +70,14 @@ h6 {
 
 .title {
   margin-top: 30px;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   min-height: 32px;
   color: #3C4858;
   font-weight: 700;
+}
+
+.tab-nav {
+  margin-top: 5px;
 }
 
 .profile-page .profile-tabs {

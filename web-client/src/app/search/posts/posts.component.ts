@@ -37,7 +37,7 @@ export class PostsComponent implements OnInit {
       this.query = params['query']
       this.loadAll()
     })
-    this.principal.identity().then((user) => this.currentUser = user)
+    this.principal.identity().then((u) => this.currentUser = u)
   }
 
   loadAll(): void {

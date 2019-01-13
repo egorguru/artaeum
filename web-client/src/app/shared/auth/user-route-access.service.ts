@@ -11,11 +11,11 @@ export class UserRouteAccessService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
     const authorities = route.data['authorities']
     return Promise.resolve(
-      this.principal.identity().then((account) => {
+      this.principal.identity().then((u) => {
         if (!authorities || authorities.length === 0) {
           return true
         }
-        if (account) {
+        if (u) {
           return this.principal.hasAuthorities(authorities)
         }
         this.router.navigate(['/login'])

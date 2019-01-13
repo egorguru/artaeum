@@ -1,8 +1,8 @@
 <a
   class="like"
   role="button"
-  data-toggle="tooltip"
-  data-placement="top"
+  [ngbTooltip]="countOfLikes"
+  placement="top"
   *ngIf="likes && countOfLikes !== undefined"
   [title]="countOfLikes"
   (click)="like()"

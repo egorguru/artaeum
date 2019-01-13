@@ -27,8 +27,8 @@ export class CommentComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.principal.identity().then((user) => {
-      this.currentUser = user
+    this.principal.identity().then((u) => {
+      this.currentUser = u
       this.loadAll()
     })
     this.form = new FormGroup({

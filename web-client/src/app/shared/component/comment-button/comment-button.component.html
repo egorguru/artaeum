@@ -1,8 +1,8 @@
 <a
   class="comment-button"
   role="button"
-  data-toggle="tooltip"
-  data-placement="top"
+  [ngbTooltip]="commentsCount"
+  placement="top"
   *ngIf="commentsCount !== undefined"
   [title]="commentsCount"
 >

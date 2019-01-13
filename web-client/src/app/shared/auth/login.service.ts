@@ -15,7 +15,7 @@ export class LoginService {
     return new Promise((resolve, reject) => {
       this.authServerProvider.login(credentials).subscribe((data) => {
         window.localStorage.setItem('access_token', data.access_token)
-        this.principal.identity().then((account) => resolve(data))
+        this.principal.identity().then((u) => resolve(data))
       }, (err) => {
         this.logout()
         reject(err)

@@ -38,7 +38,7 @@ export class WallComponent implements OnInit {
           this.user = res.body
           this.loadAll()
         }))
-    this.principal.identity().then((user) => this.currentUser = user)
+    this.principal.identity().then((u) => this.currentUser = u)
   }
 
   loadAll(): void {
