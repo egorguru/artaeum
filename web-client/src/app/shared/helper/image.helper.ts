@@ -21,11 +21,11 @@ export class ImageHelper {
     })
   }
 
-  // toBase64(file: Blob): Promise<string> {
-  //   return new Promise((resolve, reject) => {
-  //     const reader: FileReader = new FileReader()
-  //     reader.onloadend = () => resolve(reader.result.toString())
-  //     reader.readAsDataURL(file)
-  //   })
-  // }
+  toBase64(file: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader: FileReader = new FileReader()
+      reader.onloadend = () => resolve(reader.result.toString())
+      reader.readAsDataURL(file)
+    })
+  }
 }
