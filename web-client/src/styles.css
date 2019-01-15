@@ -62,11 +62,18 @@ section {
   margin-bottom: 1em;
 }
 
-.ql-editor p:last-child, .card-body p:last-child {
+.ql-editor p:last-child,
+.card-body p:last-child {
   margin-bottom: 0;
 }
 
-.page-item.active .page-link  {
+.page-item.active .page-link {
   background-color: #000;
   border-color: #000;
+}
+
+.image-canvas {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
 }

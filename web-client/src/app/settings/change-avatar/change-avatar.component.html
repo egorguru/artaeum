@@ -7,29 +7,19 @@
 <div class="row">
   <div class="col-md-12">
     <div class="row justify-content-center mb-3">
-      <button class="btn btn-dark">
-        <label for="image">{{ 'common.load-image' | translate }}</label>
-        <input
-          type="file"
-          accept="image/*"
-          name="image"
-          id="image"
-          class="form-control-file"
-          (change)="loadImg($event)"
-        />
-      </button>
-    </div>
-    <div class="row justify-content-center mb-3">
-      <div class="card ml-5 mr-5">
+      <div class="card">
         <div class="card-img">
-          <img class="w-100" *ngIf="image" [src]="image">
-          <img class="w-100" *ngIf="!image && currentUser" [src]="currentUser.id | imageAppender:'profile':'avatar'" onError="this.src = '/assets/ae.jpg'">
+          <img-cropper [image]="data" [settings]="cropperSettings"></img-cropper>
+          <div class="w-50 ml-auto mr-auto">
+            <img class="w-100" *ngIf="data.image" [src]="data.image">
+            <img class="w-100" *ngIf="!data.image && currentUser" [src]="currentUser.id | imageAppender:'profile':'avatar'" onError="this.src = '/assets/ae.jpg'">
+          </div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col text-center">
-        <button class="btn btn-dark" [disabled]="!image" (click)="save()">{{ 'settings.change-avatar.submit' | translate }}</button>
+        <button class="btn btn-dark" [disabled]="!data.image" (click)="save()">{{ 'settings.change-avatar.submit' | translate }}</button>
       </div>
     </div>
   </div>

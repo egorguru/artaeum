@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
+import { CropperSettings } from 'ng2-img-cropper'
 
-import { Principal, User, ProfileImagesService, ImageHelper } from '../../shared'
+import { Principal, User, ProfileImagesService } from '../../shared'
 
 @Component({
   selector: 'ae-change-avatar',
@@ -9,29 +10,30 @@ import { Principal, User, ProfileImagesService, ImageHelper } from '../../shared
 })
 export class ChangeAvatarComponent implements OnInit {
 
-  image: string
+  data: any
+  cropperSettings: CropperSettings
   currentUser: User
 
   constructor(
     private principal: Principal,
     private profileImagesService: ProfileImagesService,
-    private imageHelper: ImageHelper,
     private title: Title
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Profile image - Artaeum')
     this.principal.identity().then((u) => this.currentUser = u)
-  }
-
-  loadImg($event): void {
-    this.imageHelper.compress($event.target.files[0])
-      .then((compressedImage) => this.imageHelper.toBase64(compressedImage))
-      .then((base64Image) => this.image = base64Image)
+    this.cropperSettings = new CropperSettings()
+    this.cropperSettings.croppedWidth = 300
+    this.cropperSettings.croppedHeight = 300
+    this.cropperSettings.dynamicSizing = true
+    this.cropperSettings.cropperClass = 'image-canvas'
+    this.cropperSettings.compressRatio = 0.5
+    this.data = {}
   }
 
   save(): void {
-    this.profileImagesService.changeAvatar(this.image)
-      .subscribe(() => this.image = null)
+    this.profileImagesService.changeAvatar(this.data.image)
+      .subscribe(() => this.data.image = null)
   }
 }
