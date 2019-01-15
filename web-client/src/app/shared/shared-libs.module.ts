@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { QuillModule } from 'ngx-quill'
 import { TranslateLoader, TranslateModule, TranslateStore } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { ImageCropperModule } from 'ng2-img-cropper'
 
 export function HttpLoaderFactory(handler: HttpBackend) {
   return new TranslateHttpLoader(new HttpClient(handler), 'assets/i18n/', '.json')
@@ -31,7 +32,8 @@ export function HttpLoaderFactory(handler: HttpBackend) {
     RouterModule,
     NgbModule,
     QuillModule,
-    TranslateModule
+    TranslateModule,
+    ImageCropperModule
   ]
 })
 export class SharedLibsModule { }

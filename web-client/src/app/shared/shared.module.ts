@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
-import { ImageCropperComponent } from 'ng2-img-cropper'
 
 import { SharedLibsModule } from './shared-libs.module'
 import { HasAuthorityDirective } from './directive'
@@ -15,7 +14,6 @@ import {
 @NgModule({
   imports: [SharedLibsModule],
   declarations: [
-    ImageCropperComponent,
     HasAuthorityDirective,
     DateConverterPipe,
     ImageAppenderPipe,
@@ -42,7 +40,6 @@ import {
     }
   ],
   exports: [
-    ImageCropperComponent,
     SharedLibsModule,
     HasAuthorityDirective,
     DateConverterPipe,
