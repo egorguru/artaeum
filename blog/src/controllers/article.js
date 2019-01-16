@@ -8,29 +8,40 @@ const router = new Router().prefix('/articles')
 
 const IMAGE_NAME_END = '-article'
 
+const getTotalCount = async (query) => {
+  const articles = await Article.find(query)
+  return articles.length
+}
+
 router.get('/', async (ctx) => {
+  const query = userId ? { userId } : {}
   const page = +ctx.query.page
   const size = +ctx.query.size
   const userId = ctx.query.userId
   const articles = await Article
-    .find(userId ? { userId } : {})
+    .find(query)
     .select('_id title userId createdDate')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
+  const totalCount = await getTotalCount(query)
+  ctx.set('X-Total-Count', totalCount)
   ctx.body = articles
 })
 
 router.get('/search', async (ctx) => {
+  const query = { $text: { $search: query } }
   const page = +ctx.query.page
   const size = +ctx.query.size
   const query = ctx.query.query
   const articles = await Article
-    .find({ $text: { $search: query } })
+    .find(query)
     .select('_id title userId createdDate')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
+  const totalCount = await getTotalCount(query)
+  ctx.set('X-Total-Count', totalCount)
   ctx.body = articles
 })
 
