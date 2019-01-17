@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { Title } from '@angular/platform-browser'
 
-import { Principal, User, ProfileImagesService, ImageHelper } from '../../shared'
+import { Principal, User, ProfileImagesService } from '../../shared'
 
 @Component({
   selector: 'ae-change-background',
@@ -15,7 +15,6 @@ export class ChangeBackgroundComponent implements OnInit {
   constructor(
     private principal: Principal,
     private profileImagesService: ProfileImagesService,
-    private imageHelper: ImageHelper,
     private title: Title
   ) {}
 
@@ -24,10 +23,8 @@ export class ChangeBackgroundComponent implements OnInit {
     this.principal.identity().then((u) => this.currentUser = u)
   }
 
-  loadImg($event): void {
-    this.imageHelper.compress($event.target.files[0])
-      .then((compressedImage) => this.imageHelper.toBase64(compressedImage))
-      .then((base64Image) => this.image = base64Image)
+  setImage(image: string): void {
+    this.image = image
   }
 
   save(): void {
