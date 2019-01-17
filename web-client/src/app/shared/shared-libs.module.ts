@@ -8,7 +8,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { QuillModule } from 'ngx-quill'
 import { TranslateLoader, TranslateModule, TranslateStore } from '@ngx-translate/core'
 import { TranslateHttpLoader } from '@ngx-translate/http-loader'
-import { ImageCropperModule } from 'ng2-img-cropper'
 import { LyThemeModule, LY_THEME } from '@alyle/ui'
 import { LyToolbarModule } from '@alyle/ui/toolbar'
 import { LyResizingCroppingImageModule } from '@alyle/ui/resizing-cropping-images'
@@ -42,7 +41,6 @@ export function HttpLoaderFactory(handler: HttpBackend) {
     NgbModule,
     QuillModule,
     TranslateModule,
-    ImageCropperModule,
     BrowserAnimationsModule,
     LyToolbarModule,
     LyResizingCroppingImageModule
