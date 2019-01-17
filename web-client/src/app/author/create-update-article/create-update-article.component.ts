@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { environment as env} from '../../../environments/environment'
 
-import { ArticleService, Principal, Article, ImageHelper } from '../../shared'
+import { ArticleService, Principal, Article } from '../../shared'
 
 @Component({
   selector: 'ae-create-update-article',
@@ -17,7 +17,6 @@ export class CreateUpdateArticleComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private articleService: ArticleService,
-    private imageHelper: ImageHelper,
     private principal: Principal
   ) {}
 
@@ -33,10 +32,8 @@ export class CreateUpdateArticleComponent implements OnInit {
     })
   }
 
-  loadImg($event): void {
-    this.imageHelper.compress($event.target.files[0])
-      .then((compressedImage) => this.imageHelper.toBase64(compressedImage))
-      .then((base64Image) => this.article.image = base64Image)
+  setImage(image: string): void {
+    this.article.image = image
   }
 
   save(): void {
