@@ -1,6 +1,7 @@
 import * as $ from 'jquery/dist/jquery.js'
 import 'popper.js/dist/popper.js'
 import 'bootstrap/dist/js/bootstrap.js'
+import 'hammerjs'
 
 $(() => {
   $('.dropdown').hover(() => {

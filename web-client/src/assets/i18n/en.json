@@ -166,6 +166,10 @@
         "cancel": "Cancel",
         "remove": "Remove"
       }
+    },
+    "image-editor": {
+      "load-image": "Load image",
+      "drag-drop": "Drag and drop image"
     }
   },
   "common": {

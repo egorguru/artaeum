@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { SharedLibsModule } from './shared-libs.module'
@@ -8,7 +8,8 @@ import { DateConverterPipe, ImageAppenderPipe } from './pipe'
 import {
   CommentComponent, LikeComponent,
   CommentButtonComponent, PostComponent,
-  ArticleComponent, LoaderComponent
+  ArticleComponent, LoaderComponent,
+  ImageEditorComponent
 } from './component'
 
 @NgModule({
@@ -22,7 +23,8 @@ import {
     CommentButtonComponent,
     PostComponent,
     ArticleComponent,
-    LoaderComponent
+    LoaderComponent,
+    ImageEditorComponent
   ],
   providers: [
     {
@@ -49,7 +51,9 @@ import {
     CommentButtonComponent,
     PostComponent,
     ArticleComponent,
-    LoaderComponent
-  ]
+    LoaderComponent,
+    ImageEditorComponent
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SharedModule {}
