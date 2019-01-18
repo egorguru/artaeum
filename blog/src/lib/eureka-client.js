@@ -1,7 +1,9 @@
 const Eureka = require('eureka-js-client').Eureka
 
-const hostName = process.env.HOSTNAME || 'blog'
-const hostPort = process.env.HOSTPORT || 11000
+const config = require('./config')
+
+const hostName = config.eureka.hostName
+const hostPort = config.eureka.hostPort
 
 module.exports = new Eureka({
   instance: {
@@ -25,7 +27,7 @@ module.exports = new Eureka({
   eureka: {
     maxRetries: Number.MAX_VALUE,
     serviceUrls: {
-      default: [process.env.EUREKA_URL || 'http://registry:8761/eureka/apps/']
+      default: config.eureka.eurekaUrl
     },
     registerWithEureka: true,
     fetchRegistry: true

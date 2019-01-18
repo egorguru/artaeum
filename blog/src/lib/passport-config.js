@@ -1,10 +1,12 @@
 const BearerStrategy = require('passport-http-bearer')
 const rp = require('request-promise')
 
+const config = require('./config')
+
 function initBearerStrategy() {
   return new BearerStrategy((token, done) => {
     rp({
-      uri: process.env.OAUTH2_USER_INFO_URI || 'http://uaa:5000/uaa/account/current',
+      uri: config.uaaUri,
       headers: { 'Authorization': `Bearer ${token}` },
       json: true
     }).then((data) => {

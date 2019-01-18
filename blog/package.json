@@ -10,7 +10,6 @@
   "author": "Egor Repnikov",
   "license": "MIT",
   "dependencies": {
-    "cloud-config-client": "^1.4.2",
     "eureka-js-client": "^4.4.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
@@ -23,8 +22,8 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "inmemory-mongo": "0.0.2",
     "mocha": "^5.2.0",
+    "mongodb-memory-server": "^3.0.0",
     "should": "^13.2.3"
   }
 }

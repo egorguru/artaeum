@@ -1,7 +1,9 @@
 const rp = require('request-promise')
 
-const uri = process.env.STORAGE_SERVICE_URI
-const auth = Buffer.from(`storage:${process.env.STORAGE_SERVICE_PASSWORD}`).toString('base64')
+const config = require('../lib/config')
+
+const uri = config.storageUri
+const auth = Buffer.from(`storage:${config.storagePassword}`).toString('base64')
 
 module.exports.save = (image, name) => rp({
   method: 'POST',
