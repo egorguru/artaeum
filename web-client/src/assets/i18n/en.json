@@ -169,7 +169,8 @@
     },
     "image-editor": {
       "load-image": "Load image",
-      "drag-drop": "Drag and drop image"
+      "drag-drop": "Drag and drop image",
+      "crop": "Select"
     }
   },
   "common": {
