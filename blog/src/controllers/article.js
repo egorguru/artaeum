@@ -14,10 +14,10 @@ const getTotalCount = async (query) => {
 }
 
 router.get('/', async (ctx) => {
+  const userId = ctx.query.userId
   const query = userId ? { userId } : {}
   const page = +ctx.query.page
   const size = +ctx.query.size
-  const userId = ctx.query.userId
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate')
@@ -30,10 +30,13 @@ router.get('/', async (ctx) => {
 })
 
 router.get('/search', async (ctx) => {
-  const query = { $text: { $search: query } }
+  const query = {
+    $text: {
+      $search: ctx.query.query
+    }
+  }
   const page = +ctx.query.page
   const size = +ctx.query.size
-  const query = ctx.query.query
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate')
