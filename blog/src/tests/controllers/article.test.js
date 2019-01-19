@@ -33,7 +33,7 @@ describe("Articles API", () => {
       res.body.createdDate.should.be.a.String()
       res.body.title.should.eql(testArticle.title)
       res.body.body.should.eql(testArticle.body)
-      res.body.userId.should.eql('uuid-test')
+      res.body.userId.should.eql(testArticle.userId)
     })
     it("creates an invalid article", async () => {
       const res = await helpers.request.post({
@@ -79,7 +79,7 @@ describe("Articles API", () => {
       new Date(res.body.createdDate).should.eql(article.createdDate)
       res.body.title.should.eql(article.title)
       res.body.body.should.eql(article.body)
-      res.body.userId.should.eql('uuid-test')
+      res.body.userId.should.eql(article.userId)
     })
   })
   describe("GET /articles/:articleId", () => {
