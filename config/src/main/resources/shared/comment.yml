@@ -1,9 +1,0 @@
-security:
-  oauth2:
-    client:
-      clientId: comment
-      clientSecret: COMMENT_SERVICE_PASSWORD
-      accessTokenUri: http://uaa:5000/uaa/oauth/token
-      authorizationURL: http://uaa:5000/uaa/oauth/authorize
-      grant-type: client_credentials
-      scope: server
