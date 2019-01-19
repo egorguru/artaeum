@@ -18,6 +18,7 @@ install:
   - npm install --prefix web-client --silent
 
 script:
+  - npm run test --prefix blog
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet
   - mvn package -f media --quiet
