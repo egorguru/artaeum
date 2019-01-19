@@ -14,6 +14,8 @@ app.use(controllers.allowedMethods())
 
 mongoConfig()
 
-eureka.start()
+if (process.env.NODE_ENV !== 'test') {
+  eureka.start()
+}
 
 module.exports = app

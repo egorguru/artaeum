@@ -1,6 +1,6 @@
 {
   "name": "chat",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Chat",
   "main": "src/index.js",
   "scripts": {
@@ -10,12 +10,11 @@
   "author": "Egor Repnikov",
   "license": "MIT",
   "devDependencies": {
-    "inmemory-mongo": "0.0.2",
     "mocha": "^5.2.0",
+    "mongodb-memory-server": "^3.0.0",
     "should": "^13.2.3"
   },
   "dependencies": {
-    "cloud-config-client": "^1.4.2",
     "eureka-js-client": "^4.4.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
