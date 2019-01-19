@@ -1,8 +1,10 @@
 const mongoose = require('mongoose')
 
+const config = require('./config')
+
 module.exports = () => {
   mongoose
-    .connect(process.env.MONGO_URI, { useNewUrlParser: true })
+    .connect(config.mongoUri, { useNewUrlParser: true })
     .then((() => console.log('MongoDB has been connected')))
     .catch((error) => console.log(error))
 }
