@@ -19,6 +19,7 @@ install:
 
 script:
   - npm run test --prefix blog
+  - npm run test --prefix chat
   - mvn package -f config --quiet
   - mvn package -f gateway --quiet
   - mvn package -f media --quiet
