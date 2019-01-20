@@ -59,33 +59,39 @@ router.get('/:id', async (ctx) => {
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { title, body, image } = ctx.request.body
-  const article = await new Article({
-    title,
-    body,
-    userId: ctx.state.user.name,
-    createdDate: Date.now()
-  }).save()
-  if (image) {
+  if (title.trim() !== '' && body.trim() !== '' && image.trim() !== '') {
+    const article = await new Article({
+      title,
+      body,
+      userId: ctx.state.user.name,
+      createdDate: Date.now()
+    }).save()
     await storage.save(image, article._id + IMAGE_NAME_END)
+    ctx.status = 201
+    ctx.body = article
+  } else {
+    ctx.status = 400
   }
-  ctx.status = 201
-  ctx.body = article
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, title, body, image } = ctx.request.body
-  const article = await Article.findOneAndUpdate(
-    { _id, userId: ctx.state.user.name },
-    { $set: {
-      title,
-      body
-    } },
-    { new: true }
-  )
-  if (image) {
-    await storage.save(image, article._id + IMAGE_NAME_END)
+  if (_id && title.trim() !== '' && body.trim() !== '') {
+    const article = await Article.findOneAndUpdate(
+      { _id, userId: ctx.state.user.name },
+      { $set: {
+        title,
+        body
+      } },
+      { new: true }
+    )
+    if (image && image.trim() !== '') {
+      await storage.save(image, article._id + IMAGE_NAME_END)
+    }
+    ctx.body = article
+  } else {
+    ctx.status = 400
   }
-  ctx.body = article
 })
 
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {

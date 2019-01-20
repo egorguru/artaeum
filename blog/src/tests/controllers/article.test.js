@@ -41,13 +41,29 @@ describe("Articles API", () => {
         json: true,
         body: {
           title: '',
-          body: ''
+          body: '',
+          image: 'mock'
         },
         headers: {
           'Authorization': 'Bearer valid-token'
         }
       })
-      res.statusCode.should.eql(500)
+      res.statusCode.should.eql(400)
+    })
+    it("creates an invalid article contains only spaces", async () => {
+      const res = await helpers.request.post({
+        uri: 'articles',
+        json: true,
+        body: {
+          title: ' ',
+          body: ' ',
+          image: 'mock'
+        },
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(400)
     })
     it("creates an article with invalid token", async () => {
       const res = await helpers.request.post({
@@ -80,6 +96,20 @@ describe("Articles API", () => {
       res.body.title.should.eql(article.title)
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
+    })
+    it("updates an article with invalid params", async () => {
+      const article = await new Article(testArticle).save()
+      article.title = ' '
+      article.body = ' '
+      const res = await helpers.request.put({
+        uri: 'articles',
+        json: true,
+        body: article,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(400)
     })
   })
   describe("GET /articles/:articleId", () => {
