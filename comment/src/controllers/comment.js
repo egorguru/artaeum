@@ -20,25 +20,33 @@ router.get('/:resourceType/:resourceId', async (ctx) => {
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { text, resourceType, resourceId } = ctx.request.body
-  const comment = await new Comment({
-    text: text,
-    resourceType: resourceType,
-    resourceId: resourceId,
-    userId: ctx.state.user.name,
-    createdDate: Date.now()
-  }).save()
-  ctx.status = 201
-  ctx.body = comment
+  if (text.trim() !== '' && resourceType.trim() !== '' && resourceId) {
+    const comment = await new Comment({
+      text: text,
+      resourceType: resourceType,
+      resourceId: resourceId,
+      userId: ctx.state.user.name,
+      createdDate: Date.now()
+    }).save()
+    ctx.status = 201
+    ctx.body = comment
+  } else {
+    ctx.status = 400
+  }
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, text } = ctx.request.body
-  const comment = await Comment.findOneAndUpdate(
-    { _id, userId: ctx.state.user.name },
-    { $set: { text: text } },
-    { new: true }
-  )
-  ctx.body = comment
+  if (_id && text.trim() !== '') {
+    const comment = await Comment.findOneAndUpdate(
+      { _id, userId: ctx.state.user.name },
+      { $set: { text: text } },
+      { new: true }
+    )
+    ctx.body = comment
+  } else {
+    ctx.status = 400
+  }
 })
 
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
