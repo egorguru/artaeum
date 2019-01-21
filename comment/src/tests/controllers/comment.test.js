@@ -9,12 +9,6 @@ describe("Comments API", () => {
     userId: 'uuid-test',
     createdDate: Date.now()
   }
-  before(async () => {
-    await helpers.before()
-  })
-  after(async () => {
-    await helpers.after()
-  })
   beforeEach(async () => {
     await Comment.remove()
   })
