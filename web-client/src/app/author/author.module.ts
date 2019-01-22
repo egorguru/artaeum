@@ -6,6 +6,7 @@ import { authorRoutes } from './author.route'
 import { CreateUpdateArticleComponent } from './create-update-article'
 import { AuthorComponent } from './author.component'
 import { DashboardComponent } from './dashboard'
+import { CategoriesComponent } from './categories'
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DashboardComponent } from './dashboard'
   declarations: [
     AuthorComponent,
     CreateUpdateArticleComponent,
-    DashboardComponent
+    DashboardComponent,
+    CategoriesComponent
   ]
 })
 export class AuthorModule {}

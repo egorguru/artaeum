@@ -70,7 +70,8 @@
   },
   "author": {
     "dashboard-nav": "Dashboard",
-    "create-article-nav": "Create article",
+    "create-article-nav": "Create Article",
+    "categories-nav": "Categories",
     "create-update-article": {
       "title-input": "Title",
       "body-input-placeholder": "Let's write it!",
@@ -81,6 +82,33 @@
       "articles": "Articles",
       "posts": "Posts",
       "likes": "Likes"
+    },
+    "categories": {
+      "name": "Name",
+      "created-date": "Created Date",
+      "create": "Create",
+      "update": "Edit",
+      "delete": "Delete",
+      "create-modal": {
+        "title": "Category Creating",
+        "category-name": "Category Name",
+        "cancel": "Cancel",
+        "submit": "Create"
+      },
+      "update-modal": {
+        "title": "Category Editing",
+        "category-name": "Category Name",
+        "cancel": "Cancel",
+        "submit": "Update"
+      },
+      "delete-modal": {
+        "title": "Category Deletion",
+        "category-name": "Category Name",
+        "text-1": "Are you sure you want to delete this category?",
+        "text-2": "This operation can not be undone.",
+        "cancel": "Cancel",
+        "submit": "Delete"
+      }
     }
   },
   "layouts": {

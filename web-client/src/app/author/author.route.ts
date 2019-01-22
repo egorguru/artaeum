@@ -4,6 +4,7 @@ import { UserRouteAccessService } from '../shared'
 import { AuthorComponent } from './author.component'
 import { dashboardRoute } from './dashboard'
 import { createUpdateArticleRoutes } from './create-update-article'
+import { categoriesRoute } from './categories'
 
 export const authorRoutes: Routes = [{
   path: 'author',
@@ -14,6 +15,7 @@ export const authorRoutes: Routes = [{
   canActivate: [UserRouteAccessService],
   children: [
     dashboardRoute,
-    ...createUpdateArticleRoutes
+    ...createUpdateArticleRoutes,
+    categoriesRoute
   ]
 }]

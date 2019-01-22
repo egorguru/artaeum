@@ -1,0 +1,100 @@
+<ng-template #create let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-create-category">{{ 'author.categories.create-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group row mb-0">
+      <div class="col-12">
+        <input
+          id="categoryName"
+          class="form-control here"
+          type="text"
+          [placeholder]="'author.categories.create-modal.category-name' | translate"
+          [value]="createCandidate.name"
+        >
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.create-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="createCategory()">{{ 'author.categories.create-modal.submit' | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #update let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-update-category">{{ 'author.categories.update-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group row mb-0">
+      <div class="col-12">
+        <input
+          id="categoryName"
+          class="form-control here"
+          type="text"
+          [placeholder]="'settings.change-common.first-name' | translate"
+          [value]="updateCandidate.name"
+        >
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.update-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-primary" (click)="updateCategory()">{{ 'author.categories.update-modal.submit' | translate }}</button>
+  </div>
+</ng-template>
+
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-delete-category">{{ 'author.categories.delete-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>{{ 'author.categories.delete-modal.text-1' | translate }}</strong></p>
+    <span class="text-danger">{{ 'author.categories.delete-modal.text-2' | translate }}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.delete-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-danger" ngbAutofocus (click)="deleteCategory()">{{ 'author.categories.delete-modal.submit' | translate }}</button>
+  </div>
+</ng-template>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">{{ 'author.categories.name' | translate }}</th>
+      <th scope="col">{{ 'author.categories.created-date' | translate }}</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let c of categories; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ c.name }}</td>
+      <td>{{ c.createdDate | dateConverter }}</td>
+      <td>
+        <button class="btn btn-outline-primary" (click)="modalUpdate(update, c)">
+          {{ 'author.categories.update' | translate }}
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-outline-danger" (click)="modalDelete(delete, c)">
+          {{ 'author.categories.delete' | translate }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<button class="btn btn-dark" (click)="modalCreate(create)">
+  {{ 'author.categories.create' | translate }}
+</button>

@@ -71,6 +71,7 @@
   "author": {
     "dashboard-nav": "Панель управления",
     "create-article-nav": "Создать статью",
+    "categories-nav": "Категории",
     "create-update-article": {
       "title-input": "Название",
       "body-input-placeholder": "Let's write it!",
@@ -81,6 +82,32 @@
       "articles": "Статьи",
       "posts": "Посты",
       "likes": "Лайки"
+    },
+    "categories": {
+      "name": "Название",
+      "created-date": "Дата создания",
+      "create": "Создать",
+      "update": "Редактировать",
+      "delete": "Удалить",
+      "create-modal": {
+        "title": "Создание Категории",
+        "category-name": "Название категории",
+        "cancel": "Отмена",
+        "submit": "Создать"
+      },
+      "update-modal": {
+        "title": "Редактирование Категории",
+        "category-name": "Название категории",
+        "cancel": "Отмена",
+        "submit": "Сохранить"
+      },
+      "delete-modal": {
+        "title": "Удаление Категории",
+        "text-1": "Вы уверены, что хотите удалить данную категорию?",
+        "text-2": "Эту операцию нельзя отменить.",
+        "cancel": "Отмена",
+        "submit": "Удалить"
+      }
     }
   },
   "layouts": {
