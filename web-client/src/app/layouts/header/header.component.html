@@ -20,6 +20,7 @@
           </a>
           <div class="dropdown-menu sm-menu">
             <a class="dropdown-item" [routerLink]="['/u', currentUser.login]">{{ 'layouts.header.my-profile' | translate }}</a>
+            <a class="dropdown-item" routerLink="/author">{{ 'layouts.header.author' | translate }}</a>
             <a class="dropdown-item" routerLink="/settings">{{ 'layouts.header.setting' | translate }}</a>
             <a class="dropdown-item" (click)="logout()">{{ 'layouts.header.logout' | translate }}</a>
           </div>
