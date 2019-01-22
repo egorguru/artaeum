@@ -1,12 +1,19 @@
 const helpers = require('../helpers')
 const Article = require('../../models/Article')
+const Category = require('../../models/Category')
 
-describe("Articles API", () => {
+describe("Articles API", async () => {
+  const category = await new Category({
+    name: 'Test category',
+    userId: 'uuid-test',
+    createdDate: Date.now()
+  })
   const testArticle = {
     title: 'Test title',
     body: '<p>Test text</p>',
     image: 'mock',
     userId: 'uuid-test',
+    category: category._id,
     createdDate: Date.now()
   }
   beforeEach(async () => {
@@ -70,6 +77,22 @@ describe("Articles API", () => {
       })
       res.statusCode.should.eql(500)
     })
+    it("creates an article with wrong category", async () => {
+      const res = await helpers.request.post({
+        uri: 'articles',
+        json: true,
+        body: {
+          title: 'Test',
+          body: '<p>Test</p>',
+          image: 'mock',
+          category: 'wrongcategory'
+        },
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(400)
+    })
   })
   describe("PUT /articles", () => {
     it("updates an article", async () => {
@@ -99,6 +122,22 @@ describe("Articles API", () => {
         uri: 'articles',
         json: true,
         body: article,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(400)
+    })
+    it("updates an article with wrong category", async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.put({
+        uri: 'articles',
+        json: true,
+        body: {
+          title: article.title,
+          body: article.body,
+          category: 'wrongcategory'
+        },
         headers: {
           'Authorization': 'Bearer valid-token'
         }

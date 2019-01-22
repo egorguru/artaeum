@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const passport = require('koa-passport')
 
 const Category = require('../models/Category')
+const Article = require('../models/Article')
 
 const router = new Router().prefix('/categories')
 
@@ -70,6 +71,10 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
 
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const id = ctx.params.id
+  await Article.updateMany(
+    { category: id },
+    { $unset: { category: 1 } }
+  )
   await Category.deleteOne({
     _id: id,
     userId: ctx.state.user.name

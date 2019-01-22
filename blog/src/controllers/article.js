@@ -2,6 +2,7 @@ const Router = require('koa-router')
 const passport = require('koa-passport')
 
 const Article = require('../models/Article')
+const Category = require('../models/Category')
 const storage = require('../client/storage')
 
 const router = new Router().prefix('/articles')
@@ -58,13 +59,22 @@ router.get('/:id', async (ctx) => {
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { title, body, image } = ctx.request.body
+  const { title, body, image, category } = ctx.request.body
+  let existsCategory
+  if (category) {
+    try {
+      existsCategory = await Category.findById(category)
+    } catch (e) {
+      ctx.throw(400)
+    }
+  }
   if (title.trim() !== '' && body.trim() !== '' && image.trim() !== '') {
     const article = await new Article({
       title,
       body,
       userId: ctx.state.user.name,
-      createdDate: Date.now()
+      createdDate: Date.now(),
+      category: existsCategory ? existsCategory._id : undefined
     }).save()
     await storage.save(image, article._id + IMAGE_NAME_END)
     ctx.status = 201
@@ -75,14 +85,22 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { _id, title, body, image } = ctx.request.body
+  const { _id, title, body, image, category } = ctx.request.body
+  const updateParams = { title, body }
+  if (category) {
+    try {
+      existsCategory = await Category.findById(category)
+    } catch (e) {
+      ctx.throw(400)
+    }
+    if (existsCategory) {
+      updateParams.category = existsCategory._id
+    }
+  }
   if (_id && title.trim() !== '' && body.trim() !== '') {
     const article = await Article.findOneAndUpdate(
       { _id, userId: ctx.state.user.name },
-      { $set: {
-        title,
-        body
-      } },
+      { $set: updateParams },
       { new: true }
     )
     if (image && image.trim() !== '') {

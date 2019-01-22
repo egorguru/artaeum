@@ -1,5 +1,6 @@
 const helpers = require('../helpers')
 const Category = require('../../models/Category')
+const Article = require('../../models/Article.js')
 
 describe("Categories API", () => {
   const testCategory = {
@@ -155,6 +156,28 @@ describe("Categories API", () => {
       res.statusCode.should.eql(200);
       const categories = await Category.find()
       categories.length.should.eql(0)
+    })
+    it("removes category and clears articles", async () => {
+      const category = await new Category(testCategory).save()
+      const article = await new Article({
+        title: 'Test title',
+        body: '<p>Test text</p>',
+        userId: 'uuid-test',
+        createdDate: Date.now(),
+        category: category._id
+      }).save()
+      article.category.should.eql(category._id)
+      const res = await helpers.request.delete({
+        uri: 'categories/' + category._id,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(200);
+      const categories = await Category.find()
+      categories.length.should.eql(0)
+      const clearedArticle = await Article.findById(article._id)
+      should(clearedArticle.category).be.Undefined()
     })
   })
 })
