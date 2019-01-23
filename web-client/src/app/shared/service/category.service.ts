@@ -17,7 +17,7 @@ export class CategoryService {
     return this.http.put<Category>('blog/categories', category, { observe: 'response' })
   }
 
-  get(id: number): Observable<HttpResponse<Category>> {
+  get(id: string): Observable<HttpResponse<Category>> {
     return this.http.get<Category>(`blog/categories/${id}`, { observe: 'response' })
   }
 

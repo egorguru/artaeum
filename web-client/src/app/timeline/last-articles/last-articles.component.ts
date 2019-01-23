@@ -32,8 +32,8 @@ export class LastArticlesComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Articles from your subscriptions - Artaeum')
     this.principal.identity().then((u) => {
-      this.currentUser = u
       if (u) {
+        this.currentUser = u
         this.subscriptionService.queryForAllSubscriptions(u.id)
           .subscribe((res) => this.loadUsers(res.body))
       }

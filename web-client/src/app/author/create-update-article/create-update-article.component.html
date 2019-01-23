@@ -35,7 +35,9 @@
   </div>
   <div class="input-group mb-3" *ngIf="categories">
     <div class="input-group-prepend">
-      <label class="input-group-text" for="category">Category</label>
+      <label class="input-group-text" for="category">
+        {{ 'author.create-update-article.category' | translate }}
+      </label>
     </div>
     <select class="custom-select" id="category" name="category" [(ngModel)]="article.category">
       <option></option>

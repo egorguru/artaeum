@@ -6,7 +6,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import {
   User, Article,
   ArticleService, UserService,
-  SmartButtonService, Principal
+  SmartButtonService, Principal,
+  CategoryService, Category
 } from '../../shared'
 
 @Component({
@@ -17,6 +18,7 @@ import {
 export class SingleArticleComponent implements OnInit {
 
   article: Article
+  category: Category
   author: User
   currentUser: User
 
@@ -24,6 +26,7 @@ export class SingleArticleComponent implements OnInit {
     private principal: Principal,
     private smartButtonService: SmartButtonService,
     private articleService: ArticleService,
+    private categoryService: CategoryService,
     private userService: UserService,
     private activedRoute: ActivatedRoute,
     private router: Router,
@@ -37,7 +40,10 @@ export class SingleArticleComponent implements OnInit {
         this.article = res.body
         this.title.setTitle(`${res.body.title} - Artaeum`)
         this.checkUserAndInitSmartButton()
-        this.loadAuthor()
+        this.userService.get(this.article.userId)
+          .subscribe((author) => this.author = author.body)
+        this.categoryService.get(this.article.category)
+          .subscribe((category) => this.category = category.body)
       }, () => this.router.navigate(['/404']))
     })
   }
@@ -63,10 +69,5 @@ export class SingleArticleComponent implements OnInit {
         })
       }
     })
-  }
-
-  private loadAuthor(): void {
-    this.userService.get(this.article.userId)
-      .subscribe((res) => this.author = res.body)
   }
 }

@@ -254,24 +254,28 @@
   "categories": [
     {
       "_id": "1",
+      "id": "1",
       "name": "First Category",
       "userId": "stalin",
       "createdDate": "1539962638967"
     },
     {
       "_id": "2",
+      "id": "2",
       "name": "Second Category",
       "userId": "stalin",
       "createdDate": "1539962639067"
     },
     {
       "_id": "3",
+      "id": "3",
       "name": "First Category",
       "userId": "chief_moderator",
       "createdDate": "1539962640167"
     },
     {
       "_id": "4",
+      "id": "4",
       "name": "Second Category",
       "userId": "chief_moderator",
       "createdDate": "1539962650167"

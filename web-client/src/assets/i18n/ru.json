@@ -58,6 +58,7 @@
     "single-article": {
       "meta-1": "",
       "meta-2": "",
+      "meta-3": "",
       "comments": "Комментарии",
       "delete-modal": {
         "title": "Удаление статьи",
@@ -75,6 +76,7 @@
     "create-update-article": {
       "title-input": "Название",
       "body-input-placeholder": "Let's write it!",
+      "category": "Категория",
       "submit": "Сохранить"
     },
     "dashboard": {
@@ -179,7 +181,8 @@
   "shared": {
     "article": {
       "meta-1": "",
-      "meta-2": ""
+      "meta-2": "",
+      "meta-3": ""
     },
     "comment": {
       "text-input-placeholder": "Комментарий...",

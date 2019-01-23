@@ -58,6 +58,7 @@
     "single-article": {
       "meta-1": "Posted by",
       "meta-2": "on",
+      "meta-3": "in",
       "comments": "Comments",
       "delete-modal": {
         "title": "Article deletion",
@@ -75,6 +76,7 @@
     "create-update-article": {
       "title-input": "Title",
       "body-input-placeholder": "Let's write it!",
+      "category": "Category",
       "submit": "Save"
     },
     "dashboard": {
@@ -180,7 +182,8 @@
   "shared": {
     "article": {
       "meta-1": "Posted by",
-      "meta-2": "on"
+      "meta-2": "on",
+      "meta-3": "in"
     },
     "comment": {
       "text-input-placeholder": "What do you think?",
