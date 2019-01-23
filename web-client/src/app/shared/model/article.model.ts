@@ -5,6 +5,7 @@ export class Article {
     public body?: string,
     public userId?: string,
     public createdDate?: Date,
-    public image?: string
+    public image?: string,
+    public category?: string
   ) {}
 }

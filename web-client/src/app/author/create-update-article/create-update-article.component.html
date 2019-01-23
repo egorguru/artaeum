@@ -33,6 +33,21 @@
       [(ngModel)]="article.body"
     ></quill-editor>
   </div>
+  <div class="input-group mb-3" *ngIf="categories">
+    <div class="input-group-prepend">
+      <label class="input-group-text" for="category">Category</label>
+    </div>
+    <select class="custom-select" id="category" name="category" [(ngModel)]="article.category">
+      <option></option>
+      <option
+        *ngFor="let c of categories"
+        [selected]="article._id && article.category === c._id"
+        [value]="c._id"
+      >
+        {{ c.name }}
+      </option>
+    </select>
+  </div>
   <button type="submit" [disabled]="form.form.invalid && (!article.image || !article._id)" class="btn btn-dark">
     <span class="fa fa-save"></span>&nbsp;<span>{{ 'author.create-update-article.submit' | translate }}</span>
   </button>

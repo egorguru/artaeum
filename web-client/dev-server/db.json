@@ -211,7 +211,8 @@
       "userId": "stalin",
       "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
-      "createdDate": "1539962516967"
+      "createdDate": "1539962516967",
+      "category": "1"
     },
     {
       "id": 2,
