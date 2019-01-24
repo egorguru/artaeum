@@ -72,6 +72,14 @@ section {
   border-color: #000;
 }
 
+.page-link {
+  color: #000;
+}
+
+.page-link:hover {
+  color: #000;
+}
+
 .image-canvas {
   width: 100%;
   height: 100%;

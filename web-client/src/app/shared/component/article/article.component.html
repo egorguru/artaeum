@@ -7,7 +7,7 @@
     {{ 'shared.article.meta-2' | translate }} {{ article.createdDate | dateConverter }}
     <span *ngIf="category">
         {{ 'shared.article.meta-3' | translate }}
-        <a [routerLink]="['/u/blog', category.name]">{{ category.name }}</a>
+        <a [routerLink]="['/u', author.login, 'blog', category.name]">{{ category.name }}</a>
     </span>
     <span *ngIf="currentUser && currentUser.id === author.id">
       |
