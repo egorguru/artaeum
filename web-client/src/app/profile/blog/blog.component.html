@@ -1,19 +1,16 @@
-<div *ngIf="!articles && !user" class="col-md-10 mx-auto pt-4 mb-4">
-  <ae-loader></ae-loader>
+<div class="col tab-nav">
+  <a
+    [routerLink]="['/u', user.login, 'blog']"
+    [routerLinkActive]="'active'"
+    [routerLinkActiveOptions]="{ exact: true }"
+  >{{ 'profile.blog.all-nav' | translate }}</a>
+  <a
+    *ngFor="let c of categories"
+    [routerLink]="['/u', user.login, 'blog', c.name]"
+    [routerLinkActive]="'active'"
+  >{{ c.name }}</a>
 </div>
 
-<div class="col-md-6 mx-auto" *ngIf="articles && articles.length && user">
-  <ae-article
-    *ngFor="let a of articles"
-    [article]="a"
-    [author]="user"
-    [currentUser]="currentUser"
-  ></ae-article>
-  <ngb-pagination
-    [collectionSize]="totalItems"
-    [(page)]="page"
-    [pageSize]="postsPerPage"
-    [maxSize]="5"
-    (pageChange)="loadPage(page)"
-  ></ngb-pagination>
+<div class="row justify-content-center">
+  <router-outlet></router-outlet>
 </div>

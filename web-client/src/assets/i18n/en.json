@@ -140,6 +140,9 @@
     "subscribers": {
       "subscribed-on": "Subscribed on"
     },
+    "blog": {
+      "all-nav": "All"
+    },
     "wall": {
       "create-post": {
         "text-input-placeholder": "What's new?",

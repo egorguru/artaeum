@@ -1,6 +1,7 @@
 {
   "/uaa/account": "/uaa/users/stalin",
   "/media/:userId/likes": "/likes?userId=:userId",
+  "/blog/articles\\?page=:page&size=:size&userId=:userId&category=:category&sort=id,desc": "/articles?page=:page&size=:size&userId=:userId&category=:category&sort=id,desc",
   "/:service/:resource/search\\?page=:page&size=:size&query=:query&sort=id,desc": "/:service/:resource?page=:page&size=:size&q=:query&sort=id,desc",
   "/:service/:resource\\?page=:page&size=:size&sort=id,desc": "/:resource?_page=:page&_limit=:size&_sort=id&_order=desc",
   "/:service/:resource": "/:resource",

@@ -1,8 +1,9 @@
 import { BlogComponent } from './blog.component'
 import { ResolvePagingParamsService } from '../../shared'
 
-export const blogRoute = {
+export const blogRoutes = {
   path: 'blog',
   component: BlogComponent,
-  resolve: { 'pagingParams': ResolvePagingParamsService }
+  resolve: { 'pagingParams': ResolvePagingParamsService },
+  children: []
 }

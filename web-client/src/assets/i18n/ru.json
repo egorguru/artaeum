@@ -139,6 +139,9 @@
     "subscribers": {
       "subscribed-on": "Подписчик с"
     },
+    "blog": {
+      "all-nav": "Все Публикации"
+    },
     "wall": {
       "create-post": {
         "text-input-placeholder": "Что нового?",
