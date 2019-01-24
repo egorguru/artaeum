@@ -5,7 +5,7 @@ import { SharedModule } from '../shared'
 import { profileRoutes } from './profile.route'
 import { ProfileComponent } from './profile.component'
 import { WallComponent, CreatePostComponent } from './wall'
-import { BlogComponent } from './blog'
+import { BlogComponent, AllArticlesComponent } from './blog'
 import { SubscribersComponent } from './subscribers'
 
 @NgModule({
@@ -18,6 +18,7 @@ import { SubscribersComponent } from './subscribers'
     WallComponent,
     CreatePostComponent,
     BlogComponent,
+    AllArticlesComponent,
     SubscribersComponent
   ]
 })
