@@ -175,6 +175,41 @@ describe("Articles API", async () => {
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
     })
+    it("gets the articles by category", async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.get({
+        uri: 'articles?category=' + article.category,
+        json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+      res.body[0].category.should.eql(article.category.toString())
+    })
+    it("gets the only one article of two by category", async () => {
+      const article = await new Article(testArticle).save()
+      const secondArticle = await new Article({
+        title: 'mock',
+        body: 'mock',
+        userId: 'mock',
+        createdDate: Date.now()
+      }).save()
+      const res = await helpers.request.get({
+        uri: 'articles?category=' + article.category,
+        json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      should(res.body.length).eql(1)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+      res.body[0].category.should.eql(article.category.toString())
+    })
   })
   describe("GET /articles/search", () => {
     it("search for article", async () => {

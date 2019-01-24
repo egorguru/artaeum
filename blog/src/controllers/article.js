@@ -15,13 +15,12 @@ const getTotalCount = async (query) => {
 }
 
 router.get('/', async (ctx) => {
-  const userId = ctx.query.userId
-  const query = userId ? { userId } : {}
   const page = +ctx.query.page
   const size = +ctx.query.size
+  const query = { userId, category } = ctx.query
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate')
+    .select('_id title userId createdDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -40,7 +39,7 @@ router.get('/search', async (ctx) => {
   const size = +ctx.query.size
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate')
+    .select('_id title userId createdDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -54,7 +53,7 @@ router.get('/:id', async (ctx) => {
   if (article) {
     ctx.body = article
   } else {
-    ctx.status = 404
+    ctx.throw(404)
   }
 })
 
@@ -80,7 +79,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
     ctx.status = 201
     ctx.body = article
   } else {
-    ctx.status = 400
+    ctx.throw(400)
   }
 })
 
@@ -108,7 +107,7 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     }
     ctx.body = article
   } else {
-    ctx.status = 400
+    ctx.throw(400)
   }
 })
 
