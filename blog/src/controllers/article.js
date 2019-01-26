@@ -18,6 +18,23 @@ router.get('/', async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
   const query = { userId, category } = ctx.query
+  query.isPublished = true
+  const articles = await Article
+    .find(query)
+    .select('_id title userId createdDate category')
+    .sort({ createdDate: -1 })
+    .skip(page * size)
+    .limit(size)
+  const totalCount = await getTotalCount(query)
+  ctx.set('X-Total-Count', totalCount)
+  ctx.body = articles
+})
+
+router.get('/my', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const page = +ctx.query.page
+  const size = +ctx.query.size
+  const query = { category } = ctx.query
+  query.userId = ctx.state.user.name
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate category')
@@ -31,6 +48,7 @@ router.get('/', async (ctx) => {
 
 router.get('/search', async (ctx) => {
   const query = {
+    isPublished: true,
     $text: {
       $search: ctx.query.query
     }
@@ -49,7 +67,22 @@ router.get('/search', async (ctx) => {
 })
 
 router.get('/:id', async (ctx) => {
-  const article = await Article.findById(ctx.params.id)
+  const article = await Article.findOne({
+    _id: ctx.params.id,
+    isPublished: true
+  })
+  if (article) {
+    ctx.body = article
+  } else {
+    ctx.throw(404)
+  }
+})
+
+router.get('/my/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const article = await Article.findOne({
+    _id: ctx.params.id,
+    userId: ctx.state.user.name
+  })
   if (article) {
     ctx.body = article
   } else {
@@ -105,6 +138,20 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     if (image && image.trim() !== '') {
       await storage.save(image, article._id + IMAGE_NAME_END)
     }
+    ctx.body = article
+  } else {
+    ctx.throw(400)
+  }
+})
+
+router.put('/publish', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const _id = ctx.request.body._id
+  if (_id) {
+    const article = await Article.findOneAndUpdate(
+      { _id, userId: ctx.state.user.name },
+      { $set: { isPublished: true } },
+      { new: true }
+    )
     ctx.body = article
   } else {
     ctx.throw(400)

@@ -20,6 +20,10 @@ const articlesSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'categories'
   },
+  isPublished: {
+    type: Boolean,
+    default: false
+  },
   createdDate: {
     type: Date,
     required: true

@@ -14,6 +14,7 @@ describe("Articles API", async () => {
     image: 'mock',
     userId: 'uuid-test',
     category: category._id,
+    isPublished: true,
     createdDate: Date.now()
   }
   beforeEach(async () => {
@@ -144,6 +145,27 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(400)
     })
+    it("publishes an article", async () => {
+      const article = await new Article({
+        title: 'Test title',
+        body: '<p>Test text</p>',
+        image: 'mock',
+        userId: 'uuid-test',
+        createdDate: Date.now()
+      }).save()
+      const res = await helpers.request.put({
+        uri: 'articles/publish',
+        json: true,
+        body: {
+          _id: article._id
+        },
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(200)
+      res.body.isPublished.should.eql(true)
+    })
   })
   describe("GET /articles/:articleId", () => {
     it("gets the article by id", async () => {
@@ -159,6 +181,40 @@ describe("Articles API", async () => {
       res.body.title.should.eql(article.title)
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
+    })
+    it("gets my article by id", async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.get({
+        uri: 'articles/my/' + article._id,
+        json: true,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body._id.should.eql(article._id)
+      new Date(res.body.createdDate).should.eql(article.createdDate)
+      res.body.title.should.eql(article.title)
+      res.body.body.should.eql(article.body)
+      res.body.userId.should.eql(article.userId)
+    })
+    it("gets no my article by id", async () => {
+      const article = await new Article({
+        title: 'Test title',
+        body: '<p>Test text</p>',
+        image: 'mock',
+        userId: 'uuid-any',
+        createdDate: Date.now()
+      }).save()
+      const res = await helpers.request.get({
+        uri: 'articles/my/' + article._id,
+        json: true,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(404)
     })
   })
   describe("GET /articles", () => {
@@ -191,7 +247,7 @@ describe("Articles API", async () => {
     })
     it("gets the only one article of two by category", async () => {
       const article = await new Article(testArticle).save()
-      const secondArticle = await new Article({
+      await new Article({
         title: 'mock',
         body: 'mock',
         userId: 'mock',
@@ -200,6 +256,30 @@ describe("Articles API", async () => {
       const res = await helpers.request.get({
         uri: 'articles?category=' + article.category,
         json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      should(res.body.length).eql(1)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+      res.body[0].category.should.eql(article.category.toString())
+    })
+    it("gets my articles", async () => {
+      const article = await new Article(testArticle).save()
+      await new Article({
+        title: 'mock',
+        body: 'mock',
+        userId: 'mock',
+        createdDate: Date.now()
+      }).save()
+      const res = await helpers.request.get({
+        uri: 'articles/my',
+        json: true,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
       })
       res.statusCode.should.eql(200)
       res.headers['content-type'].should.match(/application\/json/)
