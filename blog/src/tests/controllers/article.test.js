@@ -2,7 +2,7 @@ const helpers = require('../helpers')
 const Article = require('../../models/Article')
 const Category = require('../../models/Category')
 
-describe("Articles API", async () => {
+describe('Articles API', async () => {
   const category = await new Category({
     name: 'Test category',
     userId: 'uuid-test',
@@ -20,8 +20,8 @@ describe("Articles API", async () => {
   beforeEach(async () => {
     await Article.remove()
   })
-  describe("POST /articles", () => {
-    it("creates an article", async () => {
+  describe('POST /articles', () => {
+    it('creates an article', async () => {
       const res = await helpers.request.post({
         uri: 'articles',
         json: true,
@@ -37,7 +37,7 @@ describe("Articles API", async () => {
       res.body.body.should.eql(testArticle.body)
       res.body.userId.should.eql(testArticle.userId)
     })
-    it("creates an invalid article", async () => {
+    it('creates an invalid article', async () => {
       const res = await helpers.request.post({
         uri: 'articles',
         json: true,
@@ -52,7 +52,7 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates an invalid article contains only spaces", async () => {
+    it('creates an invalid article contains only spaces', async () => {
       const res = await helpers.request.post({
         uri: 'articles',
         json: true,
@@ -67,7 +67,7 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates an article with invalid token", async () => {
+    it('creates an article with invalid token', async () => {
       const res = await helpers.request.post({
         uri: 'articles',
         json: true,
@@ -78,7 +78,7 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(500)
     })
-    it("creates an article with wrong category", async () => {
+    it('creates an article with wrong category', async () => {
       const res = await helpers.request.post({
         uri: 'articles',
         json: true,
@@ -95,8 +95,8 @@ describe("Articles API", async () => {
       res.statusCode.should.eql(400)
     })
   })
-  describe("PUT /articles", () => {
-    it("updates an article", async () => {
+  describe('PUT /articles', () => {
+    it('updates an article', async () => {
       const article = await new Article(testArticle).save()
       article.title = 'Edited title'
       article.body = '<p>Edited text</p>'
@@ -115,7 +115,7 @@ describe("Articles API", async () => {
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
     })
-    it("updates an article with invalid params", async () => {
+    it('updates an article with invalid params', async () => {
       const article = await new Article(testArticle).save()
       article.title = ' '
       article.body = ' '
@@ -129,7 +129,7 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("updates an article with wrong category", async () => {
+    it('updates an article with wrong category', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.put({
         uri: 'articles',
@@ -145,7 +145,7 @@ describe("Articles API", async () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("publishes an article", async () => {
+    it('publishes an article', async () => {
       const article = await new Article({
         title: 'Test title',
         body: '<p>Test text</p>',
@@ -167,8 +167,8 @@ describe("Articles API", async () => {
       res.body.isPublished.should.eql(true)
     })
   })
-  describe("GET /articles/:articleId", () => {
-    it("gets the article by id", async () => {
+  describe('GET /articles/:articleId', () => {
+    it('gets the article by id', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles/' + article._id,
@@ -182,7 +182,7 @@ describe("Articles API", async () => {
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
     })
-    it("gets my article by id", async () => {
+    it('gets my article by id', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles/my/' + article._id,
@@ -199,7 +199,7 @@ describe("Articles API", async () => {
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
     })
-    it("gets no my article by id", async () => {
+    it('gets no my article by id', async () => {
       const article = await new Article({
         title: 'Test title',
         body: '<p>Test text</p>',
@@ -217,8 +217,8 @@ describe("Articles API", async () => {
       res.statusCode.should.eql(404)
     })
   })
-  describe("GET /articles", () => {
-    it("gets the articles", async () => {
+  describe('GET /articles', () => {
+    it('gets the articles', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles',
@@ -231,7 +231,7 @@ describe("Articles API", async () => {
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
     })
-    it("gets the articles by category", async () => {
+    it('gets the articles by category', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles?category=' + article.category,
@@ -245,7 +245,7 @@ describe("Articles API", async () => {
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
     })
-    it("gets the only one article of two by category", async () => {
+    it('gets the only one article of two by category', async () => {
       const article = await new Article(testArticle).save()
       await new Article({
         title: 'mock',
@@ -266,7 +266,7 @@ describe("Articles API", async () => {
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
     })
-    it("gets my articles", async () => {
+    it('gets my articles', async () => {
       const article = await new Article(testArticle).save()
       await new Article({
         title: 'mock',
@@ -291,8 +291,8 @@ describe("Articles API", async () => {
       res.body[0].category.should.eql(article.category.toString())
     })
   })
-  describe("GET /articles/search", () => {
-    it("search for article", async () => {
+  describe('GET /articles/search', () => {
+    it('search for article', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles/search?query=tItle',
@@ -306,8 +306,8 @@ describe("Articles API", async () => {
       res.body[0].userId.should.eql(article.userId)
     })
   })
-  describe("DELETE /articles/:articleId", () => {
-    it("removes article", async () => {
+  describe('DELETE /articles/:articleId', () => {
+    it('removes article', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.delete({
         uri: 'articles/' + article._id,

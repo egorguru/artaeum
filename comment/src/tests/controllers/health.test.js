@@ -1,7 +1,7 @@
 const helpers = require('../helpers')
 
-describe("Health API", () => {
-  it("GET /health gets health status", async () => {
+describe('Health API', () => {
+  it('GET /health gets health status', async () => {
     const res = await helpers.request.get({
       uri: 'health',
       json: true

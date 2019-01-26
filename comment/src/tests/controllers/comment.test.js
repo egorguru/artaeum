@@ -1,7 +1,7 @@
 const helpers = require('../helpers')
 const Comment = require('../../models/Comment')
 
-describe("Comments API", () => {
+describe('Comments API', () => {
   const testComment = {
     text: '<p>Test text</p>',
     resourceType: 'test',
@@ -12,8 +12,8 @@ describe("Comments API", () => {
   beforeEach(async () => {
     await Comment.remove()
   })
-  describe("POST /comments", () => {
-    it("creates a comment", async () => {
+  describe('POST /comments', () => {
+    it('creates a comment', async () => {
       const res = await helpers.request.post({
         uri: 'comments',
         json: true,
@@ -30,7 +30,7 @@ describe("Comments API", () => {
       res.body.resourceId.should.eql(testComment.resourceId)
       res.body.userId.should.eql(testComment.userId)
     })
-    it("creates an invalid comment", async () => {
+    it('creates an invalid comment', async () => {
       const res = await helpers.request.post({
         uri: 'comments',
         json: true,
@@ -43,7 +43,7 @@ describe("Comments API", () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates an invalid comment contains only spaces", async () => {
+    it('creates an invalid comment contains only spaces', async () => {
       const res = await helpers.request.post({
         uri: 'comments',
         json: true,
@@ -58,7 +58,7 @@ describe("Comments API", () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates a comment with invalid token", async () => {
+    it('creates a comment with invalid token', async () => {
       const res = await helpers.request.post({
         uri: 'comments',
         json: true,
@@ -70,8 +70,8 @@ describe("Comments API", () => {
       res.statusCode.should.eql(500)
     })
   })
-  describe("PUT /comments", () => {
-    it("updates a comment", async () => {
+  describe('PUT /comments', () => {
+    it('updates a comment', async () => {
       const comment = await new Comment(testComment).save()
       comment.text = '<p>Edited text</p>'
       const res = await helpers.request.put({
@@ -90,7 +90,7 @@ describe("Comments API", () => {
       res.body.resourceId.should.eql(comment.resourceId)
       res.body.userId.should.eql(comment.userId)
     })
-    it("updates a comment with invalid params", async () => {
+    it('updates a comment with invalid params', async () => {
       const comment = await new Comment(testComment).save()
       comment.text = ' '
       const res = await helpers.request.put({
@@ -104,8 +104,8 @@ describe("Comments API", () => {
       res.statusCode.should.eql(400)
     })
   })
-  describe("GET /comments/:resourceType/:resourceId", () => {
-    it("gets the comments", async () => {
+  describe('GET /comments/:resourceType/:resourceId', () => {
+    it('gets the comments', async () => {
       const comment = await new Comment(testComment).save()
       const res = await helpers.request.get({
         uri: `comments/${comment.resourceType}/${comment.resourceId}`,
@@ -121,8 +121,8 @@ describe("Comments API", () => {
       res.body[0].userId.should.eql(comment.userId)
     })
   })
-  describe("DELETE /comments/:commentId", () => {
-    it("removes the comment", async () => {
+  describe('DELETE /comments/:commentId', () => {
+    it('removes the comment', async () => {
       const comment = await new Comment(testComment).save()
       const res = await helpers.request.delete({
         uri: 'comments/' + comment._id,

@@ -2,7 +2,7 @@ const helpers = require('../helpers')
 const Category = require('../../models/Category')
 const Article = require('../../models/Article.js')
 
-describe("Categories API", () => {
+describe('Categories API', () => {
   const testCategory = {
     name: 'Test category',
     userId: 'uuid-test',
@@ -11,8 +11,8 @@ describe("Categories API", () => {
   beforeEach(async () => {
     await Category.remove()
   })
-  describe("POST /categories", () => {
-    it("creates a category", async () => {
+  describe('POST /categories', () => {
+    it('creates a category', async () => {
       const res = await helpers.request.post({
         uri: 'categories',
         json: true,
@@ -26,7 +26,7 @@ describe("Categories API", () => {
       res.body.createdDate.should.be.a.String()
       res.body.name.should.eql(testCategory.name)
     })
-    it("creates a invalid comment with blank name", async () => {
+    it('creates a invalid comment with blank name', async () => {
       const res = await helpers.request.post({
         uri: 'categories',
         json: true,
@@ -39,7 +39,7 @@ describe("Categories API", () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates a invalid category contains only spaces", async () => {
+    it('creates a invalid category contains only spaces', async () => {
       const res = await helpers.request.post({
         uri: 'categories',
         json: true,
@@ -52,7 +52,7 @@ describe("Categories API", () => {
       })
       res.statusCode.should.eql(400)
     })
-    it("creates a category with invalid token", async () => {
+    it('creates a category with invalid token', async () => {
       const res = await helpers.request.post({
         uri: 'categories',
         json: true,
@@ -63,7 +63,7 @@ describe("Categories API", () => {
       })
       res.statusCode.should.eql(500)
     })
-    it("creates two identical categories", async () => {
+    it('creates two identical categories', async () => {
       const firstCreate = await helpers.request.post({
         uri: 'categories',
         json: true,
@@ -85,8 +85,8 @@ describe("Categories API", () => {
       secondCreate.body.message.should.eql('Category already exists')
     })
   })
-  describe("PUT /categories", () => {
-    it("updates a category", async () => {
+  describe('PUT /categories', () => {
+    it('updates a category', async () => {
       const category = await new Category(testCategory).save()
       category.name = 'Edited name'
       const res = await helpers.request.put({
@@ -102,7 +102,7 @@ describe("Categories API", () => {
       new Date(res.body.createdDate).should.eql(category.createdDate)
       res.body.name.should.eql(category.name)
     })
-    it("updates the category with the same name", async () => {
+    it('updates the category with the same name', async () => {
       const category = await new Category(testCategory).save()
       category.name = category.name
       const res = await helpers.request.put({
@@ -117,8 +117,8 @@ describe("Categories API", () => {
       res.body.message.should.eql('Category already exists')
     })
   })
-  describe("GET /categories/:categoryId", () => {
-    it("gets the category by id", async () => {
+  describe('GET /categories/:categoryId', () => {
+    it('gets the category by id', async () => {
       const category = await new Category(testCategory).save()
       const res = await helpers.request.get({
         uri: 'categories/' + category._id,
@@ -130,8 +130,8 @@ describe("Categories API", () => {
       res.body.name.should.eql(category.name)
     })
   })
-  describe("GET /categories", () => {
-    it("gets the categories by user ID", async () => {
+  describe('GET /categories', () => {
+    it('gets the categories by user ID', async () => {
       const category = await new Category(testCategory).save()
       const res = await helpers.request.get({
         uri: 'categories?userId=' + category.userId,
@@ -144,8 +144,8 @@ describe("Categories API", () => {
       res.body[0].userId.should.eql(category.userId)
     })
   })
-  describe("DELETE /categories/:categoryId", () => {
-    it("removes category", async () => {
+  describe('DELETE /categories/:categoryId', () => {
+    it('removes category', async () => {
       const category = await new Category(testCategory).save()
       const res = await helpers.request.delete({
         uri: 'categories/' + category._id,
@@ -157,7 +157,7 @@ describe("Categories API", () => {
       const categories = await Category.find()
       categories.length.should.eql(0)
     })
-    it("removes category and clears articles", async () => {
+    it('removes category and clears articles', async () => {
       const category = await new Category(testCategory).save()
       const article = await new Article({
         title: 'Test title',
