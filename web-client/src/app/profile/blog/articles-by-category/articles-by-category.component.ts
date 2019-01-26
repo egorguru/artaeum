@@ -60,7 +60,6 @@ export class ArticlesByCategoryComponent implements OnInit {
       page: this.page - 1,
       size: this.postsPerPage,
       sort: ['id,desc'],
-      userId: this.user.id,
       category: this.category._id
     }).subscribe((res) => {
       this.articles = res.body
