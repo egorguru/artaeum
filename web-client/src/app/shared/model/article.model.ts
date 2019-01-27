@@ -6,6 +6,7 @@ export class Article {
     public userId?: string,
     public createdDate?: Date,
     public image?: string,
-    public category?: string
+    public category?: string,
+    public isPublished?: boolean
   ) {}
 }
