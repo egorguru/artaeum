@@ -77,7 +77,8 @@
       "title-input": "Title",
       "body-input-placeholder": "Let's write it!",
       "category": "Category",
-      "submit": "Save"
+      "save": "Save",
+      "publish": "Publish"
     },
     "dashboard": {
       "subscribers": "Subscribers",

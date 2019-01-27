@@ -1,4 +1,4 @@
-<form *ngIf="article" role="form" novalidate (ngSubmit)="save()" #form="ngForm">
+<form *ngIf="article" role="form" novalidate #form="ngForm">
   <div class="form-group">
     <input class="form-control" type="text" name="title" [placeholder]="'author.create-update-article.title-input' | translate" required [(ngModel)]="article.title" />
   </div>
@@ -50,7 +50,23 @@
       </option>
     </select>
   </div>
-  <button type="submit" [disabled]="form.form.invalid && (!article.image || !article._id)" class="btn btn-dark">
-    <span class="fa fa-save"></span>&nbsp;<span>{{ 'author.create-update-article.submit' | translate }}</span>
+  <button
+    type="submit"
+    (click)="onSave()"
+    [disabled]="form.form.invalid && (!article.image || !article._id)"
+    class="btn btn-dark mr-1"
+  >
+    <span class="fa fa-save"></span>&nbsp;
+    <span>{{ 'author.create-update-article.save' | translate }}</span>
+  </button>
+  <button
+    *ngIf="!article.isPublished"
+    type="submit"
+    (click)="onSaveAndPublish()"
+    [disabled]="form.form.invalid && (!article.image || !article._id)"
+    class="btn btn-dark"
+  >
+    <span class="fa fa-globe"></span>&nbsp;
+    <span>{{ 'author.create-update-article.publish' | translate }}</span>
   </button>
 </form>

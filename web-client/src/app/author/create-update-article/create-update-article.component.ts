@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
+import { HttpResponse } from '@angular/common/http'
+import { Observable } from 'rxjs'
 import { environment as env} from '../../../environments/environment'
 
 import { ArticleService, Principal, Article, CategoryService, Category } from '../../shared'
@@ -27,7 +29,7 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.principal.identity().then((u) => {
         if (params['id']) {
-          this.articleService.get(params['id']).subscribe((res) => {
+          this.articleService.getMy(params['id']).subscribe((res) => {
             if (u.id !== res.body.userId) {
               this.router.navigate(['/'])
             } else {
@@ -47,24 +49,24 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.article.image = image
   }
 
-  save(): void {
-    if (this.article._id) {
-      this.articleService.update(this.article)
-        .subscribe((res) => this.successfulSave(res.body._id))
-    } else {
-      this.articleService.create(this.article)
-        .subscribe((res) => this.successfulSave(res.body._id))
-    }
+  onSave(): void {
+    this.save().subscribe((res) => this.successfulSave(res.body._id))
   }
 
-  private checkAuthorAndInitArticle(article: Article): void {
-    this.principal.identity().then((u) => {
-      if (u.id !== article.userId) {
-        this.router.navigate(['/'])
-      } else {
-        this.article = article
-      }
+  onSaveAndPublish(): void {
+    this.save().subscribe((res) => {
+      this.articleService.publish({ _id: this.article._id}).subscribe(() => {
+        this.successfulSave(res.body._id)
+      })
     })
+  }
+
+  private save(): Observable<HttpResponse<Article>> {
+    if (this.article._id) {
+      return this.articleService.update(this.article)
+    } else {
+      return this.articleService.create(this.article)
+    }
   }
 
   private successfulSave(postId: number): void {
