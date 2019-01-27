@@ -50,13 +50,19 @@ export class CreateUpdateArticleComponent implements OnInit {
   }
 
   onSave(): void {
-    this.save().subscribe((res) => this.successfulSave(res.body._id))
+    this.save().subscribe((res) => {
+      if (res.body.isPublished) {
+        this.router.navigate(['/articles', res.body._id])
+      } else {
+        this.router.navigate(['/author/articles', res.body._id])
+      }
+    })
   }
 
   onSaveAndPublish(): void {
-    this.save().subscribe((res) => {
-      this.articleService.publish({ _id: this.article._id}).subscribe(() => {
-        this.successfulSave(res.body._id)
+    this.save().subscribe(() => {
+      this.articleService.publish({ _id: this.article._id }).subscribe((res) => {
+        this.router.navigate(['/articles', res.body._id])
       })
     })
   }
@@ -67,9 +73,5 @@ export class CreateUpdateArticleComponent implements OnInit {
     } else {
       return this.articleService.create(this.article)
     }
-  }
-
-  private successfulSave(postId: number): void {
-    this.router.navigate(['/articles', postId])
   }
 }
