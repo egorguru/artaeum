@@ -7,7 +7,8 @@ import { CategoryService, ArticleService, Principal, User, Article } from '../..
 
 @Component({
   selector: 'ae-all-articles-author',
-  templateUrl: './all-articles.component.html'
+  templateUrl: './all-articles.component.html',
+  styleUrls: ['./all-articles.component.css']
 })
 export class AllArticlesComponent implements OnInit {
 

@@ -59,9 +59,12 @@
           </span>
         </td>
         <td>
-          <button class="btn btn-outline-danger" (click)="modalDelete(delete, a)">
-            {{ 'author.all-articles.delete' | translate }}
-          </button>
+          <a [routerLink]="['/author/article', a._id]">
+            <i class="fa fa-pencil" title="Edit"></i>
+          </a>
+          <a (click)="modalDelete(delete, a)">
+            <i class="fa fa-remove" title="Delete"></i>
+          </a>
         </td>
       </tr>
     </tbody>

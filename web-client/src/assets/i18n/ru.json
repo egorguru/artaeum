@@ -84,7 +84,6 @@
         "published": "Опубликовано",
         "not-published": "Не Опубликовано"
       },
-      "delete": "Удалить",
       "create": "Создать",
       "delete-modal": {
         "title": "Удаление Статьи",

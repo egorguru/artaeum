@@ -84,7 +84,6 @@
         "published": "Published",
         "not-published": "Not Published"
       },
-      "delete": "Delete",
       "create": "Create",
       "delete-modal": {
         "title": "Article Deletion",
