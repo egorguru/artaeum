@@ -11,7 +11,7 @@
     </span>
     <span *ngIf="currentUser && currentUser.id === author.id">
       |
-      <a [routerLink]="['/author/articles', article._id]">
+      <a [routerLink]="['/author/article', article._id]">
         <i class="fa fa-pencil" title="Edit"></i>
       </a>
     </span>

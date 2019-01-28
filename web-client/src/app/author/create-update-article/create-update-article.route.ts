@@ -2,11 +2,11 @@ import { CreateUpdateArticleComponent } from './create-update-article.component'
 
 export const createUpdateArticleRoutes = [
   {
-    path: 'articles',
+    path: 'article',
     component: CreateUpdateArticleComponent
   },
   {
-    path: 'articles/:id',
+    path: 'article/:id',
     component: CreateUpdateArticleComponent
   }
 ]

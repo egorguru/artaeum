@@ -7,6 +7,7 @@ import { CreateUpdateArticleComponent } from './create-update-article'
 import { AuthorComponent } from './author.component'
 import { DashboardComponent } from './dashboard'
 import { CategoriesComponent } from './categories'
+import { AllArticlesComponent } from './all-articles'
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { CategoriesComponent } from './categories'
     AuthorComponent,
     CreateUpdateArticleComponent,
     DashboardComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AllArticlesComponent
   ]
 })
 export class AuthorModule {}

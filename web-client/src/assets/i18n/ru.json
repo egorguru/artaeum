@@ -70,9 +70,30 @@
     }
   },
   "author": {
-    "dashboard-nav": "Панель управления",
-    "create-article-nav": "Создать статью",
+    "dashboard-nav": "Панель Управления",
+    "create-all-articles-nav": "Все Статьи",
+    "create-article-nav": "Создать Статью",
     "categories-nav": "Категории",
+    "all-articles": {
+      "image": "Изображение",
+      "title": "Название",
+      "created-date": "Дата Создания",
+      "category": "Категория",
+      "status-head": "Статус",
+      "status": {
+        "published": "Опубликовано",
+        "not-published": "Не Опубликовано"
+      },
+      "delete": "Удалить",
+      "create": "Создать",
+      "delete-modal": {
+        "title": "Удаление Статьи",
+        "text-1": "Вы уверены, что хотите удалить данную статью?",
+        "text-2": "Эту операцию нельзя отменить.",
+        "cancel": "Отмена",
+        "submit": "Удалить"
+      }
+    },
     "create-update-article": {
       "title-input": "Название",
       "body-input-placeholder": "Let's write it!",

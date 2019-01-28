@@ -1,0 +1,82 @@
+<ng-template #delete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-delete-article">{{ 'author.all-articles.delete-modal.title' | translate }}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p><strong>{{ 'author.all-articles.delete-modal.text-1' | translate }}</strong></p>
+    <span class="text-danger">{{ 'author.all-articles.delete-modal.text-2' | translate }}</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.all-articles.delete-modal.cancel' | translate }}</button>
+    <button type="button" class="btn btn-danger" ngbAutofocus (click)="deleteArticle()">{{ 'author.all-articles.delete-modal.submit' | translate }}</button>
+  </div>
+</ng-template>
+
+<div *ngIf="!articles" class="col pt-4 mb-4">
+  <ae-loader></ae-loader>
+</div>
+
+<div class="col" *ngIf="articles">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ 'author.all-articles.image' | translate }}</th>
+        <th>{{ 'author.all-articles.title' | translate }}</th>
+        <th>{{ 'author.all-articles.created-date' | translate }}</th>
+        <th>{{ 'author.all-articles.category' | translate }}</th>
+        <th>{{ 'author.all-articles.status-head' | translate }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of articles">
+        <td>
+          <img
+            class="w-100"
+            [src]="a._id | imageAppender:'blog':'article'"
+            [alt]="a.title"
+            onError="this.src = '/assets/ae-widescreen.jpg'"
+          >
+        </td>
+        <td><a [routerLink]="['/articles', a._id]">{{ a.title }}</a></td>
+        <td>{{ a.createdDate | dateConverter }}</td>
+        <td>
+          <span *ngIf="categories[a._id]">
+            <a [routerLink]="['/u', currentUser.login, 'blog', categories[a._id].name]">
+              {{ categories[a._id].name }}
+            </a>
+          </span>
+        </td>
+        <td>
+          <span *ngIf="a.isPublished">
+            {{ 'author.all-articles.status.published' | translate }}
+          </span>
+          <span *ngIf="!a.isPublished">
+            {{ 'author.all-articles.status.not-published' | translate }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-outline-danger" (click)="modalDelete(delete, a)">
+            {{ 'author.all-articles.delete' | translate }}
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="articles && articles.length">
+    <ngb-pagination
+      [collectionSize]="totalItems"
+      [(page)]="page"
+      [pageSize]="postsPerPage"
+      [maxSize]="5"
+      (pageChange)="loadPage(page)"
+    ></ngb-pagination>
+  </div>
+</div>
+
+<button class="btn btn-dark" routerLink="/author/article">
+  {{ 'author.all-articles.create' | translate }}
+</button>

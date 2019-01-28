@@ -5,6 +5,7 @@ import { AuthorComponent } from './author.component'
 import { dashboardRoute } from './dashboard'
 import { createUpdateArticleRoutes } from './create-update-article'
 import { categoriesRoute } from './categories'
+import { allArticlesRoute } from './all-articles'
 
 export const authorRoutes: Routes = [{
   path: 'author',
@@ -16,6 +17,7 @@ export const authorRoutes: Routes = [{
   children: [
     dashboardRoute,
     ...createUpdateArticleRoutes,
-    categoriesRoute
+    categoriesRoute,
+    allArticlesRoute
   ]
 }]

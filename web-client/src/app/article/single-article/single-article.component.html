@@ -36,7 +36,7 @@
               </span>
               <span *ngIf="currentUser && currentUser.id === author.id">
                 |
-                <a role="button" [routerLink]="['/author/articles', article._id]">
+                <a role="button" [routerLink]="['/author/article', article._id]">
                   <i class="fa fa-pencil" title="Edit"></i>
                 </a> |
                 <a role="button" (click)="modal(content)">

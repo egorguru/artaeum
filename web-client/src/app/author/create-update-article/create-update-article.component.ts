@@ -54,7 +54,7 @@ export class CreateUpdateArticleComponent implements OnInit {
       if (res.body.isPublished) {
         this.router.navigate(['/articles', res.body._id])
       } else {
-        this.router.navigate(['/author/articles', res.body._id])
+        this.router.navigate(['/author/article', res.body._id])
       }
     })
   }
