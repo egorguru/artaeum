@@ -78,6 +78,7 @@
       "image": "Изображение",
       "title": "Название",
       "created-date": "Дата Создания",
+      "published-date": "Дата Публикации",
       "category": "Категория",
       "status-head": "Статус",
       "status": {

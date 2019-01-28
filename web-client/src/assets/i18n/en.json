@@ -78,6 +78,7 @@
       "image": "Image",
       "title": "Title",
       "created-date": "Created Date",
+      "published-date": "Published Date",
       "category": "Category",
       "status-head": "Status",
       "status": {

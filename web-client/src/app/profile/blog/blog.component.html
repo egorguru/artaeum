@@ -1,4 +1,4 @@
-<div class="col tab-nav">
+<div class="col tab-nav" *ngIf="user">
   <a
     [routerLink]="['/u', user.login, 'blog']"
     [routerLinkActive]="'active'"

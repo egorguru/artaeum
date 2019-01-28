@@ -26,6 +26,7 @@
         <th>{{ 'author.all-articles.image' | translate }}</th>
         <th>{{ 'author.all-articles.title' | translate }}</th>
         <th>{{ 'author.all-articles.created-date' | translate }}</th>
+        <th>{{ 'author.all-articles.published-date' | translate }}</th>
         <th>{{ 'author.all-articles.category' | translate }}</th>
         <th>{{ 'author.all-articles.status-head' | translate }}</th>
         <th></th>
@@ -43,6 +44,7 @@
         </td>
         <td><a [routerLink]="['/articles', a._id]">{{ a.title }}</a></td>
         <td>{{ a.createdDate | dateConverter }}</td>
+        <td>{{ a.publishedDate | dateConverter }}</td>
         <td>
           <span *ngIf="categories[a._id]">
             <a [routerLink]="['/u', currentUser.login, 'blog', categories[a._id].name]">

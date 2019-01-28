@@ -212,6 +212,7 @@
       "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
       "createdDate": "1539962516967",
+      "publishedDate": "1539962516967",
       "category": "1",
       "isPublished": true
     },
@@ -222,6 +223,7 @@
       "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
       "createdDate": "1539962517967",
+      "publishedDate": "1539962517967",
       "isPublished": true
     },
     {
@@ -231,6 +233,7 @@
       "title": "Lorem ipsum",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
       "createdDate": "1539962518967",
+      "publishedDate": "1539962518967",
       "isPublished": true
     }
   ],
