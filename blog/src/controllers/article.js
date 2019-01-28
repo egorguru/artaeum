@@ -21,7 +21,7 @@ router.get('/', async (ctx) => {
   query.isPublished = true
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate category')
+    .select('_id title userId createdDate publishedDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -37,7 +37,7 @@ router.get('/my', passport.authenticate('bearer', { session: false }), async (ct
   query.userId = ctx.state.user.name
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate category')
+    .select('_id title userId createdDate publishedDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -57,7 +57,7 @@ router.get('/search', async (ctx) => {
   const size = +ctx.query.size
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate category')
+    .select('_id title userId createdDate publishedDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -149,7 +149,10 @@ router.put('/publish', passport.authenticate('bearer', { session: false }), asyn
   if (_id) {
     const article = await Article.findOneAndUpdate(
       { _id, userId: ctx.state.user.name },
-      { $set: { isPublished: true } },
+      { $set: {
+        isPublished: true,
+        publishedDate: Date.now()
+      } },
       { new: true }
     )
     ctx.body = article

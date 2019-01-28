@@ -15,7 +15,8 @@ describe('Articles API', async () => {
     userId: 'uuid-test',
     category: category._id,
     isPublished: true,
-    createdDate: Date.now()
+    createdDate: Date.now(),
+    publishedDate: Date.now()
   }
   beforeEach(async () => {
     await Article.remove()
@@ -165,6 +166,7 @@ describe('Articles API', async () => {
       })
       res.statusCode.should.eql(200)
       res.body.isPublished.should.eql(true)
+      res.body.publishedDate.should.be.a.String()
     })
   })
   describe('GET /articles/:articleId', () => {
@@ -178,6 +180,7 @@ describe('Articles API', async () => {
       res.headers['content-type'].should.match(/application\/json/)
       res.body._id.should.eql(article._id)
       new Date(res.body.createdDate).should.eql(article.createdDate)
+      new Date(res.body.publishedDate).should.eql(article.publishedDate)
       res.body.title.should.eql(article.title)
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
@@ -195,6 +198,7 @@ describe('Articles API', async () => {
       res.headers['content-type'].should.match(/application\/json/)
       res.body._id.should.eql(article._id)
       new Date(res.body.createdDate).should.eql(article.createdDate)
+      new Date(res.body.publishedDate).should.eql(article.publishedDate)
       res.body.title.should.eql(article.title)
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
@@ -228,6 +232,7 @@ describe('Articles API', async () => {
       res.headers['content-type'].should.match(/application\/json/)
       res.body[0]._id.should.eql(article._id)
       new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
     })
@@ -241,6 +246,7 @@ describe('Articles API', async () => {
       res.headers['content-type'].should.match(/application\/json/)
       res.body[0]._id.should.eql(article._id)
       new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
@@ -262,6 +268,7 @@ describe('Articles API', async () => {
       should(res.body.length).eql(1)
       res.body[0]._id.should.eql(article._id)
       new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
@@ -286,6 +293,7 @@ describe('Articles API', async () => {
       should(res.body.length).eql(1)
       res.body[0]._id.should.eql(article._id)
       new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
@@ -302,6 +310,7 @@ describe('Articles API', async () => {
       res.headers['content-type'].should.match(/application\/json/)
       res.body[0]._id.should.eql(article._id)
       new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
     })
