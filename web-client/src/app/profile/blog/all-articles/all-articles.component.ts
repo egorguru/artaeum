@@ -49,7 +49,6 @@ export class AllArticlesComponent implements OnInit {
     this.articleService.query({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       userId: this.user.id
     }).subscribe((res) => {
       this.articles = res.body

@@ -31,8 +31,7 @@ export class AllArticlesComponent implements OnInit {
   loadArticles(): void {
     this.articleService.query({
       page: this.page++,
-      size: env.POSTS_PER_PAGE,
-      sort: ['id,desc']
+      size: env.POSTS_PER_PAGE
     }).subscribe((res) => {
       this.articles = this.articles.concat(res.body)
       this.loadUsers()

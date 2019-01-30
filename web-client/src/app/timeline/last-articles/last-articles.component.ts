@@ -44,7 +44,6 @@ export class LastArticlesComponent implements OnInit {
     this.articleService.query({
       page: this.page++,
       size: env.POSTS_PER_PAGE,
-      sort: ['id,desc'],
       userId: this.userIds
     }).subscribe((res) => {
       this.articles = this.articles.concat(res.body)

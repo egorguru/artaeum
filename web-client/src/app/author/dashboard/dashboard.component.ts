@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
     this.principal.identity().then((u) => {
       this.subscriptionService.queryForAllSubscribers(u.id)
         .subscribe((res) => this.subsCount = this.getCount(res))
-      this.articleService.query({ userId: u.id })
+      this.articleService.queryMy({ userId: u.id })
         .subscribe((res) => this.articlesCount = this.getCount(res))
       this.postService.query({ userId: u.id })
         .subscribe((res) => this.postsCount = this.getCount(res))

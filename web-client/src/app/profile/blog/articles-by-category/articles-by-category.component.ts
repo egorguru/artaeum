@@ -59,7 +59,6 @@ export class ArticlesByCategoryComponent implements OnInit {
     this.articleService.query({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       category: this.category._id
     }).subscribe((res) => {
       this.articles = res.body
