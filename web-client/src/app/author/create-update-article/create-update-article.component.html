@@ -1,3 +1,6 @@
+<div *ngIf="!article" class="mb-4">
+  <ae-loader></ae-loader>
+</div>
 <form *ngIf="article" role="form" novalidate #form="ngForm">
   <div class="form-group">
     <input class="form-control" type="text" name="title" [placeholder]="'author.create-update-article.title-input' | translate" required [(ngModel)]="article.title" />
