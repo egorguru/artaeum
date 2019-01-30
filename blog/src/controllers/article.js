@@ -50,7 +50,7 @@ router.get('/my', passport.authenticate('bearer', { session: false }), async (ct
   }
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate publishedDate category')
+    .select('_id title userId createdDate publishedDate category isPublished')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
