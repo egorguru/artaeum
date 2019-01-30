@@ -17,8 +17,16 @@ const getTotalCount = async (query) => {
 router.get('/', async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
-  const query = { userId, category } = ctx.query
-  query.isPublished = true
+  const { userId, category } = ctx.query
+  const query = {
+    isPublished: true
+  }
+  if (userId) {
+    query.userId = userId
+  }
+  if (category) {
+    query.category = category
+  }
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate publishedDate category')
@@ -33,8 +41,13 @@ router.get('/', async (ctx) => {
 router.get('/my', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
-  const query = { category } = ctx.query
-  query.userId = ctx.state.user.name
+  const { category } = ctx.query
+  const query = {
+    userId: ctx.state.user.name,
+  }
+  if (category) {
+    query.category = category
+  }
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate publishedDate category')

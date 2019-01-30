@@ -236,6 +236,20 @@ describe('Articles API', async () => {
       res.body[0].title.should.eql(article.title)
       res.body[0].userId.should.eql(article.userId)
     })
+    it('gets the articles with pagination', async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.get({
+        uri: 'articles?page=0&size=1',
+        json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+    })
     it('gets the articles by category', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
@@ -298,12 +312,43 @@ describe('Articles API', async () => {
       res.body[0].userId.should.eql(article.userId)
       res.body[0].category.should.eql(article.category.toString())
     })
+    it('gets my articles with pagination', async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.get({
+        uri: 'articles/my?page=0&size=1',
+        json: true,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+    })
   })
   describe('GET /articles/search', () => {
     it('search for article', async () => {
       const article = await new Article(testArticle).save()
       const res = await helpers.request.get({
         uri: 'articles/search?query=tItle',
+        json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body[0]._id.should.eql(article._id)
+      new Date(res.body[0].createdDate).should.eql(article.createdDate)
+      new Date(res.body[0].publishedDate).should.eql(article.publishedDate)
+      res.body[0].title.should.eql(article.title)
+      res.body[0].userId.should.eql(article.userId)
+    })
+    it('search for articles with pagination', async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.get({
+        uri: 'articles/search?query=tItle&page=0&size=1',
         json: true
       })
       res.statusCode.should.eql(200)
