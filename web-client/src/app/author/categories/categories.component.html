@@ -13,7 +13,7 @@
           class="form-control here"
           type="text"
           [placeholder]="'author.categories.create-modal.category-name' | translate"
-          [value]="createCandidate.name"
+          [(ngModel)]="createCandidate.name"
         >
       </div>
     </div>
@@ -39,7 +39,7 @@
           class="form-control here"
           type="text"
           [placeholder]="'settings.change-common.first-name' | translate"
-          [value]="updateCandidate.name"
+          [(ngModel)]="updateCandidate.name"
         >
       </div>
     </div>

@@ -46,16 +46,19 @@ export class CategoriesComponent implements OnInit {
   }
 
   createCategory(): void {
+    this.modalService.dismissAll('Create category')
     this.categoryService.create(this.createCandidate)
       .subscribe(() => this.loadAll())
   }
 
   updateCategory(): void {
+    this.modalService.dismissAll('Update category')
     this.categoryService.update(this.updateCandidate)
       .subscribe(() => this.loadAll())
   }
 
   deleteCategory(): void {
+    this.modalService.dismissAll('Delete category')
     this.categoryService.delete(this.deleteCandidate._id)
       .subscribe(() => this.loadAll())
   }
