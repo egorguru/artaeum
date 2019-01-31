@@ -64,7 +64,7 @@ export class SingleArticleComponent implements OnInit {
       if (u && this.article.userId === u.id) {
         this.smartButtonService.add({
           className: 'fa fa-edit',
-          link: 'author/articles/' + this.article._id,
+          link: 'author/article/' + this.article._id,
           title: 'Edit'
         })
       }
