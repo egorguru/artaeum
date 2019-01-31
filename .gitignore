@@ -17,9 +17,5 @@ yarn.lock
 .settings
 .classpath
 .project
-.firebase
 
-*.sh
-web-client/firebase.json
-web-client/.firebaserc
 .env

@@ -38,7 +38,13 @@ services:
       config:
         condition: service_healthy
     ports:
-    - 443:4000
+    - 8081:4000
+
+  web-client:
+    image: egorrepnikov/artaeum-web-client
+    restart: always
+    ports:
+    - 8080:80
 
   uaa:
     environment:
@@ -126,20 +132,6 @@ services:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
       STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
     image: egorrepnikov/artaeum-blog
-    restart: always
-    depends_on:
-      config:
-        condition: service_healthy
-
-  statistics:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-      MONGO_URI: $STATISTICS_MONGO_URI
-      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
-      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
-      STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
-    image: egorrepnikov/artaeum-statistics
     restart: always
     depends_on:
       config:
