@@ -39,16 +39,14 @@ export class ArticlesByCategoryComponent implements OnInit {
       this.page = data.pagingParams.page
       this.previousPage = data.pagingParams.page
     })
-    this.principal.identity().then((u) => {
-      this.currentUser = u
-      this.categoryService.getAll(u.id).subscribe((res) => {
-        this.activatedRoute.params.subscribe((params) => {
-          this.category = res.body.find((c) => c.name === params['category'])
-          this.activatedRoute.parent.parent.params.subscribe((parentParams) => {
-            this.userService.get(parentParams['login']).subscribe((user) => {
-              this.user = user.body
-              this.loadAll()
-            })
+    this.principal.identity().then((u) => this.currentUser = u)
+    this.activatedRoute.parent.parent.params.subscribe((parentParams) => {
+      this.userService.get(parentParams['login']).subscribe((user) => {
+        this.user = user.body
+        this.categoryService.getAll(user.body.id).subscribe((categoryRes) => {
+          this.activatedRoute.params.subscribe((params) => {
+            this.category = categoryRes.body.find((c) => c.name === params['category'])
+            this.loadAll()
           })
         })
       })
