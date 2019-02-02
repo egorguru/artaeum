@@ -30,5 +30,8 @@ Java Spring Boot Service contains Post API, Subscription API and API for setting
 ### Storage Service (Scala)
 Spring Boot Service was written with Scala. This is simple storage with basic auth. It contains only Image API. Other services should use it for saving images.
 
+### Web Client (Frontend) Service (Angular 7)
+Angular 7 app with SSR (Angular Universe) and i18n (ngx-translate).
+
 ## License
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
