@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Title } from '@angular/platform-browser'
+import { Title, DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 import {
@@ -18,6 +18,7 @@ import {
 export class SingleArticleComponent implements OnInit {
 
   article: Article
+  articleBody: SafeHtml
   category: Category
   author: User
   currentUser: User
@@ -31,12 +32,14 @@ export class SingleArticleComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private router: Router,
     private title: Title,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit(): void {
     this.activedRoute.params.subscribe((params) => {
       this.articleService.get(params['id']).subscribe((res) => {
+        this.articleBody = this.sanitizer.bypassSecurityTrustHtml(res.body.body)
         this.article = res.body
         this.title.setTitle(`${res.body.title} - Artaeum`)
         this.checkUserAndInitSmartButton()
