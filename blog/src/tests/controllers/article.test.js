@@ -168,6 +168,43 @@ describe('Articles API', async () => {
       res.body.isPublished.should.eql(true)
       res.body.publishedDate.should.be.a.String()
     })
+    it('changes status of article', async () => {
+      const article = await new Article(testArticle).save()
+      const res = await helpers.request.put({
+        uri: 'articles/status',
+        json: true,
+        body: {
+          _id: article._id,
+          isPublished: false
+        },
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(200)
+      res.body.isPublished.should.eql(false)
+    })
+    it('changes status of never published article', async () => {
+      const article = await new Article({
+        title: 'Test title',
+        body: '<p>Test text</p>',
+        image: 'mock',
+        userId: 'uuid-test',
+        createdDate: Date.now()
+      }).save()
+      const res = await helpers.request.put({
+        uri: 'articles/status',
+        json: true,
+        body: {
+          _id: article._id,
+          isPublished: true
+        },
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(400)
+    })
   })
   describe('GET /articles/:articleId', () => {
     it('gets the article by id', async () => {

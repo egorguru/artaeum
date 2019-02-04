@@ -174,6 +174,25 @@ router.put('/publish', passport.authenticate('bearer', { session: false }), asyn
   }
 })
 
+router.put('/status', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const { _id, isPublished } = ctx.request.body
+  if (_id && typeof (isPublished) === 'boolean') {
+    const article = await Article.findById(_id)
+    if (article.publishedDate) {
+      const updatedArticle = await Article.findOneAndUpdate(
+        { _id },
+        { $set: { isPublished } },
+        { new: true }
+      )
+      ctx.body = updatedArticle
+    } else {
+      ctx.throw(400)
+    }
+  } else {
+    ctx.throw(400)
+  }
+})
+
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const id = ctx.params.id
   await Article.deleteOne({
