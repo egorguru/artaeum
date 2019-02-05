@@ -99,7 +99,9 @@
       "body-input-placeholder": "Let's write it!",
       "category": "Категория",
       "save": "Сохранить",
-      "publish": "Опубликовать"
+      "publish": "Опубликовать",
+      "hide": "Скрыть",
+      "open-access": "Открыть Доступ"
     },
     "dashboard": {
       "subscribers": "Подписчики",

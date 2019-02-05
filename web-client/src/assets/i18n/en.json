@@ -99,7 +99,9 @@
       "body-input-placeholder": "Let's write it!",
       "category": "Category",
       "save": "Save",
-      "publish": "Publish"
+      "publish": "Publish",
+      "hide": "Hide",
+      "open-access": "Open Access"
     },
     "dashboard": {
       "subscribers": "Subscribers",

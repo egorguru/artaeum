@@ -22,6 +22,10 @@ export class ArticleService {
     return this.http.put<Article>('blog/articles/publish', article, { observe: 'response' })
   }
 
+  changeStatus(article: Article): Observable<HttpResponse<Article>> {
+    return this.http.put<Article>('blog/articles/status', article, { observe: 'response' })
+  }
+
   get(id: number): Observable<HttpResponse<Article>> {
     return this.http.get<Article>(`blog/articles/${id}`, { observe: 'response' })
   }

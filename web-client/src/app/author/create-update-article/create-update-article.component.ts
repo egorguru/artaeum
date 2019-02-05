@@ -67,6 +67,11 @@ export class CreateUpdateArticleComponent implements OnInit {
     })
   }
 
+  changeStatus(): void {
+    this.article.isPublished = !this.article.isPublished
+    this.articleService.changeStatus(this.article).subscribe()
+  }
+
   private save(): Observable<HttpResponse<Article>> {
     if (this.article._id) {
       return this.articleService.update(this.article)

@@ -63,7 +63,7 @@
     <span>{{ 'author.create-update-article.save' | translate }}</span>
   </button>
   <button
-    *ngIf="!article.isPublished"
+    *ngIf="!article.isPublished && !article.publishedDate"
     type="submit"
     (click)="onSaveAndPublish()"
     [disabled]="form.invalid && (!article.image || !article._id)"
@@ -71,5 +71,23 @@
   >
     <span class="fa fa-globe"></span>&nbsp;
     <span>{{ 'author.create-update-article.publish' | translate }}</span>
+  </button>
+  <button
+    *ngIf="article._id && article.isPublished"
+    type="submit"
+    (click)="changeStatus()"
+    class="btn btn-dark"
+  >
+    <span class="fa fa-eye-slash"></span>&nbsp;
+    <span>{{ 'author.create-update-article.hide' | translate }}</span>
+  </button>
+  <button
+    *ngIf="article._id && !article.isPublished && article.createdDate"
+    type="submit"
+    (click)="changeStatus()"
+    class="btn btn-dark"
+  >
+    <span class="fa fa-eye"></span>&nbsp;
+    <span>{{ 'author.create-update-article.open-access' | translate }}</span>
   </button>
 </form>
