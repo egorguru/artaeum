@@ -3,7 +3,7 @@ const Stats = require('../../models/Stats')
 
 describe('Stats API', async () => {
   const testStats = {
-    ip: 'test',
+    ip: '127.0.0.1',
     url: 'test',
     userId: 'uuid-test',
     createdDate: Date.now()
@@ -12,7 +12,7 @@ describe('Stats API', async () => {
     await Stats.remove()
   })
   describe('POST /stats', () => {
-    it('creates an stats', async () => {
+    it('creates stats', async () => {
       const res = await helpers.request.post({
         uri: 'stats',
         json: true,
@@ -24,7 +24,24 @@ describe('Stats API', async () => {
       createdStats.createdDate.should.be.a.Date()
       createdStats.ip.should.eql(testStats.ip)
       createdStats.url.should.eql(testStats.url)
-      createdStats.userId.should.eql(testStats.userId)
+      createdStats.userId.should.eql('unauthorized')
+    })
+    it('creates stats with auth user', async () => {
+      const res = await helpers.request.post({
+        uri: 'stats',
+        json: true,
+        body: testStats,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(201)
+      const createdStats = await Stats.findOne()
+      createdStats._id.should.be.a.Object()
+      createdStats.createdDate.should.be.a.Date()
+      createdStats.ip.should.eql(testStats.ip)
+      createdStats.url.should.eql(testStats.url)
+      createdStats.userId.should.eql('uuid-test')
     })
   })
   describe('GET /stats', () => {

@@ -21,6 +21,7 @@ class Server {
     const queryStringObject = parsedUrl.query
     const method = req.method.toLowerCase()
     const headers = req.headers
+    const remoteAddress = req.connection.remoteAddress.split(":").pop()
     const decoder = new StringDecoder('utf-8')
     let buffer = ''
     req.on('data', (data) => {
@@ -35,6 +36,7 @@ class Server {
         queryStringObject,
         method,
         headers,
+        remoteAddress,
         body: helpers.parseJsonToObject(buffer)
       }
       try {

@@ -3,9 +3,17 @@ const helpers = require('./helpers')
 
 const stats = {
   async post(data) {
-    const { ip, url, userId } = data.body
+    let userId
+    try {
+      const user = await helpers.checkAuth(data.headers['authorization'])
+      userId = user.name
+    } catch(e) {
+      userId = 'unauthorized'
+    }
+    const remoteAddress = data.remoteAddress
+    const { url } = data.body
     await new Stats({
-      ip,
+      ip: remoteAddress,
       url,
       userId,
       createdDate: Date.now()
