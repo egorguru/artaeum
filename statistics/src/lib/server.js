@@ -70,6 +70,7 @@ class Server {
 
 const router = {
   'statistics/health': controllers.health,
+  'statistics/stats': controllers.stats,
   'statistics/404': controllers.notFound
 }
 

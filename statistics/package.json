@@ -4,13 +4,19 @@
   "description": "Statistics",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha --opts src/tests/mocha.opts",
     "start": "node ./src/index.js"
   },
   "author": "Egor Repnikov",
   "license": "MIT",
   "dependencies": {
     "eureka-js-client": "^4.4.2",
-    "mongoose": "^5.4.3"
+    "mongodb-memory-server": "^3.1.0",
+    "mongoose": "^5.4.3",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
   }
 }

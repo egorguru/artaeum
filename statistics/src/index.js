@@ -4,6 +4,8 @@ const server = require('./lib/server')
 
 mongoConfig()
 
-eureka.start()
+if (process.env.NODE_ENV !== 'test') {
+  eureka.start()
+}
 
 server.init()
