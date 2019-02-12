@@ -15,6 +15,7 @@ install:
   - npm install --prefix blog --silent
   - npm install --prefix chat --silent
   - npm install --prefix comment --silent
+  - npm install --prefix statistics --silent
   - npm install --prefix web-client --silent
 
 script:
