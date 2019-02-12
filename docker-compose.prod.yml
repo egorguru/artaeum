@@ -136,3 +136,13 @@ services:
     depends_on:
       config:
         condition: service_healthy
+
+  statistics:
+    environment:
+      MONGO_URI: $STATISTICS_MONGO_URI
+      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-statistics
+    restart: always
+    depends_on:
+      config:
+        condition: service_healthy
