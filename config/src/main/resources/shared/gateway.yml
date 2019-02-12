@@ -44,6 +44,10 @@ zuul:
       path: /blog/**
       url: ${BLOG_SERVICE_URL}
       stripPrefix: false
+    statistics:
+      path: /statistics/**
+      url: ${STATISTICS_SERVICE_URL}
+      stripPrefix: false
 
 server:
   port: ${PORT:4000}
