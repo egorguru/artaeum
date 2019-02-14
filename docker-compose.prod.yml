@@ -32,6 +32,7 @@ services:
       CHAT_SERVICE_URL: $CHAT_SERVICE_URL
       COMMENT_SERVICE_URL: $COMMENT_SERVICE_URL
       BLOG_SERVICE_URL: $BLOG_SERVICE_URL
+      STATISTICS_SERVICE_URL: $STATISTICS_SERVICE_URL
     image: egorrepnikov/artaeum-gateway
     restart: always
     depends_on:
@@ -64,6 +65,7 @@ services:
       COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
       BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
+      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
     restart: always
     depends_on:
