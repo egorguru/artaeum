@@ -7,10 +7,8 @@ import { environment as env } from '../../../environments/environment'
 export class ApplyTokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let token
-    if (typeof window !== 'undefined') {
-      token = window.localStorage.getItem('access_token')
-    }
+    const token = typeof window !== 'undefined' ?
+      window.localStorage.getItem('access_token') : false
     if (!req.url.startsWith(env.SERVER_API_URL) && !token) {
       return next.handle(req)
     }
