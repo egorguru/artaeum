@@ -10,10 +10,9 @@ const stats = {
     } catch(e) {
       userId = 'unauthorized'
     }
-    const remoteAddress = data.remoteAddress
-    const { url } = data.body
+    const { ip, url } = data.body
     await new Stats({
-      ip: remoteAddress,
+      ip,
       url,
       userId,
       createdDate: Date.now()
