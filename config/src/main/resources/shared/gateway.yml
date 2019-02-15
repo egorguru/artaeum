@@ -28,25 +28,25 @@ zuul:
       path: /profile/**
       serviceId: profile
       stripPrefix: false
-    chat:
-      path: /chat/**
-      url: ${CHAT_SERVICE_URL}
-      stripPrefix: false
-    comment:
-      path: /comment/**
-      url: ${COMMENT_SERVICE_URL}
-      stripPrefix: false
     storage:
       path: /storage/**
       serviceId: storage
       stripPrefix: false
     blog:
       path: /blog/**
-      url: ${BLOG_SERVICE_URL}
+      serviceId: blog
+      stripPrefix: false
+    chat:
+      path: /chat/**
+      serviceId: chat
+      stripPrefix: false
+    comment:
+      path: /comment/**
+      serviceId: comment
       stripPrefix: false
     statistics:
       path: /statistics/**
-      url: ${STATISTICS_SERVICE_URL}
+      serviceId: statistics
       stripPrefix: false
 
 server:

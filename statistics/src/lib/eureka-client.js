@@ -7,7 +7,7 @@ const hostPort = config.hostPort
 
 module.exports = new Eureka({
   instance: {
-    app: 'statistics',
+    app: 'STATISTICS',
     instanceId: `${hostName}:statistics:${hostPort}`,
     hostName: hostName,
     ipAddr: '127.0.0.1',
@@ -15,7 +15,7 @@ module.exports = new Eureka({
       '$': hostPort,
       '@enabled': true,
     },
-    vipAddress: `${hostName}`,
+    vipAddress: 'STATISTICS',
     homePageUrl: `http://${hostName}:${hostPort}`,
     statusPageUrl: `http://${hostName}:${hostPort}/statistics/health`,
     healthCheckUrl: `http://${hostName}:${hostPort}/statistics/health`,
