@@ -11,12 +11,14 @@ export class StatisticsService {
   ) {}
 
   init(): void {
-    this.router.events.subscribe((v) => {
-      if (v instanceof NavigationEnd) {
-        this.http.post('statistics/stats', {
-          url: location.href
-        }).subscribe()
-      }
-    })
+    if (typeof (location) !== 'undefined') {
+      this.router.events.subscribe((v) => {
+        if (v instanceof NavigationEnd) {
+          this.http.post('statistics/stats', {
+            url: location.href
+          }).subscribe()
+        }
+      })
+    }
   }
 }
