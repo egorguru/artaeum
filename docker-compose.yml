@@ -47,7 +47,6 @@ services:
       PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
       MEDIA_SERVICE_PASSWORD: $MEDIA_SERVICE_PASSWORD
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
-      CHAT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
       COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
       BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
@@ -121,34 +120,10 @@ services:
     ports:
     - 27000:27017
 
-  chat:
-    environment:
-      MONGO_URI: $CHAT_MONGO_URI
-      CHAT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
-    image: egorrepnikov/artaeum-chat
-    restart: always
-    depends_on:
-      config:
-        condition: service_healthy
-    ports:
-    - 8000:8000
-
-  chat-mongo:
-    image: aashreys/mongo-auth:latest
-    environment:
-      AUTH: 'yes'
-      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
-      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
-      MONGODB_APPLICATION_USER: $MONGO_USER
-      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
-      MONGODB_APPLICATION_DATABASE: chat
-    ports:
-    - 28000:27017
-
   comment:
     environment:
       MONGO_URI: $COMMENT_MONGO_URI
-      COMMENT_SERVICE_PASSWORD: $CHAT_SERVICE_PASSWORD
+      COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-comment
     restart: always
     depends_on:

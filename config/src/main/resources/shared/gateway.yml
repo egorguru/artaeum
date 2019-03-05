@@ -36,10 +36,6 @@ zuul:
       path: /blog/**
       serviceId: blog
       stripPrefix: false
-    chat:
-      path: /chat/**
-      serviceId: chat
-      stripPrefix: false
     comment:
       path: /comment/**
       serviceId: comment
