@@ -9,11 +9,6 @@ const router = new Router().prefix('/articles')
 
 const IMAGE_NAME_END = '-article'
 
-const getTotalCount = async (query) => {
-  const articles = await Article.find(query)
-  return articles.length
-}
-
 router.get('/', async (ctx) => {
   const page = +ctx.query.page
   const size = +ctx.query.size
@@ -33,8 +28,7 @@ router.get('/', async (ctx) => {
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  const totalCount = await getTotalCount(query)
-  ctx.set('X-Total-Count', totalCount)
+  ctx.set('X-Total-Count', await Article.count(query))
   ctx.body = articles
 })
 
@@ -54,8 +48,7 @@ router.get('/my', passport.authenticate('bearer', { session: false }), async (ct
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  const totalCount = await getTotalCount(query)
-  ctx.set('X-Total-Count', totalCount)
+  ctx.set('X-Total-Count', await Article.count(query))
   ctx.body = articles
 })
 
@@ -74,8 +67,7 @@ router.get('/search', async (ctx) => {
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  const totalCount = await getTotalCount(query)
-  ctx.set('X-Total-Count', totalCount)
+  ctx.set('X-Total-Count', await Article.count(query))
   ctx.body = articles
 })
 
