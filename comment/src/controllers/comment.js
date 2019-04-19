@@ -28,8 +28,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
     text,
     resourceType,
     resourceId,
-    userId: ctx.state.user.name,
-    createdDate: Date.now()
+    userId: ctx.state.user.name
   }).save()
   ctx.status = 201
   ctx.body = comment
