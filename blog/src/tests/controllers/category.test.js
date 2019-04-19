@@ -82,7 +82,7 @@ describe('Categories API', () => {
         }
       })
       secondCreate.statusCode.should.eql(400)
-      secondCreate.body.message.should.eql('Category already exists')
+      secondCreate.body.error.should.eql('Category already exists')
     })
   })
   describe('PUT /categories', () => {
@@ -114,7 +114,7 @@ describe('Categories API', () => {
         }
       })
       res.statusCode.should.eql(400)
-      res.body.message.should.eql('Category already exists')
+      res.body.error.should.eql('Category already exists')
     })
   })
   describe('GET /categories/:categoryId', () => {

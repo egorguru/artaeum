@@ -3,6 +3,7 @@ const passport = require('koa-passport')
 
 const Category = require('../models/Category')
 const Article = require('../models/Article')
+const validation = require('../validation/category')
 
 const router = new Router().prefix('/categories')
 
@@ -11,17 +12,16 @@ async function executeIfNotExists(ctx, query, cb) {
   if (!existCategory) {
     await cb()
   } else {
-    ctx.body = { message: 'Category already exists' }
-    ctx.status = 400
+    ctx.throw(400, 'Category already exists')
   }
 }
 
 router.get('/', async (ctx) => {
-  const userId = ctx.query.userId
+  const { userId } = ctx.query
   if (userId) {
     ctx.body = await Category.find({ userId })
   } else {
-    ctx.status = 400
+    ctx.throw(400, 'Bad Credentials')
   }
 })
 
@@ -30,43 +30,41 @@ router.get('/:id', async (ctx) => {
   if (category) {
     ctx.body = category
   } else {
-    ctx.status = 404
+    ctx.throw(400, 'Bad Credentials')
   }
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { name } = ctx.request.body
-  const userId = ctx.state.user.name
-  if (name.trim() !== '') {
-    await executeIfNotExists(ctx, { name, userId }, async () => {
-      const category = await new Category({
-        name,
-        userId,
-        createdDate: Date.now()
-      }).save()
-      ctx.status = 201
-      ctx.body = category
-    })
-  } else {
-    ctx.status = 400
+  if (!validation.create(name)) {
+    ctx.throw(400, 'Bad Credentials')
   }
+  const userId = ctx.state.user.name
+  await executeIfNotExists(ctx, { name, userId }, async () => {
+    const category = await new Category({
+      name,
+      userId,
+      createdDate: Date.now()
+    }).save()
+    ctx.status = 201
+    ctx.body = category
+  })
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, name } = ctx.request.body
-  const userId = ctx.state.user.name
-  if (_id && name.trim() !== '') {
-    await executeIfNotExists(ctx, { name, userId }, async () => {
-      const category = await Category.findOneAndUpdate(
-        { _id, userId },
-        { $set: { name } },
-        { new: true }
-      )
-      ctx.body = category
-    })
-  } else {
-    ctx.status = 400
+  if (!validation.update(_id, name)) {
+    ctx.throw(400, 'Bad Credentials')
   }
+  const userId = ctx.state.user.name
+  await executeIfNotExists(ctx, { name, userId }, async () => {
+    const category = await Category.findOneAndUpdate(
+      { _id, userId },
+      { $set: { name } },
+      { new: true }
+    )
+    ctx.body = category
+  })
 })
 
 router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
