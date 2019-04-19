@@ -97,7 +97,6 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
   const entity = {
     title,
     body,
-    createdDate: Date.now(),
     userId: ctx.state.user.name
   }
   if (category) {

@@ -43,8 +43,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
   await executeIfNotExists(ctx, { name, userId }, async () => {
     const category = await new Category({
       name,
-      userId,
-      createdDate: Date.now()
+      userId
     }).save()
     ctx.status = 201
     ctx.body = category
