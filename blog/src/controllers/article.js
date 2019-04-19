@@ -4,24 +4,21 @@ const passport = require('koa-passport')
 const Article = require('../models/Article')
 const Category = require('../models/Category')
 const storage = require('../client/storage')
+const validation = require('../validation/article')
 
 const router = new Router().prefix('/articles')
 
 const IMAGE_NAME_END = '-article'
+const DEFAULT_PAGE = 0
+const DEFAULT_PAGE_SIZE = 10
 
 router.get('/', async (ctx) => {
-  const page = +ctx.query.page
-  const size = +ctx.query.size
-  const { userId, category } = ctx.query
-  const query = {
-    isPublished: true
-  }
-  if (userId) {
-    query.userId = userId
-  }
-  if (category) {
-    query.category = category
-  }
+  const { query } = ctx
+  const page = +query.page || DEFAULT_PAGE
+  const size = +query.size || DEFAULT_PAGE_SIZE
+  delete query['page']
+  delete query['size']
+  query.isPublished = true
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate publishedDate category')
@@ -33,15 +30,12 @@ router.get('/', async (ctx) => {
 })
 
 router.get('/my', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const page = +ctx.query.page
-  const size = +ctx.query.size
-  const { category } = ctx.query
-  const query = {
-    userId: ctx.state.user.name,
-  }
-  if (category) {
-    query.category = category
-  }
+  const { query } = ctx
+  const page = +query.page || DEFAULT_PAGE
+  const size = +query.size || DEFAULT_PAGE_SIZE
+  delete query['page']
+  delete query['size']
+  query.userId = ctx.state.user.name
   const articles = await Article
     .find(query)
     .select('_id title userId createdDate publishedDate category isPublished')
@@ -53,16 +47,14 @@ router.get('/my', passport.authenticate('bearer', { session: false }), async (ct
 })
 
 router.get('/search', async (ctx) => {
-  const query = {
-    isPublished: true,
-    $text: {
-      $search: ctx.query.query
-    }
-  }
-  const page = +ctx.query.page
-  const size = +ctx.query.size
+  const { query } = ctx
+  const page = +query.page || DEFAULT_PAGE
+  const size = +query.size || DEFAULT_PAGE_SIZE
   const articles = await Article
-    .find(query)
+    .find({
+      isPublished: true,
+      $text: { $search: ctx.query.query }
+    })
     .select('_id title userId createdDate publishedDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
@@ -71,9 +63,10 @@ router.get('/search', async (ctx) => {
   ctx.body = articles
 })
 
-router.get('/:id', async (ctx) => {
+router.get('/:_id', async (ctx) => {
+  const { _id } = ctx.params
   const article = await Article.findOne({
-    _id: ctx.params.id,
+    _id,
     isPublished: true
   })
   if (article) {
@@ -83,9 +76,10 @@ router.get('/:id', async (ctx) => {
   }
 })
 
-router.get('/my/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
+router.get('/my/:_id', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const { _id } = ctx.params
   const article = await Article.findOne({
-    _id: ctx.params.id,
+    _id,
     userId: ctx.state.user.name
   })
   if (article) {
@@ -97,101 +91,84 @@ router.get('/my/:id', passport.authenticate('bearer', { session: false }), async
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { title, body, image, category } = ctx.request.body
-  let existsCategory
+  if (!validation.create(title, body, image, category)) {
+    ctx.throw(400, 'Bad Credentials')
+  }
+  const entity = {
+    title,
+    body,
+    createdDate: Date.now(),
+    userId: ctx.state.user.name
+  }
   if (category) {
-    try {
-      existsCategory = await Category.findById(category)
-    } catch (e) {
-      ctx.throw(400)
+    const existsCategory = await Category.findById(category)
+    if (existsCategory) {
+      entity.category = existsCategory._id
     }
   }
-  if (title.trim() !== '' && body.trim() !== '' && image.trim() !== '') {
-    const article = await new Article({
-      title,
-      body,
-      userId: ctx.state.user.name,
-      createdDate: Date.now(),
-      category: existsCategory ? existsCategory._id : undefined
-    }).save()
-    await storage.save(image, article._id + IMAGE_NAME_END)
-    ctx.status = 201
-    ctx.body = article
-  } else {
-    ctx.throw(400)
-  }
+  const article = await new Article(entity).save()
+  await storage.save(image, article._id + IMAGE_NAME_END)
+  ctx.status = 201
+  ctx.body = article
 })
 
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, title, body, image, category } = ctx.request.body
-  const updateParams = { title, body }
+  if (!validation.update(_id, title, body, category)) {
+    ctx.throw(400, 'Bad Credentials')
+  }
+  const entity = { title, body }
   if (category) {
-    try {
-      existsCategory = await Category.findById(category)
-    } catch (e) {
-      ctx.throw(400)
-    }
+    const existsCategory = await Category.findById(category)
     if (existsCategory) {
-      updateParams.category = existsCategory._id
+      entity.category = existsCategory._id
     }
   }
-  if (_id && title.trim() !== '' && body.trim() !== '') {
-    const article = await Article.findOneAndUpdate(
-      { _id, userId: ctx.state.user.name },
-      { $set: updateParams },
-      { new: true }
-    )
-    if (image && image.trim() !== '') {
-      await storage.save(image, article._id + IMAGE_NAME_END)
-    }
-    ctx.body = article
-  } else {
-    ctx.throw(400)
+  const article = await Article.findOneAndUpdate(
+    { _id, userId: ctx.state.user.name },
+    { $set: entity },
+    { new: true }
+  )
+  if (!validation.image(image)) {
+    await storage.save(image, article._id + IMAGE_NAME_END)
   }
+  ctx.body = article
 })
 
 router.put('/publish', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const _id = ctx.request.body._id
-  if (_id) {
-    const article = await Article.findOneAndUpdate(
-      { _id, userId: ctx.state.user.name },
-      { $set: {
-        isPublished: true,
-        publishedDate: Date.now()
-      } },
-      { new: true }
-    )
-    ctx.body = article
-  } else {
-    ctx.throw(400)
-  }
+  const article = await Article.findOneAndUpdate(
+    { _id: ctx.request.body._id, userId: ctx.state.user.name },
+    { $set: {
+      isPublished: true,
+      publishedDate: Date.now()
+    } },
+    { new: true }
+  )
+  ctx.body = article
 })
 
 router.put('/status', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, isPublished } = ctx.request.body
-  if (_id && typeof (isPublished) === 'boolean') {
-    const article = await Article.findById(_id)
-    if (article.publishedDate) {
-      const updatedArticle = await Article.findOneAndUpdate(
-        { _id },
-        { $set: { isPublished } },
-        { new: true }
-      )
-      ctx.body = updatedArticle
-    } else {
-      ctx.throw(400)
-    }
+  const article = await Article.findById(_id)
+  if (article.publishedDate) {
+    const updatedArticle = await Article.findOneAndUpdate(
+      { _id },
+      { $set: { isPublished } },
+      { new: true }
+    )
+    ctx.body = updatedArticle
   } else {
-    ctx.throw(400)
+    ctx.throw(400, 'Article is not published')
   }
 })
 
-router.delete('/:id', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const id = ctx.params.id
+router.delete('/:_id', passport.authenticate('bearer', { session: false }), async (ctx) => {
+  const { _id } = ctx.params
   await Article.deleteOne({
-    _id: id,
+    _id,
     userId: ctx.state.user.name
   })
-  await storage.delete(id + IMAGE_NAME_END + '.jpg')
+  await storage.delete(_id + IMAGE_NAME_END + '.jpg')
   ctx.body = { message: 'Article has been deleted' }
 })
 
