@@ -25,7 +25,7 @@ router.get('/', async (ctx) => {
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  ctx.set('X-Total-Count', await Article.count(query))
+  ctx.set('X-Total-Count', await Article.countDocuments(query))
   ctx.body = articles
 })
 
@@ -42,7 +42,7 @@ router.get('/my', passport.authenticate('bearer', { session: false }), async (ct
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  ctx.set('X-Total-Count', await Article.count(query))
+  ctx.set('X-Total-Count', await Article.countDocuments(query))
   ctx.body = articles
 })
 
@@ -59,7 +59,7 @@ router.get('/search', async (ctx) => {
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
-  ctx.set('X-Total-Count', await Article.count(query))
+  ctx.set('X-Total-Count', await Article.countDocuments(query))
   ctx.body = articles
 })
 
