@@ -144,7 +144,7 @@ public class UserService {
                 });
     }
 
-    @Scheduled(cron = "0 0 9 * * ?")
+    @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         this.userRepository
                 .findAllByActivatedIsFalseAndRegisterDateBefore(ZonedDateTime.now().minus(3, ChronoUnit.DAYS))
