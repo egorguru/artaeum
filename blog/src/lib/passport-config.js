@@ -12,7 +12,7 @@ function initBearerStrategy() {
     }).then((data) => {
       done(null, data)
     }).catch((e) => {
-      done(e)
+      done({ status: 401, message: 'Unauthorized' })
     })
   })
 }
