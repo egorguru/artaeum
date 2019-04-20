@@ -3,19 +3,19 @@ const helpers = require('./helpers')
 
 const stats = {
   async post(data) {
-    let userId
-    try {
-      const user = await helpers.checkAuth(data.headers['authorization'])
-      userId = user.name
-    } catch(e) {
-      userId = 'unauthorized'
-    }
+    const userId = (() => {
+      try {
+        const user = await helpers.checkAuth(data.headers['authorization'])
+        return user.name
+      } catch(e) {
+        return 'unauthorized'
+      }
+    })()
     const { ip, url } = data.body
     await new Stats({
       ip,
       url,
-      userId,
-      createdDate: Date.now()
+      userId
     }).save()
     return { status: 201 }
   },
@@ -29,7 +29,7 @@ const stats = {
           body: stats
         }
       } else {
-        return { status: 401 }
+        return { status: 403 }
       }
     } catch(e) {
       return { status: 401 }
@@ -43,7 +43,7 @@ const stats = {
         await Stats.deleteOne({ _id })
         return { status: 200 }
       } else {
-        return { status: 401 }
+        return { status: 403 }
       }
     } catch(e) {
       return { status: 401 }
