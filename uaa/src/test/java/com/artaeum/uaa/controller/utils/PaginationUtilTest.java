@@ -15,19 +15,8 @@ public class PaginationUtilTest {
 
     @Test
     public void generatePaginationHttpHeadersTest() {
-        String baseUrl = "/api/example";
-        List<String> content = new ArrayList<>();
-        Page<String> page = new PageImpl<>(content, PageRequest.of(6, 50), 400L);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, baseUrl);
-        List<String> strHeaders = headers.get(HttpHeaders.LINK);
-        assertEquals(1, strHeaders.size());
-        String headerData = strHeaders.get(0);
-        assertEquals(4, headerData.split(",").length);
-        String expectedData = "</api/example?page=7&size=50>; rel=\"next\","
-                + "</api/example?page=5&size=50>; rel=\"prev\","
-                + "</api/example?page=7&size=50>; rel=\"last\","
-                + "</api/example?page=0&size=50>; rel=\"first\"";
-        assertEquals(expectedData, headerData);
+        Page<String> page = new PageImpl<>(new ArrayList<>(), PageRequest.of(6, 50), 400L);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         List<String> xTotalCountHeaders = headers.get("X-Total-Count");
         assertEquals(1, xTotalCountHeaders.size());
         assertEquals(400L, Long.valueOf(xTotalCountHeaders.get(0)).longValue());
