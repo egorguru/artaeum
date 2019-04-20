@@ -41,13 +41,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Collections.singletonList("*"));
-        config.setAllowedMethods(Collections.singletonList("*"));
-        config.setAllowedHeaders(Collections.singletonList("*"));
-        config.setExposedHeaders(Arrays.asList("Authorization", "X-Total-Count"));
-        config.setAllowCredentials(true);
-        config.setMaxAge(3600L);
+        CorsConfiguration config = new CorsConfiguration() {{
+            setAllowedOrigins(Collections.singletonList("*"));
+            setAllowedMethods(Collections.singletonList("*"));
+            setAllowedHeaders(Collections.singletonList("*"));
+            setExposedHeaders(Arrays.asList("Authorization", "X-Total-Count"));
+            setAllowCredentials(true);
+            setMaxAge(3600L);
+        }};
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }

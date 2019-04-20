@@ -29,17 +29,20 @@ public class OAuth2AuthenticationService {
     }
 
     public ResponseEntity<OAuth2AccessToken> authenticate(String username, String password) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.add("Authorization", this.getAuthorizationHeader());
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.set("username", username);
-        params.set("password", password);
-        params.set("grant_type", "password");
+        HttpHeaders headers = new HttpHeaders() {{
+            setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            add("Authorization", getAuthorizationHeader());
+        }};
+        MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>() {{
+            set("username", username);
+            set("password", password);
+            set("grant_type", "password");
+        }};
         ResponseEntity<OAuth2AccessToken> response = this.restTemplate.postForEntity(
                 this.accessTokenUri,
                 new HttpEntity<>(params, headers),
-                OAuth2AccessToken.class);
+                OAuth2AccessToken.class
+        );
         if (response.getStatusCode() != HttpStatus.OK) {
             throw new HttpClientErrorException(response.getStatusCode());
         }
