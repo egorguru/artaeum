@@ -10,12 +10,12 @@ public class ThymeleafConfiguration {
 
     @Bean
     public ClassLoaderTemplateResolver emailTemplateResolver() {
-        ClassLoaderTemplateResolver emailTemplateResolver = new ClassLoaderTemplateResolver();
-        emailTemplateResolver.setPrefix("mails/");
-        emailTemplateResolver.setSuffix(".html");
-        emailTemplateResolver.setTemplateMode("HTML");
-        emailTemplateResolver.setCharacterEncoding(CharEncoding.UTF_8);
-        emailTemplateResolver.setOrder(1);
-        return emailTemplateResolver;
+        return new ClassLoaderTemplateResolver() {{
+            setPrefix("mails/");
+            setSuffix(".html");
+            setTemplateMode("HTML");
+            setCharacterEncoding(CharEncoding.UTF_8);
+            setOrder(1);
+        }};
     }
 }

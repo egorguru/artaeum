@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -47,7 +48,7 @@ public class AccountController {
         if (this.userService.getByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyUsedException();
         }
-        if (!this.checkCorrectLangKey(user.getLangKey())) {
+        if (!this.isCorrectLangKey(user.getLangKey())) {
             user.setLangKey(Constants.DEFAULT_LANG_KEY);
         }
         User newUser = this.userService.register(user);
@@ -99,31 +100,31 @@ public class AccountController {
 
     @PostMapping(path = "/account/reset-password/finish")
     public void finishPasswordReset(@RequestBody UserReset user) {
-        if (!checkPasswordLength(user.getPassword())) {
+        if (isNotPasswordLength(user.getPassword())) {
             throw new InvalidPasswordException();
         }
-        Optional<User> updatedUser = this.userService.completePasswordReset(user.getPassword(), user.getResetKey());
-        if (!updatedUser.isPresent()) {
-            throw new UserNotFoundException("User not found for this reset key");
-        }
+        this.userService.completePasswordReset(user.getPassword(), user.getResetKey())
+                .orElseThrow(() -> new UserNotFoundException("User not found for this reset key"));
     }
 
     @PostMapping("/account/change-password")
     @ResponseStatus(HttpStatus.OK)
     public void changePassword(@RequestBody String password, Principal principal) {
-        if (!this.checkPasswordLength(password)) {
+        if (this.isNotPasswordLength(password)) {
             throw new InvalidPasswordException();
         }
         this.userService.changePassword(principal.getName(), password);
     }
 
-    private boolean checkCorrectLangKey(String langKey) {
-        return this.env.getProperty("artaeum.languages", List.class).contains(langKey);
+    private boolean isCorrectLangKey(String langKey) {
+        return Objects
+                .requireNonNull(this.env.getProperty("artaeum.languages", List.class))
+                .contains(langKey);
     }
 
-    private boolean checkPasswordLength(String password) {
-        return !password.isEmpty() &&
-                password.length() >= Constants.PASSWORD_MIN_LENGTH &&
-                password.length() <= Constants.PASSWORD_MAX_LENGTH;
+    private boolean isNotPasswordLength(String password) {
+        return password.isEmpty() ||
+                password.length() < Constants.PASSWORD_MIN_LENGTH ||
+                password.length() > Constants.PASSWORD_MAX_LENGTH;
     }
 }

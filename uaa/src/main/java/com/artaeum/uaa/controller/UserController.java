@@ -32,7 +32,7 @@ public class UserController {
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers(Pageable pageable) {
         Page<UserDTO> page = this.userService.getAll(pageable);
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/users");
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
@@ -40,7 +40,7 @@ public class UserController {
     public ResponseEntity<List<UserDTO>> search(Pageable pageable, @RequestParam String query) {
         Page<UserDTO> page = this.userService.search(pageable, query);
         HttpHeaders headers = PaginationUtil
-                .generatePaginationHttpHeaders(page, "/users/search?query=" + query);
+                .generatePaginationHttpHeaders(page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

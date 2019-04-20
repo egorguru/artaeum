@@ -39,46 +39,45 @@ public class UserService {
     }
 
     public User register(UserRegister user) {
-        User newUser = new User();
-        newUser.setLogin(user.getLogin());
-        newUser.setEmail(user.getEmail());
-        newUser.setFirstName(user.getFirstName());
-        newUser.setLastName(user.getLastName());
-        newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        newUser.setLangKey(user.getLangKey());
-        newUser.setRegisterDate(ZonedDateTime.now());
-        newUser.setActivationKey(RandomStringUtils.randomNumeric(KEY_SIZE));
+        User newUser = new User() {{
+            setLogin(user.getLogin());
+            setEmail(user.getEmail());
+            setFirstName(user.getFirstName());
+            setLastName(user.getLastName());
+            setPassword(passwordEncoder.encode(user.getPassword()));
+            setLangKey(user.getLangKey());
+            setRegisterDate(ZonedDateTime.now());
+            setActivationKey(RandomStringUtils.randomNumeric(KEY_SIZE));
+        }};
         this.authorityRepository.findById(Constants.USER_AUTHORITY)
                 .ifPresent(authority -> newUser.getAuthorities().add(authority));
         return this.userRepository.save(newUser);
     }
 
     public void update(UserDTO userDTO) {
-        this.userRepository.findById(userDTO.getId())
-                .ifPresent(user -> {
-                    user.setLogin(userDTO.getLogin());
-                    user.setFirstName(userDTO.getFirstName());
-                    user.setLastName(userDTO.getLastName());
-                    user.setEmail(userDTO.getEmail());
-                    user.setActivated(userDTO.isActivated());
-                    user.setLangKey(userDTO.getLangKey());
-                    Set<Authority> managedAuthorities = user.getAuthorities();
-                    managedAuthorities.clear();
-                    userDTO.getAuthorities().stream()
-                            .map(this.authorityRepository::findByName)
-                            .forEach(managedAuthorities::add);
-                });
+        this.userRepository.findById(userDTO.getId()).ifPresent(user -> {
+            user.setLogin(userDTO.getLogin());
+            user.setFirstName(userDTO.getFirstName());
+            user.setLastName(userDTO.getLastName());
+            user.setEmail(userDTO.getEmail());
+            user.setActivated(userDTO.isActivated());
+            user.setLangKey(userDTO.getLangKey());
+            Set<Authority> managedAuthorities = user.getAuthorities();
+            managedAuthorities.clear();
+            userDTO.getAuthorities().stream()
+                    .map(this.authorityRepository::findByName)
+                    .forEach(managedAuthorities::add);
+        });
     }
 
     public void update(String id, String login, String firstName, String lastName, String email, String langKey) {
-        this.userRepository.findById(id)
-                .ifPresent(user -> {
-                    user.setLogin(login);
-                    user.setFirstName(firstName);
-                    user.setLastName(lastName);
-                    user.setEmail(email);
-                    user.setLangKey(langKey);
-                });
+        this.userRepository.findById(id).ifPresent(user -> {
+            user.setLogin(login);
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            user.setEmail(email);
+            user.setLangKey(langKey);
+        });
     }
 
     public void delete(String login) {
@@ -86,12 +85,11 @@ public class UserService {
     }
 
     public Optional<User> activateRegistration(String key) {
-        return this.userRepository.findByActivationKey(key)
-                .map(user -> {
-                    user.setActivated(true);
-                    user.setActivationKey(null);
-                    return user;
-                });
+        return this.userRepository.findByActivationKey(key).map(user -> {
+            user.setActivated(true);
+            user.setActivationKey(null);
+            return user;
+        });
     }
 
     public Page<UserDTO> search(Pageable pageable, String query) {
@@ -136,18 +134,19 @@ public class UserService {
     }
 
     public Optional<User> completePasswordReset(String password, String key) {
-        return this.userRepository.findByResetKey(key)
-                .map(user -> {
-                    user.setPassword(this.passwordEncoder.encode(password));
-                    user.setResetKey(null);
-                    return user;
-                });
+        return this.userRepository.findByResetKey(key).map(user -> {
+            user.setPassword(this.passwordEncoder.encode(password));
+            user.setResetKey(null);
+            return user;
+        });
     }
 
     @Scheduled(cron = "0 0 1 * * ?")
     public void removeNotActivatedUsers() {
         this.userRepository
-                .findAllByActivatedIsFalseAndRegisterDateBefore(ZonedDateTime.now().minus(3, ChronoUnit.DAYS))
+                .findAllByActivatedIsFalseAndRegisterDateBefore(
+                        ZonedDateTime.now().minus(3, ChronoUnit.DAYS)
+                )
                 .forEach(this.userRepository::delete);
     }
 }

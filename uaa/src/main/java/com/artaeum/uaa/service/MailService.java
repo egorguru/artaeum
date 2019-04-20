@@ -12,6 +12,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
+import java.util.Objects;
 
 @Service
 public class MailService {
@@ -63,11 +64,12 @@ public class MailService {
     private void sendEmail(String to, String subject, String content) {
         MimeMessage mimeMessage = this.javaMailSender.createMimeMessage();
         try {
-            MimeMessageHelper message = new MimeMessageHelper(mimeMessage, false, CharEncoding.UTF_8);
-            message.setTo(to);
-            message.setFrom(this.env.getProperty("spring.mail.username"));
-            message.setSubject(subject);
-            message.setText(content, true);
+            new MimeMessageHelper(mimeMessage, false, CharEncoding.UTF_8) {{
+                setTo(to);
+                setFrom(Objects.requireNonNull(env.getProperty("spring.mail.username")));
+                setSubject(subject);
+                setText(content, true);
+            }};
             this.javaMailSender.send(mimeMessage);
         } catch (Exception e) {
             e.printStackTrace();
