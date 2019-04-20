@@ -35,7 +35,8 @@ public class SubscriptionController {
 
     @GetMapping("/{profileId}/my")
     public Subscription getSubscription(@PathVariable String profileId, Principal principal) {
-        return this.subscriptionService.getByProfileIdAndUserId(profileId, principal.getName())
+        return this.subscriptionService
+                .getByProfileIdAndUserId(profileId, principal.getName())
                 .orElseThrow(NotFoundException::new);
     }
 

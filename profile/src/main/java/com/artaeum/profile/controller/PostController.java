@@ -53,10 +53,10 @@ public class PostController {
         HttpHeaders headers;
         if (userId == null) {
             page = this.postService.getAll(pageable);
-            headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts");
+            headers = PaginationUtil.generatePaginationHttpHeaders(page);
         } else {
             page = this.postService.getAllByUserId(pageable, userId);
-            headers = PaginationUtil.generatePaginationHttpHeaders(page, "/posts?userId=" + userId);
+            headers = PaginationUtil.generatePaginationHttpHeaders(page);
         }
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -64,8 +64,7 @@ public class PostController {
     @GetMapping("/search")
     public ResponseEntity<List<Post>> search(Pageable pageable, @RequestParam String query) {
         Page<Post> page = this.postService.search(pageable, query);
-        HttpHeaders headers = PaginationUtil
-                .generatePaginationHttpHeaders(page, "/posts/search?query=" + query);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

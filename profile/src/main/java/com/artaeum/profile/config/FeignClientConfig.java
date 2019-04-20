@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 
+import java.util.Objects;
+
 @Configuration
 public class FeignClientConfig {
 
@@ -16,6 +18,9 @@ public class FeignClientConfig {
 
     @Bean
     public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
-        return new BasicAuthRequestInterceptor("storage", this.env.getProperty("STORAGE_SERVICE_PASSWORD"));
+        return new BasicAuthRequestInterceptor(
+                "storage",
+                Objects.requireNonNull(this.env.getProperty("STORAGE_SERVICE_PASSWORD"))
+        );
     }
 }

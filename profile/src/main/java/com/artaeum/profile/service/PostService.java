@@ -26,7 +26,8 @@ public class PostService {
     }
 
     public void update(Post post) {
-        this.postRepository.findById(post.getId())
+        this.postRepository
+                .findById(post.getId())
                 .ifPresent((p) -> p.setText(post.getText()));
     }
 
