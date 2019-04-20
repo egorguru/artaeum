@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -48,7 +47,7 @@ public class AccountController {
         if (this.userService.getByEmail(user.getEmail()).isPresent()) {
             throw new EmailAlreadyUsedException();
         }
-        if (!this.isCorrectLangKey(user.getLangKey())) {
+        if (this.isNotCorrectLangKey(user.getLangKey())) {
             user.setLangKey(Constants.DEFAULT_LANG_KEY);
         }
         User newUser = this.userService.register(user);
@@ -116,10 +115,8 @@ public class AccountController {
         this.userService.changePassword(principal.getName(), password);
     }
 
-    private boolean isCorrectLangKey(String langKey) {
-        return Objects
-                .requireNonNull(this.env.getProperty("artaeum.languages", List.class))
-                .contains(langKey);
+    private boolean isNotCorrectLangKey(String langKey) {
+        return !this.env.getProperty("artaeum.languages", List.class).contains(langKey);
     }
 
     private boolean isNotPasswordLength(String password) {

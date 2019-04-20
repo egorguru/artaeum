@@ -39,16 +39,15 @@ public class UserService {
     }
 
     public User register(UserRegister user) {
-        User newUser = new User() {{
-            setLogin(user.getLogin());
-            setEmail(user.getEmail());
-            setFirstName(user.getFirstName());
-            setLastName(user.getLastName());
-            setPassword(passwordEncoder.encode(user.getPassword()));
-            setLangKey(user.getLangKey());
-            setRegisterDate(ZonedDateTime.now());
-            setActivationKey(RandomStringUtils.randomNumeric(KEY_SIZE));
-        }};
+        User newUser = new User();
+        newUser.setLogin(user.getLogin());
+        newUser.setEmail(user.getEmail());
+        newUser.setFirstName(user.getFirstName());
+        newUser.setLastName(user.getLastName());
+        newUser.setPassword(this.passwordEncoder.encode(user.getPassword()));
+        newUser.setLangKey(user.getLangKey());
+        newUser.setRegisterDate(ZonedDateTime.now());
+        newUser.setActivationKey(RandomStringUtils.randomNumeric(KEY_SIZE));
         this.authorityRepository.findById(Constants.USER_AUTHORITY)
                 .ifPresent(authority -> newUser.getAuthorities().add(authority));
         return this.userRepository.save(newUser);

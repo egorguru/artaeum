@@ -39,8 +39,7 @@ public class UserController {
     @GetMapping("/search")
     public ResponseEntity<List<UserDTO>> search(Pageable pageable, @RequestParam String query) {
         Page<UserDTO> page = this.userService.search(pageable, query);
-        HttpHeaders headers = PaginationUtil
-                .generatePaginationHttpHeaders(page);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page);
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 

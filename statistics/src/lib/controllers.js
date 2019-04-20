@@ -3,7 +3,7 @@ const helpers = require('./helpers')
 
 const stats = {
   async post(data) {
-    const userId = (() => {
+    const userId = await (async () => {
       try {
         const user = await helpers.checkAuth(data.headers['authorization'])
         return user.name
