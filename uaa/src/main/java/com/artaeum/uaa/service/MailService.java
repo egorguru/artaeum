@@ -12,7 +12,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
-import java.util.Objects;
 
 @Service
 public class MailService {
@@ -66,7 +65,7 @@ public class MailService {
         try {
             new MimeMessageHelper(mimeMessage, false, CharEncoding.UTF_8) {{
                 setTo(to);
-                setFrom(Objects.requireNonNull(env.getProperty("spring.mail.username")));
+                setFrom(env.getProperty("spring.mail.username"));
                 setSubject(subject);
                 setText(content, true);
             }};

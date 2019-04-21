@@ -5,8 +5,7 @@ import org.springframework.http.HttpHeaders;
 
 public final class PaginationUtil {
 
-    private PaginationUtil() {
-    }
+    private PaginationUtil() {}
 
     public static HttpHeaders generatePaginationHttpHeaders(Page<?> page) {
         return new HttpHeaders() {{

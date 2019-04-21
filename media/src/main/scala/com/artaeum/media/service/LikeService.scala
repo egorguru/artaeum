@@ -18,8 +18,7 @@ class LikeService(likeRepository: LikeRepository) {
   }
 
   def saveOrRemove(resourceType: String, resourceId: Long, userId: String): Unit = {
-    this.likeRepository
-      .findByResourceTypeAndResourceIdAndUserId(resourceType, resourceId, userId) match {
+    this.likeRepository.findByResourceTypeAndResourceIdAndUserId(resourceType, resourceId, userId) match {
       case l: Like => this.likeRepository.delete(l)
       case _ => this.likeRepository.insert(new Like(resourceType, resourceId, userId))
     }
