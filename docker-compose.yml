@@ -44,13 +44,7 @@ services:
       POSTGRES_USER: $UAA_POSTGRES_USER
       POSTGRES_PASSWORD: $UAA_POSTGRES_PASSWORD
       UAA_SERVICE_PASSWORD: $UAA_SERVICE_PASSWORD
-      PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
-      MEDIA_SERVICE_PASSWORD: $MEDIA_SERVICE_PASSWORD
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
-      COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
-      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
-      BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
-      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
     restart: always
     depends_on:
@@ -75,7 +69,6 @@ services:
       POSTGRES_URL: $PROFILE_POSTGRES_URL
       POSTGRES_USER: $PROFILE_POSTGRES_USER
       POSTGRES_PASSWORD: $PROFILE_POSTGRES_PASSWORD
-      PROFILE_SERVICE_PASSWORD: $PROFILE_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-profile
     restart: always
@@ -99,7 +92,6 @@ services:
       CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
       CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       MONGO_URI: $MEDIA_MONGO_URI
-      MEDIA_SERVICE_PASSWORD: $MEDIA_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-media
     restart: always
     depends_on:
@@ -123,7 +115,6 @@ services:
   comment:
     environment:
       MONGO_URI: $COMMENT_MONGO_URI
-      COMMENT_SERVICE_PASSWORD: $COMMENT_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-comment
     restart: always
     depends_on:
@@ -147,7 +138,6 @@ services:
   storage:
     environment:
       CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-storage
     restart: always
@@ -166,7 +156,6 @@ services:
   blog:
     environment:
       MONGO_URI: $BLOG_MONGO_URI
-      BLOG_SERVICE_PASSWORD: $BLOG_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
       STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
     image: egorrepnikov/artaeum-blog
@@ -192,7 +181,6 @@ services:
   statistics:
     environment:
       MONGO_URI: $STATISTICS_MONGO_URI
-      STATISTICS_SERVICE_PASSWORD: $STATISTICS_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-statistics
     restart: always
     depends_on:
