@@ -4,34 +4,37 @@
 
 ## Overview
 ### Registry Service (Java)
-Service Discovery with Spring Cloud Eureka.
+Service Discovery - Spring Cloud Eureka.
 
 ### Config Service (Java)
-Configuration Server with Spring Cloud Config.
+Configuration Server - Spring Cloud Config.
 
 ### Gateway Service (Java)
-Gateway API with Spring Cloud Zuul (Java). Also it contains feature of user authorization (is works with UAA service).
+Gateway API - Spring Cloud Zuul (Java). Also, there is a feature of user authorization (works with UAA service).
 
 ### UAA (User Account and Authentication) Service (Java)
-OAuth2 Server with Spring Cloud OAuth2. It contains API for working with User's entities and User Account features like registration and activation.
+OAuth2 Server - Spring Cloud OAuth2. There is API for working with User's entities and User Account features like registration and activation.
 
-### Blog Service (JS)
-Koa.JS Service with Blog features contains Article API and Category API (depends on Article). All images saves in Storage Service.
+### Blog Service (JavaScript - Node.js)
+Koa.js Service with Blog features containing Article API and Category API (depends on Article). All images are stored in Storage Service.
 
-### Comment Service (JS)
-Koa.JS Service contains only Comment API.
+### Comment Service (JavaScript - Node.js)
+Koa.js Service contains only Comment API.
+
+### Statistics Service (JavaScript - Node.js)
+Node.js (http module) Service contains only Statistics API.
 
 ### Media Service (Scala)
-Spring Boot Service was written with Scala. It contains only Like API.
+Spring Boot Service was written in Scala. There is only Like API.
 
 ### Profile Service (Java)
-Java Spring Boot Service contains Post API, Subscription API and API for setting Profile Images (depends on Storage Service).
+Java Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
 
 ### Storage Service (Scala)
-Spring Boot Service was written with Scala. This is simple storage with basic auth. It contains only Image API. Other services should use it for saving images.
+Spring Boot Service was written in Scala. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
 
 ### Web Client (Frontend) Service (Angular 7)
-Angular 7 app with SSR (Angular Universe) and i18n (ngx-translate).
+Angular 7 application with SSR (Angular Universe) and i18n (ngx-translate).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
