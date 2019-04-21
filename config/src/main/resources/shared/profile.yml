@@ -15,12 +15,3 @@ spring:
       hibernate:
         temp:
           use_jdbc_metadata_defaults: false
-
-security:
-  oauth2:
-    client:
-      clientId: profile
-      clientSecret: ${PROFILE_SERVICE_PASSWORD}
-      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
-      grant-type: client_credentials
-      scope: server

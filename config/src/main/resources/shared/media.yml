@@ -7,12 +7,3 @@ spring:
   data:
     mongodb:
       uri: ${MONGO_URI:mongodb://user:password@media-mongo:27017/media}
-
-security:
-  oauth2:
-    client:
-      clientId: media
-      clientSecret: ${MEDIA_SERVICE_PASSWORD}
-      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
-      grant-type: client_credentials
-      scope: server
