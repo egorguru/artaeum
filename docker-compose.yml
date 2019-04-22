@@ -138,6 +138,7 @@ services:
   storage:
     environment:
       CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
+      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-storage
     restart: always
