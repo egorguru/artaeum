@@ -2,6 +2,7 @@ package com.artaeum.profile.service;
 
 import com.artaeum.profile.domain.Post;
 import com.artaeum.profile.repository.PostRepository;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,12 +36,8 @@ public class PostService {
         return this.postRepository.findById(id);
     }
 
-    public Page<Post> getAll(Pageable pageable) {
-        return this.postRepository.findAll(pageable);
-    }
-
-    public Page<Post> getAllByUserId(Pageable pageable, String userId) {
-        return this.postRepository.findAllByUserId(pageable, userId);
+    public Page<Post> getAll(Pageable pageable, Post post) {
+        return this.postRepository.findAll(Example.of(post), pageable);
     }
 
     public Page<Post> search(Pageable pageable, String query) {
