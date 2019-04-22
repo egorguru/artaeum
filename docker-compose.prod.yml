@@ -122,7 +122,6 @@ services:
     environment:
       MONGO_URI: $BLOG_MONGO_URI
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
-      STORAGE_SERVICE_URI: $STORAGE_SERVICE_URI
     image: egorrepnikov/artaeum-blog
     restart: always
     depends_on:

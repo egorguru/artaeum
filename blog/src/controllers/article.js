@@ -106,7 +106,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
     }
   }
   const article = await new Article(entity).save()
-  await storage.save(image, article._id + IMAGE_NAME_END)
+  await saveImage(ctx.eureka, image, article._id)
   ctx.status = 201
   ctx.body = article
 })
@@ -129,7 +129,7 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     { new: true }
   )
   if (!validation.image(image)) {
-    await storage.save(image, article._id + IMAGE_NAME_END)
+    await saveImage(ctx.eureka, image, article._id)
   }
   ctx.body = article
 })
@@ -167,8 +167,21 @@ router.delete('/:_id', passport.authenticate('bearer', { session: false }), asyn
     _id,
     userId: ctx.state.user.name
   })
-  await storage.delete(_id + IMAGE_NAME_END + '.jpg')
+  await deleteImage(ctx.eureka, _id)
   ctx.body = { message: 'Article has been deleted' }
 })
+
+async function saveImage(eureka, image, articleId) {
+  await storage.save(prepareUri(eureka), image, articleId + IMAGE_NAME_END)
+}
+
+async function deleteImage(eureka, articleId) {
+  await storage.delete(prepareUri(eureka), articleId + IMAGE_NAME_END + '.jpg')
+}
+
+function prepareUri(eureka) {
+  const storageInstance = eureka.getInstancesByAppId('storage')[0]
+  return `http://${storageInstance.hostName}:${storageInstance.port}/storage/images/blog/`
+}
 
 module.exports = router.routes()

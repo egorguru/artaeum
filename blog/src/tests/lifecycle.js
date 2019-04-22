@@ -40,7 +40,17 @@ before(async () => {
   config.storageUri = 'http://localhost:5000/storage'
   config.uaaUri = 'http://localhost:5000/uaa'
   await new Promise((resolve, reject) => {
-    server = require('../app').listen(config.port, resolve)
+    const app = require('../app')
+    // Mock Eureka Client
+    app.context.eureka = {
+      getInstancesByAppId() {
+        return [{
+          hostName: 'localhost',
+          port: '5000'
+        }]
+      }
+    }
+    server = app.listen(config.port, resolve)
   })
 })
 
