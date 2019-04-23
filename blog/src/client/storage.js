@@ -8,7 +8,7 @@ module.exports.save = (uri, image, name) => rp({
   method: 'POST',
   uri,
   headers: { 'Authorization': `Basic ${auth}` },
-  formData: { image, name }
+  form: { image, name }
 })
 
 module.exports.delete = (uri, name) => rp({
