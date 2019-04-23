@@ -181,7 +181,7 @@ async function deleteImage(eureka, articleId) {
 
 function prepareUri(eureka) {
   const storageInstance = eureka.getInstancesByAppId('storage')[0]
-  return `http://${storageInstance.hostName}:${storageInstance.port}/storage/images/blog/`
+  return `http://${storageInstance.hostName}:${storageInstance.port.$}/storage/images/blog/`
 }
 
 module.exports = router.routes()
