@@ -128,7 +128,7 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     { $set: entity },
     { new: true }
   )
-  if (!validation.image(image)) {
+  if (validation.image(image)) {
     await saveImage(ctx.eureka, image, article._id)
   }
   ctx.body = article
