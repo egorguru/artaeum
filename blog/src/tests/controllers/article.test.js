@@ -38,6 +38,24 @@ describe('Articles API', async () => {
       res.body.body.should.eql(testArticle.body)
       res.body.userId.should.eql(testArticle.userId)
     })
+    it('creates an article without category', async () => {
+      const article = Object.assign({}, testArticle)
+      delete article['category']
+      const res = await helpers.request.post({
+        uri: 'articles',
+        json: true,
+        body: article,
+        headers: {
+          'Authorization': 'Bearer valid-token'
+        }
+      })
+      res.statusCode.should.eql(201)
+      res.body._id.should.be.a.Number()
+      res.body.createdDate.should.be.a.String()
+      res.body.title.should.eql(article.title)
+      res.body.body.should.eql(article.body)
+      res.body.userId.should.eql(article.userId)
+    })
     it('creates an invalid article', async () => {
       const res = await helpers.request.post({
         uri: 'articles',

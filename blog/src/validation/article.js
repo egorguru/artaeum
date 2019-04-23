@@ -6,14 +6,14 @@ exports.create = (title, body, image, category) => (
   isNotEmpty(title) && isLength(title, { min: 3, max: 100 }) &&
   isNotEmpty(body) && isLength(body, { min: 10 }) &&
   isNotEmpty(image) &&
-  isNotEmpty(category) && isMongoId(category)
+  (category === undefined || isNotEmpty(category) && isMongoId(category))
 )
 
 exports.update = (id, title, body, category) => (
   typeof id === 'number' &&
   isNotEmpty(title) && isLength(title, { min: 3, max: 100 }) &&
   isNotEmpty(body) && isLength(body, { min: 10 }) &&
-  isNotEmpty(category) && isMongoId(category)
+  (category === undefined || isNotEmpty(category) && isMongoId(category))
 )
 
 exports.image = (image) => image === undefined || isNotEmpty(image)
