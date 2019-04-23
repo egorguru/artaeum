@@ -1,3 +1,4 @@
 const { isEmpty } = require('validator')
 
-module.exports = (string) => string.trim() !== '' && !isEmpty(string)
+module.exports = (string) => typeof string === 'string' &&
+  string.trim() !== '' && !isEmpty(string)
