@@ -5,7 +5,7 @@ module.exports = async (ctx, next) => {
     await next()
   } catch(e) {
     if (e instanceof MongooseError) {
-      ctx.throw(400, 'Bad Credentials')
+      ctx.throw(400, 'Bad Request')
     } else {
       ctx.throw(e)
     }

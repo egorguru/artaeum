@@ -92,7 +92,7 @@ router.get('/my/:_id', passport.authenticate('bearer', { session: false }), asyn
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { title, body, image, category } = ctx.request.body
   if (!validation.create(title, body, image, category)) {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
   const entity = {
     title,
@@ -114,7 +114,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, title, body, image, category } = ctx.request.body
   if (!validation.update(_id, title, body, category)) {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
   const entity = { title, body }
   if (category) {

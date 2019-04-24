@@ -21,7 +21,7 @@ router.get('/', async (ctx) => {
   if (userId) {
     ctx.body = await Category.find({ userId })
   } else {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
 })
 
@@ -30,14 +30,14 @@ router.get('/:id', async (ctx) => {
   if (category) {
     ctx.body = category
   } else {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
 })
 
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { name } = ctx.request.body
   if (!validation.create(name)) {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
   const userId = ctx.state.user.name
   await executeIfNotExists(ctx, { name, userId }, async () => {
@@ -53,7 +53,7 @@ router.post('/', passport.authenticate('bearer', { session: false }), async (ctx
 router.put('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { _id, name } = ctx.request.body
   if (!validation.update(_id, name)) {
-    ctx.throw(400, 'Bad Credentials')
+    ctx.throw(400, 'Bad Request')
   }
   const userId = ctx.state.user.name
   await executeIfNotExists(ctx, { name, userId }, async () => {
