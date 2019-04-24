@@ -10,15 +10,11 @@ import org.springframework.web.bind.annotation._
 @RestController
 class LikeController(likeService: LikeService) {
 
-  @GetMapping(Array("/{resourceType}/{resourceId}/likes"))
-  def getAllForResource(@PathVariable resourceType: String,
-                        @PathVariable resourceId: Long): util.List[Like] = this.likeService.getAll(resourceType, resourceId)
+  @GetMapping(Array("/likes"))
+  def getAllForResource(like: Like): util.List[Like] = this.likeService.getAll(like)
 
-  @GetMapping(Array("/{userId}/likes"))
-  def getAllForUser(@PathVariable userId: String): util.List[Like] = this.likeService.getAll(userId)
-
-  @PostMapping(Array("/{resourceType}/{resourceId}/likes"))
-  def saveOrRemove(@PathVariable resourceType: String,
-                   @PathVariable resourceId: Long,
-                   principal: Principal): Unit = this.likeService.saveOrRemove(resourceType, resourceId, principal.getName)
+  @PostMapping(Array("/likes"))
+  def saveOrRemove(@RequestBody like: Like, principal: Principal): Unit = {
+    this.likeService.saveOrRemove(like.resourceType, like.resourceId, principal.getName)
+  }
 }

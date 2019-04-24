@@ -5,11 +5,13 @@ import java.util.Collections
 
 import com.artaeum.media.domain.Like
 import com.artaeum.media.repository.LikeRepository
+import com.fasterxml.jackson.databind.ObjectMapper
 import org.hamcrest.Matchers.hasItem
 import org.junit.runner.RunWith
 import org.junit.{Assert, Before, Test}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.http.MediaType
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.test.annotation.DirtiesContext
@@ -26,6 +28,8 @@ class LikeControllerTest {
 
   val USER_ID = "uuid-123"
 
+  val objectMapper = new ObjectMapper()
+
   @Autowired
   var likeController: LikeController = _
 
@@ -39,44 +43,46 @@ class LikeControllerTest {
 
   @Test
   def whenAddLike(): Unit = {
-    val (resourceType, resourceId) = ("type", 1)
-    this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
+    val like = new Like("type", 1L, null, null)
+    this.mockMvc.perform(post("/likes")
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority]))
+      .content(this.objectMapper.writeValueAsBytes(like))
+      .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk)
-    val result = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
+    val result = this.likeRepository.findAllByResourceTypeAndResourceId(like.resourceType, like.resourceId)
     Assert.assertEquals(1, result.size)
-    Assert.assertEquals(resourceType, result.get(0).resourceType)
-    Assert.assertEquals(resourceId, result.get(0).resourceId)
+    Assert.assertEquals(like.resourceType, result.get(0).resourceType)
+    Assert.assertEquals(like.resourceId, result.get(0).resourceId)
     Assert.assertEquals(USER_ID, result.get(0).userId)
   }
 
   @Test
   def whenAddLikeAndRemoveIt(): Unit = {
-    val (resourceType, resourceId) = ("type", 2)
-    this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
+    val like = new Like("type", 2L, null, null)
+    this.mockMvc.perform(post("/likes")
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority]))
+      .content(this.objectMapper.writeValueAsBytes(like))
+      .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk)
-    val beforeRemove = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
+    val beforeRemove = this.likeRepository.findAllByResourceTypeAndResourceId(like.resourceType, like.resourceId)
     Assert.assertFalse(beforeRemove.isEmpty)
-    this.mockMvc.perform(post("/{resourceType}/{resourceId}/likes", resourceType, String.valueOf(resourceId))
+    this.mockMvc.perform(post("/likes")
       .principal(new UsernamePasswordAuthenticationToken(
-        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority])))
+        USER_ID, "password", Collections.emptyList[SimpleGrantedAuthority]))
+      .content(this.objectMapper.writeValueAsBytes(like))
+      .contentType(MediaType.APPLICATION_JSON))
       .andExpect(status().isOk)
-    val afterRemove = this.likeRepository.findAllByResourceTypeAndResourceId(resourceType, resourceId)
+    val afterRemove = this.likeRepository.findAllByResourceTypeAndResourceId(like.resourceType, like.resourceId)
     Assert.assertTrue(afterRemove.isEmpty)
   }
 
   @Test
-  def whenGetAllForUser(): Unit = {
-    val like = new Like
-    like.setResourceType("type")
-    like.setResourceId(3)
-    like.setUserId(USER_ID)
-    like.setCreatedDate(Instant.now())
+  def whenGetAllByUser(): Unit = {
+    val like = new Like("type", 3L, USER_ID, Instant.now())
     this.likeRepository.insert(like)
-    this.mockMvc.perform(get("/{userId}/likes", USER_ID))
+    this.mockMvc.perform(get("/likes?userId={userId}", USER_ID))
       .andExpect(status().isOk)
       .andExpect(jsonPath("$.[*].resourceType").value(hasItem(like.resourceType)))
       .andExpect(jsonPath("$.[*].resourceId").value(hasItem(like.resourceId.toInt)))
@@ -84,14 +90,11 @@ class LikeControllerTest {
   }
 
   @Test
-  def whenGetAllForResource(): Unit = {
-    val like = new Like
-    like.setResourceType("type")
-    like.setResourceId(4)
-    like.setUserId(USER_ID)
-    like.setCreatedDate(Instant.now())
+  def whenGetAllByResource(): Unit = {
+    val like = new Like("type", 4L, USER_ID, Instant.now())
     this.likeRepository.insert(like)
-    this.mockMvc.perform(get("/{resourceType}/{resourceId}/likes", like.resourceType, String.valueOf(like.resourceId)))
+    val urlTemplate = "/likes?resourceType={resourceType}&resourceId={resourceId}"
+    this.mockMvc.perform(get(urlTemplate, like.resourceType, String.valueOf(like.resourceId)))
       .andExpect(status().isOk)
       .andExpect(jsonPath("$.[*].resourceType").value(hasItem(like.resourceType)))
       .andExpect(jsonPath("$.[*].resourceId").value(hasItem(like.resourceId.toInt)))

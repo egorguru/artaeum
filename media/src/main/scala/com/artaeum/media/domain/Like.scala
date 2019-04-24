@@ -1,5 +1,6 @@
 package com.artaeum.media.domain
 
+import java.lang.Long
 import java.time.Instant
 
 import org.springframework.data.annotation.Id
@@ -12,11 +13,12 @@ class Like(@BeanProperty @Id var id: String,
            @BeanProperty var resourceType: String,
            @BeanProperty var resourceId: Long,
            @BeanProperty var userId: String,
-           @BeanProperty var createdDate: Instant = Instant.now()) {
+           @BeanProperty var createdDate: Instant) {
 
   def this(resourceType: String,
            resourceId: Long,
-           userId: String) = this(null, resourceType, resourceId, userId)
+           userId: String,
+           createdDate: Instant) = this(null, resourceType, resourceId, userId, createdDate)
 
-  def this() = this(null, null, 0, null)
+  def this() = this(null, null, null, null)
 }
