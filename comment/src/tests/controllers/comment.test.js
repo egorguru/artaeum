@@ -108,7 +108,7 @@ describe('Comments API', () => {
     it('gets the comments', async () => {
       const comment = await new Comment(testComment).save()
       const res = await helpers.request.get({
-        uri: `comments/${comment.resourceType}/${comment.resourceId}`,
+        uri: `comments?resourceType=${comment.resourceType}&resourceId=${comment.resourceId}`,
         json: true
       })
       res.statusCode.should.eql(200)
@@ -119,6 +119,14 @@ describe('Comments API', () => {
       res.body[0].resourceType.should.eql(comment.resourceType)
       res.body[0].resourceId.should.eql(comment.resourceId)
       res.body[0].userId.should.eql(comment.userId)
+    })
+    it('gets the comments without query params', async () => {
+      const res = await helpers.request.get({ uri: `comments?resourceType=mock` })
+      res.statusCode.should.eql(400)
+    })
+    it('gets the comments without resourceId query param', async () => {
+      const res = await helpers.request.get({ uri: 'comments' })
+      res.statusCode.should.eql(400)
     })
   })
   describe('DELETE /comments/:commentId', () => {

@@ -6,11 +6,16 @@ const validation = require('../validation/comment')
 
 const router = new Router().prefix('/comments')
 
-router.get('/:resourceType/:resourceId', async (ctx) => {
-  const page = +ctx.query.page
-  const size = +ctx.query.size
-  const resourceType = ctx.params.resourceType
-  const resourceId = ctx.params.resourceId
+const DEFAULT_PAGE = 0
+const DEFAULT_PAGE_SIZE = 10
+
+router.get('/', async (ctx) => {
+  const { resourceType, resourceId } = ctx.query
+  if (!validation.get(resourceType, resourceId)) {
+    ctx.throw(400, 'Bad Request')
+  }
+  const page = +ctx.query.page || DEFAULT_PAGE
+  const size = +ctx.query.size || DEFAULT_PAGE_SIZE
   const comments = await Comment
     .find({ resourceType, resourceId })
     .sort({ createdDate: -1 })
