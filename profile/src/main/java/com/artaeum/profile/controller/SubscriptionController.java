@@ -46,7 +46,7 @@ public class SubscriptionController {
     }
 
     @GetMapping("/subscribers")
-    public List<Subscription> getAllSubscribersByProfileId(@PathVariable(value = "profileId") String profileId) {
+    public List<Subscription> getAllSubscribersByProfileId(@RequestParam(value = "profileId") String profileId) {
         return this.subscriptionService.getAllSubscribers(profileId);
     }
 }

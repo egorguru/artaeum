@@ -85,7 +85,7 @@ public class SubscriptionControllerTest {
     }
 
     @Test
-    public void whenSubscribeAndGetAllForSubscriber() throws Exception {
+    public void whenSubscribeAndGetAllBySubscriber() throws Exception {
         this.mockMvc.perform(post("/subscriptions/subscribe")
                 .content(FIRST_USER_ID)
                 .principal(new UsernamePasswordAuthenticationToken(
