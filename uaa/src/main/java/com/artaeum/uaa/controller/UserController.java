@@ -13,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -49,20 +48,6 @@ public class UserController {
                 .orElseGet(() -> this.userService.getByLogin(loginOrId)
                         .orElseThrow(UserNotFoundException::new));
         return new ResponseEntity<>(new UserDTO(user), HttpStatus.OK);
-    }
-
-    @GetMapping("/{id}/login")
-    public String getUserLoginById(@PathVariable String id) {
-        return this.userService.getById(id)
-                .map(User::getLogin)
-                .orElseThrow(UserNotFoundException::new);
-    }
-
-    @GetMapping("/{login}/id")
-    public String getUserIdByLogin(@PathVariable String login) {
-        return this.userService.getByLogin(login)
-                .map(User::getId)
-                .orElseThrow(UserNotFoundException::new);
     }
 
     @PutMapping
