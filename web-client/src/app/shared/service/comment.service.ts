@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core'
-import { HttpClient, HttpResponse } from '@angular/common/http'
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs'
 
 import { Comment } from '../model'
-import { createRequestOption } from './pagination'
 
 @Injectable({ providedIn: 'root' })
 export class CommentService {
@@ -18,10 +17,12 @@ export class CommentService {
     return this.http.put<Comment>('comment/comments', comment, { observe: 'response' })
   }
 
-  query(resourceType: string, resourceId: number, req?: any): Observable<HttpResponse<Comment[]>> {
-    return this.http.get<Comment[]>(`comment/comments/${resourceType}/${resourceId}`, {
-      params: createRequestOption(req),
-      observe: 'response'
+  query(resourceType: string, resourceId: number): Observable<HttpResponse<Comment[]>> {
+    return this.http.get<Comment[]>(`comment/comments`, {
+      observe: 'response',
+      params: new HttpParams()
+        .append('resourceType', resourceType)
+        .append('resourceId', resourceId.toString())
     })
   }
 
