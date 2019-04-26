@@ -385,6 +385,30 @@ describe('Articles API', async () => {
       res.body[0].userId.should.eql(article.userId)
     })
   })
+  describe('GET /articles/by-users', () => {
+    it('get articles by users ids', async () => {
+      const article1 = await new Article(testArticle).save()
+      const article2 = await new Article({
+        title: 'Test title',
+        body: '<p>Test text</p>',
+        image: 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAFBQUFBVUFpkZFp9h3iHfbmqm5uquf/I18jXyP////////////////////////////////////////////////8BUFBQUFVQWmRkWn2HeId9uaqbm6q5/8jXyNfI///////////////////////////////////////////////////AABEIAAEAAQMBIgACEQEDEQH/xABLAAEBAAAAAAAAAAAAAAAAAAAABBABAAAAAAAAAAAAAAAAAAAAAAEBAAAAAAAAAAAAAAAAAAAAABEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEQMRAD8AtAB//9k=',
+        userId: 'uuid-2-test',
+        category: category._id,
+        isPublished: true,
+        createdDate: Date.now(),
+        publishedDate: Date.now()
+      }).save()
+      const res = await helpers.request.get({
+        uri: `articles/by-users?users=${article1.userId},${article2.userId}`,
+        json: true
+      })
+      res.statusCode.should.eql(200)
+      res.headers['content-type'].should.match(/application\/json/)
+      res.body.length.should.eql(2)
+      res.body[0].userId.should.eql(article2.userId)
+      res.body[1].userId.should.eql(article1.userId)
+    })
+  })
   describe('GET /articles/search', () => {
     it('search for article', async () => {
       const article = await new Article(testArticle).save()

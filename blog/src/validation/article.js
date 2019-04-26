@@ -1,6 +1,10 @@
-const { isMongoId, isLength, isBase64 } = require('validator')
+const { isMongoId, isLength } = require('validator')
 
 const isNotEmpty = require('../validation/is-not-empty-string')
+
+exports.getByUsers = (users) => (
+  isNotEmpty(users) && users.split(',').length > 0
+)
 
 exports.create = (title, body, image, category) => (
   isNotEmpty(title) && isLength(title, { min: 3, max: 100 }) &&

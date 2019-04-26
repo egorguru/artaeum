@@ -29,6 +29,26 @@ router.get('/', async (ctx) => {
   ctx.body = articles
 })
 
+router.get('/by-users', async (ctx) => {
+  const { query } = ctx
+  if (!validation.getByUsers(query.users)) {
+    ctx.throw(400, 'Bad Request')
+  }
+  const page = +query.page || DEFAULT_PAGE
+  const size = +query.size || DEFAULT_PAGE_SIZE
+  const articles = await Article
+    .find({
+      userId: { $in: query.users.split(',') },
+      isPublished: true
+    })
+    .select('_id title userId createdDate publishedDate category')
+    .sort({ createdDate: -1 })
+    .skip(page * size)
+    .limit(size)
+  ctx.set('X-Total-Count', await Article.countDocuments(query))
+  ctx.body = articles
+})
+
 router.get('/my', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { query } = ctx
   const page = +query.page || DEFAULT_PAGE
