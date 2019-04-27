@@ -40,6 +40,7 @@
   </button>
   <form (ngSubmit)="search()">
     <input
+      id="search-input"
       name="searchQuery"
       [placeholder]="'layouts.header.search' | translate"
       [(ngModel)]="searchQuery"
