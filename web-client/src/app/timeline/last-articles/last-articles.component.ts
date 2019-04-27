@@ -4,8 +4,7 @@ import { environment as env} from '../../../environments/environment'
 
 import {
   Principal, SubscriptionService,
-  UserService, ArticleService,
-  User, Article, Subscription
+  ArticleService, User, Article
 } from '../../shared'
 
 @Component({
@@ -16,15 +15,13 @@ export class LastArticlesComponent implements OnInit {
 
   currentUser: User
   articles: Article[] = []
-  users: User[] = []
 
   private page = 0
-  private userIds: string[] = []
+  private userIds: string
 
   constructor(
     private principal: Principal,
     private subscriptionService: SubscriptionService,
-    private userService: UserService,
     private articleService: ArticleService,
     private title: Title
   ) {}
@@ -34,29 +31,20 @@ export class LastArticlesComponent implements OnInit {
     this.principal.identity().then((u) => {
       if (u) {
         this.currentUser = u
-        this.subscriptionService.queryForAllSubscriptions(u.id)
-          .subscribe((res) => this.loadUsers(res.body))
+        this.subscriptionService.queryForAllSubscriptions(u.id).subscribe((res) => {
+          this.userIds = res.body.map((s) => s.profileId).join(',')
+        })
       }
     })
   }
 
   loadArticles(): void {
-    this.articleService.query({
+    this.articleService.queryByUsers({
       page: this.page++,
       size: env.POSTS_PER_PAGE,
-      userId: this.userIds
+      users: this.userIds
     }).subscribe((res) => {
       this.articles = this.articles.concat(res.body)
     })
-  }
-
-  private loadUsers(subs: Subscription[]): void {
-    subs.map((s, i) => this.userService.get(s.profileId).subscribe((u) => {
-      this.users[u.body.id] = u.body
-      this.userIds.push(u.body.id)
-      if (i === Object.keys(subs).length - 1) {
-        this.loadArticles()
-      }
-    }))
   }
 }

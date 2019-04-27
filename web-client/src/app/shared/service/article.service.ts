@@ -41,6 +41,13 @@ export class ArticleService {
     })
   }
 
+  queryByUsers(req?: any): Observable<HttpResponse<Article[]>> {
+    return this.http.get<Article[]>('blog/articles/by-users', {
+      params: createRequestOption(req),
+      observe: 'response'
+    })
+  }
+
   queryMy(req?: any): Observable<HttpResponse<Article[]>> {
     return this.http.get<Article[]>('blog/articles/my', {
       params: createRequestOption(req),
