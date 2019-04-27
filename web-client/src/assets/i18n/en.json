@@ -161,7 +161,8 @@
     "wall-nav": "Wall",
     "blog-nav": "Blog",
     "subscribers": {
-      "subscribed-on": "Subscribed on"
+      "subscribed-on": "Subscribed on",
+      "no-subscribers": "User has no followers"
     },
     "blog": {
       "all-nav": "All"

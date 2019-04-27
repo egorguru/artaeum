@@ -1,4 +1,7 @@
 {
+  "/profile/subscriptions/subscriptions?profileId=:profileId": "/subscriptions?subscriberId=:profileId",
+  "/profile/subscriptions/subscribers?profileId=:profileId": "/subscriptions?profileId=:profileId",
+  "/profile/subscriptions/my?profileId=:profileId": "/subscriptions/:profileId",
   "/uaa/account": "/uaa/users/stalin",
   "/media/:userId/likes": "/likes?userId=:userId",
   "/blog/articles\\?page=:page&size=:size&category=:category&sort=id,desc": "/articles?page=:page&size=:size&category=:category&sort=id,desc",
@@ -9,8 +12,5 @@
   "/:service/:resource": "/:resource",
   "/:service/:resource/:id": "/:resource/:id",
   "/comment/comments/:type/:id": "/comments?resourceType=:type&resourceId=:id",
-  "/media/:type/:id/likes": "/likes?resourceType=:type&resourceId=:id",
-  "/profile/subscriptions/:profileId/subscriptions": "/subscriptions?subscriberId=:profileId",
-  "/profile/subscriptions/:profileId/subscribers": "/subscriptions?profileId=:profileId",
-  "/profile/subscriptions/:profileId/my": "/subscriptions/1"
+  "/media/:type/:id/likes": "/likes?resourceType=:type&resourceId=:id"
 }

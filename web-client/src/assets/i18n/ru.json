@@ -161,7 +161,8 @@
     "wall-nav": "Стена",
     "blog-nav": "Блог",
     "subscribers": {
-      "subscribed-on": "Подписчик с"
+      "subscribed-on": "Подписчик с",
+      "no-subscribers": "У пользователя нет подписчиков"
     },
     "blog": {
       "all-nav": "Все Публикации"
