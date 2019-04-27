@@ -40,12 +40,6 @@ export class AllArticlesComponent implements OnInit {
     })
   }
 
-  isLoadMoreButton(): boolean {
-    return !this.articles && this.totalItems > this.articles.length &&
-      this.roundTo10(this.articles.length * (this.page / env.POSTS_PER_PAGE + 1)) <
-      this.roundTo10(this.totalItems)
-  }
-
   private loadUsers(): void {
     this.articles.map((s) => {
       if (!this.users[s.userId]) {
@@ -53,9 +47,5 @@ export class AllArticlesComponent implements OnInit {
           .subscribe((res) => this.users[s.userId] = res.body)
       }
     })
-  }
-
-  private roundTo10(num): number {
-    return Math.ceil(num / 10) * 10;
   }
 }

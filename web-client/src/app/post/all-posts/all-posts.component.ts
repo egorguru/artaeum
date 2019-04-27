@@ -50,12 +50,6 @@ export class AllPostsComponent implements OnInit {
       }))
   }
 
-  isLoadMoreButton(): boolean {
-    return !this.posts && this.totalItems > this.posts.length &&
-      this.roundTo10(this.posts.length * (this.page / env.POSTS_PER_PAGE + 1)) <
-      this.roundTo10(this.totalItems)
-  }
-
   private loadUsers(): void {
     this.posts.map((s) => {
       if (!this.users[s.userId]) {
@@ -63,9 +57,5 @@ export class AllPostsComponent implements OnInit {
           .subscribe((res) => this.users[s.userId] = res.body)
       }
     })
-  }
-
-  private roundTo10(num): number {
-    return Math.ceil(num / 10) * 10;
   }
 }
