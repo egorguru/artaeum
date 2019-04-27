@@ -171,7 +171,8 @@
       "create-post": {
         "text-input-placeholder": "What's new?",
         "submit": "Share"
-      }
+      },
+      "no-posts": "User has no posts"
     }
   },
   "search": {

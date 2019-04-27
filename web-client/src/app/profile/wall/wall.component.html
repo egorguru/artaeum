@@ -9,18 +9,21 @@
   </div>
   <div *ngIf="posts && posts.length && user">
     <ae-post
-    *ngFor="let p of posts"
-    [post]="p"
-    [author]="user"
-    [currentUser]="currentUser"
-    (aeOnDelete)="deletePost(p.id)"
-  ></ae-post>
-  <ngb-pagination
-    [collectionSize]="totalItems"
-    [(page)]="page"
-    [pageSize]="postsPerPage"
-    [maxSize]="5"
-    (pageChange)="loadPage(page)"
-  ></ngb-pagination>
+      *ngFor="let p of posts"
+      [post]="p"
+      [author]="user"
+      [currentUser]="currentUser"
+      (aeOnDelete)="deletePost(p.id)"
+    ></ae-post>
+    <ngb-pagination
+      [collectionSize]="totalItems"
+      [(page)]="page"
+      [pageSize]="postsPerPage"
+      [maxSize]="5"
+      (pageChange)="loadPage(page)"
+    ></ngb-pagination>
+  </div>
+  <div class="alert alert-dark font-weight-bold" role="alert" *ngIf="posts && posts.length === 0">
+    {{ 'profile.wall.no-posts' | translate }}
   </div>
 </div>

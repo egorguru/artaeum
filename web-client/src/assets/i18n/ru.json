@@ -171,7 +171,8 @@
       "create-post": {
         "text-input-placeholder": "Что нового?",
         "submit": "Отправить"
-      }
+      },
+      "no-posts": "У пользователя нет ни одного поста"
     }
   },
   "search": {
