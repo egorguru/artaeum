@@ -168,6 +168,9 @@
       "all-nav": "All",
       "all-articles": {
         "no-articles": "User has no articles"
+      },
+      "articles-by-category": {
+        "no-articles": "User has no articles by this category"
       }
     },
     "wall": {
