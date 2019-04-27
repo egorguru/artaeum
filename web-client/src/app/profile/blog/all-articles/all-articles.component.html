@@ -2,18 +2,26 @@
   <ae-loader></ae-loader>
 </div>
 
-<div class="col-md-6 mx-auto" *ngIf="articles && articles.length && user">
-  <ae-article
-    *ngFor="let a of articles"
-    [article]="a"
-    [author]="user"
-    [currentUser]="currentUser"
-  ></ae-article>
-  <ngb-pagination
-    [collectionSize]="totalItems"
-    [(page)]="page"
-    [pageSize]="postsPerPage"
-    [maxSize]="5"
-    (pageChange)="loadPage(page)"
-  ></ngb-pagination>
+<div class="col-md-6 mx-auto">
+  <div *ngIf="articles && articles.length && user">
+    <ae-article
+      *ngFor="let a of articles"
+      [article]="a"
+      [author]="user"
+      [currentUser]="currentUser"
+    ></ae-article>
+    <ngb-pagination
+      [collectionSize]="totalItems"
+      [(page)]="page"
+      [pageSize]="postsPerPage"
+      [maxSize]="5"
+      (pageChange)="loadPage(page)"
+    ></ngb-pagination>
+  </div>
+  <div
+    class="alert alert-dark font-weight-bold" role="alert"
+    *ngIf="articles && articles.length === 0"
+  >
+    {{ 'profile.blog.all-articles.no-articles' | translate }}
+  </div>
 </div>

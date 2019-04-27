@@ -165,7 +165,10 @@
       "no-subscribers": "User has no followers"
     },
     "blog": {
-      "all-nav": "All"
+      "all-nav": "All",
+      "all-articles": {
+        "no-articles": "User has no articles"
+      }
     },
     "wall": {
       "create-post": {
