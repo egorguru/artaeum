@@ -17,9 +17,11 @@
         </div>
       </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="isLoadMoreButton()">
       <div class="col-md-6 mx-auto">
-        <button class="btn btn-dark" (click)="loadPosts()">{{ 'common.load-more' | translate }}</button>
+        <button class="btn btn-dark" (click)="loadPosts()">
+          {{ 'common.load-more' | translate }}
+        </button>
       </div>
     </div>
   </div>
