@@ -14,6 +14,7 @@ export class AllArticlesComponent implements OnInit {
   articles: Article[] = []
   users: User[] = []
   page = 0
+  totalItems = 0
 
   constructor(
     private title: Title,
@@ -34,8 +35,15 @@ export class AllArticlesComponent implements OnInit {
       size: env.POSTS_PER_PAGE
     }).subscribe((res) => {
       this.articles = this.articles.concat(res.body)
+      this.totalItems = +res.headers.get('X-Total-Count')
       this.loadUsers()
     })
+  }
+
+  isLoadMoreButton(): boolean {
+    return !this.articles && this.totalItems > this.articles.length &&
+      this.roundTo10(this.articles.length * (this.page / env.POSTS_PER_PAGE + 1)) <
+      this.roundTo10(this.totalItems)
   }
 
   private loadUsers(): void {
@@ -45,5 +53,9 @@ export class AllArticlesComponent implements OnInit {
           .subscribe((res) => this.users[s.userId] = res.body)
       }
     })
+  }
+
+  private roundTo10(num): number {
+    return Math.ceil(num / 10) * 10;
   }
 }
