@@ -10,6 +10,7 @@
   "author": "Egor Repnikov",
   "license": "MIT",
   "dependencies": {
+    "cron": "^1.7.1",
     "eureka-js-client": "^4.4.2",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
