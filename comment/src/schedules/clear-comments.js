@@ -1,4 +1,7 @@
-const rp = require('request-promise')
+const rp = require('request-promise').defaults({
+  resolveWithFullResponse: true,
+  simple: false
+})
 const { CronJob } = require('cron')
 
 const Comment = require('../models/Comment')
@@ -12,14 +15,11 @@ async function clearComments(eureka) {
   const gateway = eureka.getInstancesByAppId('gateway')[0]
   const comments = await Comment.find()
   for (const comment of comments) {
-    try {
-      await rp.get(
-        processUri(gateway.hostName, gateway.port.$, comment.resourceType, comment.resourceId)
-      )
-    } catch(e) {
-      if (e.statusCode === 404) {
-        await Comment.findByIdAndDelete(comment._id)
-      }
+    const response = await rp.get(
+      processUri(gateway.hostName, gateway.port.$, comment.resourceType, comment.resourceId)
+    )
+    if (response.statusCode === 404) {
+      await Comment.findByIdAndDelete(comment._id)
     }
   }
 }
