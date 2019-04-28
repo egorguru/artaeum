@@ -63,7 +63,7 @@
     <span>{{ 'author.create-update-article.save' | translate }}</span>
   </button>
   <button
-    *ngIf="!article.isPublished && !article.publishedDate"
+    *ngIf="!article.isPublished && article.publishedDate === undefined"
     type="submit"
     (click)="onSaveAndPublish()"
     [disabled]="form.invalid && (!article.image || !article._id)"
@@ -82,7 +82,7 @@
     <span>{{ 'author.create-update-article.hide' | translate }}</span>
   </button>
   <button
-    *ngIf="article._id && !article.isPublished && article.createdDate"
+    *ngIf="article._id && article.publishedDate !== undefined && !article.isPublished"
     type="submit"
     (click)="changeStatus()"
     class="btn btn-dark"
