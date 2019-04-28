@@ -1,11 +1,12 @@
 package com.artaeum.media.config
 
-import org.springframework.context.annotation.Configuration
+import org.springframework.context.annotation.{Bean, Configuration}
 import org.springframework.http.HttpMethod
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.http.SessionCreationPolicy
 import org.springframework.security.oauth2.config.annotation.web.configuration.{EnableResourceServer, ResourceServerConfigurerAdapter}
+import org.springframework.web.client.RestTemplate
 
 @Configuration
 @EnableResourceServer
@@ -27,4 +28,6 @@ class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         .antMatchers(HttpMethod.GET).permitAll()
         .antMatchers("/**").authenticated()
   }
+
+  @Bean def restTemplate = new RestTemplate
 }
