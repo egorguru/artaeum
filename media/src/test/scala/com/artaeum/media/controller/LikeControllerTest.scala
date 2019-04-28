@@ -6,11 +6,13 @@ import java.util.Collections
 import com.artaeum.media.domain.Like
 import com.artaeum.media.repository.LikeRepository
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.netflix.discovery.EurekaClient
 import org.hamcrest.Matchers.hasItem
 import org.junit.runner.RunWith
 import org.junit.{Assert, Before, Test}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.http.MediaType
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -25,6 +27,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders
 @SpringBootTest
 @DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class LikeControllerTest {
+
+  @MockBean
+  var eurekaClient: EurekaClient = _
 
   val USER_ID = "uuid-123"
 
