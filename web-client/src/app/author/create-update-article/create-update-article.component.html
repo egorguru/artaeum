@@ -17,7 +17,7 @@
     </div>
     <div class="card">
       <div class="card-img">
-        <img class="w-100" *ngIf="!article._id && article.image" [src]="article.image">
+        <img class="w-100" *ngIf="article.image" [src]="article.image">
         <img class="w-100" *ngIf="!article.image && article._id" [src]="article._id | imageAppender:'blog':'article'" onError="this.src = '/assets/ae-widescreen.jpg'">
       </div>
     </div>
