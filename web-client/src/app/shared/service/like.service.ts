@@ -30,6 +30,9 @@ export class LikeService {
   }
 
   getAllForUser(userId: string): Observable<HttpResponse<Like[]>> {
-    return this.http.get<Like[]>(`media/${userId}/likes`, { observe: 'response' })
+    return this.http.get<Like[]>(`media/likes`, {
+      observe: 'response',
+      params: new HttpParams().append('userId', userId)
+    })
   }
 }
