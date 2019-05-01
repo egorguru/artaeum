@@ -2,12 +2,10 @@ package com.artaeum.media.service
 
 import com.artaeum.media.domain.Like
 import com.artaeum.media.repository.LikeRepository
-import com.netflix.discovery.EurekaClient
 import org.junit.runner.RunWith
 import org.junit.{Assert, Test}
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.test.annotation.DirtiesContext
 import org.springframework.test.context.junit4.SpringRunner
 
@@ -17,9 +15,6 @@ import org.springframework.test.context.junit4.SpringRunner
 class LikeServiceTest {
 
   val USER_ID = "uuid-123"
-
-  @MockBean
-  var eurekaClient: EurekaClient = _
 
   @Autowired
   var likeService: LikeService = _
