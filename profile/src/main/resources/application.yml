@@ -5,7 +5,7 @@ server:
 spring:
   application.name: profile
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://profile-postgres:5433/profile}
+    url: ${POSTGRES_URL}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     jpa:

@@ -2,6 +2,27 @@ version: '2.2'
 
 services:
 
+  postgresql:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+      POSTGRES_DB: artaeum
+    ports:
+    - 5432:5432
+
+  mongodb:
+    image: aashreys/mongo-auth:latest
+    environment:
+      AUTH: 'yes'
+      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
+      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
+      MONGODB_APPLICATION_USER: $MONGO_USER
+      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
+      MONGODB_APPLICATION_DATABASE: artaeum
+    ports:
+    - 27017:27017
+
   registry:
     image: egorrepnikov/artaeum-registry
     restart: always
@@ -21,9 +42,9 @@ services:
       EMAIL_ADDRESS: $EMAIL_ADDRESS
       EMAIL_PASSWORD: $EMAIL_PASSWORD
       MAIL_URL: $MAIL_URL
-      POSTGRES_URL: $UAA_POSTGRES_URL
-      POSTGRES_USER: $UAA_POSTGRES_USER
-      POSTGRES_PASSWORD: $UAA_POSTGRES_PASSWORD
+      POSTGRES_URL: $POSTGRES_URL
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       UAA_SERVICE_PASSWORD: $UAA_SERVICE_PASSWORD
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
@@ -31,74 +52,32 @@ services:
     ports:
     - 5000:5000
 
-  uaa-postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      POSTGRES_DB: uaa
-    ports:
-    - 5432:5432
-
   profile:
     environment:
-      POSTGRES_URL: $PROFILE_POSTGRES_URL
-      POSTGRES_USER: $PROFILE_POSTGRES_USER
-      POSTGRES_PASSWORD: $PROFILE_POSTGRES_PASSWORD
+      POSTGRES_URL: $POSTGRES_URL
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-profile
     restart: always
     ports:
     - 6000:6000
 
-  profile-postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: $POSTGRES_USER
-      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
-      POSTGRES_DB: profile
-    ports:
-    - 5433:5432
-
   media:
     environment:
-      MONGO_URI: $MEDIA_MONGO_URI
+      MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-media
     restart: always
     ports:
     - 7000:7000
 
-  media-mongo:
-    image: aashreys/mongo-auth:latest
-    environment:
-      AUTH: 'yes'
-      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
-      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
-      MONGODB_APPLICATION_USER: $MONGO_USER
-      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
-      MONGODB_APPLICATION_DATABASE: media
-    ports:
-    - 27000:27017
-
   comment:
     environment:
-      MONGO_URI: $COMMENT_MONGO_URI
+      MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-comment
     restart: always
     ports:
     - 9000:9000
-
-  comment-mongo:
-    image: aashreys/mongo-auth:latest
-    environment:
-      AUTH: 'yes'
-      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
-      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
-      MONGODB_APPLICATION_USER: $MONGO_USER
-      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
-      MONGODB_APPLICATION_DATABASE: comment
-    ports:
-    - 29000:27017
 
   storage:
     environment:
@@ -116,41 +95,17 @@ services:
 
   blog:
     environment:
-      MONGO_URI: $BLOG_MONGO_URI
+      MONGO_URI: $MONGO_URI
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-blog
     restart: always
     ports:
     - 11000:11000
 
-  blog-mongo:
-    image: aashreys/mongo-auth:latest
-    environment:
-      AUTH: 'yes'
-      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
-      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
-      MONGODB_APPLICATION_USER: $MONGO_USER
-      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
-      MONGODB_APPLICATION_DATABASE: blog
-    ports:
-    - 30000:27017
-
   statistics:
     environment:
-      MONGO_URI: $STATISTICS_MONGO_URI
+      MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-statistics
     restart: always
     ports:
     - 12000:12000
-
-  statistics-mongo:
-    image: aashreys/mongo-auth:latest
-    environment:
-      AUTH: 'yes'
-      MONGODB_ADMIN_USER: $MONGO_ADMIN_USER
-      MONGODB_ADMIN_PASS: $MONGO_ADMIN_PASSWORD
-      MONGODB_APPLICATION_USER: $MONGO_USER
-      MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
-      MONGODB_APPLICATION_DATABASE: statistics
-    ports:
-    - 31000:27017

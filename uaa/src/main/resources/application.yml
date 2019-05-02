@@ -6,7 +6,7 @@ spring:
   application.name: uaa
   messages.basename: i18n/messages
   datasource:
-    url: ${POSTGRES_URL:jdbc:postgresql://uaa-postgres:5432/uaa}
+    url: ${POSTGRES_URL}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
     jpa:
