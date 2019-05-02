@@ -12,13 +12,13 @@ spring:
     jpa:
       hibernate.ddl-auto: update
       properties.hibernate.temp.use_jdbc_metadata_defaults: false
-    mail:
-      host: smtp.yandex.ru
-      port: 465
-      username: ${EMAIL_ADDRESS}
-      password: ${EMAIL_PASSWORD}
-      protocol: smtps
-    thymeleaf.cache: true
+  mail:
+    host: smtp.yandex.ru
+    port: 465
+    username: ${EMAIL_ADDRESS}
+    password: ${EMAIL_PASSWORD}
+    protocol: smtps
+  thymeleaf.cache: true
 
 security:
   oauth2:
