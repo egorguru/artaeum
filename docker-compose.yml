@@ -3,9 +3,6 @@ version: '2.2'
 services:
 
   registry:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-registry
     restart: always
     ports:
@@ -13,14 +10,9 @@ services:
 
   gateway:
     environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-gateway
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 8080:4000
 
@@ -29,8 +21,6 @@ services:
       EMAIL_ADDRESS: $EMAIL_ADDRESS
       EMAIL_PASSWORD: $EMAIL_PASSWORD
       MAIL_URL: $MAIL_URL
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       POSTGRES_URL: $UAA_POSTGRES_URL
       POSTGRES_USER: $UAA_POSTGRES_USER
       POSTGRES_PASSWORD: $UAA_POSTGRES_PASSWORD
@@ -38,9 +28,6 @@ services:
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 5000:5000
 
@@ -55,17 +42,12 @@ services:
 
   profile:
     environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       POSTGRES_URL: $PROFILE_POSTGRES_URL
       POSTGRES_USER: $PROFILE_POSTGRES_USER
       POSTGRES_PASSWORD: $PROFILE_POSTGRES_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-profile
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 6000:6000
 
@@ -80,14 +62,9 @@ services:
 
   media:
     environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       MONGO_URI: $MEDIA_MONGO_URI
     image: egorrepnikov/artaeum-media
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 7000:7000
 
@@ -108,9 +85,6 @@ services:
       MONGO_URI: $COMMENT_MONGO_URI
     image: egorrepnikov/artaeum-comment
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 9000:9000
 
@@ -128,14 +102,9 @@ services:
 
   storage:
     environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-storage
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 10000:10000
 
@@ -151,9 +120,6 @@ services:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-blog
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 11000:11000
 
@@ -174,9 +140,6 @@ services:
       MONGO_URI: $STATISTICS_MONGO_URI
     image: egorrepnikov/artaeum-statistics
     restart: always
-    depends_on:
-      config:
-        condition: service_healthy
     ports:
     - 12000:12000
 
