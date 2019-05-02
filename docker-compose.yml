@@ -2,15 +2,6 @@ version: '2.2'
 
 services:
 
-  config:
-    environment:
-      CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER
-      CONFIG_SERVICE_PASSWORD: $CONFIG_SERVICE_PASSWORD
-    image: egorrepnikov/artaeum-config
-    restart: always
-    ports:
-    - 8888:8888
-
   registry:
     environment:
       CONFIG_SERVICE_USER: $CONFIG_SERVICE_USER

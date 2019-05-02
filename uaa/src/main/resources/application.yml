@@ -1,3 +1,41 @@
+server:
+  servlet.context-path: /uaa
+  port: ${PORT:5000}
+
 spring:
-  messages:
-    basename: i18n/messages
+  application.name: uaa
+  messages.basename: i18n/messages
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://uaa-postgres:5432/uaa}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+    jpa:
+      hibernate.ddl-auto: update
+      properties.hibernate.temp.use_jdbc_metadata_defaults: false
+    mail:
+      host: smtp.yandex.ru
+      port: 465
+      username: ${EMAIL_ADDRESS}
+      password: ${EMAIL_PASSWORD}
+      protocol: smtps
+    thymeleaf.cache: true
+
+security:
+  oauth2:
+    resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
+    client:
+      clientId: uaa
+      clientSecret: ${UAA_SERVICE_PASSWORD}
+      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
+      grant-type: client_credentials
+      scope: server
+
+eureka:
+  instance:
+    hostname: ${HOSTNAME:localhost}
+    nonSecurePort: ${HOSTPORT:${server.port}}
+  client.serviceUrl.defaultZone: ${EUREKA_URL:http://registry:8761/eureka/}
+
+artaeum:
+  mail.url: ${MAIL_URL}
+  languages: en,ru

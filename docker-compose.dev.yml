@@ -2,9 +2,6 @@ version: '2.2'
 
 services:
 
-  config:
-    build: config
-
   registry:
     build: registry
 

@@ -1,9 +1,0 @@
-server:
-  servlet:
-    context-path: /media
-  port: ${PORT:7000}
-
-spring:
-  data:
-    mongodb:
-      uri: ${MONGO_URI:mongodb://user:password@media-mongo:27017/media}

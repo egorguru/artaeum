@@ -1,0 +1,13 @@
+server.port: ${PORT:8761}
+
+spring.application.name: registry
+
+security.oauth2.resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    client:
+      registerWithEureka: false
+      fetchRegistry: false
+      server.waitTimeInMsWhenSyncEmpty: 0

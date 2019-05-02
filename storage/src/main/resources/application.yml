@@ -1,0 +1,24 @@
+server:
+  servlet.context-path: /storage
+  port: ${PORT:10000}
+  max-http-header-size: 16777216
+
+spring:
+  application.name: storage
+  http:
+    multipart:
+      max-file-size: 500KB
+      max-request-size: 500KB
+    security.user:
+      name: storage
+      password: ${STORAGE_SERVICE_PASSWORD}
+
+security.oauth2.resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
+
+eureka:
+  instance:
+    hostname: ${HOSTNAME:localhost}
+    nonSecurePort: ${HOSTPORT:${server.port}}
+  client.serviceUrl.defaultZone: ${EUREKA_URL:http://registry:8761/eureka/}
+
+artaeum.resources: profile,blog
