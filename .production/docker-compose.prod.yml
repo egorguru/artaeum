@@ -30,7 +30,7 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DB: artaeum
     volumes:
-    - ./data/postgresql:/var/lib/postgresql
+    - ./data/postgresql/data:/var/lib/postgresql/data
 
   registry:
     image: egorrepnikov/artaeum-registry
@@ -41,6 +41,8 @@ services:
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-gateway
     restart: always
+    depends_on:
+    - registry
 
   web-client:
     image: egorrepnikov/artaeum-web-client
@@ -58,6 +60,9 @@ services:
       GATEWAY_SERVICE_PASSWORD: $GATEWAY_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-uaa
     restart: always
+    depends_on:
+    - postgresql
+    - registry
 
   profile:
     environment:
@@ -67,18 +72,27 @@ services:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-profile
     restart: always
+    depends_on:
+    - postgresql
+    - registry
 
   media:
     environment:
       MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-media
     restart: always
+    depends_on:
+    - mongodb
+    - registry
 
   comment:
     environment:
       MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-comment
     restart: always
+    depends_on:
+    - mongodb
+    - registry
 
   storage:
     environment:
@@ -88,6 +102,8 @@ services:
     volumes:
     - ./data/storage/profile:/profile
     - ./data/storage/blog:/blog
+    depends_on:
+    - registry
 
   blog:
     environment:
@@ -95,9 +111,15 @@ services:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
     image: egorrepnikov/artaeum-blog
     restart: always
+    depends_on:
+    - mongodb
+    - registry
 
   statistics:
     environment:
       MONGO_URI: $MONGO_URI
     image: egorrepnikov/artaeum-statistics
     restart: always
+    depends_on:
+    - mongodb
+    - registry
