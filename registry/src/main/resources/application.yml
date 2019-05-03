@@ -7,7 +7,7 @@ security.oauth2.resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/u
 eureka:
   instance:
     prefer-ip-address: true
-    client:
-      registerWithEureka: false
-      fetchRegistry: false
-      server.waitTimeInMsWhenSyncEmpty: 0
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    server.waitTimeInMsWhenSyncEmpty: 0
