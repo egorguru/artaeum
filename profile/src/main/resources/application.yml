@@ -8,9 +8,9 @@ spring:
     url: ${POSTGRES_URL}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
-    jpa:
-      hibernate.ddl-auto: update
-      properties.hibernate.temp.use_jdbc_metadata_defaults: false
+  jpa:
+    hibernate.ddl-auto: update
+    properties.hibernate.temp.use_jdbc_metadata_defaults: false
 
 security.oauth2.resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
 
