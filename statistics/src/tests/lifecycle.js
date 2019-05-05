@@ -39,7 +39,7 @@ before(async () => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  server = require('../index')
+  server = require('../app').listen(config.port)
 })
 
 after(async () => {

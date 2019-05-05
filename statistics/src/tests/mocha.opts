@@ -2,6 +2,5 @@
 --exit
 --timeout 5000
 --require should
---require src/tests/mocha.env.js
 src/tests/lifecycle.js
 src/tests/**/*.test.js

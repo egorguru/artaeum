@@ -1,11 +1,8 @@
-const mongoConfig = require('./lib/mongo-config')
 const eureka = require('./lib/eureka-client')
-const server = require('./lib/server')
+const config = require('./lib/config')
+const app = require('./app')
 
-mongoConfig()
-
-if (process.env.NODE_ENV !== 'test') {
+app.listen(config.port, () => {
   eureka.start()
-}
-
-server.init()
+  console.log(`Server has been started on port ${config.port}`)
+})

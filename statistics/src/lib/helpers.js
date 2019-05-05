@@ -1,20 +1,17 @@
-const rp = require('request-promise')
+const rp = require('request-promise').defaults({
+  resolveWithFullResponse: true,
+  simple: false
+})
 
 const config = require('./config')
 
 module.exports = {
-  parseJsonToObject(s) {
-    try {
-      return JSON.parse(s)
-    } catch (e) {
-      return {}
-    }
-  },
   async checkAuth(authorization) {
-    return await rp({
+    const response = await rp({
       uri: config.uaaUri,
       headers: { 'Authorization': authorization },
       json: true
     })
+    return response.statusCode === 401 ? false : response.body
   }
 }

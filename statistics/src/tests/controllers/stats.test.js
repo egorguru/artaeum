@@ -8,9 +8,7 @@ describe('Stats API', async () => {
     userId: 'uuid-test',
     createdDate: Date.now()
   }
-  beforeEach(async () => {
-    await Stats.remove()
-  })
+  beforeEach(async () => await Stats.remove())
   describe('POST /stats', () => {
     it('creates stats', async () => {
       const res = await helpers.request.post({
@@ -68,29 +66,6 @@ describe('Stats API', async () => {
         json: true
       })
       res.statusCode.should.eql(401)
-    })
-  })
-  describe('DELETE /stats?_id=:statsId', () => {
-    it('removes stats', async () => {
-      const stats = await new Stats(testStats).save()
-      const res = await helpers.request.delete({
-        uri: 'stats?_id=' + stats._id,
-        headers: {
-          'Authorization': 'Bearer valid-token'
-        }
-      })
-      res.statusCode.should.eql(200);
-      const result = await Stats.find()
-      result.length.should.eql(0)
-    })
-    it('removes stats without auth', async () => {
-      const stats = await new Stats(testStats).save()
-      const res = await helpers.request.delete({
-        uri: 'stats?_id=' + stats._id
-      })
-      res.statusCode.should.eql(401);
-      const result = await Stats.find()
-      result.length.should.eql(1)
     })
   })
 })
