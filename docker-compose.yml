@@ -63,22 +63,6 @@ services:
     ports:
     - 6000:6000
 
-  media:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-media
-    restart: always
-    ports:
-    - 7000:7000
-
-  comment:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-comment
-    restart: always
-    ports:
-    - 9000:9000
-
   storage:
     environment:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD

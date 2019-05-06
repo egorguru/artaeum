@@ -5,10 +5,9 @@ server:
 
 spring:
   application.name: storage
-  http:
-    multipart:
-      max-file-size: 500KB
-      max-request-size: 500KB
+  http.multipart:
+    max-file-size: 500KB
+    max-request-size: 500KB
   security.user:
     name: storage
     password: ${STORAGE_SERVICE_PASSWORD}

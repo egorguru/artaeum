@@ -14,12 +14,6 @@ services:
   profile:
     build: profile
 
-  media:
-    build: media
-
-  comment:
-    build: comment
-
   storage:
     build: storage
 
