@@ -85,15 +85,6 @@ services:
     - mongodb
     - registry
 
-  comment:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-comment
-    restart: always
-    depends_on:
-    - mongodb
-    - registry
-
   storage:
     environment:
       STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD

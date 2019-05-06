@@ -23,5 +23,8 @@ services:
   blog:
     build: blog
 
+  media:
+    build: media
+
   statistics:
     build: statistics

@@ -86,6 +86,14 @@ services:
     ports:
     - 11000:11000
 
+  media:
+    environment:
+      MONGO_URI: $MONGO_URI
+    image: egorrepnikov/artaeum-media
+    restart: always
+    ports:
+    - 7000:7000
+
   statistics:
     environment:
       MONGO_URI: $MONGO_URI
