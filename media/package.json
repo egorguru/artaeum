@@ -4,7 +4,8 @@
   "description": "Media",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha --opts src/tests/mocha.opts",
+    "start": "node ./src/index.js"
   },
   "author": "Egor Repnikov <egorepnikov@gmail.com>",
   "license": "MIT",
