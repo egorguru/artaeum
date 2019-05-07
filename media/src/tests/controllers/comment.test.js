@@ -121,11 +121,11 @@ describe('Comments API', () => {
       res.body[0].userId.should.eql(comment.userId)
     })
     it('gets the comments without query params', async () => {
-      const res = await helpers.request.get({ uri: `comments?resourceType=mock` })
+      const res = await helpers.request.get({ uri: 'comments' })
       res.statusCode.should.eql(400)
     })
     it('gets the comments without resourceId query param', async () => {
-      const res = await helpers.request.get({ uri: 'comments' })
+      const res = await helpers.request.get({ uri: `comments?resourceType=mock` })
       res.statusCode.should.eql(400)
     })
   })
