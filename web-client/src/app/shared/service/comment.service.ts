@@ -10,15 +10,15 @@ export class CommentService {
   constructor(private http: HttpClient) {}
 
   create(comment: Comment): Observable<HttpResponse<any>> {
-    return this.http.post('comment/comments', comment, { observe: 'response' })
+    return this.http.post('media/comments', comment, { observe: 'response' })
   }
 
   update(comment: Comment): Observable<HttpResponse<Comment>> {
-    return this.http.put<Comment>('comment/comments', comment, { observe: 'response' })
+    return this.http.put<Comment>('media/comments', comment, { observe: 'response' })
   }
 
   query(resourceType: string, resourceId: number): Observable<HttpResponse<Comment[]>> {
-    return this.http.get<Comment[]>(`comment/comments`, {
+    return this.http.get<Comment[]>(`media/comments`, {
       observe: 'response',
       params: new HttpParams()
         .append('resourceType', resourceType)
@@ -27,6 +27,6 @@ export class CommentService {
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
-    return this.http.delete(`comment/comments/${id}`, { observe: 'response' })
+    return this.http.delete(`media/comments/${id}`, { observe: 'response' })
   }
 }
