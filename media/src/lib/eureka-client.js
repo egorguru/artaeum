@@ -7,18 +7,18 @@ const hostPort = config.eureka.hostPort
 
 module.exports = new Eureka({
   instance: {
-    app: 'COMMENT',
-    instanceId: `${hostName}:comment:${hostPort}`,
+    app: 'MEDIA',
+    instanceId: `${hostName}:media:${hostPort}`,
     hostName: hostName,
     ipAddr: '127.0.0.1',
     port: {
       '$': hostPort,
       '@enabled': true,
     },
-    vipAddress: 'COMMENT',
+    vipAddress: 'MEDIA',
     homePageUrl: `http://${hostName}:${hostPort}`,
-    statusPageUrl: `http://${hostName}:${hostPort}/comment/health`,
-    healthCheckUrl: `http://${hostName}:${hostPort}/comment/health`,
+    statusPageUrl: `http://${hostName}:${hostPort}/media/health`,
+    healthCheckUrl: `http://${hostName}:${hostPort}/media/health`,
     dataCenterInfo: {
       '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
       name: 'MyOwn',

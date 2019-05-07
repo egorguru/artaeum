@@ -6,6 +6,6 @@ module.exports = {
   request: request.defaults({
     resolveWithFullResponse: true,
     simple: false,
-    baseUrl: `http://localhost:${config.port}/comment`
+    baseUrl: `http://localhost:${config.port}/media`
   })
 }
