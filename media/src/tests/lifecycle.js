@@ -34,12 +34,12 @@ before(async () => {
     await mongod.start()
   }
   config.mongoUri = await mongod.getConnectionString()
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve) => {
     mockUaaStorageServer = initMockServer().listen(5000, resolve)
   })
   config.storageUri = 'http://localhost:5000/storage'
   config.uaaUri = 'http://localhost:5000/uaa'
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve) => {
     server = require('../app').listen(config.port, resolve)
   })
 })

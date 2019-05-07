@@ -1,11 +1,11 @@
 const Koa = require('koa')
 
-const { clearComments } = require('../../schedules/clear-comments')
-const Comment = require('../../models/Comment')
+const { clearLikes } = require('../../schedules/clear-likes')
+const Like = require('../../models/Like')
 
 let mockServer
 
-describe('Clear Comments Schedule', () => {
+describe('Clear Likes Schedule', () => {
   before(async () => {
     const mockApp = new Koa()
     mockApp.use((ctx) => {
@@ -25,31 +25,28 @@ describe('Clear Comments Schedule', () => {
   })
   after(() => mockServer.close())
   beforeEach(async () => {
-    await new Comment({
-      text: '<p>Test text</p>',
+    await new Like({
       resourceType: 'article',
       resourceId: 1,
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
-    await new Comment({
-      text: '<p>Test text</p>',
+    await new Like({
       resourceType: 'article',
       resourceId: 2,
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
-    await new Comment({
-      text: '<p>Test text</p>',
+    await new Like({
       resourceType: 'post',
       resourceId: 1,
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
   })
-  afterEach(async () => await Comment.remove())
-  it('clear comments', async () => {
-    await clearComments({
+  afterEach(async () => await Like.remove())
+  it('clear likes', async () => {
+    await clearLikes({
       getInstancesByAppId() {
         return [{
           hostName: 'localhost',
@@ -59,9 +56,9 @@ describe('Clear Comments Schedule', () => {
         }]
       }
     })
-    const comments = await Comment.find()
-    comments.length.should.eql(1)
-    comments[0].resourceType.should.eql('article')
-    comments[0].resourceId.should.eql(2)
+    const likes = await Like.find()
+    likes.length.should.eql(1)
+    likes[0].resourceType.should.eql('article')
+    likes[0].resourceId.should.eql(2)
   })
 })

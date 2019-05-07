@@ -4,18 +4,18 @@ const rp = require('request-promise').defaults({
 })
 const { CronJob } = require('cron')
 
-const Comment = require('../models/Comment')
+const Like = require('../models/Like')
 const config = require('../lib/config')
 
-async function clearComments(eureka) {
+async function clearLikes(eureka) {
   const gateway = eureka.getInstancesByAppId('gateway')[0]
-  const comments = await Comment.find()
-  for (const comment of comments) {
+  const likes = await Like.find()
+  for (const like of likes) {
     const response = await rp.get(
-      processUri(gateway.hostName, gateway.port.$, comment.resourceType, comment.resourceId)
+      processUri(gateway.hostName, gateway.port.$, like.resourceType, like.resourceId)
     )
     if (response.statusCode === 404) {
-      await Comment.findByIdAndDelete(comment._id)
+      await Like.findByIdAndDelete(like._id)
     }
   }
 }
@@ -24,6 +24,6 @@ function processUri(host, port, resource, id) {
   return `http://${host}:${port}/${config.resourceServiceMap[resource]}/${resource}s/${id}`
 }
 
-module.exports = (eureka) => new CronJob('00 5 * * *', () => clearComments(eureka))
+module.exports = (eureka) => new CronJob('00 5 * * *', () => clearLikes(eureka))
 
-module.exports.clearComments = clearComments
+module.exports.clearLikes = clearLikes
