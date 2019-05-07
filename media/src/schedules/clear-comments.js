@@ -5,11 +5,7 @@ const rp = require('request-promise').defaults({
 const { CronJob } = require('cron')
 
 const Comment = require('../models/Comment')
-
-const resourceService = {
-  post: 'profile',
-  article: 'blog'
-}
+const config = require('../lib/config')
 
 async function clearComments(eureka) {
   const gateway = eureka.getInstancesByAppId('gateway')[0]
@@ -25,7 +21,7 @@ async function clearComments(eureka) {
 }
 
 function processUri(host, port, resource, id) {
-  return `http://${host}:${port}/${resourceService[resource]}/${resource}s/${id}`
+  return `http://${host}:${port}/${config.resourceServiceMap[resource]}/${resource}s/${id}`
 }
 
 module.exports = (eureka) => new CronJob('00 5 * * *', () => clearComments(eureka))
