@@ -7,5 +7,9 @@ module.exports = {
     hostName: process.env.HOSTNAME || 'media',
     hostPort: process.env.HOSTPORT || 7000,
     eurekaUrl: [process.env.EUREKA_URL || 'http://registry:8761/eureka/apps/']
+  },
+  resourceServiceMap: {
+    post: 'profile',
+    article: 'blog'
   }
 }
