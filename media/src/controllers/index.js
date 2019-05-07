@@ -1,10 +1,11 @@
 const Router = require('koa-router')
 
-const comments = require('./comment')
+const comment = require('./comment')
 const health = require('./health')
+const like = require('./like')
 
 const router = new Router().prefix('/media')
 
-router.use(comments, health)
+router.use(comment, health, like)
 
 module.exports = router
