@@ -34,10 +34,6 @@ zuul:
       path: /uaa/**
       serviceId: uaa
       stripPrefix: false
-    media:
-      path: /media/**
-      serviceId: media
-      stripPrefix: false
     profile:
       path: /profile/**
       serviceId: profile
@@ -50,9 +46,9 @@ zuul:
       path: /blog/**
       serviceId: blog
       stripPrefix: false
-    comment:
-      path: /comment/**
-      serviceId: comment
+    media:
+      path: /media/**
+      serviceId: media
       stripPrefix: false
     statistics:
       path: /statistics/**
