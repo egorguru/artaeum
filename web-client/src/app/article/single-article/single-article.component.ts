@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
 import { Title, DomSanitizer, SafeHtml } from '@angular/platform-browser'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 
 import {
   User, Article,
@@ -32,7 +31,6 @@ export class SingleArticleComponent implements OnInit {
     private activedRoute: ActivatedRoute,
     private router: Router,
     private title: Title,
-    private modalService: NgbModal,
     private sanitizer: DomSanitizer
   ) {}
 
@@ -51,12 +49,7 @@ export class SingleArticleComponent implements OnInit {
     })
   }
 
-  modal(content): void {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-delete-article' })
-  }
-
   deleteArticle(): void {
-    this.modalService.dismissAll('Remove article')
     this.articleService.delete(this.article._id)
       .subscribe(() => this.router.navigate(['/']))
   }

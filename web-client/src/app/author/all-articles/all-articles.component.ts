@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import { environment as env } from '../../../environments/environment'
 
 import { CategoryService, ArticleService, Principal, User, Article } from '../../shared'
@@ -28,8 +27,7 @@ export class AllArticlesComponent implements OnInit {
     private articleService: ArticleService,
     private principal: Principal,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private modalService: NgbModal
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -72,9 +70,8 @@ export class AllArticlesComponent implements OnInit {
     }
   }
 
-  modalDelete(content, article: Article): void {
+  setDeleteCandidate(article: Article): void {
     this.deleteCandidate = article
-    this.modalService.open(content, { ariaLabelledBy: 'modal-delete-article' })
   }
 
   deleteArticle(): void {

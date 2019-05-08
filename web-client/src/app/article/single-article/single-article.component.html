@@ -1,20 +1,3 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-delete-article">{{ 'article.single-article.delete-modal.title' | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><strong>{{ 'article.single-article.delete-modal.text-1' | translate }}</strong></p>
-    <span class="text-danger">{{ 'article.single-article.delete-modal.text-2' | translate }}</span>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'article.single-article.delete-modal.cancel' | translate }}</button>
-    <button type="button" class="btn btn-danger" ngbAutofocus (click)="deleteArticle()">{{ 'article.single-article.delete-modal.remove' | translate }}</button>
-  </div>
-</ng-template>
-
 <section *ngIf="!article && !author" class="mt-5 mb-0">
   <ae-loader></ae-loader>
 </section>
@@ -39,7 +22,18 @@
                 <a role="button" [routerLink]="['/author/article', article._id]">
                   <i class="fa fa-pencil" title="Edit"></i>
                 </a> |
-                <a role="button" (click)="modal(content)">
+                <a
+                  role="button"
+                  [swal]="{
+                    title: 'article.single-article.delete-modal.title' | translate,
+                    text: 'article.single-article.delete-modal.text' | translate,
+                    confirmButtonText: 'article.single-article.delete-modal.remove' | translate,
+                    canselButtonText: 'article.single-article.delete-modal.cancel' | translate,
+                    confirmButtonColor: '#d33',
+                    type: 'warning'
+                  }"
+                  (confirm)="deleteArticle()"
+                >
                   <i class="fa fa-remove" title="Remove"></i>
                 </a>
               </span>

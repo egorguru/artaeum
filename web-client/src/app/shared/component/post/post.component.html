@@ -1,20 +1,3 @@
-<ng-template #content let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-delete-post">{{ 'shared.post.delete-modal.title' | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><strong>{{ 'shared.post.delete-modal.text-1' | translate }}</strong></p>
-    <span class="text-danger">{{ 'shared.post.delete-modal.text-2' | translate }}</span>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'shared.post.delete-modal.cancel' | translate }}</button>
-    <button type="button" class="btn btn-danger" ngbAutofocus (click)="delete()">{{ 'shared.post.delete-modal.remove' | translate }}</button>
-  </div>
-</ng-template>
-
 <div class="card post-card">
   <div class="card-header">
     <div class="d-flex justify-content-between align-items-center">
@@ -37,7 +20,21 @@
           <i class="fa fa-ellipsis-h"></i>
         </button>
         <div class="dropdown-menu dropdown-menu-right" [attr.aria-labelledby]="'post' + post.id">
-          <a role="button" class="dropdown-item" (click)="modal(content)">{{ 'shared.post.remove-btn' | translate }}</a>
+          <a
+            role="button"
+            class="dropdown-item"
+            [swal]="{
+              title: 'shared.post.delete-modal.title' | translate,
+              text: 'shared.post.delete-modal.text' | translate,
+              confirmButtonText: 'shared.post.delete-modal.remove' | translate,
+              canselButtonText: 'shared.post.delete-modal.cancel' | translate,
+              confirmButtonColor: '#d33',
+              type: 'warning'
+            }"
+            (confirm)="delete()"
+          >
+            {{ 'shared.post.remove-btn' | translate }}
+          </a>
         </div>
       </div>
     </div>

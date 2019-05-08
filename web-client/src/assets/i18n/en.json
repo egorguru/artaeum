@@ -62,8 +62,7 @@
       "comments": "Comments",
       "delete-modal": {
         "title": "Article deletion",
-        "text-1": "Are you sure you want to delete this article?",
-        "text-2": "This operation can not be undone.",
+        "text": "Are you sure you want to delete this article?",
         "cancel": "Cancel",
         "remove": "Remove"
       }
@@ -88,8 +87,7 @@
       "create": "Create",
       "delete-modal": {
         "title": "Article Deletion",
-        "text-1": "Are you sure you want to delete this article?",
-        "text-2": "This operation can not be undone.",
+        "text": "Are you sure you want to delete this article?",
         "cancel": "Cancel",
         "submit": "Delete"
       }
@@ -129,8 +127,7 @@
       },
       "delete-modal": {
         "title": "Category Deletion",
-        "text-1": "Are you sure you want to delete this category?",
-        "text-2": "This operation can not be undone.",
+        "text": "Are you sure you want to delete this category?",
         "cancel": "Cancel",
         "submit": "Delete"
       }
@@ -227,8 +224,7 @@
       "remove-btn": "Remove",
       "delete-modal": {
         "title": "Post deletion",
-        "text-1": "Are you sure you want to delete this post?",
-        "text-2": "This operation can not be undone.",
+        "text": "Are you sure you want to delete this post?",
         "cancel": "Cancel",
         "remove": "Remove"
       }

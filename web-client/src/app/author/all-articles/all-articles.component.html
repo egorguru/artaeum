@@ -64,7 +64,19 @@
           <a [routerLink]="['/author/article', a._id]">
             <i class="fa fa-pencil" title="Edit"></i>
           </a>
-          <a (click)="modalDelete(delete, a)">
+          <a
+            role="button"
+            [swal]="{
+              title: 'author.all-articles.delete-modal.title' | translate,
+              text: 'author.all-articles.delete-modal.text' | translate,
+              confirmButtonText: 'author.all-articles.delete-modal.submit' | translate,
+              canselButtonText: 'author.all-articles.delete-modal.cancel' | translate,
+              confirmButtonColor: '#d33',
+              type: 'warning',
+              preConfirm: setDeleteCandidate(a)
+            }"
+            (confirm)="deleteArticle()"
+          >
             <i class="fa fa-remove" title="Delete"></i>
           </a>
         </td>

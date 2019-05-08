@@ -1,72 +1,3 @@
-<ng-template #create let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-create-category">{{ 'author.categories.create-modal.title' | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group row mb-0">
-      <div class="col-12">
-        <input
-          id="categoryName"
-          class="form-control here"
-          type="text"
-          [placeholder]="'author.categories.create-modal.category-name' | translate"
-          [(ngModel)]="createCandidate.name"
-        >
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.create-modal.cancel' | translate }}</button>
-    <button type="button" class="btn btn-primary" (click)="createCategory()">{{ 'author.categories.create-modal.submit' | translate }}</button>
-  </div>
-</ng-template>
-
-<ng-template #update let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-update-category">{{ 'author.categories.update-modal.title' | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <div class="form-group row mb-0">
-      <div class="col-12">
-        <input
-          id="categoryName"
-          class="form-control here"
-          type="text"
-          [placeholder]="'settings.change-common.first-name' | translate"
-          [(ngModel)]="updateCandidate.name"
-        >
-      </div>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.update-modal.cancel' | translate }}</button>
-    <button type="button" class="btn btn-primary" (click)="updateCategory()">{{ 'author.categories.update-modal.submit' | translate }}</button>
-  </div>
-</ng-template>
-
-<ng-template #delete let-modal>
-  <div class="modal-header">
-    <h4 class="modal-title" id="modal-delete-category">{{ 'author.categories.delete-modal.title' | translate }}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <p><strong>{{ 'author.categories.delete-modal.text-1' | translate }}</strong></p>
-    <span class="text-danger">{{ 'author.categories.delete-modal.text-2' | translate }}</span>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">{{ 'author.categories.delete-modal.cancel' | translate }}</button>
-    <button type="button" class="btn btn-danger" ngbAutofocus (click)="deleteCategory()">{{ 'author.categories.delete-modal.submit' | translate }}</button>
-  </div>
-</ng-template>
-
 <table class="table">
   <thead>
     <tr>
@@ -83,18 +14,54 @@
       <td>{{ c.name }}</td>
       <td>{{ c.createdDate | dateConverter }}</td>
       <td>
-        <button class="btn btn-outline-primary" (click)="modalUpdate(update, c)">
+        <button
+          class="btn btn-outline-primary" 
+          [swal]="{
+            title: 'author.categories.update-modal.title' | translate,
+            confirmButtonText: 'author.categories.update-modal.submit' | translate,
+            canselButtonText: 'author.categories.update-modal.cancel' | translate,
+            inputPlaceholder: 'author.categories.update-modal.category-name' | translate,
+            input: 'text',
+            showCancelButton: true,
+            preConfirm: setUpdateCandidate()
+          }"
+          (confirm)="updateCategory($event)"
+        >
           {{ 'author.categories.update' | translate }}
         </button>
       </td>
       <td>
-        <button class="btn btn-outline-danger" (click)="modalDelete(delete, c)">
+        <button
+          class="btn btn-outline-danger" 
+          [swal]="{
+            title: 'author.categories.delete-modal.title' | translate,
+            text: 'author.categories.delete-modal.text' | translate,
+            confirmButtonText: 'author.categories.delete-modal.submit' | translate,
+            canselButtonText: 'author.categories.delete-modal.cancel' | translate,
+            confirmButtonColor: '#d33',
+            type: 'warning',
+            preConfirm: setDeleteCandidate(c)
+          }"
+          (confirm)="deleteCategory()"
+        >
           {{ 'author.categories.delete' | translate }}
         </button>
       </td>
     </tr>
   </tbody>
 </table>
-<button class="btn btn-dark" (click)="modalCreate(create)">
+<button
+  class="btn btn-dark" 
+  [swal]="{
+    title: 'author.categories.create-modal.title' | translate,
+    confirmButtonText: 'author.categories.create-modal.submit' | translate,
+    canselButtonText: 'author.categories.create-modal.cancel' | translate,
+    inputPlaceholder: 'author.categories.create-modal.category-name' | translate,
+    confirmButtonColor: '#343a40',
+    input: 'text',
+    showCancelButton: true
+  }"
+  (confirm)="createCategory($event)"
+>
   {{ 'author.categories.create' | translate }}
 </button>
