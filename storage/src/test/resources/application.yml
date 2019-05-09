@@ -1,10 +1,5 @@
-eureka:
-  client:
-    enabled: false
+eureka.client.enabled: false
 
-spring:
-  main:
-    banner-mode: "off"
+spring.main.banner-mode: "off"
 
-artaeum:
-  resources: testResource,testAgain
+artaeum.resources: testResource,testAgain

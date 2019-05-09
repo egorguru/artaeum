@@ -18,9 +18,6 @@ public class FeignClientConfig {
 
     @Bean
     public BasicAuthRequestInterceptor basicAuthRequestInterceptor() {
-        return new BasicAuthRequestInterceptor(
-                "storage",
-                Objects.requireNonNull(this.env.getProperty("STORAGE_SERVICE_PASSWORD"))
-        );
+        return new BasicAuthRequestInterceptor("storage", this.env.getProperty("STORAGE_SERVICE_PASSWORD"));
     }
 }

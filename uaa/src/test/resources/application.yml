@@ -1,23 +1,22 @@
-eureka:
-  client:
-    enabled: false
+eureka.client.enabled: false
 
 spring:
   datasource:
     url: jdbc:h2:mem:uaa;DB_CLOSE_DELAY=-1
     username:
     password:
-  jpa:
-    database: H2
+  jpa.database: H2
   main:
     banner-mode: "off"
+    allow-bean-definition-overriding: true
   mail:
     host: localhost@localhost
     username: localhost@localhost
-  messages:
-    basename: i18n/messages
+  messages.basename: i18n/messages
 
 artaeum:
-  mail:
-    url: localhost
+  mail.url: localhost
   languages: en,ru
+
+GATEWAY_SERVICE_PASSWORD: password
+UAA_SERVICE_PASSWORD: password
