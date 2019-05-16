@@ -1,7 +1,7 @@
 const { Router } = require('dragonrend')
 
-const Stats = require('../../models/Stats')
-const helpers = require('../helpers')
+const Stats = require('../models/Stats')
+const helpers = require('../lib/helpers')
 
 const router = new Router({ prefix: '/stats' })
 
