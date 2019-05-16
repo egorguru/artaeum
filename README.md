@@ -6,9 +6,6 @@
 ### Registry Service (Java)
 Service Discovery - Spring Cloud Eureka.
 
-### Config Service (Java)
-Configuration Server - Spring Cloud Config.
-
 ### Gateway Service (Java)
 Gateway API - Spring Cloud Zuul (Java). Also, there is a feature of user authorization (works with UAA service).
 
@@ -18,14 +15,11 @@ OAuth2 Server - Spring Cloud OAuth2. There is API for working with User's entiti
 ### Blog Service (JavaScript - Node.js)
 Koa.js Service with Blog features containing Article API and Category API (depends on Article). All images are stored in Storage Service.
 
-### Comment Service (JavaScript - Node.js)
-Koa.js Service contains only Comment API.
+### Statistics Service (JavaScript - Dragonrend.js)
+Dragonrend.js Service contains only Statistics API.
 
-### Statistics Service (JavaScript - Node.js)
-Node.js (http module) Service contains only Statistics API.
-
-### Media Service (Scala)
-Spring Boot Service was written in Scala. There is only Like API.
+### Media Service (JavaScript - Koa.js)
+Koa.js Service contains Comment API and Like API.
 
 ### Profile Service (Java)
 Java Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
