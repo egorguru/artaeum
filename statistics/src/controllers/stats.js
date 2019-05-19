@@ -5,7 +5,7 @@ const helpers = require('../lib/helpers')
 
 const router = new Router({ prefix: '/stats' })
 
-router.post('/', async ({ req, request, response }) => {
+router.post('', async ({ req, request, response }) => {
   const { ip, url } = request.body
   const user = await helpers.checkAuth(req.headers['authorization'])
   await new Stats({
@@ -16,7 +16,7 @@ router.post('/', async ({ req, request, response }) => {
   response.status = 201
 })
 
-router.get('/', async ({ req, response }) => {
+router.get('', async ({ req, response }) => {
   const user = await helpers.checkAuth(req.headers['authorization'])
   if (user) {
     if (user.authorities.find((val) => val.authority === 'admin')) {
