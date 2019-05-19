@@ -14,9 +14,6 @@ services:
   profile:
     build: profile
 
-  storage:
-    build: storage
-
   web-client:
     build: web-client
 
