@@ -24,6 +24,7 @@ script:
   - mvn package -f profile --quiet
   - mvn package -f registry --quiet
   - npm run test --prefix statistics
+  - (cd storage; sbt assembly)
   - mvn package -f uaa --quiet
   - npm run build:ssr --prefix web-client --silent
 
@@ -61,6 +62,11 @@ after_success:
   - docker build -t $STATISTICS:$COMMIT ./statistics
   - docker tag $STATISTICS:$COMMIT $STATISTICS:$TAG
   - docker push $STATISTICS
+
+  - export STORAGE=egorrepnikov/artaeum-storage
+  - docker build -t $STORAGE:$COMMIT ./storage
+  - docker tag $STORAGE:$COMMIT $STORAGE:$TAG
+  - docker push $STORAGE
 
   - export UAA=egorrepnikov/artaeum-uaa
   - docker build -t $UAA:$COMMIT ./uaa

@@ -63,6 +63,14 @@ services:
     ports:
     - 6000:6000
 
+  storage:
+    environment:
+      STORAGE_SERVICE_PASSWORD: $STORAGE_SERVICE_PASSWORD
+    image: egorrepnikov/artaeum-storage
+    restart: always
+    ports:
+      - 10000:10000
+
   web-client:
     image: egorrepnikov/artaeum-web-client
     restart: always
