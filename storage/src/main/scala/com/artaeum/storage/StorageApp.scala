@@ -4,16 +4,18 @@ import java.io.File
 
 import akka.actor.ActorSystem
 import colossus.core._
-import colossus.protocols.http.HttpMethod.{Get, Post}
+import colossus.protocols.http.HttpMethod.{Delete, Get, Post}
 import colossus.protocols.http.UrlParsing.{/, Root, on}
 import colossus.protocols.http._
 import colossus.service.Callback
 import colossus.service.GenRequestHandler.PartialHandler
+import colossus.util.Task
 import com.artaeum.storage.config.Config
 import com.artaeum.storage.decoder.ImageDecoder
 import com.artaeum.storage.encoder.ImageEncoder
 import com.artaeum.storage.model.Image
 import com.artaeum.storage.service.ImageService
+import com.artaeum.storage.task.EurekaTask
 
 import scala.util.{Failure, Success}
 
@@ -50,6 +52,11 @@ object StorageApp extends App {
               .notFound("""{"error":"Bad Request"}""")
               .withContentType(ContentType.ApplicationJson))
           }
+        case req @ Delete on Root / "storage" / "images" / resource / name =>
+          ImageService.delete(resource, name)
+          Callback.successful(req
+            .ok("""{"message":"OK"}"""")
+            .withContentType(ContentType.ApplicationJson))
       }
     }
   })
