@@ -1,8 +1,5 @@
 sudo: required
 
-scala:
-  - 2.12.7
-
 cache:
   directories:
     - $HOME/.m2
@@ -10,6 +7,7 @@ cache:
 
 services:
   - docker
+  - sbt
 
 env:
   global:
