@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser'
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core'
 import { ServiceWorkerModule } from '@angular/service-worker'
 import { environment } from '../environments/environment'
 
-import { MainComponent, FooterComponent, HeaderComponent, SmartButtonComponent } from './layouts'
+import { FooterComponent, MainComponent, SmartButtonComponent } from './layouts'
 import { AppRoutingModule } from './app-routing.module'
 import { HomeModule } from './home'
 import { SharedModule } from './shared'
@@ -16,13 +16,13 @@ import { AuthorModule } from './author'
 import { TimelineModule } from './timeline'
 import { PagesModule } from './pages'
 import { SearchModule } from './search'
+import { HeaderModule } from './layouts/header/header.module'
 
 @NgModule({
   declarations: [
     MainComponent,
     FooterComponent,
-    HeaderComponent,
-    SmartButtonComponent
+    SmartButtonComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -38,9 +38,11 @@ import { SearchModule } from './search'
     AuthorModule,
     TimelineModule,
     SearchModule,
-    PagesModule
+    PagesModule,
+    HeaderModule,
   ],
   bootstrap: [MainComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {
+}
