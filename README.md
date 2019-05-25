@@ -25,7 +25,7 @@ Koa.js Service contains Comment API and Like API.
 Java Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
 
 ### Storage Service (Scala)
-Spring Boot Service was written in Scala. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
+Scala Colossus Service. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
 
 ### Web Client (Frontend) Service (Angular 7)
 Angular 7 application with SSR (Angular Universe) and i18n (ngx-translate).
