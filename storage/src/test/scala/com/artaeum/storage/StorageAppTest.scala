@@ -60,13 +60,22 @@ class StorageAppTest extends HttpServiceSpec with BeforeAndAfterEach {
       }
     }
     "return 200" in {
+      val auth = "Basic " + Base64.getEncoder.encodeToString("storage:password".getBytes())
       val jsonImageEntityBytes = writeToArray(Image(this.getImageInBase64, TEST_NAME_WITHOUT_EXPANSION))
       val request = HttpRequest
         .post(s"/storage/images/$TEST_RESOURCE")
+        .withHeader("Authorization", auth)
         .withBody(new HttpBody(jsonImageEntityBytes))
       expectCodeAndBodyPredicate(request, HttpCodes.OK) { body =>
         Files.exists(Paths.get(TEST_RESOURCE, TEST_NAME))
       }
+    }
+    "return 401" in {
+      val jsonImageEntityBytes = writeToArray(Image(this.getImageInBase64, TEST_NAME_WITHOUT_EXPANSION))
+      val request = HttpRequest
+        .post(s"/storage/images/$TEST_RESOURCE")
+        .withBody(new HttpBody(jsonImageEntityBytes))
+      expectCode(request, HttpCodes.UNAUTHORIZED)
     }
   }
 
