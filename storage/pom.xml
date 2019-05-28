@@ -28,6 +28,16 @@
       <artifactId>jsoniter-scala-macros_2.12</artifactId>
       <version>0.48.2</version>
     </dependency>
+    <dependency>
+      <groupId>com.netflix.eureka</groupId>
+      <artifactId>eureka-client</artifactId>
+      <version>1.9.9</version>
+    </dependency>
+    <dependency>
+      <groupId>me.albinus</groupId>
+      <artifactId>eureka-client_2.12</artifactId>
+      <version>1.0.1</version>
+    </dependency>
 
     <dependency>
       <groupId>com.tumblr</groupId>
@@ -36,6 +46,15 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+  <repositories>
+    <repository>
+      <id>bintrayalbinuscomaven</id>
+      <name>bintray-albinusco-maven</name>
+      <url>https://dl.bintray.com/albinusco/maven/</url>
+      <layout>default</layout>
+    </repository>
+  </repositories>
 
   <build>
     <sourceDirectory>src/main/scala</sourceDirectory>
@@ -132,4 +151,30 @@
       </plugin>
     </plugins>
   </build>
+
+    <profiles>
+      <profile>
+        <repositories>
+          <repository>
+            <snapshots>
+              <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-albinusco-maven</id>
+            <name>bintray</name>
+            <url>https://dl.bintray.com/albinusco/maven</url>
+          </repository>
+        </repositories>
+        <pluginRepositories>
+          <pluginRepository>
+            <snapshots>
+              <enabled>false</enabled>
+            </snapshots>
+            <id>bintray-albinusco-maven</id>
+            <name>bintray-plugins</name>
+            <url>https://dl.bintray.com/albinusco/maven</url>
+          </pluginRepository>
+        </pluginRepositories>
+        <id>bintray</id>
+      </profile>
+    </profiles>
 </project>
