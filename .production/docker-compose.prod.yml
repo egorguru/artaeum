@@ -5,11 +5,11 @@ services:
   nginx: 
     image: nginx:latest
     volumes:
-    - ./nginx/conf.d:/etc/nginx/conf.d
-    - /etc/letsencrypt/:/etc/letsencrypt/
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - /etc/letsencrypt/:/etc/letsencrypt/
     ports:
-    - 80:80
-    - 443:443
+      - 80:80
+      - 443:443
 
   mongodb:
     image: aashreys/mongo-auth:latest
@@ -21,7 +21,7 @@ services:
       MONGODB_APPLICATION_PASS: $MONGO_PASSWORD
       MONGODB_APPLICATION_DATABASE: artaeum
     volumes:
-    - ./data/mongodb/data/db:/data/db
+      - ./data/mongodb/data/db:/data/db
   
   postgresql:
     image: postgres:latest
@@ -30,7 +30,7 @@ services:
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
       POSTGRES_DB: artaeum
     volumes:
-    - ./data/postgresql/data:/var/lib/postgresql/data
+      - ./data/postgresql/data:/var/lib/postgresql/data
 
   registry:
     image: egorrepnikov/artaeum-registry
@@ -42,7 +42,7 @@ services:
     image: egorrepnikov/artaeum-gateway
     restart: always
     depends_on:
-    - registry
+      - registry
 
   web-client:
     image: egorrepnikov/artaeum-web-client
@@ -61,8 +61,8 @@ services:
     image: egorrepnikov/artaeum-uaa
     restart: always
     depends_on:
-    - postgresql
-    - registry
+      - postgresql
+      - registry
 
   profile:
     environment:
@@ -73,17 +73,8 @@ services:
     image: egorrepnikov/artaeum-profile
     restart: always
     depends_on:
-    - postgresql
-    - registry
-
-  media:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-media
-    restart: always
-    depends_on:
-    - mongodb
-    - registry
+      - postgresql
+      - registry
 
   storage:
     environment:
@@ -91,10 +82,10 @@ services:
     image: egorrepnikov/artaeum-storage
     restart: always
     volumes:
-    - ./data/storage/profile:/profile
-    - ./data/storage/blog:/blog
+      - ./data/storage/profile:/profile
+      - ./data/storage/blog:/blog
     depends_on:
-    - registry
+      - registry
 
   blog:
     environment:
@@ -103,8 +94,17 @@ services:
     image: egorrepnikov/artaeum-blog
     restart: always
     depends_on:
-    - mongodb
-    - registry
+      - mongodb
+      - registry
+
+  media:
+    environment:
+      MONGO_URI: $MONGO_URI
+    image: egorrepnikov/artaeum-media
+    restart: always
+    depends_on:
+      - mongodb
+      - registry
 
   statistics:
     environment:
@@ -112,5 +112,5 @@ services:
     image: egorrepnikov/artaeum-statistics
     restart: always
     depends_on:
-    - mongodb
-    - registry
+      - mongodb
+      - registry
