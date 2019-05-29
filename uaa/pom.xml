@@ -88,13 +88,11 @@
     </dependencyManagement>
 
     <build>
+        <finalName>uaa</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <finalName>uaa</finalName>
-                </configuration>
             </plugin>
         </plugins>
     </build>
