@@ -1,6 +1,7 @@
 package com.artaeum.profile.controller;
 
 import com.artaeum.profile.client.StorageClient;
+import com.artaeum.profile.client.model.Image;
 import com.artaeum.profile.config.Constants;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,11 +22,15 @@ public class ProfileImagesController {
 
     @PostMapping("/avatar")
     public void saveAvatarForUser(@RequestParam String image, Principal principal) {
-        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("%s-avatar", principal.getName()));
+        this.storageClient.save(
+                new Image(image, String.format("%s-avatar", principal.getName())),
+                Constants.RESOURCE_NAME);
     }
 
     @PostMapping("/background")
     public void saveBackgroundForUser(@RequestParam String image, Principal principal) {
-        this.storageClient.save(image, Constants.RESOURCE_NAME, String.format("%s-background", principal.getName()));
+        this.storageClient.save(
+                new Image(image, String.format("%s-background", principal.getName())),
+                Constants.RESOURCE_NAME);
     }
 }
