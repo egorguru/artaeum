@@ -12,7 +12,7 @@ class EurekaTask(context: Context) extends Task(context) {
 
   override def run(): Unit = {
     this.eureka = EurekaService(
-      "http://localhost:8761/eureka/",
+      "http://registry:8761/eureka/",
       "storage",
       "storage-1",
       "STORAGE",
