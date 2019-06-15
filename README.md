@@ -12,20 +12,20 @@ Gateway API - Spring Cloud Zuul (Java). Also, there is a feature of user authori
 ### UAA (User Account and Authentication) Service (Java)
 OAuth2 Server - Spring Cloud OAuth2. There is API for working with User's entities and User Account features like registration and activation.
 
-### Blog Service (JavaScript - Node.js)
+### Blog Service (JavaScript)
 Koa.js Service with Blog features containing Article API and Category API (depends on Article). All images are stored in Storage Service.
 
-### Statistics Service (JavaScript - Dragonrend.js)
+### Statistics Service (JavaScript)
 Dragonrend.js Service contains only Statistics API.
 
-### Media Service (JavaScript - Koa.js)
+### Media Service (JavaScript)
 Koa.js Service contains Comment API and Like API.
 
 ### Profile Service (Java)
-Java Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
+Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
 
 ### Storage Service (Scala)
-Scala Colossus Service. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
+Colossus Service. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
 
 ### Web Client (Frontend) Service (Angular 7)
 Angular 7 application with SSR (Angular Universe) and i18n (ngx-translate).
