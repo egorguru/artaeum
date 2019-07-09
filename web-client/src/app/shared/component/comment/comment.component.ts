@@ -13,7 +13,7 @@ import { Principal } from '../../auth'
 export class CommentComponent implements OnInit {
 
   @Input() resourceType: string
-  @Input() resourceId: number
+  @Input() resourceId: string
 
   currentUser: User
   comments: Comment[]

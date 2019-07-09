@@ -10,7 +10,7 @@ import { CommentService } from '../../service'
 export class CommentButtonComponent implements OnInit {
 
   @Input() resourceType: string
-  @Input() resourceId: number
+  @Input() resourceId: string
 
   commentsCount: number
 

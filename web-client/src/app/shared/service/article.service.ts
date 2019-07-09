@@ -62,7 +62,7 @@ export class ArticleService {
     })
   }
 
-  delete(id: number): Observable<HttpResponse<any>> {
+  delete(id: string): Observable<HttpResponse<any>> {
     return this.http.delete(`blog/articles/${id}`, { observe: 'response' })
   }
 }

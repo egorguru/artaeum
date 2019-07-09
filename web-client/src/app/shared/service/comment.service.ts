@@ -17,7 +17,7 @@ export class CommentService {
     return this.http.put<Comment>('media/comments', comment, { observe: 'response' })
   }
 
-  query(resourceType: string, resourceId: number): Observable<HttpResponse<Comment[]>> {
+  query(resourceType: string, resourceId: string): Observable<HttpResponse<Comment[]>> {
     return this.http.get<Comment[]>(`media/comments`, {
       observe: 'response',
       params: new HttpParams()
