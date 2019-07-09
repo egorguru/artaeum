@@ -1,6 +1,6 @@
 export class Article {
   constructor(
-    public _id?: number,
+    public _id?: string,
     public title?: string,
     public body?: string,
     public userId?: string,

@@ -1,9 +1,9 @@
 export class Comment {
   constructor(
-    public _id?: number,
+    public _id?: string,
     public text?: string,
     public resourceType?: string,
-    public resourceId?: number,
+    public resourceId?: string,
     public userId?: string,
     public createdDate?: Date
   ) {}
