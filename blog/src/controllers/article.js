@@ -68,19 +68,6 @@ router.get('/:id', async (ctx) => {
   }
 })
 
-router.get('/my/:_id', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { _id } = ctx.params
-  const article = await Article.findOne({
-    _id,
-    userId: ctx.state.user.name
-  })
-  if (article) {
-    ctx.body = article
-  } else {
-    ctx.throw(404)
-  }
-})
-
 router.post('/', passport.authenticate('bearer', { session: false }), async (ctx) => {
   const { title, body, image, category } = ctx.request.body
   if (!validation.create(title, body, image, category)) {

@@ -179,40 +179,6 @@ describe('Articles API', async () => {
       res.body.body.should.eql(article.body)
       res.body.userId.should.eql(article.userId)
     })
-    it('gets my article by id', async () => {
-      const article = await new Article(testArticle).save()
-      const res = await helpers.request.get({
-        uri: 'articles/my/' + article._id,
-        json: true,
-        headers: {
-          'Authorization': 'Bearer valid-token'
-        }
-      })
-      res.statusCode.should.eql(200)
-      res.headers['content-type'].should.match(/application\/json/)
-      res.body._id.should.eql(article._id.toString())
-      new Date(res.body.createdDate).should.eql(article.createdDate)
-      res.body.title.should.eql(article.title)
-      res.body.body.should.eql(article.body)
-      res.body.userId.should.eql(article.userId)
-    })
-    it('gets no my article by id', async () => {
-      const article = await new Article({
-        title: 'Test title',
-        body: '<p>Test text</p>',
-        image: 'mock',
-        userId: 'uuid-any',
-        createdDate: Date.now()
-      }).save()
-      const res = await helpers.request.get({
-        uri: 'articles/my/' + article._id,
-        json: true,
-        headers: {
-          'Authorization': 'Bearer valid-token'
-        }
-      })
-      res.statusCode.should.eql(404)
-    })
   })
   describe('GET /articles', () => {
     it('gets the articles', async () => {
