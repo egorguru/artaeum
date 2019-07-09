@@ -18,20 +18,8 @@ export class ArticleService {
     return this.http.put<Article>('blog/articles', article, { observe: 'response' })
   }
 
-  publish(article: Article): Observable<HttpResponse<Article>> {
-    return this.http.put<Article>('blog/articles/publish', article, { observe: 'response' })
-  }
-
-  changeStatus(article: Article): Observable<HttpResponse<Article>> {
-    return this.http.put<Article>('blog/articles/status', article, { observe: 'response' })
-  }
-
   get(id: number): Observable<HttpResponse<Article>> {
     return this.http.get<Article>(`blog/articles/${id}`, { observe: 'response' })
-  }
-
-  getMy(id: number): Observable<HttpResponse<Article>> {
-    return this.http.get<Article>(`blog/articles/my/${id}`, { observe: 'response' })
   }
 
   query(req?: any): Observable<HttpResponse<Article[]>> {
@@ -43,13 +31,6 @@ export class ArticleService {
 
   queryByUsers(req?: any): Observable<HttpResponse<Article[]>> {
     return this.http.get<Article[]>('blog/articles/by-users', {
-      params: createRequestOption(req),
-      observe: 'response'
-    })
-  }
-
-  queryMy(req?: any): Observable<HttpResponse<Article[]>> {
-    return this.http.get<Article[]>('blog/articles/my', {
       params: createRequestOption(req),
       observe: 'response'
     })

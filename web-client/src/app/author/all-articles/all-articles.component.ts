@@ -35,15 +35,18 @@ export class AllArticlesComponent implements OnInit {
     this.activatedRoute.data.subscribe((data) => {
       this.page = data.pagingParams.page
       this.previousPage = data.pagingParams.page
-      this.loadAll()
+      this.principal.identity().then((u) => {
+        this.currentUser = u
+        this.loadAll()
+      })
     })
-    this.principal.identity().then((u) => this.currentUser = u)
   }
 
   loadAll(): void {
-    this.articleService.queryMy({
+    this.articleService.query({
       page: this.page - 1,
-      size: this.postsPerPage
+      size: this.postsPerPage,
+      userId: this.currentUser.id
     }).subscribe((res) => {
       this.articles = res.body
       this.totalItems = res.headers.get('X-Total-Count')

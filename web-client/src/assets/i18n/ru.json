@@ -77,13 +77,7 @@
       "image": "Изображение",
       "title": "Название",
       "created-date": "Дата Создания",
-      "published-date": "Дата Публикации",
       "category": "Категория",
-      "status-head": "Статус",
-      "status": {
-        "published": "Опубликовано",
-        "not-published": "Не Опубликовано"
-      },
       "create": "Создать",
       "delete-modal": {
         "title": "Удаление Статьи",
@@ -96,10 +90,7 @@
       "title-input": "Название",
       "body-input-placeholder": "Let's write it!",
       "category": "Категория",
-      "save": "Сохранить",
-      "publish": "Опубликовать",
-      "hide": "Скрыть",
-      "open-access": "Открыть Доступ"
+      "save": "Сохранить"
     },
     "dashboard": {
       "subscribers": "Подписчики",

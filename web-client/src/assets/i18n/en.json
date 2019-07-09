@@ -77,13 +77,7 @@
       "image": "Image",
       "title": "Title",
       "created-date": "Created Date",
-      "published-date": "Published Date",
       "category": "Category",
-      "status-head": "Status",
-      "status": {
-        "published": "Published",
-        "not-published": "Not Published"
-      },
       "create": "Create",
       "delete-modal": {
         "title": "Article Deletion",
@@ -96,10 +90,7 @@
       "title-input": "Title",
       "body-input-placeholder": "Let's write it!",
       "category": "Category",
-      "save": "Save",
-      "publish": "Publish",
-      "hide": "Hide",
-      "open-access": "Open Access"
+      "save": "Save"
     },
     "dashboard": {
       "subscribers": "Subscribers",

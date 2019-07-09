@@ -142,7 +142,7 @@
       "_id": 1,
       "text": "rand comment",
       "resourceType": "post",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "chief_moderator",
       "createdDate": "1539962514747"
     },
@@ -151,7 +151,7 @@
       "_id": 2,
       "text": "next rand comment",
       "resourceType": "post",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "stalin",
       "createdDate": "1539962514747"
     },
@@ -160,7 +160,7 @@
       "_id": 3,
       "text": "rand comment new again",
       "resourceType": "post",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "stalin",
       "createdDate": "1539962514747"
     },
@@ -169,7 +169,7 @@
       "_id": 4,
       "text": "rand comment new new again",
       "resourceType": "blog",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "chief_moderator",
       "createdDate": "1539962519747"
     }
@@ -178,28 +178,28 @@
     {
       "id": 1,
       "resourceType": "post",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "chief_moderator",
       "createdDate": "1539962515947"
     },
     {
       "id": 2,
       "resourceType": "post",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "stalin",
       "createdDate": "1539962515967"
     },
     {
       "id": 3,
       "resourceType": "blog",
-      "resourceId": 1,
+      "resourceId": "1",
       "userId": "stalin",
       "createdDate": "1539962525967"
     },
     {
       "id": 4,
       "resourceType": "post",
-      "resourceId": 12,
+      "resourceId": "12",
       "userId": "egor_repnikov",
       "createdDate": "1539962525967"
     }
@@ -212,9 +212,7 @@
       "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
       "createdDate": "1539962516967",
-      "publishedDate": "1539962516967",
-      "category": "1",
-      "isPublished": true
+      "category": "1"
     },
     {
       "id": 2,
@@ -222,9 +220,7 @@
       "userId": "stalin",
       "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
-      "createdDate": "1539962517967",
-      "publishedDate": "1539962517967",
-      "isPublished": false
+      "createdDate": "1539962517967"
     },
     {
       "id": 3,
@@ -232,9 +228,7 @@
       "userId": "chief_moderator",
       "title": "Lorem ipsum",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
-      "createdDate": "1539962518967",
-      "publishedDate": "1539962518967",
-      "isPublished": true
+      "createdDate": "1539962518967"
     },
     {
       "id": 4,
@@ -242,8 +236,7 @@
       "userId": "stalin",
       "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
-      "createdDate": "1539966517967",
-      "isPublished": false
+      "createdDate": "1539966517967"
     }
   ],
   "subscriptions": [

@@ -29,7 +29,7 @@ export class CreateUpdateArticleComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.principal.identity().then((u) => {
         if (params['id']) {
-          this.articleService.getMy(params['id']).subscribe((res) => {
+          this.articleService.get(params['id']).subscribe((res) => {
             if (u.id !== res.body.userId) {
               this.router.navigate(['/'])
             } else {
@@ -51,25 +51,8 @@ export class CreateUpdateArticleComponent implements OnInit {
 
   onSave(): void {
     this.save().subscribe((res) => {
-      if (res.body.isPublished) {
-        this.router.navigate(['/articles', res.body._id])
-      } else {
-        this.router.navigate(['/author/article', res.body._id])
-      }
+      this.router.navigate(['/author/article', res.body._id])
     })
-  }
-
-  onSaveAndPublish(): void {
-    this.save().subscribe(() => {
-      this.articleService.publish({ _id: this.article._id }).subscribe((res) => {
-        this.router.navigate(['/articles', res.body._id])
-      })
-    })
-  }
-
-  changeStatus(): void {
-    this.article.isPublished = !this.article.isPublished
-    this.articleService.changeStatus(this.article).subscribe()
   }
 
   private save(): Observable<HttpResponse<Article>> {
