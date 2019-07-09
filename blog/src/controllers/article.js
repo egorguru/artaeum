@@ -18,10 +18,9 @@ router.get('/', async (ctx) => {
   const size = +query.size || DEFAULT_PAGE_SIZE
   delete query['page']
   delete query['size']
-  query.isPublished = true
   const articles = await Article
     .find(query)
-    .select('_id title userId createdDate publishedDate category')
+    .select('_id title userId createdDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -37,28 +36,8 @@ router.get('/by-users', async (ctx) => {
   const page = +query.page || DEFAULT_PAGE
   const size = +query.size || DEFAULT_PAGE_SIZE
   const articles = await Article
-    .find({
-      userId: { $in: query.users.split(',') },
-      isPublished: true
-    })
-    .select('_id title userId createdDate publishedDate category')
-    .sort({ createdDate: -1 })
-    .skip(page * size)
-    .limit(size)
-  ctx.set('X-Total-Count', await Article.countDocuments(query))
-  ctx.body = articles
-})
-
-router.get('/my', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { query } = ctx
-  const page = +query.page || DEFAULT_PAGE
-  const size = +query.size || DEFAULT_PAGE_SIZE
-  delete query['page']
-  delete query['size']
-  query.userId = ctx.state.user.name
-  const articles = await Article
-    .find(query)
-    .select('_id title userId createdDate publishedDate category isPublished')
+    .find({ userId: { $in: query.users.split(',') } })
+    .select('_id title userId createdDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -71,11 +50,8 @@ router.get('/search', async (ctx) => {
   const page = +query.page || DEFAULT_PAGE
   const size = +query.size || DEFAULT_PAGE_SIZE
   const articles = await Article
-    .find({
-      isPublished: true,
-      $text: { $search: ctx.query.query }
-    })
-    .select('_id title userId createdDate publishedDate category')
+    .find({ $text: { $search: ctx.query.query } })
+    .select('_id title userId createdDate category')
     .sort({ createdDate: -1 })
     .skip(page * size)
     .limit(size)
@@ -83,12 +59,8 @@ router.get('/search', async (ctx) => {
   ctx.body = articles
 })
 
-router.get('/:_id', async (ctx) => {
-  const { _id } = ctx.params
-  const article = await Article.findOne({
-    _id,
-    isPublished: true
-  })
+router.get('/:id', async (ctx) => {
+  const article = await Article.findById(ctx.params.id)
   if (article) {
     ctx.body = article
   } else {
@@ -152,33 +124,6 @@ router.put('/', passport.authenticate('bearer', { session: false }), async (ctx)
     await saveImage(ctx.eureka, image, article._id)
   }
   ctx.body = article
-})
-
-router.put('/publish', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const article = await Article.findOneAndUpdate(
-    { _id: ctx.request.body._id, userId: ctx.state.user.name },
-    { $set: {
-      isPublished: true,
-      publishedDate: Date.now()
-    } },
-    { new: true }
-  )
-  ctx.body = article
-})
-
-router.put('/status', passport.authenticate('bearer', { session: false }), async (ctx) => {
-  const { _id, isPublished } = ctx.request.body
-  const article = await Article.findById(_id)
-  if (article.publishedDate) {
-    const updatedArticle = await Article.findOneAndUpdate(
-      { _id },
-      { $set: { isPublished } },
-      { new: true }
-    )
-    ctx.body = updatedArticle
-  } else {
-    ctx.throw(400, 'Article is not published')
-  }
 })
 
 router.delete('/:_id', passport.authenticate('bearer', { session: false }), async (ctx) => {
