@@ -1,12 +1,13 @@
 const mongoose = require('mongoose')
+const { Schema } = mongoose
 
-const likesSchema = new mongoose.Schema({
+const likesSchema = new Schema({
   resourceType: {
     type: String,
     required: true
   },
   resourceId: {
-    type: Number,
+    type: String,
     required: true
   },
   userId: {

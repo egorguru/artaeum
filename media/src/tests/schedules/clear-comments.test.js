@@ -28,21 +28,21 @@ describe('Clear Comments Schedule', () => {
     await new Comment({
       text: '<p>Test text</p>',
       resourceType: 'article',
-      resourceId: 1,
+      resourceId: '1',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
     await new Comment({
       text: '<p>Test text</p>',
       resourceType: 'article',
-      resourceId: 2,
+      resourceId: '2',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
     await new Comment({
       text: '<p>Test text</p>',
       resourceType: 'post',
-      resourceId: 1,
+      resourceId: '1',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
@@ -62,6 +62,6 @@ describe('Clear Comments Schedule', () => {
     const comments = await Comment.find()
     comments.length.should.eql(1)
     comments[0].resourceType.should.eql('article')
-    comments[0].resourceId.should.eql(2)
+    comments[0].resourceId.should.eql('2')
   })
 })

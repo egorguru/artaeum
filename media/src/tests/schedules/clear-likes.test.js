@@ -27,19 +27,19 @@ describe('Clear Likes Schedule', () => {
   beforeEach(async () => {
     await new Like({
       resourceType: 'article',
-      resourceId: 1,
+      resourceId: '1',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
     await new Like({
       resourceType: 'article',
-      resourceId: 2,
+      resourceId: '2',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
     await new Like({
       resourceType: 'post',
-      resourceId: 1,
+      resourceId: '1',
       userId: 'uuid-test',
       createdDate: Date.now()
     }).save()
@@ -59,6 +59,6 @@ describe('Clear Likes Schedule', () => {
     const likes = await Like.find()
     likes.length.should.eql(1)
     likes[0].resourceType.should.eql('article')
-    likes[0].resourceId.should.eql(2)
+    likes[0].resourceId.should.eql('2')
   })
 })

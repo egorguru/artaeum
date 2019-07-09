@@ -5,13 +5,11 @@ describe('Comments API', () => {
   const testComment = {
     text: '<p>Test text</p>',
     resourceType: 'test',
-    resourceId: 1,
+    resourceId: '1',
     userId: 'uuid-test',
     createdDate: Date.now()
   }
-  beforeEach(async () => {
-    await Comment.remove()
-  })
+  beforeEach(async () => await Comment.remove())
   describe('POST /comments', () => {
     it('creates a comment', async () => {
       const res = await helpers.request.post({
@@ -23,7 +21,7 @@ describe('Comments API', () => {
         }
       })
       res.statusCode.should.eql(201)
-      res.body._id.should.be.a.Number()
+      res.body._id.should.be.a.String()
       res.body.createdDate.should.be.a.String()
       res.body.text.should.eql(testComment.text)
       res.body.resourceType.should.eql(testComment.resourceType)
@@ -83,7 +81,7 @@ describe('Comments API', () => {
         }
       })
       res.statusCode.should.eql(200)
-      res.body._id.should.eql(comment._id)
+      res.body._id.should.eql(comment._id.toString())
       new Date(res.body.createdDate).should.eql(comment.createdDate)
       res.body.text.should.eql(comment.text)
       res.body.resourceType.should.eql(comment.resourceType)
@@ -113,7 +111,7 @@ describe('Comments API', () => {
       })
       res.statusCode.should.eql(200)
       res.headers['content-type'].should.match(/application\/json/)
-      res.body[0]._id.should.eql(comment._id)
+      res.body[0]._id.should.eql(comment._id.toString())
       new Date(res.body[0].createdDate).should.eql(comment.createdDate)
       res.body[0].text.should.eql(comment.text)
       res.body[0].resourceType.should.eql(comment.resourceType)

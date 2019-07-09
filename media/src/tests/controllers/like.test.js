@@ -4,7 +4,7 @@ const Like = require('../../models/Like')
 describe('Likes API', () => {
   const testLike = {
     resourceType: 'test',
-    resourceId: 1,
+    resourceId: '1',
     userId: 'uuid-test',
     createdDate: Date.now()
   }
