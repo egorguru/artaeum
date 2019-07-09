@@ -13,7 +13,7 @@
         "moderator",
         "admin"
       ],
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": "chief_moderator",
@@ -28,7 +28,7 @@
         "moderator",
         "admin"
       ],
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": "stalin",
@@ -41,7 +41,7 @@
       "authorities": [
         "user"
       ],
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "posts": [
@@ -49,91 +49,91 @@
       "id": 1,
       "userId": "stalin",
       "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
-      "createdDate": "1539962513747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 2,
       "userId": "stalin",
       "text": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius. Alias sit temporibus asperiores minima architecto?",
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 3,
       "userId": "chief_moderator",
       "text": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur. Maiores, quos.",
-      "createdDate": "1539962514947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 4,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 5,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 5,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 6,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 7,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 8,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 9,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 10,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 11,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 12,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 13,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 14,
       "userId": "stalin",
       "text": "short text",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "comments": [
@@ -144,7 +144,7 @@
       "resourceType": "post",
       "resourceId": "1",
       "userId": "chief_moderator",
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 2,
@@ -153,7 +153,7 @@
       "resourceType": "post",
       "resourceId": "1",
       "userId": "stalin",
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 3,
@@ -162,7 +162,7 @@
       "resourceType": "post",
       "resourceId": "1",
       "userId": "stalin",
-      "createdDate": "1539962514747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 4,
@@ -171,7 +171,7 @@
       "resourceType": "blog",
       "resourceId": "1",
       "userId": "chief_moderator",
-      "createdDate": "1539962519747"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "likes": [
@@ -180,28 +180,28 @@
       "resourceType": "post",
       "resourceId": "1",
       "userId": "chief_moderator",
-      "createdDate": "1539962515947"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 2,
       "resourceType": "post",
       "resourceId": "1",
       "userId": "stalin",
-      "createdDate": "1539962515967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 3,
       "resourceType": "blog",
       "resourceId": "1",
       "userId": "stalin",
-      "createdDate": "1539962525967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 4,
       "resourceType": "post",
       "resourceId": "12",
       "userId": "egor_repnikov",
-      "createdDate": "1539962525967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "articles": [
@@ -211,7 +211,7 @@
       "userId": "stalin",
       "title": "Lorem, ipsum dolor sit amet consectetur adipisicing elit",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p> <p>Maiores, quos.</p>",
-      "createdDate": "1539962516967",
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)",
       "category": "1"
     },
     {
@@ -220,7 +220,7 @@
       "userId": "stalin",
       "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
-      "createdDate": "1539962517967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 3,
@@ -228,7 +228,7 @@
       "userId": "chief_moderator",
       "title": "Lorem ipsum",
       "body": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p><p>Cupiditate deleniti omnis, ea mollitia ipsa rem voluptatum odio, eos praesentium error unde debitis quod neque, cum sunt voluptas consectetur.</p><p>Maiores, quos.</p>",
-      "createdDate": "1539962518967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 4,
@@ -236,7 +236,7 @@
       "userId": "stalin",
       "title": "Lorem ipsum",
       "body": "<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p><p>Corporis nemo hic, optio voluptas doloremque, consectetur officiis corrupti error in quisquam possimus earum magni eius.</p><p>Alias sit temporibus asperiores minima architecto?</p>",
-      "createdDate": "1539966517967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "subscriptions": [
@@ -244,19 +244,19 @@
       "id": 1,
       "profileId": "egor_repnikov",
       "subscriberId": "stalin",
-      "createdDate": "1539962528967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 2,
       "profileId": "stalin",
       "subscriberId": "egor_repnikov",
-      "createdDate": "1539962529967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "id": 3,
       "profileId": "chief_moderator",
       "subscriberId": "stalin",
-      "createdDate": "1539962538967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ],
   "categories": [
@@ -265,28 +265,28 @@
       "id": "1",
       "name": "First Category",
       "userId": "stalin",
-      "createdDate": "1539962638967"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "_id": "2",
       "id": "2",
       "name": "Second Category",
       "userId": "stalin",
-      "createdDate": "1539962639067"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "_id": "3",
       "id": "3",
       "name": "First Category",
       "userId": "chief_moderator",
-      "createdDate": "1539962640167"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     },
     {
       "_id": "4",
       "id": "4",
       "name": "Second Category",
       "userId": "chief_moderator",
-      "createdDate": "1539962650167"
+      "createdDate": "Tue Jul 09 2019 19:22:13 GMT+0300 (MSK)"
     }
   ]
 }
