@@ -14,7 +14,7 @@ exports.create = (title, body, image, category) => (
 )
 
 exports.update = (id, title, body, category) => (
-  typeof id === 'number' &&
+  isMongoId(id) &&
   isNotEmpty(title) && isLength(title, { min: 3, max: 100 }) &&
   isNotEmpty(body) && isLength(body, { min: 10 }) &&
   (category === undefined || isNotEmpty(category) && isMongoId(category))

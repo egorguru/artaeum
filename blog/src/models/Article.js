@@ -1,7 +1,4 @@
 const mongoose = require('mongoose')
-const autoIncrement = require('mongoose-auto-increment')
-
-autoIncrement.initialize(mongoose.connection)
 
 const articlesSchema = new mongoose.Schema({
   title: {
@@ -34,7 +31,5 @@ const articlesSchema = new mongoose.Schema({
 })
 
 articlesSchema.index({ title: 'text' })
-
-articlesSchema.plugin(autoIncrement.plugin, { model: 'articles' })
 
 module.exports = mongoose.model('articles', articlesSchema)
