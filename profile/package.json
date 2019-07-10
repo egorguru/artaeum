@@ -14,12 +14,11 @@
     "dragonrend-json-body-parser": "^0.1.1",
     "dragonrend-response": "^0.1.1",
     "eureka-js-client": "^4.5.0",
-    "mongoose": "^5.6.4",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "sequelize": "^5.9.4"
   },
   "devDependencies": {
     "mocha": "^6.1.4",
-    "mongodb-memory-server": "^5.1.5",
     "should": "^13.2.3"
   }
 }

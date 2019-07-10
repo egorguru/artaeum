@@ -1,6 +1,9 @@
 module.exports = {
   port: process.env.PORT || 6000,
-  mongoUri: process.env.MONGO_URI,
+  postgresUrl: process.env.POSTGRES_URL,
+  postgresUser: process.env.POSTGRES_USER,
+  postgresPassword: process.env.POSTGRES_PASSWORD,
+  storagePassword: process.env.STORAGE_SERVICE_PASSWORD,
   hostName: process.env.HOSTNAME || 'statistics',
   hostPort: process.env.HOSTPORT || 6000,
   eurekaUrl: process.env.EUREKA_URL || 'http://registry:8761/eureka/apps/',
