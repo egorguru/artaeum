@@ -21,8 +21,8 @@ Dragonrend.js Service contains only Statistics API.
 ### Media Service (JavaScript)
 Koa.js Service contains Comment API and Like API.
 
-### Profile Service (Java)
-Spring Boot Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
+### Profile Service (JavaScript)
+Dragonrend.js Service contains Post API, Subscription API and API for storing Profile Images (depends on Storage Service).
 
 ### Storage Service (Scala)
 Colossus Service. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.

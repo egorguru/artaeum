@@ -1,0 +1,6 @@
+--colors
+--exit
+--timeout 5000
+--require should
+src/tests/lifecycle.js
+src/tests/**/*.test.js
