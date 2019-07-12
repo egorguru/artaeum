@@ -23,17 +23,17 @@ describe('Categories API', () => {
       res.body.createdDate.should.be.a.String()
       res.body.text.should.eql(testPost.text)
     })
-    // it('creates a post with invalid token', async () => {
-    //   const res = await helpers.request.post({
-    //     uri: 'categories',
-    //     json: true,
-    //     body: testPost,
-    //     headers: {
-    //       'Authorization': 'Bearer invalid-token'
-    //     }
-    //   })
-    //   res.statusCode.should.eql(500)
-    // })
+    it('creates a post with invalid token', async () => {
+      const res = await helpers.request.post({
+        uri: 'posts',
+        json: true,
+        body: testPost,
+        headers: {
+          'Authorization': 'Bearer invalid-token'
+        }
+      })
+      res.statusCode.should.eql(401)
+    })
   })
   describe('GET /posts/:postId', () => {
     it('gets the post by id', async () => {

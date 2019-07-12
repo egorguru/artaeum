@@ -5,11 +5,16 @@ const rp = require('request-promise').defaults({
 
 const config = require('./config')
 
-exports.checkAuth = (authorization) => {
+exports.checkAuth = async (ctx) => {
   const response = await rp({
     uri: config.uaaUri,
-    headers: { 'Authorization': authorization },
+    headers: { 'Authorization': ctx.req.headers['authorization'] },
     json: true
   })
-  return response.statusCode === 401 ? false : response.body
+  if (response.statusCode === 401) {
+    ctx.res.writeHead(401, { 'Content-Type': 'application/json' })
+    ctx.res.end('{"message":"Unauthorized"}')
+  } else {
+    ctx.user = response.body
+  }
 }
