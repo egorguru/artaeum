@@ -2,6 +2,11 @@ const http = require('http')
 
 const config = require('../lib/config')
 
+config.sequelize = {
+  dialect: "sqlite",
+  storage: ":memory:"
+}
+
 let server
 
 function initMockServer() {
