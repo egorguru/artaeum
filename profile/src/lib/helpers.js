@@ -5,7 +5,7 @@ const rp = require('request-promise').defaults({
 
 const config = require('./config')
 
-exports.checkAuth = async (ctx) => {
+exports.authenticate = async (ctx) => {
   const response = await rp({
     uri: config.uaaUri,
     headers: { 'Authorization': ctx.req.headers['authorization'] },

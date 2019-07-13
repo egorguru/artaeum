@@ -6,7 +6,7 @@ module.exports = (sequelize) =>
       type: Sequelize.STRING,
       allowNull: false
     },
-    subscriber_id: {
+    subscriberId: {
       type: Sequelize.STRING,
       allowNull: false
     },

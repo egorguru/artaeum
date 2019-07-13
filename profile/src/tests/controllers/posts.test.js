@@ -1,7 +1,7 @@
 const helpers = require('../helpers')
 const { Post } = require('../../models')
 
-describe('Categories API', () => {
+describe('Posts API', () => {
   const testPost = {
     text: 'Test post',
     userId: 'uuid-test',

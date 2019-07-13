@@ -1,7 +1,7 @@
 const { Router } = require('dragonrend')
 const { Post } = require('../models')
 
-const { checkAuth } = require('../lib/helpers')
+const { authenticate } = require('../lib/helpers')
 
 const router = new Router({ prefix: '/posts' })
 
@@ -39,14 +39,14 @@ router.get('/search', async (ctx) => {
   })
 })
 
-router.post('/', checkAuth, async (ctx) => {
+router.post('/', authenticate, async (ctx) => {
   const { text } = ctx.request.body
   const userId = ctx.user.name
   ctx.response.body = await Post.create({ text, userId })
   ctx.response.status = 201
 })
 
-router.delete('/:id', checkAuth, async (ctx) => {
+router.delete('/:id', authenticate, async (ctx) => {
   await Post.destroy({ where: { id: ctx.params.id } })
   ctx.response.body = { message: 'Post has been deleted' }
 })
