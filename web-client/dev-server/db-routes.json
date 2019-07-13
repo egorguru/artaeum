@@ -1,7 +1,4 @@
 {
-  "/profile/subscriptions/subscriptions?profileId=:profileId": "/subscriptions?subscriberId=:profileId",
-  "/profile/subscriptions/subscribers?profileId=:profileId": "/subscriptions?profileId=:profileId",
-  "/profile/subscriptions/my?profileId=:profileId": "/subscriptions/:profileId",
   "/uaa/account": "/uaa/users/stalin",
   "/media/:userId/likes": "/likes?userId=:userId",
   "/blog/articles\\?page=:page&size=:size&category=:category&sort=id,desc": "/articles?page=:page&size=:size&category=:category&sort=id,desc",

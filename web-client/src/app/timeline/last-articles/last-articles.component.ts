@@ -31,9 +31,11 @@ export class LastArticlesComponent implements OnInit {
     this.principal.identity().then((u) => {
       if (u) {
         this.currentUser = u
-        this.subscriptionService.queryForAllSubscriptions(u.id).subscribe((res) => {
-          this.userIds = res.body.map((s) => s.profileId).join(',')
-        })
+        this.subscriptionService
+          .query({ subscriberId: u.id })
+          .subscribe((res) => {
+            this.userIds = res.body.map((s) => s.profileId).join(',')
+          })
       }
     })
   }

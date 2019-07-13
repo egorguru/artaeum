@@ -57,8 +57,12 @@ export class ProfileComponent implements OnInit {
 
   private loadSubscription(): void {
     if (this.currentUser) {
-      this.subscriptionService.get(this.user.id)
-        .subscribe((res) => this.subscription = res.body)
+      this.subscriptionService
+        .query({
+          profileId: this.user.id,
+          subscriberId: this.currentUser.id
+        })
+        .subscribe((res) => this.subscription = res.body[0])
     }
   }
 }

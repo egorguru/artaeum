@@ -14,10 +14,6 @@ export class PostService {
     return this.http.post('profile/posts', post, { observe: 'response' })
   }
 
-  update(post: Post): Observable<HttpResponse<Post>> {
-    return this.http.put<Post>('profile/posts', post, { observe: 'response' })
-  }
-
   get(id: number): Observable<HttpResponse<Post>> {
     return this.http.get<Post>(`profile/posts/${id}`, { observe: 'response' })
   }

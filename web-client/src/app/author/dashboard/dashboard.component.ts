@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.principal.identity().then((u) => {
-      this.subscriptionService.queryForAllSubscribers(u.id)
+      this.subscriptionService.query({ profileId: u.id })
         .subscribe((res) => this.subsCount = this.getCount(res))
       this.articleService.query({ userIds: u.id })
         .subscribe((res) => this.articlesCount = this.getCount(res))

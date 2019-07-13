@@ -8,14 +8,10 @@ export class ProfileImagesService {
   constructor(private http: HttpClient) {}
 
   changeAvatar(image: string): Observable<HttpResponse<any>> {
-    const body = new FormData()
-    body.set('image', image)
-    return this.http.post('profile/images/avatar', body, { observe: 'response' })
+    return this.http.post('profile/images/avatar', { image }, { observe: 'response' })
   }
 
   changeBackground(image: string): Observable<HttpResponse<any>> {
-    const body = new FormData()
-    body.set('image', image)
-    return this.http.post('profile/images/background', body, { observe: 'response' })
+    return this.http.post('profile/images/background', { image }, { observe: 'response' })
   }
 }
