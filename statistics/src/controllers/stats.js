@@ -1,31 +1,22 @@
 const { Router } = require('dragonrend')
 
 const Stats = require('../models/Stats')
-const helpers = require('../lib/helpers')
+const { authenticate, justAuthenticate } = require('../lib/helpers')
 
 const router = new Router({ prefix: '/stats' })
 
-router.post('', async ({ req, request, response }) => {
+router.post('/', justAuthenticate, async ({ user, request, response }) => {
   const { ip, url } = request.body
-  const user = await helpers.checkAuth(req.headers['authorization'])
-  await new Stats({
-    ip,
-    url,
-    userId: user ? user.name : 'unauthorized'
-  }).save()
+  const userId = user ? user.name : 'unauthorized'
+  await new Stats({ ip, url, userId }).save()
   response.status = 201
 })
 
-router.get('', async ({ req, response }) => {
-  const user = await helpers.checkAuth(req.headers['authorization'])
-  if (user) {
-    if (user.authorities.find((val) => val.authority === 'admin')) {
-      response.body = await Stats.find()
-    } else {
-      response.status = 403
-    }
+router.get('/', authenticate, async ({ user, response }) => {
+  if (user.authorities.find((val) => val.authority === 'admin')) {
+    response.body = await Stats.find()
   } else {
-    response.status = 401
+    response.status = 403
   }
 })
 
