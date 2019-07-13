@@ -1,13 +1,17 @@
-const http = require('http')
-
+// Set Config
 const config = require('../lib/config')
 
 config.sequelize = {
   dialect: "sqlite",
   storage: ":memory:"
 }
+//
 
-let server
+const http = require('http')
+
+const app = require('../app')
+
+let server = http.createServer(app.toListener())
 
 function initMockServer() {
   return http.createServer((req, res) => {
@@ -34,7 +38,7 @@ before(async () => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  server = require('../app').listen(config.port)
+  server = server.listen(config.port)
 })
 
 after(async () => {

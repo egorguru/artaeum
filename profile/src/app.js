@@ -1,4 +1,3 @@
-const http = require('http')
 const { Dragonrend } = require('dragonrend')
 const jsonBodyParser = require('dragonrend-json-body-parser')
 const response = require('dragonrend-response')
@@ -14,4 +13,4 @@ app.addHandlerAfter(response.after)
 
 app.merge(controllers)
 
-module.exports = http.createServer(app.toListener())
+module.exports = app
