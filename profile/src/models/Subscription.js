@@ -14,4 +14,4 @@ module.exports = (sequelize) =>
       type: Sequelize.DATE,
       defaultValue: Sequelize.NOW
     }
-  })
+  }, { timestamps: false })
