@@ -45,6 +45,7 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Bean
     public AuthenticationEntryPoint authenticationEntryPoint() {
         return (request, response, authException) -> {
+            authException.printStackTrace();
             response.addHeader("Content-Type", "application/json");
             response.getWriter().append("{\"message\":\"UNAUTHORIZED\"}");
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
