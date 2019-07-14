@@ -8,7 +8,7 @@ module.exports = {
   sequelize: {
     username: process.env.POSTGRES_USER,
     password: process.env.POSTGRES_PASSWORD,
-    database: 'profile',
+    database: 'artaeum',
     host: process.env.POSTGRES_URL,
     dialect: 'postgres'
   }
