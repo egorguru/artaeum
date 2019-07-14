@@ -16,7 +16,7 @@
     "serve:ssr:dev": "concurrently --kill-others \"json-server --watch dev-server/db.json --port 8080 --routes dev-server/db-routes.json\" \"npm run serve:ssr\""
   },
   "dependencies": {
-    "@alyle/ui": "^2.7.6",
+    "@alyle/ui": "2.7.6",
     "@angular/animations": "^7.2.15",
     "@angular/common": "^7.2.15",
     "@angular/compiler": "^7.2.15",
