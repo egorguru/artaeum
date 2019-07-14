@@ -62,8 +62,7 @@ export class AllArticlesComponent implements OnInit {
       this.router.navigate(['/u', this.user.login, 'blog'], {
         queryParams: {
           page: this.page,
-          size: this.postsPerPage,
-          sort: ['id,desc']
+          size: this.postsPerPage
         }
       })
       this.loadAll()

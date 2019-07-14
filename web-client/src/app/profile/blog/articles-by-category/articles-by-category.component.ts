@@ -70,8 +70,7 @@ export class ArticlesByCategoryComponent implements OnInit {
       this.router.navigate(['/u', this.user.login, 'blog', this.category.name], {
         queryParams: {
           page: this.page,
-          size: this.postsPerPage,
-          sort: ['id,desc']
+          size: this.postsPerPage
         }
       })
       this.loadAll()

@@ -45,7 +45,6 @@ export class WallComponent implements OnInit {
     this.postService.query({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       userId: this.user.id
     }).subscribe((res) => {
       this.posts = res.body
@@ -59,8 +58,7 @@ export class WallComponent implements OnInit {
       this.router.navigate(['/u', this.user.login], {
         queryParams: {
           page: this.page,
-          size: this.postsPerPage,
-          sort: ['id,desc']
+          size: this.postsPerPage
         }
       })
       this.loadAll()

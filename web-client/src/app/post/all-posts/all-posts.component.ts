@@ -32,8 +32,7 @@ export class AllPostsComponent implements OnInit {
   loadPosts(): void {
     this.postService.query({
       page: this.page++,
-      size: env.POSTS_PER_PAGE,
-      sort: ['id,desc']
+      size: env.POSTS_PER_PAGE
     }).subscribe((res) => {
       this.posts = this.posts.concat(res.body)
       this.totalItems = +res.headers.get('X-Total-Count')

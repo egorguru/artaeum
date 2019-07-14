@@ -44,7 +44,6 @@ export class PostsComponent implements OnInit {
     this.postService.search({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       query: this.query
     }).subscribe((res) => {
       this.posts = res.body
@@ -60,7 +59,6 @@ export class PostsComponent implements OnInit {
         queryParams: {
           page: this.page,
           size: this.postsPerPage,
-          sort: ['id,desc'],
           query: this.query
         }
       })

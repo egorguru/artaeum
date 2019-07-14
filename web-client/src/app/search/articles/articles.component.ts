@@ -59,7 +59,6 @@ export class ArticlesComponent implements OnInit {
         queryParams: {
           page: this.page,
           size: this.postsPerPage,
-          sort: ['id,desc'],
           query: this.query
         }
       })

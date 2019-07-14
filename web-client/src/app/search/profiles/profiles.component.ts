@@ -40,7 +40,6 @@ export class ProfilesComponent implements OnInit {
     this.userService.search({
       page: this.page - 1,
       size: this.postsPerPage,
-      sort: ['id,desc'],
       query: this.query
     }).subscribe((res) => {
       this.users = res.body
@@ -55,7 +54,6 @@ export class ProfilesComponent implements OnInit {
         queryParams: {
           page: this.page,
           size: this.postsPerPage,
-          sort: ['id,desc'],
           query: this.query
         }
       })
