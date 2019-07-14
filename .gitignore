@@ -19,3 +19,5 @@ yarn.lock
 .project
 
 .env
+
+dependency-reduced-pom.xml

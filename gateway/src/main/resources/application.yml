@@ -34,10 +34,6 @@ zuul:
       path: /uaa/**
       serviceId: uaa
       stripPrefix: false
-    profile:
-      path: /profile/**
-      serviceId: profile
-      stripPrefix: false
     storage:
       path: /storage/**
       serviceId: storage
@@ -49,6 +45,10 @@ zuul:
     media:
       path: /media/**
       serviceId: media
+      stripPrefix: false
+    profile:
+      path: /profile/**
+      serviceId: profile
       stripPrefix: false
     statistics:
       path: /statistics/**
