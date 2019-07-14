@@ -18,7 +18,8 @@ router.get('/', async (ctx) => {
   ctx.response.body = await Post.findAll({
     limit: size,
     offset: page * size,
-    where: query
+    where: query,
+    order: [['id', 'DESC']]
   })
 })
 
@@ -35,7 +36,8 @@ router.get('/search', async (ctx) => {
   ctx.response.body = await Post.findAll({
     limit: size,
     offset: page * size,
-    where: { text: { $like: '%' + ctx.query.query + '%' } }
+    where: { text: { $like: '%' + ctx.query.query + '%' } },
+    order: [['id', 'DESC']]
   })
 })
 
