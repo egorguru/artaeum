@@ -18,7 +18,7 @@ import java.util.Collections;
 
 @Configuration
 @EnableResourceServer
-@EnableGlobalMethodSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
     @Override
@@ -32,7 +32,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                     .disable()
                 .and()
                     .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/**").permitAll();
     }
 
     @Bean
