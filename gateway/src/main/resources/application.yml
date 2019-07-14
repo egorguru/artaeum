@@ -1,16 +1,20 @@
 server.port: ${PORT:4000}
 
-spring.application.name: gateway
+spring:
+  application.name: gateway
+  security.enabled: false
 
 security:
-  oauth2:
-    client:
-      clientId: gateway
-      clientSecret: ${GATEWAY_SERVICE_PASSWORD}
-      accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
-      grant-type: client_credentials
-      scope: client.user
-    resource.user-info-uri: ${OAUTH2_USER_INFO_URI:http://uaa:5000/uaa/account/current}
+  ignored: /**
+  basic.enabled: false
+
+management.security.enabled: false
+
+oauth2:
+  client:
+    clientId: gateway
+    clientSecret: ${GATEWAY_SERVICE_PASSWORD}
+    accessTokenUri: ${OAUTH2_ACCESS_TOKEN_URI:http://uaa:5000/uaa/oauth/token}
 
 eureka:
   instance:

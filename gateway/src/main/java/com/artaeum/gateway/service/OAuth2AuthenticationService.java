@@ -13,13 +13,13 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class OAuth2AuthenticationService {
 
-    @Value("${security.oauth2.client.accessTokenUri}")
+    @Value("${oauth2.client.accessTokenUri}")
     private String accessTokenUri;
 
-    @Value("${security.oauth2.client.clientId}")
+    @Value("${oauth2.client.clientId}")
     private String clientId;
 
-    @Value("${security.oauth2.client.clientSecret}")
+    @Value("${oauth2.client.clientSecret}")
     private String clientSecret;
 
     private RestTemplate restTemplate;
