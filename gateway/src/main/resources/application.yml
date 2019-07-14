@@ -26,6 +26,7 @@ ribbon:
 
 zuul:
   ignoredServices: '*'
+  sensitiveHeaders: Cookie,Set-Cookie
   host:
     connect-timeout-millis: 25000
     socket-timeout-millis: 25000
