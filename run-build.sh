@@ -2,7 +2,7 @@
 npm install --prefix blog;
 mvn package -DskipTests -f gateway;
 npm install --prefix media;
-mvn package -DskipTests -f profile;
+npm install --prefix profile;
 mvn package -DskipTests -f registry;
 npm install --prefix statistics;
 mvn package -DskipTests -f storage;

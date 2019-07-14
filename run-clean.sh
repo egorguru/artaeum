@@ -2,7 +2,7 @@
 rm -rf blog/node_modules; rm blog/package-lock.json;
 mvn clean -f gateway;
 rm -rf media/node_modules; rm media/package-lock.json;
-mvn clean -f profile;
+rm -rf profile/node_modules; rm profile/package-lock.json;
 mvn clean -f registry;
 rm -rf statistics/node_modules; rm statistics/package-lock.json;
 mvn clean -f storage;
