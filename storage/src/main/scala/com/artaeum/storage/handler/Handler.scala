@@ -19,7 +19,7 @@ import scala.util.{Failure, Properties, Success}
 class Handler(ctx: ServerContext) extends RequestHandler(ctx) {
 
   val USER: String = "storage"
-  val PASSWORD: String = Properties.envOrElse("STORAGE_PASSWORD", "password")
+  val PASSWORD: String = Properties.envOrElse("STORAGE_SERVICE_PASSWORD", "password")
 
   implicit val imageEncoder: HttpBodyEncoder[File] = new ImageEncoder
   implicit val fileEntityDecoder: HttpBodyDecoder[Image] = new ImageDecoder
