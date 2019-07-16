@@ -6,10 +6,8 @@ const controllers = require('./controllers')
 
 const app = new Dragonrend()
 
-app.addHandlerBefore(jsonBodyParser.before)
-app.addHandlerBefore(response.before)
-
-app.addHandlerAfter(response.after)
+jsonBodyParser(app)
+response(app)
 
 app.merge(controllers)
 
