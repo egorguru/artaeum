@@ -5,27 +5,27 @@ const { authenticate } = require('../lib/helpers')
 
 const router = new Router({ prefix: '/subscriptions' })
 
-router.get('/', async (ctx) => {
-  ctx.response.body = await Subscription.findAll({ where: ctx.request.query })
+router.get('/', async ({ response, request }) => {
+  response.body = await Subscription.findAll({ where: request.query })
 })
 
-router.post('/', authenticate, async (ctx) => {
-  const subscriberId = ctx.user.name
-  const profileId = ctx.request.body.profileId
-  ctx.response.body = await Subscription.create({ subscriberId, profileId })
-  ctx.response.status = 201
+router.post('/', authenticate, async ({ user, request, response }) => {
+  const subscriberId = user.name
+  const profileId = request.body.profileId
+  response.body = await Subscription.create({ subscriberId, profileId })
+  response.status = 201
 })
 
-router.delete('/', authenticate, async (ctx) => {
-  const subscriberId = ctx.user.name
-  const profileId = ctx.request.body.profileId
+router.delete('/', authenticate, async ({ user, request, response }) => {
+  const subscriberId = user.name
+  const profileId = request.body.profileId
   const subscription = await Subscription.findOne({ where: { subscriberId, profileId } })
   if (subscription) {
     subscription.destroy()
-    ctx.response.body = { message: 'Subscription has been deleted' }
+    response.body = { message: 'Subscription has been deleted' }
   } else {
-    ctx.response.body = { message: 'Subscription has not been found' }
-    ctx.response.status = 404
+    response.body = { message: 'Subscription has not been found' }
+    response.status = 404
   }
 })
 
