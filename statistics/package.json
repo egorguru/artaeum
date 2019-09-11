@@ -10,7 +10,7 @@
   "author": "Egor Repnikov",
   "license": "MIT",
   "dependencies": {
-    "dragonrend": "^0.8.0",
+    "dragonrend": "^0.9.1",
     "dragonrend-json-body-parser": "^0.4.1",
     "dragonrend-response": "^0.4.1",
     "eureka-js-client": "^4.5.0",

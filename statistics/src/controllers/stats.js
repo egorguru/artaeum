@@ -5,15 +5,17 @@ const { authenticate, justAuthenticate } = require('../lib/helpers')
 
 const router = new Router({ prefix: '/stats' })
 
-router.post('/', justAuthenticate, async ({ user, request, response }) => {
-  const { ip, url } = request.body
-  const userId = user ? user.name : 'unauthorized'
-  await new Stats({ ip, url, userId }).save()
+router.post('/', justAuthenticate, async ({
+  request: { body: { ip, url } },
+  user: { name = 'unauthorized' } = {},
+  response
+}) => {
+  await new Stats({ ip, url, userId: name }).save()
   response.status = 201
 })
 
-router.get('/', authenticate, async ({ user, response }) => {
-  if (user.authorities.find((val) => val.authority === 'admin')) {
+router.get('/', authenticate, async ({ user: { authorities }, response }) => {
+  if (authorities.find((val) => val.authority === 'admin')) {
     response.body = await Stats.find()
   } else {
     response.status = 403
