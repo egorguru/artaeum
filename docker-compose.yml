@@ -81,12 +81,6 @@ services:
     depends_on:
       - registry
 
-  web-client:
-    image: egorrepnikov/artaeum-web-client
-    restart: always
-    ports:
-      - 80:80
-
   blog:
     environment:
       MONGO_URI: $MONGO_URI

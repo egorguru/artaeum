@@ -1,5 +1,0 @@
-export * from './auth'
-export * from './interface'
-export * from './model'
-export * from './service'
-export * from './shared.module'

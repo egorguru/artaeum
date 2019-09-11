@@ -18,7 +18,6 @@ install:
   - npm install --prefix media --silent
   - npm install --prefix profile --silent
   - npm install --prefix statistics --silent
-  - npm install --prefix web-client --silent
 
 script:
   - npm run test --prefix blog
@@ -29,7 +28,6 @@ script:
   - npm run test --prefix statistics
   - mvn package -f storage --quiet 
   - mvn package -f uaa --quiet
-  - npm run build:ssr --prefix web-client --silent
 
 after_success:
   - docker login -u $DOCKER_USER -p $DOCKER_PASS
@@ -75,8 +73,3 @@ after_success:
   - docker build -t $UAA:$COMMIT ./uaa
   - docker tag $UAA:$COMMIT $UAA:$TAG
   - docker push $UAA
-
-  - export WEB_CLIENT=egorrepnikov/artaeum-web-client
-  - docker build -t $WEB_CLIENT:$COMMIT ./web-client
-  - docker tag $WEB_CLIENT:$COMMIT $WEB_CLIENT:$TAG
-  - docker push $WEB_CLIENT

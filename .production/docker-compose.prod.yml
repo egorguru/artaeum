@@ -44,10 +44,6 @@ services:
     depends_on:
       - registry
 
-  web-client:
-    image: egorrepnikov/artaeum-web-client
-    restart: always
-
   uaa:
     environment:
       EMAIL_ADDRESS: $EMAIL_ADDRESS
