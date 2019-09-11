@@ -4,7 +4,7 @@ import colossus.core.Context
 import colossus.core.ProxyActor.Receive
 import colossus.util.Task
 import com.artaeum.storage.config.Config
-import me.albinus.eureka.client.EurekaService
+import click.rashad.eureka.client.EurekaService
 
 class EurekaTask(context: Context) extends Task(context) {
 

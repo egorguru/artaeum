@@ -4,14 +4,14 @@ version := "1.0"
 
 scalaVersion := "2.12.7"
 
-resolvers += Resolver.bintrayRepo("albinusco", "maven")
+resolvers += Resolver.bintrayRepo("rashad", "maven")
 
 libraryDependencies ++= Seq(
   "com.tumblr" %% "colossus" % "0.11.1-RC1",
   "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-core" % "0.48.2" % Compile, 
   "com.github.plokhotnyuk.jsoniter-scala" %% "jsoniter-scala-macros" % "0.48.2" % Provided,
   "com.tumblr" %% "colossus-testkit" % "0.11.1-RC1" % Test,
-  "me.albinus" %% "eureka-client" % "1.0.1"
+  "click.rashad" %% "eureka-client" % "1.0.2"
 )
 
 assemblyJarName in assembly := "storage.jar"

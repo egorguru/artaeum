@@ -34,9 +34,9 @@
       <version>1.9.9</version>
     </dependency>
     <dependency>
-      <groupId>me.albinus</groupId>
+      <groupId>click.rashad</groupId>
       <artifactId>eureka-client_2.12</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
 
     <dependency>
@@ -49,9 +49,9 @@
 
   <repositories>
     <repository>
-      <id>bintrayalbinuscomaven</id>
-      <name>bintray-albinusco-maven</name>
-      <url>https://dl.bintray.com/albinusco/maven/</url>
+      <id>bintrayrashadmaven</id>
+      <name>bintray-rashad-maven</name>
+      <url>https://dl.bintray.com/rashad/maven/</url>
       <layout>default</layout>
     </repository>
   </repositories>
