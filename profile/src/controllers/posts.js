@@ -3,10 +3,10 @@ const { Post } = require('../models')
 
 const { authenticate } = require('../lib/helpers')
 
-const router = new Router({ prefix: '/posts' })
-
 const DEFAULT_PAGE = 0
 const DEFAULT_PAGE_SIZE = 10
+
+const router = new Router({ prefix: '/posts' })
 
 router.get('/', async ({ query, res, response }) => {
   const page = +query.page || DEFAULT_PAGE
@@ -22,8 +22,8 @@ router.get('/', async ({ query, res, response }) => {
   })
 })
 
-router.get('/:id', async ({ response, params }) => {
-  response.body = await Post.findByPk(params.id)
+router.get('/:id', async ({ response, params: { id } }) => {
+  response.body = await Post.findByPk(id)
 })
 
 router.get('/search', async ({ query, response }) => {
@@ -39,15 +39,17 @@ router.get('/search', async ({ query, response }) => {
   })
 })
 
-router.post('/', authenticate, async ({ request, user, response }) => {
-  const { text } = request.body
-  const userId = user.name
-  response.body = await Post.create({ text, userId })
+router.post('/', authenticate, async ({
+  request: { body: { text } },
+  user: { name },
+  response
+}) => {
+  response.body = await Post.create({ text, userId: name })
   response.status = 201
 })
 
-router.delete('/:id', authenticate, async ({ params, response }) => {
-  await Post.destroy({ where: { id: params.id } })
+router.delete('/:id', authenticate, async ({ params: { id }, response }) => {
+  await Post.destroy({ where: { id } })
   response.body = { message: 'Post has been deleted' }
 })
 
