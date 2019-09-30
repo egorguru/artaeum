@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/EgorRepnikov/artaeum.svg?branch=master)](https://travis-ci.org/EgorRepnikov/artaeum)
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EgorRepnikov/artaeum/blob/master/LICENCE)
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/EgorRepnikov/artaeum/blob/master/LICENSE)
 # Artaeum - Microservice Social Network
 
 ## Overview
