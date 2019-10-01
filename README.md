@@ -28,7 +28,7 @@ Dragonrend.js Service contains Post API, Subscription API and API for storing Pr
 Colossus Service. There is simple storage with basic authentication. It contains only Image API. Other services should use it for storing images.
 
 ### Web Client (Frontend) Service (Svelte/Sapper)
-[Repository](https://github.com/EgorRepnikov/artaeum-frontend).
+[Repository](https://github.com/EgorRepnikov/artaeum-frontend). [Old Angular Version](https://github.com/EgorRepnikov/artaeum/tree/1.2/web-client).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
