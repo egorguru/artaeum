@@ -8,7 +8,6 @@ const mongod = new MongoMemoryServer({
 })
 
 let mockUaaServer
-let server
 
 function initMockServer() {
   return http.createServer((req, res) => {
@@ -35,11 +34,11 @@ before(async () => {
     await mongod.start()
   }
   config.mongoUri = await mongod.getConnectionString()
-  await new Promise((resolve, reject) => {
+  await new Promise((resolve) => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  server = require('../app').listen(config.port)
+  await require('../app').listen(config.port)
 })
 
 after(async () => {

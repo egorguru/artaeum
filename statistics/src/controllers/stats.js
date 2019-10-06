@@ -11,14 +11,14 @@ router.post('/', justAuthenticate, async ({
   response
 }) => {
   await new Stats({ ip, url, userId: name }).save()
-  response.status = 201
+  response.status(201).text('')
 })
 
 router.get('/', authenticate, async ({ user: { authorities }, response }) => {
   if (authorities.find((val) => val.authority === 'admin')) {
-    response.body = await Stats.find()
+    response.json(await Stats.find())
   } else {
-    response.status = 403
+    response.status(403).text('')
   }
 })
 

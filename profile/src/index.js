@@ -1,5 +1,3 @@
-const http = require('http')
-
 const eureka = require('./lib/eureka-client')
 const config = require('./lib/config')
 const app = require('./app')
