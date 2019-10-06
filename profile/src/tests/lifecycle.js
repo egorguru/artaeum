@@ -11,8 +11,6 @@ const http = require('http')
 
 const app = require('../app')
 
-let server = http.createServer(app.toListener())
-
 function initMockServer() {
   return http.createServer((req, res) => {
     let status, body
@@ -38,10 +36,10 @@ before(async () => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  server = server.listen(config.port)
+  await app.listen(config.port)
 })
 
 after(async () => {
-  server.close()
   mockUaaServer.close()
+  await app.close()
 })

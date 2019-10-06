@@ -12,12 +12,12 @@ router.post('/avatar', authenticate, async ({
   eureka,
   request: { body: { image } },
   user: { name }
-}) => storage.save(eureka, image, name + AVATAR))
+}) => await storage.save(eureka, image, name + AVATAR))
 
 router.post('/background', authenticate, async ({
   eureka,
   request: { body: { image } },
   user: { name }
-}) => storage.save(eureka, image, name + BACKGROUND))
+}) => await storage.save(eureka, image, name + BACKGROUND))
 
 module.exports = router

@@ -5,8 +5,8 @@ const { authenticate } = require('../lib/helpers')
 
 const router = new Router({ prefix: '/subscriptions' })
 
-router.get('/', async ({ response, request: { query } }) => {
-  response.body = await Subscription.findAll({ where: query })
+router.get('/', async ({ request: { query }, response }) => {
+  response.json(await Subscription.findAll({ where: query }))
 })
 
 router.post('/', authenticate, async ({
@@ -14,8 +14,9 @@ router.post('/', authenticate, async ({
   request: { body: { profileId } },
   response
 }) => {
-  response.body = await Subscription.create({ subscriberId: name, profileId })
-  response.status = 201
+  response
+    .status(201)
+    .json(await Subscription.create({ subscriberId: name, profileId }))
 })
 
 router.delete('/', authenticate, async ({
@@ -28,10 +29,9 @@ router.delete('/', authenticate, async ({
   })
   if (subscription) {
     subscription.destroy()
-    response.body = { message: 'Subscription has been deleted' }
+    response.json({ message: 'Subscription has been deleted' })
   } else {
-    response.body = { message: 'Subscription has not been found' }
-    response.status = 404
+    response.status(404).json({ message: 'Subscription has not been found' })
   }
 })
 

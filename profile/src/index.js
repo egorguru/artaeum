@@ -4,9 +4,9 @@ const eureka = require('./lib/eureka-client')
 const config = require('./lib/config')
 const app = require('./app')
 
-app.middleware((ctx) => ctx.eureka = eureka)
+app.baseContext.eureka = eureka
 
-http.createServer(app.toListener()).listen(config.port, () => {
+app.listen(config.port).then(() => {
   eureka.start()
   console.log(`Server has been started on port ${config.port}`)
 })
