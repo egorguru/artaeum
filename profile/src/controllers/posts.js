@@ -8,7 +8,7 @@ const DEFAULT_PAGE_SIZE = 10
 
 const router = new Router({ prefix: '/posts' })
 
-router.get('/', async ({ query, response }) => {
+router.get('/', async ({ request: { query }, response }) => {
   const page = +query.page || DEFAULT_PAGE
   const size = +query.size || DEFAULT_PAGE_SIZE
   delete query['page']
@@ -23,7 +23,7 @@ router.get('/', async ({ query, response }) => {
     }))
 })
 
-router.get('/:id', async ({ params: { id }, response }) => {
+router.get('/:id', async ({ request: { params: { id } }, response }) => {
   response.json(await Post.findByPk(id))
 })
 
@@ -46,7 +46,9 @@ router.post('/', authenticate, async ({
   response
 }) => response.status(201).json(await Post.create({ text, userId: name })))
 
-router.delete('/:id', authenticate, async ({ params: { id }, response }) => {
+router.delete('/:id', authenticate, async ({
+  request: { params: { id } }, response
+}) => {
   await Post.destroy({ where: { id } })
   response.json({ message: 'Post has been deleted' })
 })
