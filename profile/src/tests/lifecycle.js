@@ -9,7 +9,7 @@ config.sequelize = {
 
 const http = require('http')
 
-const app = require('../app')('src/routes')
+const app = require('../app')
 
 function initMockServer() {
   return http.createServer((req, res) => {

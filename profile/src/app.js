@@ -1,4 +1,3 @@
 const { Dragonrend } = require('dragonrend')
 
-module.exports = (routesDir) =>
-  new Dragonrend({ prefix: '/profile', routesDir })
+module.exports = new Dragonrend({ prefix: '/profile', rootDir: __dirname })
