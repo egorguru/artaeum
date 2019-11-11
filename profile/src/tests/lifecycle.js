@@ -9,7 +9,7 @@ config.sequelize = {
 
 const http = require('http')
 
-const app = require('../app')
+const app = require('../app')('src/routes')
 
 function initMockServer() {
   return http.createServer((req, res) => {
@@ -36,10 +36,10 @@ before(async () => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  await app.listen(config.port)
+  await app.start(config.port)
 })
 
 after(async () => {
   mockUaaServer.close()
-  await app.close()
+  await app.stop()
 })

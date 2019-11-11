@@ -4,7 +4,7 @@ const app = require('./app')
 
 app.baseContext.eureka = eureka
 
-app.listen(config.port).then(() => {
+app('routes').start(config.port).then(() => {
   eureka.start()
   console.log(`Server has been started on port ${config.port}`)
 })

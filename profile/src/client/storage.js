@@ -4,7 +4,7 @@ const config = require('../lib/config')
 
 const auth = Buffer.from(`storage:${config.storagePassword}`).toString('base64')
 
-module.exports.save = (eureka, file, name) => rp({
+exports.save = (eureka, file, name) => rp({
   uri: prepareUri(eureka),
   method: 'POST',
   headers: { 'Authorization': `Basic ${auth}` },
@@ -12,7 +12,7 @@ module.exports.save = (eureka, file, name) => rp({
   json: true
 })
 
-module.exports.delete = (eureka, name) => rp({
+exports.delete = (eureka, name) => rp({
   method: 'DELETE',
   uri: prepareUri(eureka) + name + '.jpg',
   headers: { 'Authorization': `Basic ${auth}` }
