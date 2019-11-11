@@ -1,28 +1,36 @@
 package com.artaeum.storage.handler
 
 import java.io.File
+import java.nio.file.Files
 import java.util.Base64
 
 import colossus.core.ServerContext
 import colossus.protocols.http.HttpMethod.{Delete, Get, Post}
 import colossus.protocols.http.UrlParsing.{/, Root, on}
-import colossus.protocols.http.{ContentType, Http, HttpBodyDecoder, HttpBodyEncoder, HttpCodes, HttpResponse, RequestHandler}
+import colossus.protocols.http.{ContentType, Http, HttpBody, HttpBodyDecoder, HttpBodyEncoder, HttpCodes, HttpResponse, RequestHandler}
 import colossus.service.Callback
 import colossus.service.GenRequestHandler.PartialHandler
-import com.artaeum.storage.decoder.ImageDecoder
-import com.artaeum.storage.encoder.ImageEncoder
 import com.artaeum.storage.model.Image
 import com.artaeum.storage.service.ImageService
+import com.github.plokhotnyuk.jsoniter_scala.core.{JsonValueCodec, readFromArray}
+import com.github.plokhotnyuk.jsoniter_scala.macros.{CodecMakerConfig, JsonCodecMaker}
 
-import scala.util.{Failure, Properties, Success}
+import scala.util.{Failure, Properties, Success, Try}
 
 class Handler(ctx: ServerContext) extends RequestHandler(ctx) {
 
   val USER: String = "storage"
   val PASSWORD: String = Properties.envOrElse("STORAGE_SERVICE_PASSWORD", "password")
 
-  implicit val imageEncoder: HttpBodyEncoder[File] = new ImageEncoder
-  implicit val fileEntityDecoder: HttpBodyDecoder[Image] = new ImageDecoder
+  implicit val imageEncoder: HttpBodyEncoder[File] = new HttpBodyEncoder[File] {
+    override def encode(data: File): HttpBody = new HttpBody(Files.readAllBytes(data.toPath))
+    override def contentType: String = "image/jpeg"
+  }
+
+  implicit val fileEntityDecoder: HttpBodyDecoder[Image] = new HttpBodyDecoder[Image] {
+    implicit val codec: JsonValueCodec[Image] = JsonCodecMaker.make[Image](CodecMakerConfig())
+    override def decode(body: Array[Byte]): Try[Image] = Try(readFromArray[Image](body))
+  }
 
   override def handle: PartialHandler[Http] = {
     case req @ Get on Root / "storage" / "health" =>
@@ -38,7 +46,7 @@ class Handler(ctx: ServerContext) extends RequestHandler(ctx) {
           .notFound("""{"error":"Not Found"}""")
           .withContentType(ContentType.ApplicationJson))
       }
-    case req @ Post on Root / "storage" / "images" / resource => this.ifAuth(req, () => {
+    case req @ Post on Root / "storage" / "images" / resource => this.ifAuth(req, () =>
       req.body.as[Image] match {
         case Success(image) =>
           ImageService.save(image, resource)
@@ -47,7 +55,7 @@ class Handler(ctx: ServerContext) extends RequestHandler(ctx) {
           .notFound("""{"error":"Bad Request"}""")
           .withContentType(ContentType.ApplicationJson))
       }
-    })
+    )
     case req @ Delete on Root / "storage" / "images" / resource / name =>
       ImageService.delete(resource, name)
       Callback.successful(req
