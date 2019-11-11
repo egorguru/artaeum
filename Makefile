@@ -4,7 +4,6 @@ build:
 	npm install --prefix media
 	npm install --prefix profile
 	mvn package -DskipTests -f registry
-	npm install --prefix statistics
 	mvn package -DskipTests -f storage
 	mvn package -DskipTests -f uaa
 
@@ -14,7 +13,6 @@ clean:
 	(rm -rf media/node_modules; rm media/package-lock.json)
 	(rm -rf profile/node_modules; rm profile/package-lock.json)
 	mvn clean -f registry
-	(rm -rf statistics/node_modules; rm statistics/package-lock.json)
 	mvn clean -f storage
 	mvn clean -f uaa
 
@@ -27,6 +25,5 @@ test:
 	npm run test --prefix media
 	npm run test --prefix profile
 	mvn test -f registry
-	npm run test --prefix statistics
 	(cd storage; sbt test)
 	mvn test -f uaa

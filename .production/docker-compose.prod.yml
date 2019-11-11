@@ -101,12 +101,3 @@ services:
     depends_on:
       - mongodb
       - registry
-
-  statistics:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-statistics
-    restart: always
-    depends_on:
-      - mongodb
-      - registry

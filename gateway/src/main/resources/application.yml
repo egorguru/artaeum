@@ -51,7 +51,3 @@ zuul:
       path: /profile/**
       serviceId: profile
       stripPrefix: false
-    statistics:
-      path: /statistics/**
-      serviceId: statistics
-      stripPrefix: false

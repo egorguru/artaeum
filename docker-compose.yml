@@ -103,14 +103,3 @@ services:
     depends_on:
       - mongodb
       - registry
-
-  statistics:
-    environment:
-      MONGO_URI: $MONGO_URI
-    image: egorrepnikov/artaeum-statistics
-    restart: always
-    ports:
-      - 12000:12000
-    depends_on:
-      - mongodb
-      - registry

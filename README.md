@@ -15,9 +15,6 @@ OAuth2 Server - Spring Cloud OAuth2. There is API for working with User's entiti
 ### Blog Service (JavaScript)
 Koa.js Service with Blog features containing Article API and Category API (depends on Article). All images are stored in Storage Service.
 
-### Statistics Service (JavaScript)
-Dragonrend.js Service contains only Statistics API.
-
 ### Media Service (JavaScript)
 Koa.js Service contains Comment API and Like API.
 

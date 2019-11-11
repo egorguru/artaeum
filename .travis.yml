@@ -17,7 +17,6 @@ install:
   - npm install --prefix blog --silent
   - npm install --prefix media --silent
   - npm install --prefix profile --silent
-  - npm install --prefix statistics --silent
 
 script:
   - npm run test --prefix blog
@@ -25,7 +24,6 @@ script:
   - npm run test --prefix media
   - npm run test --prefix profile
   - mvn package -f registry --quiet
-  - npm run test --prefix statistics
   - mvn package -f storage --quiet 
   - mvn package -f uaa --quiet
 
@@ -58,11 +56,6 @@ after_success:
   - docker build -t $REGISTRY:$COMMIT ./registry
   - docker tag $REGISTRY:$COMMIT $REGISTRY:$TAG
   - docker push $REGISTRY
-
-  - export STATISTICS=egorrepnikov/artaeum-statistics
-  - docker build -t $STATISTICS:$COMMIT ./statistics
-  - docker tag $STATISTICS:$COMMIT $STATISTICS:$TAG
-  - docker push $STATISTICS
 
   - export STORAGE=egorrepnikov/artaeum-storage
   - docker build -t $STORAGE:$COMMIT ./storage
