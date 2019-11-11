@@ -2,6 +2,7 @@ const http = require('http')
 const { MongoMemoryServer } = require('mongodb-memory-server')
 
 const config = require('../lib/config')
+let app = require('../app')
 
 const mongod = new MongoMemoryServer({
   autoStart: false
@@ -38,10 +39,12 @@ before(async () => {
     mockUaaServer = initMockServer().listen(5000, resolve)
   })
   config.uaaUri = 'http://localhost:5000/uaa'
-  await require('../app').listen(config.port)
+  app = app('src/routes')
+  await app.start(config.port)
 })
 
 after(async () => {
   mockUaaServer.close()
+  await app.stop()
   await mongod.stop()
 })
