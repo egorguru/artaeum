@@ -1,5 +1,5 @@
-const { routify, GET } = require('dragonrend')
+const { routing } = require('dragonrend')
 
-module.exports = routify()(
-  GET('/health', (ctx) => ctx.response.json({ status: 'UP' }))
-)
+module.exports = { GET } = routing()
+
+GET('/health', (ctx) => ctx.response.json({ status: 'UP' }))
