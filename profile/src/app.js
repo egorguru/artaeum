@@ -1,3 +1,10 @@
-const { Dragonrend } = require('dragonrend')
+const { dragonrend } = require('dragonrend')
 
-module.exports = new Dragonrend({ prefix: '/profile', rootDir: __dirname })
+module.exports = dragonrend({
+  routing: {
+    prefix: '/profile'
+  },
+  autoIncluding: {
+    rootDir: __dirname
+  }
+})

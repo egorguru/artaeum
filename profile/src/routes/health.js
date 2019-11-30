@@ -1,5 +1,5 @@
-const { routing } = require('dragonrend')
+const { routing, json } = require('dragonrend')
 
-module.exports = { GET } = routing()
+const { GET } = module.exports = routing()
 
-GET('/health', (ctx) => ctx.response.json({ status: 'UP' }))
+GET('/health', () => json({ body: { status: 'UP' } }))

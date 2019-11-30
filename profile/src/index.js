@@ -1,10 +1,10 @@
 const eureka = require('./lib/eureka-client')
 const config = require('./lib/config')
-const app = require('./app')
+const { CONTEXT, START } = require('./app')
 
-app.context('eureka', eureka)
+CONTEXT({ eureka })
 
-app.start(config.port).then(() => {
+START(config.port, () => {
   eureka.start()
   console.log(`Server has been started on port ${config.port}`)
 })
