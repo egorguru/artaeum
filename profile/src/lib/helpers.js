@@ -13,10 +13,7 @@ exports.authenticate = async ctx => {
     json: true
   })
   if (res.statusCode === 401) {
-    return json({
-      status: 401,
-      body: { message: 'Unauthorized' }
-    })
+    return json(401, { message: 'Unauthorized' })
   } else {
     ctx.user = res.body
   }
