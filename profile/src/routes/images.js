@@ -6,7 +6,7 @@ const storage = require('../client/storage')
 const AVATAR = '-avatar'
 const BACKGROUND = '-background'
 
-module.exports = { POST } = routing({ prefix: '/images' })
+const { POST } = module.exports = routing({ prefix: '/images' })
 
 POST('/avatar', authenticate, async ({ eureka, request, user }) => {
   await storage.save(eureka, request.body.image, user.name + AVATAR)
